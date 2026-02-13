@@ -1,146 +1,151 @@
 
-<html lang="en">
+<html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quran Reader</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quran Reader</title>
 
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <!-- Icons -->
-  <script src="https://kit.fontawesome.com/a2e0e6ad0c.js" crossorigin="anonymous"></script>
-
-  <style>
-    body { font-family: Poppins, sans-serif; }
-    .arabic {
-      font-family: Amiri, serif;
-      font-size: clamp(1.5rem, 5vw, 2rem);
-      direction: rtl;
-    }
-  </style>
+<style>
+  body { font-family: Poppins, sans-serif; }
+  .arabic {
+    font-family: Amiri, serif;
+    font-size: clamp(1.4rem, 4.5vw, 2rem);
+    direction: rtl;
+  }
+</style>
 </head>
 
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen flex flex-col">
+<body id="body" class="bg-gray-100 text-gray-900 min-h-screen flex flex-col transition-colors duration-300">
 
 <!-- HEADER -->
-<header class="bg-white dark:bg-gray-800 shadow p-4 sticky top-0 z-40 flex justify-between items-center">
+<header id="header" class="bg-white text-black shadow p-4 flex justify-between items-center sticky top-0 z-50">
   <h1 class="text-2xl font-bold">Quran</h1>
 
-  <button id="toggleTheme" class="text-xl">
-    <i class="fa-solid fa-moon dark:hidden"></i>
-    <i class="fa-solid fa-sun hidden dark:block"></i>
+  <button id="themeBtn" class="px-3 py-1 border rounded">
+    🌙 / ☀️
   </button>
 </header>
 
-<main class="container mx-auto px-6 py-8 flex-grow">
+<!-- MAIN -->
+<main class="flex-grow p-4">
 
   <!-- SURAH LIST -->
-  <div id="surahList" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+  <div id="surahList" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
 
   <!-- SURAH PAGE -->
   <div id="surahPage" class="hidden">
 
-    <!-- BACK BUTTON -->
-    <button
-      onclick="backHome()"
-      class="w-full sm:w-auto mb-6 px-4 py-2 bg-gray-200 text-black
-             dark:bg-gray-700 dark:text-black
-             rounded-lg font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition"
-    >
-      ← Back
+    <button id="backBtn"
+      class="mb-4 px-4 py-2 bg-gray-300 text-black rounded w-full sm:w-auto">
+      ← Terug
     </button>
 
-    <h2 id="surahTitle" class="text-4xl font-bold mb-2"></h2>
-    <p id="surahInfo" class="text-gray-500 dark:text-gray-400 mb-6"></p>
+    <h2 id="surahTitle" class="text-3xl font-bold mb-1"></h2>
+    <p id="surahInfo" class="text-gray-600 mb-4"></p>
 
-    <!-- AUDIO -->
     <audio id="surahAudio" controls class="w-full mb-6"></audio>
 
-    <!-- TEXT -->
     <div id="surahText" class="space-y-6"></div>
   </div>
 
 </main>
 
-<!-- FOOTER / SUPPORT -->
-<footer class="bg-white dark:bg-gray-800 border-t dark:border-gray-700 py-6 text-center">
-  <p class="text-sm text-gray-600 dark:text-gray-400">
-    Support:
-    <a href="mailto:elmouchania@hotmail.com"
-       class="font-medium text-black dark:text-white underline">
-      elmouchania@hotmail.com
-    </a>
-  </p>
+<!-- FOOTER -->
+<footer id="footer" class="text-center p-4 text-sm text-gray-600 border-t">
+  Support:
+  <a href="mailto:elmouchania@hotmail.com" class="underline">
+    elmouchania@hotmail.com
+  </a>
 </footer>
 
 <script>
-/* LOAD SURAH LIST */
-async function loadSurahs() {
-  const res = await fetch("https://api.alquran.cloud/v1/surah");
-  const data = await res.json();
-  const container = document.getElementById("surahList");
+let dark = false;
 
-  data.data.forEach(surah => {
-    const div = document.createElement("div");
-    div.className =
-      "bg-white dark:bg-gray-800 rounded-xl shadow p-6 cursor-pointer hover:shadow-xl transition";
+/* THEME */
+document.getElementById("themeBtn").addEventListener("click", () => {
+  dark = !dark;
 
-    div.innerHTML = `
-      <h3 class="text-xl font-bold">${surah.number}. ${surah.englishName}</h3>
-      <p class="text-gray-500">${surah.englishNameTranslation}</p>
-      <div class="arabic text-right mt-4 text-3xl">${surah.name}</div>
-    `;
+  document.body.className = dark
+    ? "bg-gray-900 text-gray-100 min-h-screen flex flex-col transition-colors duration-300"
+    : "bg-gray-100 text-gray-900 min-h-screen flex flex-col transition-colors duration-300";
 
-    div.onclick = () => openSurah(surah.number);
-    container.appendChild(div);
+  document.getElementById("header").className = dark
+    ? "bg-gray-800 text-white shadow p-4 flex justify-between items-center sticky top-0 z-50"
+    : "bg-white text-black shadow p-4 flex justify-between items-center sticky top-0 z-50";
+
+  document.getElementById("footer").className = dark
+    ? "text-center p-4 text-sm text-gray-300 border-t border-gray-700"
+    : "text-center p-4 text-sm text-gray-600 border-t";
+
+  document.querySelectorAll(".card").forEach(c => {
+    c.className = dark
+      ? "card bg-gray-800 text-white rounded shadow p-4 cursor-pointer transition"
+      : "card bg-white text-black rounded shadow p-4 cursor-pointer transition";
   });
-}
-loadSurahs();
+
+  document.getElementById("backBtn").className = dark
+    ? "mb-4 px-4 py-2 bg-gray-700 text-white rounded w-full sm:w-auto"
+    : "mb-4 px-4 py-2 bg-gray-300 text-black rounded w-full sm:w-auto";
+});
+
+/* LOAD SURAH LIST */
+fetch("https://api.alquran.cloud/v1/surah")
+  .then(res => res.json())
+  .then(data => {
+    const list = document.getElementById("surahList");
+
+    data.data.forEach(surah => {
+      const card = document.createElement("div");
+      card.className = "card bg-white text-black rounded shadow p-4 cursor-pointer transition";
+
+      card.innerHTML = `
+        <h3 class="font-bold">${surah.number}. ${surah.englishName}</h3>
+        <p class="text-sm opacity-70">${surah.englishNameTranslation}</p>
+        <div class="arabic text-right mt-3">${surah.name}</div>
+      `;
+
+      card.addEventListener("click", () => openSurah(surah.number));
+      list.appendChild(card);
+    });
+  });
 
 /* OPEN SURAH */
-async function openSurah(id) {
-  document.getElementById("surahList").classList.add("hidden");
-  document.getElementById("surahPage").classList.remove("hidden");
+function openSurah(id) {
+  surahList.classList.add("hidden");
+  surahPage.classList.remove("hidden");
 
-  const res = await fetch(`https://api.alquran.cloud/v1/surah/${id}`);
-  const surah = (await res.json()).data;
+  fetch(`https://api.alquran.cloud/v1/surah/${id}`)
+    .then(res => res.json())
+    .then(r => {
+      const s = r.data;
 
-  document.getElementById("surahTitle").innerText =
-    `${surah.number}. ${surah.englishName}`;
+      surahTitle.textContent = `${s.number}. ${s.englishName}`;
+      surahInfo.textContent = `${s.englishNameTranslation} • ${s.numberOfAyahs} verzen`;
 
-  document.getElementById("surahInfo").innerText =
-    `${surah.englishNameTranslation} • ${surah.numberOfAyahs} verses`;
+      surahAudio.src =
+        `https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/${id}.mp3`;
 
-  document.getElementById("surahAudio").src =
-    `https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/${id}.mp3`;
-
-  const textDiv = document.getElementById("surahText");
-  textDiv.innerHTML = "";
-
-  surah.ayahs.forEach(a => {
-    const ayahDiv = document.createElement("div");
-    ayahDiv.innerHTML = `
-      <div class="arabic leading-relaxed">${a.text}</div>
-      <div class="text-gray-500">(${a.numberInSurah})</div>
-    `;
-    textDiv.appendChild(ayahDiv);
-  });
+      surahText.innerHTML = "";
+      s.ayahs.forEach(a => {
+        const d = document.createElement("div");
+        d.innerHTML = `
+          <div class="arabic">${a.text}</div>
+          <div class="text-sm opacity-70">(${a.numberInSurah})</div>
+        `;
+        surahText.appendChild(d);
+      });
+    });
 }
 
 /* BACK */
-function backHome() {
-  document.getElementById("surahPage").classList.add("hidden");
-  document.getElementById("surahList").classList.remove("hidden");
-}
-
-/* DARK MODE */
-document.getElementById("toggleTheme").onclick = () => {
-  document.documentElement.classList.toggle("dark");
-};
+backBtn.addEventListener("click", () => {
+  surahPage.classList.add("hidden");
+  surahList.classList.remove("hidden");
+});
 </script>
 
 </body>
