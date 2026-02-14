@@ -133,7 +133,18 @@ function openSurah(id) {
         `;
 
         d.onclick = () => {
-          localStorage.setItem(`lastRead-${id}`, a.numberInSurah);
+          const key = `lastRead-${id}`;
+          const currentLastRead = localStorage.getItem(key);
+          
+          if (currentLastRead == a.numberInSurah) {
+            // Als dit vers de opgeslagen "last read" is, verwijder het dan
+            localStorage.removeItem(key);
+          } else {
+            // Anders, sla dit vers op als nieuwe "last read"
+            localStorage.setItem(key, a.numberInSurah);
+          }
+          
+          // Heropen de surah om de update te tonen
           openSurah(id);
         };
 
