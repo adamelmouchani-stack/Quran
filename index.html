@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quran Reader</title>
 
-<!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { darkMode: 'class' }
 </script>
 
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
@@ -21,6 +19,11 @@
     font-size: clamp(1.6rem, 5vw, 2.2rem);
     direction: rtl;
   }
+  .last-read {
+    background-color: rgba(253, 224, 71, 0.3);
+    border-left: 4px solid #facc15;
+    padding-left: 10px;
+  }
 </style>
 </head>
 
@@ -28,31 +31,27 @@
 
 <header class="bg-white dark:bg-gray-800 shadow p-4 flex justify-between items-center">
   <h1 class="text-2xl font-bold">Quran</h1>
-  <button id="themeBtn"
-    class="px-3 py-1 border rounded border-gray-400 dark:border-gray-600">
-    🌙 / ☀️
-  </button>
+  <button id="themeBtn" class="px-3 py-1 border rounded">🌙 / ☀️</button>
 </header>
 
 <main class="flex-grow p-4">
 
-  <!-- SURAH LIST -->
   <div id="surahList"
        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
   </div>
 
-  <!-- SURAH PAGE -->
   <div id="surahPage" class="hidden">
 
     <button id="backBtn"
-      class="mb-4 w-full sm:w-auto px-4 py-2 rounded
-             bg-gray-200 text-black
-             dark:bg-gray-700 dark:text-white">
-      ← Terug
+      class="mb-4 px-4 py-2 rounded bg-gray-200 text-black dark:bg-gray-700 dark:text-white">
+      ← Back
     </button>
 
     <h2 id="surahTitle" class="text-3xl font-bold mb-1"></h2>
-    <p id="surahInfo" class="text-gray-600 dark:text-gray-400 mb-4"></p>
+    <p id="surahInfo" class="text-gray-600 dark:text-gray-400 mb-2"></p>
+
+    <!-- LAST READ INFO (ENGLISH) -->
+    <p id="lastReadInfo" class="mb-4 text-sm text-yellow-600 dark:text-yellow-400"></p>
 
     <audio id="surahAudio" controls class="w-full mb-6"></audio>
 
@@ -71,20 +70,18 @@
 
 <script>
 // DARK MODE
-document.getElementById("themeBtn").addEventListener("click", () => {
+document.getElementById("themeBtn").onclick = () => {
   document.documentElement.classList.toggle("dark");
-});
+};
 
 // LOAD SURAH LIST
 fetch("https://api.alquran.cloud/v1/surah")
   .then(r => r.json())
   .then(data => {
-    const list = document.getElementById("surahList");
-
     data.data.forEach(surah => {
       const card = document.createElement("div");
       card.className =
-        "bg-white dark:bg-gray-800 rounded shadow p-4 cursor-pointer transition hover:shadow-lg";
+        "bg-white dark:bg-gray-800 rounded shadow p-4 cursor-pointer";
 
       card.innerHTML = `
         <h3 class="font-bold">${surah.number}. ${surah.englishName}</h3>
@@ -92,12 +89,11 @@ fetch("https://api.alquran.cloud/v1/surah")
         <div class="arabic text-right mt-3">${surah.name}</div>
       `;
 
-      card.addEventListener("click", () => openSurah(surah.number));
-      list.appendChild(card);
+      card.onclick = () => openSurah(surah.number);
+      surahList.appendChild(card);
     });
   });
 
-// OPEN SURAH
 function openSurah(id) {
   surahList.classList.add("hidden");
   surahPage.classList.remove("hidden");
@@ -109,28 +105,47 @@ function openSurah(id) {
 
       surahTitle.textContent = `${s.number}. ${s.englishName}`;
       surahInfo.textContent =
-        `${s.englishNameTranslation} • ${s.numberOfAyahs} verzen`;
+        `${s.englishNameTranslation} • ${s.numberOfAyahs} verses`;
 
       surahAudio.src =
         `https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/${id}.mp3`;
 
+      const savedAyah = localStorage.getItem(`lastRead-${id}`);
+      lastReadInfo.textContent = savedAyah
+        ? `Last read: verse ${savedAyah}`
+        : "";
+
       surahText.innerHTML = "";
+
       s.ayahs.forEach(a => {
         const d = document.createElement("div");
+
+        if (savedAyah == a.numberInSurah) {
+          d.classList.add("last-read");
+          setTimeout(() => d.scrollIntoView({ behavior: "smooth" }), 300);
+        }
+
         d.innerHTML = `
-          <div class="arabic">${a.text}</div>
-          <div class="text-sm text-gray-600 dark:text-gray-400">(${a.numberInSurah})</div>
+          <div class="arabic cursor-pointer">${a.text}</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400">
+            (Verse ${a.numberInSurah})
+          </div>
         `;
+
+        d.onclick = () => {
+          localStorage.setItem(`lastRead-${id}`, a.numberInSurah);
+          openSurah(id);
+        };
+
         surahText.appendChild(d);
       });
     });
 }
 
-// BACK
-document.getElementById("backBtn").addEventListener("click", () => {
+backBtn.onclick = () => {
   surahPage.classList.add("hidden");
   surahList.classList.remove("hidden");
-});
+};
 </script>
 
 </body>
