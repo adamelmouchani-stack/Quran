@@ -1,1021 +1,660 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Quran - De Heilige Koran</title>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        /* ===== RESET & VARIABLES ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-green: #2c542f;
-            --dark-green: #1e3a20;
-            --light-green: #4a7c4f;
-            --gold: #d4af37;
-            --dark-gold: #996515;
-            --bg-light: #f9f5e9;
-            --text-dark: #2c3e50;
-            --white: #ffffff;
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-            --shadow-hover: 0 15px 40px rgba(0,0,0,0.2);
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* ===== HEADER MET LOGO ===== */
-        header {
-            background: linear-gradient(135deg, var(--dark-green), var(--primary-green));
-            padding: 1rem 0;
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 3px solid var(--gold);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        /* ===== HET LOGO ===== */
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .logo-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(145deg, var(--gold), var(--dark-gold));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            box-shadow: 0 10px 0 #6b4f1a, 0 0 30px rgba(212, 175, 55, 0.5);
-            animation: glow 3s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 10px 0 #6b4f1a, 0 0 20px rgba(212, 175, 55, 0.5); }
-            50% { box-shadow: 0 10px 0 #6b4f1a, 0 0 40px rgba(212, 175, 55, 0.8); }
-        }
-
-        .logo-inner {
-            width: 65px;
-            height: 65px;
-            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: 3px solid var(--gold);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .logo-inner::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
-        .logo-arabic {
-            font-family: 'Amiri', serif;
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--gold);
-            line-height: 1;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            margin-bottom: 2px;
-        }
-
-        .logo-stars {
-            display: flex;
-            gap: 4px;
-        }
-
-        .logo-stars i {
-            font-size: 0.6rem;
-            color: var(--gold);
-            animation: twinkle 2s infinite;
-        }
-
-        .logo-stars i:nth-child(1) { animation-delay: 0s; }
-        .logo-stars i:nth-child(2) { animation-delay: 0.3s; }
-        .logo-stars i:nth-child(3) { animation-delay: 0.6s; }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .logo-text h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--white);
-            margin: 0;
-            line-height: 1.2;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            position: relative;
-        }
-
-        .logo-text h1::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: var(--gold);
-            border-radius: 2px;
-        }
-
-        .logo-subtitle {
-            font-size: 0.9rem;
-            color: var(--gold);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-top: 8px;
-            font-weight: 300;
-        }
-
-        /* Hover effect */
-        .logo:hover .logo-icon {
-            transform: scale(1.05) rotate(5deg);
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover .logo-inner {
-            transform: rotate(-5deg);
-            transition: transform 0.3s ease;
-        }
-
-        /* ===== NAVIGATIE ===== */
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        nav ul li a:hover,
-        nav ul li a.active {
-            background: var(--gold);
-            color: var(--dark-green);
-            transform: translateY(-2px);
-        }
-
-        nav ul li a i {
-            font-size: 1rem;
-        }
-
-        /* ===== THEMA KNOP ===== */
-        .theme-btn {
-            background: rgba(255,255,255,0.1);
-            border: 2px solid var(--gold);
-            color: var(--white);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-        }
-
-        .theme-btn:hover {
-            background: var(--gold);
-            color: var(--dark-green);
-            transform: rotate(180deg);
-        }
-
-        /* ===== BISMILLAH BANNER ===== */
-        .bismillah {
-            text-align: center;
-            padding: 3rem 0;
-            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
-            margin: 2rem 0;
-            border-radius: 20px;
-            color: var(--white);
-            border: 2px solid var(--gold);
-        }
-
-        .bismillah .arabic {
-            font-family: 'Amiri', serif;
-            font-size: 3rem;
-            color: var(--gold);
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        /* ===== SEARCH SECTION ===== */
-        .search-section {
-            max-width: 600px;
-            margin: 2rem auto;
-            display: flex;
-            gap: 10px;
-        }
-
-        .search-section input {
-            flex: 1;
-            padding: 1rem 1.5rem;
-            border: 2px solid var(--primary-green);
-            border-radius: 50px;
-            font-size: 1rem;
-            outline: none;
-            transition: all 0.3s;
-        }
-
-        .search-section input:focus {
-            border-color: var(--gold);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
-        }
-
-        .search-section button {
-            padding: 0 2rem;
-            background: var(--primary-green);
-            color: var(--white);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-        }
-
-        .search-section button:hover {
-            background: var(--gold);
-            color: var(--dark-green);
-        }
-
-        /* ===== STATS CARDS ===== */
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 3rem 0;
-        }
-
-        .stat-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: all 0.3s;
-            border-bottom: 4px solid var(--gold);
-        }
-
-        .stat-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .stat-card i {
-            font-size: 2.5rem;
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-
-        .stat-card h3 {
-            font-size: 2.5rem;
-            color: var(--primary-green);
-            margin: 0.5rem 0;
-        }
-
-        /* ===== SURAHS GRID ===== */
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 3rem 0 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .section-header h2 {
-            font-size: 2rem;
-            color: var(--primary-green);
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .section-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 3px;
-            background: var(--gold);
-        }
-
-        .filter-buttons {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .filter-btn {
-            padding: 0.5rem 1.5rem;
-            border: 2px solid var(--primary-green);
-            background: transparent;
-            color: var(--primary-green);
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .filter-btn.active,
-        .filter-btn:hover {
-            background: var(--primary-green);
-            color: var(--white);
-        }
-
-        .surahs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .surah-card {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            transition: all 0.3s;
-            border-left: 4px solid var(--gold);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .surah-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, transparent 50%, rgba(212, 175, 55, 0.1) 50%);
-        }
-
-        .surah-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .surah-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .surah-number {
-            width: 40px;
-            height: 40px;
-            background: var(--primary-green);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .surah-type {
-            padding: 0.3rem 1rem;
-            background: var(--bg-light);
-            border-radius: 20px;
-            font-size: 0.9rem;
-            color: var(--primary-green);
-            font-weight: 500;
-        }
-
-        .surah-arabic {
-            font-family: 'Amiri', serif;
-            font-size: 2rem;
-            text-align: right;
-            margin: 1rem 0;
-            color: var(--primary-green);
-        }
-
-        .surah-name {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .surah-translation {
-            color: #666;
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
-
-        .surah-info {
-            display: flex;
-            gap: 1rem;
-            margin: 1rem 0;
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .surah-info span {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .surah-actions {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .btn {
-            padding: 0.8rem 1rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.3s;
-            flex: 1;
-        }
-
-        .btn-primary {
-            background: var(--primary-green);
-            color: var(--white);
-        }
-
-        .btn-primary:hover {
-            background: var(--dark-green);
-            transform: translateY(-2px);
-        }
-
-        .btn-gold {
-            background: var(--gold);
-            color: var(--dark-green);
-        }
-
-        .btn-gold:hover {
-            background: var(--dark-gold);
-            color: var(--white);
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background: linear-gradient(135deg, var(--dark-green), var(--primary-green));
-            color: var(--white);
-            padding: 3rem 0 1.5rem;
-            margin-top: 4rem;
-            border-top: 3px solid var(--gold);
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            color: var(--gold);
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-section ul li a {
-            color: var(--white);
-            text-decoration: none;
-            opacity: 0.8;
-            transition: all 0.3s;
-        }
-
-        .footer-section ul li a:hover {
-            opacity: 1;
-            color: var(--gold);
-            padding-left: 5px;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .logo {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .logo-text h1::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .bismillah .arabic {
-                font-size: 2rem;
-            }
-
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .surahs-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .filter-buttons {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .filter-btn {
-                width: 100%;
-            }
-        }
-
-        /* Loading state */
-        .loading {
-            text-align: center;
-            padding: 3rem;
-            grid-column: 1/-1;
-        }
-
-        .loading i {
-            font-size: 3rem;
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-
-        /* Error state */
-        .error {
-            text-align: center;
-            padding: 3rem;
-            grid-column: 1/-1;
-            color: #dc3545;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Favicon (kleine icoon in browser tab) -->
+<link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23eab308'/%3E%3Ctext x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Amiri'%3E﷽%3C/text%3E%3C/svg%3E">
+
+<title>Quran</title>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { darkMode: 'class' }
+</script>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+  body { font-family: 'Poppins', sans-serif; }
+  
+  /* Header styling - EENVOUDIG ZONDER LOGO */
+  .header {
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    padding: 12px 0;
+  }
+  
+  .dark .header {
+    background: #1f2937;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  }
+  
+  /* Modal styling voor clear last read */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+  }
+  
+  .modal.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .modal-content {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    padding: 30px;
+    transform: scale(0.9);
+    transition: transform 0.3s;
+  }
+  
+  .dark .modal-content {
+    background: #1f2937;
+    color: white;
+  }
+  
+  .modal.show .modal-content {
+    transform: scale(1);
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .modal-header h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #eab308;
+  }
+  
+  .close-modal {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .dark .close-modal {
+    background: #4b5563;
+    color: white;
+  }
+  
+  .close-modal:hover {
+    background: #eab308;
+    color: white;
+  }
+  
+  .modal-btn {
+    width: 100%;
+    padding: 12px;
+    background: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .modal-btn:hover {
+    background: #dc2626;
+    transform: scale(1.02);
+  }
+  
+  /* Welkomstbericht */
+  .welcome-message {
+    background: linear-gradient(135deg, #fef9e7 0%, #ffffff 100%);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .dark .welcome-message {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  }
+  
+  /* Arabische tekst */
+  .arabic-text {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    direction: rtl;
+  }
+  
+  /* Soera kaarten */
+  .surah-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid transparent;
+  }
+  
+  .dark .surah-card {
+    background: #1f2937;
+  }
+  
+  .surah-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2);
+    border-color: #eab308;
+  }
+  
+  /* Laatst gelezen marker */
+  .last-read {
+    border-left: 4px solid #eab308;
+    background: rgba(234, 179, 8, 0.05);
+  }
+  
+  /* Loading spinner */
+  .loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #eab308;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 40px auto;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Footer styling */
+  .footer {
+    background: white;
+    border-top: 1px solid #e5e7eb;
+    padding: 30px 0;
+    margin-top: 50px;
+  }
+  
+  .dark .footer {
+    background: #1f2937;
+    border-color: #374151;
+  }
+  
+  .support-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 25px;
+    background: #eab308;
+    color: #1e293b;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: all 0.3s;
+  }
+  
+  .support-email:hover {
+    background: #fbbf24;
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px -5px rgba(234, 179, 8, 0.5);
+  }
+  
+  .support-email i {
+    font-size: 20px;
+  }
+  
+  /* Clear last read knop */
+  .clear-btn {
+    color: #6b7280;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  
+  .clear-btn:hover {
+    color: #ef4444;
+  }
+</style>
 </head>
-<body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <!-- LOGO -->
-                <div class="logo">
-                    <div class="logo-icon">
-                        <div class="logo-inner">
-                            <span class="logo-arabic">القرآن</span>
-                            <div class="logo-stars">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="logo-text">
-                        <h1>Online Quran</h1>
-                        <span class="logo-subtitle">De Heilige Koran</span>
-                    </div>
-                </div>
 
-                <!-- NAVIGATIE -->
-                <nav>
-                    <ul>
-                        <li><a href="#home" class="active"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="#surahs"><i class="fas fa-book-quran"></i> Soera's</a></li>
-                        <li><a href="#juz"><i class="fas fa-bookmark"></i> Juz'</a></li>
-                        <li><a href="#about"><i class="fas fa-info-circle"></i> Over</a></li>
-                    </ul>
-                </nav>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
 
-                <!-- THEMA KNOP -->
-                <button class="theme-btn" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </div>
-        </div>
-    </header>
+<!-- ========== EENVOUDIGE HEADER ZONDER LOGO ========== -->
+<header class="header">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex flex-wrap justify-between items-center gap-2">
+      <!-- Alleen tekst, geen logo -->
+      <h1 class="text-2xl font-bold" id="headerTitle">Quran</h1>
+      
+      <!-- Taal en thema rechts -->
+      <div class="flex gap-2 items-center">
+        <select id="languageSelect" class="px-2 py-1 border rounded text-sm bg-white dark:bg-gray-700 dark:text-white">
+          <option value="arabic">🇸🇦 العربية</option>
+          <option value="nl">🇳🇱 Nederlands</option>
+          <option value="en">🇬🇧 English</option>
+        </select>
+        <button id="themeBtn" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-amber-500 transition-all">
+          <i class="fas fa-moon dark:hidden"></i>
+          <i class="fas fa-sun hidden dark:inline"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
 
-    <main class="container">
-        <!-- BISMILLAH BANNER -->
-        <section class="bismillah">
-            <div class="arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-            <p>In de naam van Allah, de Barmhartige, de Genadevolle</p>
-        </section>
+<main class="max-w-7xl mx-auto px-4 py-6">
 
-        <!-- ZOEK SECTIE -->
-        <section class="search-section">
-            <input type="text" id="searchInput" placeholder="Zoek soera (bijv. Al-Fatihah, 1, De Opening)...">
-            <button id="searchBtn"><i class="fas fa-search"></i></button>
-        </section>
+  <!-- Welkomstbericht - verandert met taal -->
+  <div class="welcome-message">
+    <div class="flex items-center gap-3">
+      <i class="fas fa-book-open text-amber-500 text-3xl"></i>
+      <div>
+        <h2 class="text-xl font-bold" id="welcomeTitle">Welkom bij Quran</h2>
+        <p class="text-gray-600 dark:text-gray-400" id="welcomeText">Klik op een soera om te beginnen met lezen</p>
+      </div>
+    </div>
+  </div>
 
-        <!-- STATISTIEKEN -->
-        <section class="stats">
-            <div class="stat-card">
-                <i class="fas fa-book-quran"></i>
-                <h3>114</h3>
-                <p>Soera's</p>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-verse"></i>
-                <h3>6.236</h3>
-                <p>Verzen</p>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-bookmark"></i>
-                <h3>30</h3>
-                <p>Juz'</p>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-clock"></i>
-                <h3>23</h3>
-                <p>Jaren</p>
-            </div>
-        </section>
+  <!-- Clear last read knop (alleen zichtbaar als er een marker is) -->
+  <div class="text-right mb-4">
+    <button id="clearLastReadBtn" class="clear-btn text-sm hidden">
+      <i class="fas fa-trash-alt mr-1"></i> <span id="clearBtnText">Clear last read marker</span>
+    </button>
+  </div>
 
-        <!-- SOERA'S SECTIE -->
-        <section id="surahs">
-            <div class="section-header">
-                <h2><i class="fas fa-list"></i> Alle Soera's</h2>
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">Alles</button>
-                    <button class="filter-btn" data-filter="makki">Makkiyah</button>
-                    <button class="filter-btn" data-filter="madani">Madaniyah</button>
-                </div>
-            </div>
+  <!-- Laad spinner -->
+  <div id="loadingSpinner" class="loading-spinner hidden"></div>
 
-            <div class="surahs-grid" id="surahsGrid">
-                <!-- Soera's worden hier geladen met JavaScript -->
-                <div class="loading">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>Soera's laden...</p>
-                </div>
-            </div>
-        </section>
-    </main>
+  <!-- Soera lijst -->
+  <div id="surahList" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Over Online Quran</h3>
-                    <p>De complete Heilige Koran met Nederlandse vertaling. Makkelijk te lezen en te beluisteren.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Snelle Links</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#surahs">Alle Soera's</a></li>
-                        <li><a href="#juz">Juz' Index</a></li>
-                        <li><a href="#about">Over ons</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact</h3>
-                    <ul>
-                        <li><i class="fas fa-envelope"></i> info@onlinequran.nl</li>
-                        <li><i class="fas fa-phone"></i> +31 (0) 123 456 789</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Online Quran. Alle rechten voorbehouden.</p>
-            </div>
-        </div>
-    </footer>
+  <!-- Soera pagina -->
+  <div id="surahPage" class="hidden">
+    <button id="backBtn" class="mb-4 px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-amber-500 transition-all">
+      <i class="fas fa-arrow-left mr-1"></i> <span id="backText">Terug</span>
+    </button>
 
-    <script>
-        // ===== SOERA DATA (114 soera's) =====
-        const allSurahs = [
-            {id: 1, name: "Al-Fatihah", arabic: "الفاتحة", translation: "De Opening", verses: 7, type: "makki", juz: [1], page: 1},
-            {id: 2, name: "Al-Baqarah", arabic: "البقرة", translation: "De Koe", verses: 286, type: "madani", juz: [1,2,3], page: 2},
-            {id: 3, name: "Ali 'Imran", arabic: "آل عمران", translation: "Het Geslacht van Imraan", verses: 200, type: "madani", juz: [3,4], page: 50},
-            {id: 4, name: "An-Nisa", arabic: "النساء", translation: "De Vrouwen", verses: 176, type: "madani", juz: [4,5,6], page: 77},
-            {id: 5, name: "Al-Ma'idah", arabic: "المائدة", translation: "De Tafel", verses: 120, type: "madani", juz: [6,7], page: 106},
-            {id: 6, name: "Al-An'am", arabic: "الأنعام", translation: "Het Vee", verses: 165, type: "makki", juz: [7,8], page: 128},
-            {id: 7, name: "Al-A'raf", arabic: "الأعراف", translation: "De Kantelen", verses: 206, type: "makki", juz: [8,9], page: 151},
-            {id: 8, name: "Al-Anfal", arabic: "الأنفال", translation: "De Buit", verses: 75, type: "madani", juz: [9,10], page: 177},
-            {id: 9, name: "At-Tawbah", arabic: "التوبة", translation: "Het Berouw", verses: 129, type: "madani", juz: [10,11], page: 187},
-            {id: 10, name: "Yunus", arabic: "يونس", translation: "Jonas", verses: 109, type: "makki", juz: [11], page: 208},
-            {id: 11, name: "Hud", arabic: "هود", translation: "Hud", verses: 123, type: "makki", juz: [11,12], page: 221},
-            {id: 12, name: "Yusuf", arabic: "يوسف", translation: "Jozef", verses: 111, type: "makki", juz: [12,13], page: 235},
-            {id: 13, name: "Ar-Ra'd", arabic: "الرعد", translation: "De Donder", verses: 43, type: "madani", juz: [13], page: 249},
-            {id: 14, name: "Ibrahim", arabic: "إبراهيم", translation: "Abraham", verses: 52, type: "makki", juz: [13], page: 255},
-            {id: 15, name: "Al-Hijr", arabic: "الحجر", translation: "Al-Hidjr", verses: 99, type: "makki", juz: [14], page: 262},
-            {id: 16, name: "An-Nahl", arabic: "النحل", translation: "De Bijen", verses: 128, type: "makki", juz: [14], page: 267},
-            {id: 17, name: "Al-Isra", arabic: "الإسراء", translation: "De Nachtreis", verses: 111, type: "makki", juz: [15], page: 282},
-            {id: 18, name: "Al-Kahf", arabic: "الكهف", translation: "De Spelonk", verses: 110, type: "makki", juz: [15,16], page: 293},
-            {id: 19, name: "Maryam", arabic: "مريم", translation: "Maria", verses: 98, type: "makki", juz: [16], page: 305},
-            {id: 20, name: "Taha", arabic: "طه", translation: "Ta Ha", verses: 135, type: "makki", juz: [16], page: 312},
-            {id: 21, name: "Al-Anbiya", arabic: "الأنبياء", translation: "De Profeten", verses: 112, type: "makki", juz: [17], page: 322},
-            {id: 22, name: "Al-Hajj", arabic: "الحج", translation: "De Bedevaart", verses: 78, type: "madani", juz: [17], page: 332},
-            {id: 23, name: "Al-Mu'minun", arabic: "المؤمنون", translation: "De Gelovigen", verses: 118, type: "makki", juz: [18], page: 342},
-            {id: 24, name: "An-Nur", arabic: "النور", translation: "Het Licht", verses: 64, type: "madani", juz: [18], page: 350},
-            {id: 25, name: "Al-Furqan", arabic: "الفرقان", translation: "Het Onderscheid", verses: 77, type: "makki", juz: [18,19], page: 359},
-            {id: 26, name: "Ash-Shu'ara", arabic: "الشعراء", translation: "De Dichters", verses: 227, type: "makki", juz: [19], page: 367},
-            {id: 27, name: "An-Naml", arabic: "النمل", translation: "De Mieren", verses: 93, type: "makki", juz: [19,20], page: 377},
-            {id: 28, name: "Al-Qasas", arabic: "القصص", translation: "Het Verhaal", verses: 88, type: "makki", juz: [20], page: 385},
-            {id: 29, name: "Al-Ankabut", arabic: "العنكبوت", translation: "De Spin", verses: 69, type: "makki", juz: [20,21], page: 396},
-            {id: 30, name: "Ar-Rum", arabic: "الروم", translation: "De Romeinen", verses: 60, type: "makki", juz: [21], page: 404},
-            {id: 31, name: "Luqman", arabic: "لقمان", translation: "Loekman", verses: 34, type: "makki", juz: [21], page: 411},
-            {id: 32, name: "As-Sajdah", arabic: "السجدة", translation: "De Neerwerping", verses: 30, type: "makki", juz: [21], page: 415},
-            {id: 33, name: "Al-Ahzab", arabic: "الأحزاب", translation: "De Partijen", verses: 73, type: "madani", juz: [21,22], page: 418},
-            {id: 34, name: "Saba", arabic: "سبأ", translation: "Sheba", verses: 54, type: "makki", juz: [22], page: 428},
-            {id: 35, name: "Fatir", arabic: "فاطر", translation: "De Schepper", verses: 45, type: "makki", juz: [22], page: 434},
-            {id: 36, name: "Ya-Sin", arabic: "يس", translation: "Ya Sin", verses: 83, type: "makki", juz: [22,23], page: 440},
-            {id: 37, name: "As-Saffat", arabic: "الصافات", translation: "De in Rijen opgestelden", verses: 182, type: "makki", juz: [23], page: 446},
-            {id: 38, name: "Sad", arabic: "ص", translation: "De letter Sad", verses: 88, type: "makki", juz: [23], page: 453},
-            {id: 39, name: "Az-Zumar", arabic: "الزمر", translation: "De Scharen", verses: 75, type: "makki", juz: [23,24], page: 458},
-            {id: 40, name: "Ghafir", arabic: "غافر", translation: "De Vergever", verses: 85, type: "makki", juz: [24], page: 467},
-            {id: 41, name: "Fussilat", arabic: "فصلت", translation: "Uiteengezet", verses: 54, type: "makki", juz: [24,25], page: 477},
-            {id: 42, name: "Ash-Shura", arabic: "الشورى", translation: "De Raadpleging", verses: 53, type: "makki", juz: [25], page: 483},
-            {id: 43, name: "Az-Zukhruf", arabic: "الزخرف", translation: "Het Goud", verses: 89, type: "makki", juz: [25], page: 489},
-            {id: 44, name: "Ad-Dukhan", arabic: "الدخان", translation: "De Rook", verses: 59, type: "makki", juz: [25], page: 496},
-            {id: 45, name: "Al-Jathiyah", arabic: "الجاثية", translation: "De Knieëllende", verses: 37, type: "makki", juz: [25], page: 499},
-            {id: 46, name: "Al-Ahqaf", arabic: "الأحقاف", translation: "De Duinen", verses: 35, type: "makki", juz: [26], page: 502},
-            {id: 47, name: "Muhammad", arabic: "محمد", translation: "Mohammed", verses: 38, type: "madani", juz: [26], page: 507},
-            {id: 48, name: "Al-Fath", arabic: "الفتح", translation: "De Overwinning", verses: 29, type: "madani", juz: [26], page: 511},
-            {id: 49, name: "Al-Hujurat", arabic: "الحجرات", translation: "De Binnenvertrekken", verses: 18, type: "madani", juz: [26], page: 515},
-            {id: 50, name: "Qaf", arabic: "ق", translation: "Qaf", verses: 45, type: "makki", juz: [26], page: 518},
-            {id: 51, name: "Adh-Dhariyat", arabic: "الذاريات", translation: "De Verspreiders", verses: 60, type: "makki", juz: [26,27], page: 520},
-            {id: 52, name: "At-Tur", arabic: "الطور", translation: "De Berg", verses: 49, type: "makki", juz: [27], page: 523},
-            {id: 53, name: "An-Najm", arabic: "النجم", translation: "De Ster", verses: 62, type: "makki", juz: [27], page: 526},
-            {id: 54, name: "Al-Qamar", arabic: "القمر", translation: "De Maan", verses: 55, type: "makki", juz: [27], page: 528},
-            {id: 55, name: "Ar-Rahman", arabic: "الرحمن", translation: "De Barmhartige", verses: 78, type: "madani", juz: [27], page: 531},
-            {id: 56, name: "Al-Waqi'ah", arabic: "الواقعة", translation: "De Onvermijdelijke", verses: 96, type: "makki", juz: [27], page: 534},
-            {id: 57, name: "Al-Hadid", arabic: "الحديد", translation: "Het IJzer", verses: 29, type: "madani", juz: [27], page: 537},
-            {id: 58, name: "Al-Mujadila", arabic: "المجادلة", translation: "De Pleitende Vrouw", verses: 22, type: "madani", juz: [28], page: 542},
-            {id: 59, name: "Al-Hashr", arabic: "الحشر", translation: "De Verzameling", verses: 24, type: "madani", juz: [28], page: 545},
-            {id: 60, name: "Al-Mumtahanah", arabic: "الممتحنة", translation: "De Onderzochte", verses: 13, type: "madani", juz: [28], page: 549},
-            {id: 61, name: "As-Saf", arabic: "الصف", translation: "De Gelederen", verses: 14, type: "madani", juz: [28], page: 551},
-            {id: 62, name: "Al-Jumu'ah", arabic: "الجمعة", translation: "De Vrijdag", verses: 11, type: "madani", juz: [28], page: 553},
-            {id: 63, name: "Al-Munafiqun", arabic: "المنافقون", translation: "De Huichelaars", verses: 11, type: "madani", juz: [28], page: 555},
-            {id: 64, name: "At-Taghabun", arabic: "التغابن", translation: "Het Bedrog", verses: 18, type: "madani", juz: [28], page: 557},
-            {id: 65, name: "At-Talaq", arabic: "الطلاق", translation: "De Scheiding", verses: 12, type: "madani", juz: [28], page: 559},
-            {id: 66, name: "At-Tahrim", arabic: "التحريم", translation: "Het Verbod", verses: 12, type: "madani", juz: [28], page: 561},
-            {id: 67, name: "Al-Mulk", arabic: "الملك", translation: "Het Koninkrijk", verses: 30, type: "makki", juz: [29], page: 563},
-            {id: 68, name: "Al-Qalam", arabic: "القلم", translation: "De Pen", verses: 52, type: "makki", juz: [29], page: 565},
-            {id: 69, name: "Al-Haqqah", arabic: "الحاقة", translation: "De Werkelijkheid", verses: 52, type: "makki", juz: [29], page: 567},
-            {id: 70, name: "Al-Ma'arij", arabic: "المعارج", translation: "De Trappen", verses: 44, type: "makki", juz: [29], page: 569},
-            {id: 71, name: "Nuh", arabic: "نوح", translation: "Noach", verses: 28, type: "makki", juz: [29], page: 571},
-            {id: 72, name: "Al-Jinn", arabic: "الجن", translation: "De Djinn", verses: 28, type: "makki", juz: [29], page: 572},
-            {id: 73, name: "Al-Muzzammil", arabic: "المزمل", translation: "De Ommantelde", verses: 20, type: "makki", juz: [29], page: 574},
-            {id: 74, name: "Al-Muddathir", arabic: "المدثر", translation: "De Ommantelde", verses: 56, type: "makki", juz: [29], page: 575},
-            {id: 75, name: "Al-Qiyamah", arabic: "القيامة", translation: "De Opstanding", verses: 40, type: "makki", juz: [29], page: 577},
-            {id: 76, name: "Al-Insan", arabic: "الانسان", translation: "De Mens", verses: 31, type: "madani", juz: [29], page: 578},
-            {id: 77, name: "Al-Mursalat", arabic: "المرسلات", translation: "De Gezonden", verses: 50, type: "makki", juz: [29], page: 580},
-            {id: 78, name: "An-Naba", arabic: "النبإ", translation: "Het Bericht", verses: 40, type: "makki", juz: [30], page: 582},
-            {id: 79, name: "An-Nazi'at", arabic: "النازعات", translation: "De Wegrukkenden", verses: 46, type: "makki", juz: [30], page: 583},
-            {id: 80, name: "Abasa", arabic: "عبس", translation: "Hij Fronste", verses: 42, type: "makki", juz: [30], page: 585},
-            {id: 81, name: "At-Takwir", arabic: "التكوير", translation: "Het Samenrollen", verses: 29, type: "makki", juz: [30], page: 586},
-            {id: 82, name: "Al-Infitar", arabic: "الإنفطار", translation: "Het Splijten", verses: 19, type: "makki", juz: [30], page: 587},
-            {id: 83, name: "Al-Mutaffifin", arabic: "المطففين", translation: "De Fraudeurs", verses: 36, type: "makki", juz: [30], page: 587},
-            {id: 84, name: "Al-Inshiqaq", arabic: "الانشقاق", translation: "Het Opensplijten", verses: 25, type: "makki", juz: [30], page: 589},
-            {id: 85, name: "Al-Buruj", arabic: "البروج", translation: "De Sterrenbeelden", verses: 22, type: "makki", juz: [30], page: 590},
-            {id: 86, name: "At-Tariq", arabic: "الطارق", translation: "De Nachtelijke Bezoeker", verses: 17, type: "makki", juz: [30], page: 591},
-            {id: 87, name: "Al-A'la", arabic: "الأعلى", translation: "De Allerhoogste", verses: 19, type: "makki", juz: [30], page: 591},
-            {id: 88, name: "Al-Ghashiyah", arabic: "الغاشية", translation: "De Overweldigende", verses: 26, type: "makki", juz: [30], page: 592},
-            {id: 89, name: "Al-Fajr", arabic: "الفجر", translation: "De Dageraad", verses: 30, type: "makki", juz: [30], page: 593},
-            {id: 90, name: "Al-Balad", arabic: "البلد", translation: "De Stad", verses: 20, type: "makki", juz: [30], page: 594},
-            {id: 91, name: "Ash-Shams", arabic: "الشمس", translation: "De Zon", verses: 15, type: "makki", juz: [30], page: 595},
-            {id: 92, name: "Al-Layl", arabic: "الليل", translation: "De Nacht", verses: 21, type: "makki", juz: [30], page: 595},
-            {id: 93, name: "Ad-Duha", arabic: "الضحى", translation: "De Ochtend", verses: 11, type: "makki", juz: [30], page: 596},
-            {id: 94, name: "Ash-Sharh", arabic: "الشرح", translation: "De Opening", verses: 8, type: "makki", juz: [30], page: 596},
-            {id: 95, name: "At-Tin", arabic: "التين", translation: "De Vijgenboom", verses: 8, type: "makki", juz: [30], page: 597},
-            {id: 96, name: "Al-'Alaq", arabic: "العلق", translation: "De Bloedklomp", verses: 19, type: "makki", juz: [30], page: 597},
-            {id: 97, name: "Al-Qadr", arabic: "القدر", translation: "De Beschikking", verses: 5, type: "makki", juz: [30], page: 598},
-            {id: 98, name: "Al-Bayyinah", arabic: "البينة", translation: "Het Bewijs", verses: 8, type: "madani", juz: [30], page: 598},
-            {id: 99, name: "Az-Zalzalah", arabic: "الزلزلة", translation: "De Aardbeving", verses: 8, type: "madani", juz: [30], page: 599},
-            {id: 100, name: "Al-'Adiyat", arabic: "العاديات", translation: "De Snellenden", verses: 11, type: "makki", juz: [30], page: 599},
-            {id: 101, name: "Al-Qari'ah", arabic: "القارعة", translation: "De Slag", verses: 11, type: "makki", juz: [30], page: 600},
-            {id: 102, name: "At-Takathur", arabic: "التكاثر", translation: "De Vermeerdering", verses: 8, type: "makki", juz: [30], page: 600},
-            {id: 103, name: "Al-'Asr", arabic: "العصر", translation: "De Namiddag", verses: 3, type: "makki", juz: [30], page: 601},
-            {id: 104, name: "Al-Humazah", arabic: "الهمزة", translation: "De Lasteraar", verses: 9, type: "makki", juz: [30], page: 601},
-            {id: 105, name: "Al-Fil", arabic: "الفيل", translation: "De Olifant", verses: 5, type: "makki", juz: [30], page: 601},
-            {id: 106, name: "Quraysh", arabic: "قريش", translation: "Quraysh", verses: 4, type: "makki", juz: [30], page: 602},
-            {id: 107, name: "Al-Ma'un", arabic: "الماعون", translation: "De Noodhulp", verses: 7, type: "makki", juz: [30], page: 602},
-            {id: 108, name: "Al-Kawthar", arabic: "الكوثر", translation: "De Overvloed", verses: 3, type: "makki", juz: [30], page: 602},
-            {id: 109, name: "Al-Kafirun", arabic: "الكافرون", translation: "De Ongelovigen", verses: 6, type: "makki", juz: [30], page: 603},
-            {id: 110, name: "An-Nasr", arabic: "النصر", translation: "De Hulp", verses: 3, type: "madani", juz: [30], page: 603},
-            {id: 111, name: "Al-Masad", arabic: "المسد", translation: "De Palmvezel", verses: 5, type: "makki", juz: [30], page: 603},
-            {id: 112, name: "Al-Ikhlas", arabic: "الإخلاص", translation: "De Oprechtheid", verses: 4, type: "makki", juz: [30], page: 604},
-            {id: 113, name: "Al-Falaq", arabic: "الفلق", translation: "De Dageraad", verses: 5, type: "makki", juz: [30], page: 604},
-            {id: 114, name: "An-Nas", arabic: "الناس", translation: "De Mensen", verses: 6, type: "makki", juz: [30], page: 604}
-        ];
+    <div class="bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 mb-6">
+      <h2 id="surahTitle" class="text-3xl font-bold mb-1"></h2>
+      <p id="surahInfo" class="text-gray-600 dark:text-gray-400 mb-2"></p>
+      <p id="lastReadInfo" class="text-sm text-amber-600 dark:text-amber-400"></p>
+    </div>
 
-        // ===== FUNCTIES =====
-        function loadSurahs() {
-            const grid = document.getElementById('surahsGrid');
-            if (!grid) return;
-            
-            let html = '';
-            
-            allSurahs.forEach(surah => {
-                html += `
-                    <div class="surah-card" data-id="${surah.id}" data-type="${surah.type}">
-                        <div class="surah-header">
-                            <div class="surah-number">${surah.id}</div>
-                            <div class="surah-type">${surah.type === 'makki' ? 'Makkiyah' : 'Madaniyah'}</div>
-                        </div>
-                        <div class="surah-arabic">${surah.arabic}</div>
-                        <div class="surah-name">${surah.name}</div>
-                        <div class="surah-translation">${surah.translation}</div>
-                        <div class="surah-info">
-                            <span><i class="fas fa-verse"></i> ${surah.verses} verzen</span>
-                            <span><i class="fas fa-bookmark"></i> Juz' ${surah.juz.join(', ')}</span>
-                            <span><i class="fas fa-file"></i> p. ${surah.page}</span>
-                        </div>
-                        <div class="surah-actions">
-                            <button class="btn btn-primary" onclick="alert('Soera ${surah.id} openen')">
-                                <i class="fas fa-book-reader"></i> Lees
-                            </button>
-                            <button class="btn btn-gold" onclick="playAudio(${surah.id})">
-                                <i class="fas fa-play"></i> Luister
-                            </button>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            grid.innerHTML = html;
+    <div class="bg-white dark:bg-gray-800 rounded-xl p-4 mb-6">
+      <audio id="surahAudio" controls class="w-full"></audio>
+    </div>
+
+    <div id="surahText" class="space-y-4"></div>
+  </div>
+
+</main>
+
+<!-- ========== CONFIRMATIE MODAL VOOR CLEAR LAST READ ========== -->
+<div id="confirmModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2><i class="fas fa-trash-alt text-amber-500 mr-2"></i> <span id="modalTitle">Bevestigen</span></h2>
+      <div class="close-modal" id="closeConfirmModal">
+        <i class="fas fa-times"></i>
+      </div>
+    </div>
+    
+    <p class="mb-6 text-center" id="modalText">Weet je zeker dat je de last read marker wilt verwijderen?</p>
+    
+    <button id="confirmClearBtn" class="modal-btn">
+      <i class="fas fa-check mr-2"></i> <span id="confirmBtnText">Ja, verwijder</span>
+    </button>
+  </div>
+</div>
+
+<!-- ========== FOOTER MET SUPPORT MAIL ========== -->
+<footer class="footer">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    <h3 class="text-lg font-semibold mb-4" id="supportTitle">Heb je vragen of hulp nodig?</h3>
+    
+    <a href="mailto:elmouchania@hotmail.com" class="support-email">
+      <i class="fas fa-envelope"></i>
+      <span>elmouchania@hotmail.com</span>
+    </a>
+    
+    <div class="mt-6 text-sm text-gray-500 dark:text-gray-400">
+      <p>© 2026 Quran. Alle rechten voorbehouden.</p>
+      <p class="mt-1" id="responseTime">Antwoord binnen 24 uur op werkdagen</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ========== STATE ==========
+let currentLanguage = 'nl'; // Standaard Nederlands
+let currentSurahId = null;
+
+// ========== DOM ELEMENTEN ==========
+const clearLastReadBtn = document.getElementById('clearLastReadBtn');
+const confirmModal = document.getElementById('confirmModal');
+const closeConfirmModal = document.getElementById('closeConfirmModal');
+const confirmClearBtn = document.getElementById('confirmClearBtn');
+
+// ========== TALEN ==========
+const translations = {
+  arabic: {
+    headerTitle: "القرآن",
+    back: "رجوع",
+    verses: "آيات",
+    welcomeTitle: "مرحبًا بك في القرآن",
+    welcomeText: "انقر على سورة لبدء القراءة",
+    clearBtn: "مسح علامة آخر قراءة",
+    modalTitle: "تأكيد",
+    modalText: "هل أنت متأكد أنك تريد مسح علامة آخر قراءة؟",
+    confirmBtn: "نعم، مسح",
+    supportTitle: "هل لديك أسئلة أو تحتاج مساعدة؟",
+    responseTime: "الرد خلال 24 ساعة في أيام العمل",
+    lastRead: "آخر قراءة: آية"
+  },
+  nl: {
+    headerTitle: "Quran",
+    back: "Terug",
+    verses: "verzen",
+    welcomeTitle: "Welkom bij Quran",
+    welcomeText: "Klik op een soera om te beginnen met lezen",
+    clearBtn: "Clear last read marker",
+    modalTitle: "Bevestigen",
+    modalText: "Weet je zeker dat je de last read marker wilt verwijderen?",
+    confirmBtn: "Ja, verwijder",
+    supportTitle: "Heb je vragen of hulp nodig?",
+    responseTime: "Antwoord binnen 24 uur op werkdagen",
+    lastRead: "Laatst gelezen: vers"
+  },
+  en: {
+    headerTitle: "Quran",
+    back: "Back",
+    verses: "verses",
+    welcomeTitle: "Welcome to Quran",
+    welcomeText: "Click on a surah to start reading",
+    clearBtn: "Clear last read marker",
+    modalTitle: "Confirm",
+    modalText: "Are you sure you want to clear the last read marker?",
+    confirmBtn: "Yes, clear",
+    supportTitle: "Do you have questions or need help?",
+    responseTime: "Reply within 24 hours on weekdays",
+    lastRead: "Last read: verse"
+  }
+};
+
+// ========== SOERA NAMEN ==========
+const latinSuraNames = [
+  "Al-Fatiha", "Al-Baqara", "Aal-E-Imran", "An-Nisa", "Al-Ma'idah",
+  "Al-An'am", "Al-A'raf", "Al-Anfal", "At-Tawbah", "Yunus",
+  "Hud", "Yusuf", "Ar-Ra'd", "Ibrahim", "Al-Hijr",
+  "An-Nahl", "Al-Isra", "Al-Kahf", "Maryam", "Ta-Ha",
+  "Al-Anbiya", "Al-Hajj", "Al-Mu'minun", "An-Nur", "Al-Furqan",
+  "Ash-Shu'ara", "An-Naml", "Al-Qasas", "Al-Ankabut", "Ar-Rum",
+  "Luqman", "As-Sajda", "Al-Ahzab", "Saba", "Fatir",
+  "Ya-Sin", "As-Saffat", "Sad", "Az-Zumar", "Ghafir",
+  "Fussilat", "Ash-Shura", "Az-Zukhruf", "Ad-Dukhan", "Al-Jathiya",
+  "Al-Ahqaf", "Muhammad", "Al-Fath", "Al-Hujurat", "Qaf",
+  "Adh-Dhariyat", "At-Tur", "An-Najm", "Al-Qamar", "Ar-Rahman",
+  "Al-Waqia", "Al-Hadid", "Al-Mujadila", "Al-Hashr", "Al-Mumtahina",
+  "As-Saff", "Al-Jumu'a", "Al-Munafiqun", "At-Taghabun", "At-Talaq",
+  "At-Tahrim", "Al-Mulk", "Al-Qalam", "Al-Haqqa", "Al-Ma'arij",
+  "Nuh", "Al-Jinn", "Al-Muzzammil", "Al-Muddaththir", "Al-Qiyama",
+  "Al-Insan", "Al-Mursalat", "An-Naba", "An-Nazi'at", "Abasa",
+  "At-Takwir", "Al-Infitar", "Al-Mutaffifin", "Al-Inshiqaq", "Al-Buruj",
+  "At-Tariq", "Al-A'la", "Al-Ghashiya", "Al-Fajr", "Al-Balad",
+  "Ash-Shams", "Al-Lail", "Ad-Duha", "Ash-Sharh", "At-Tin",
+  "Al-Alaq", "Al-Qadr", "Al-Bayyina", "Az-Zalzala", "Al-Adiyat",
+  "Al-Qaria", "At-Takathur", "Al-Asr", "Al-Humaza", "Al-Fil",
+  "Quraish", "Al-Ma'un", "Al-Kawthar", "Al-Kafirun", "An-Nasr",
+  "Al-Masad", "Al-Ikhlas", "Al-Falaq", "An-Nas"
+];
+
+const arabicSuraNames = [
+  "الفاتحة", "البقرة", "آل عمران", "النساء", "المائدة",
+  "الأنعام", "الأعراف", "الأنفال", "التوبة", "يونس",
+  "هود", "يوسف", "الرعد", "إبراهيم", "الحجر",
+  "النحل", "الإسراء", "الكهف", "مريم", "طه",
+  "الأنبياء", "الحج", "المؤمنون", "النور", "الفرقان",
+  "الشعراء", "النمل", "القصص", "العنكبوت", "الروم",
+  "لقمان", "السجدة", "الأحزاب", "سبإ", "فاطر",
+  "يس", "الصافات", "ص", "الزمر", "غافر",
+  "فصلت", "الشورى", "الزخرف", "الدخان", "الجاثية",
+  "الأحقاف", "محمد", "الفتح", "الحجرات", "ق",
+  "الذاريات", "الطور", "النجم", "القمر", "الرحمن",
+  "الواقعة", "الحديد", "المجادلة", "الحشر", "الممتحنة",
+  "الصف", "الجمعة", "المنافقون", "التغابن", "الطلاق",
+  "التحريم", "الملك", "القلم", "الحاقة", "المعارج",
+  "نوح", "الجن", "المزمل", "المدثر", "القيامة",
+  "الإنسان", "المرسلات", "النبإ", "النازعات", "عبس",
+  "التكوير", "الإنفطار", "المطففين", "الإنشقاق", "البروج",
+  "الطارق", "الأعلى", "الغاشية", "الفجر", "البلد",
+  "الشمس", "الليل", "الضحى", "الشرح", "التين",
+  "العلق", "القدر", "البينة", "الزلزلة", "العاديات",
+  "القارعة", "التكاثر", "العصر", "الهمزة", "الفيل",
+  "قريش", "الماعون", "الكوثر", "الكافرون", "النصر",
+  "المسد", "الإخلاص", "الفلق", "الناس"
+];
+
+// ========== FUNCTIE OM UI TE UPDATEN OP BASIS VAN TAAL ==========
+function updateUILanguage() {
+  document.getElementById('headerTitle').textContent = translations[currentLanguage].headerTitle;
+  document.getElementById('backText').textContent = translations[currentLanguage].back;
+  document.getElementById('welcomeTitle').textContent = translations[currentLanguage].welcomeTitle;
+  document.getElementById('welcomeText').textContent = translations[currentLanguage].welcomeText;
+  document.getElementById('clearBtnText').textContent = translations[currentLanguage].clearBtn;
+  document.getElementById('supportTitle').textContent = translations[currentLanguage].supportTitle;
+  document.getElementById('responseTime').textContent = translations[currentLanguage].responseTime;
+  
+  // Modal teksten
+  document.getElementById('modalTitle').textContent = translations[currentLanguage].modalTitle;
+  document.getElementById('modalText').textContent = translations[currentLanguage].modalText;
+  document.getElementById('confirmBtnText').textContent = translations[currentLanguage].confirmBtn;
+  
+  // Update lastReadInfo als die zichtbaar is
+  if (currentSurahId) {
+    const savedAyah = localStorage.getItem(`lastRead-${currentSurahId}`);
+    if (savedAyah) {
+      document.getElementById('lastReadInfo').textContent = 
+        `${translations[currentLanguage].lastRead} ${savedAyah}`;
+    }
+  }
+}
+
+// ========== LAAD SOERA LIJST ==========
+async function loadSurahList() {
+  const surahList = document.getElementById('surahList');
+  const loadingSpinner = document.getElementById('loadingSpinner');
+  
+  loadingSpinner.classList.remove('hidden');
+  surahList.innerHTML = '';
+  
+  try {
+    const response = await fetch("https://api.alquran.cloud/v1/surah");
+    const data = await response.json();
+    
+    data.data.forEach((surah, index) => {
+      const card = document.createElement("div");
+      card.className = "surah-card";
+
+      let title = '';
+      
+      if (currentLanguage === 'arabic') {
+        title = `<div class="arabic-text text-2xl mb-2">${arabicSuraNames[index] || surah.name}</div>`;
+      } else {
+        title = `<h3 class="font-bold text-lg">${surah.number}. ${latinSuraNames[index] || surah.englishName}</h3>`;
+      }
+
+      card.innerHTML = `
+        ${title}
+        <div class="mt-2 text-sm text-gray-500">${surah.numberOfAyahs} ${translations[currentLanguage].verses}</div>
+        ${currentLanguage !== 'arabic' ? `<div class="arabic-text text-right text-sm mt-2">${arabicSuraNames[index] || surah.name}</div>` : ''}
+      `;
+
+      card.onclick = () => openSurah(surah.number);
+      surahList.appendChild(card);
+    });
+  } catch (error) {
+    surahList.innerHTML = '<div class="col-span-full text-center text-red-500">Fout bij laden</div>';
+  }
+  
+  loadingSpinner.classList.add('hidden');
+}
+
+// ========== OPEN SURAH ==========
+async function openSurah(id) {
+  currentSurahId = id;
+  
+  document.getElementById('surahList').classList.add('hidden');
+  document.getElementById('surahPage').classList.remove('hidden');
+  
+  const loadingSpinner = document.getElementById('loadingSpinner');
+  loadingSpinner.classList.remove('hidden');
+  
+  try {
+    const response = await fetch(`https://api.alquran.cloud/v1/surah/${id}`);
+    const data = await response.json();
+    const s = data.data;
+    const index = s.number - 1;
+
+    // Toon soera informatie
+    let title = '';
+    if (currentLanguage === 'arabic') {
+      title = `${s.number}. ${arabicSuraNames[index] || s.name}`;
+    } else {
+      title = `${s.number}. ${latinSuraNames[index] || s.englishName}`;
+    }
+    
+    document.getElementById('surahTitle').textContent = title;
+    document.getElementById('surahInfo').textContent = `${s.numberOfAyahs} ${translations[currentLanguage].verses}`;
+    document.getElementById('surahAudio').src = `https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/${id}.mp3`;
+
+    // Laatst gelezen vers
+    const savedAyah = localStorage.getItem(`lastRead-${id}`);
+    const lastReadEl = document.getElementById('lastReadInfo');
+    lastReadEl.textContent = savedAyah
+      ? `${translations[currentLanguage].lastRead} ${savedAyah}`
+      : "";
+    
+    // Toon clear knop als er een marker is
+    if (savedAyah) {
+      clearLastReadBtn.classList.remove('hidden');
+    } else {
+      clearLastReadBtn.classList.add('hidden');
+    }
+
+    const surahText = document.getElementById('surahText');
+    surahText.innerHTML = '';
+
+    s.ayahs.forEach(a => {
+      const d = document.createElement('div');
+      d.className = "verse-container bg-white dark:bg-gray-800 rounded-lg p-4 cursor-pointer hover:border-amber-500 border border-transparent transition-all";
+      
+      // Voeg last-read class toe als dit het opgeslagen vers is
+      if (savedAyah == a.numberInSurah) {
+        d.classList.add('last-read');
+        setTimeout(() => d.scrollIntoView({ behavior: "smooth", block: "center" }), 300);
+      }
+
+      d.innerHTML = `
+        <div class="arabic-text">${a.text}</div>
+        <div class="text-xs text-gray-500 mt-2">${currentLanguage === 'arabic' ? 'آية' : 'Vers'} ${a.numberInSurah}</div>
+      `;
+
+      d.onclick = () => {
+        const key = `lastRead-${id}`;
+        const currentLastRead = localStorage.getItem(key);
+        
+        if (currentLastRead == a.numberInSurah) {
+          localStorage.removeItem(key);
+        } else {
+          localStorage.setItem(key, a.numberInSurah);
         }
+        
+        openSurah(id);
+      };
 
-        function playAudio(surahId) {
-            const surah = allSurahs.find(s => s.id === surahId);
-            alert(`Audio van Soera ${surahId} - ${surah.name} wordt afgespeeld`);
-        }
+      surahText.appendChild(d);
+    });
+    
+  } catch (error) {
+    document.getElementById('surahText').innerHTML = '<div class="text-red-500">Fout bij laden</div>';
+  }
+  
+  loadingSpinner.classList.add('hidden');
+}
 
-        function filterSurahs(filter) {
-            const cards = document.querySelectorAll('.surah-card');
-            
-            cards.forEach(card => {
-                if (filter === 'all' || card.dataset.type === filter) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
+// ========== TERUG KNOP ==========
+document.getElementById('backBtn').addEventListener('click', () => {
+  document.getElementById('surahPage').classList.add('hidden');
+  document.getElementById('surahList').classList.remove('hidden');
+  currentSurahId = null;
+});
 
-        function searchSurahs() {
-            const input = document.getElementById('searchInput');
-            const query = input.value.toLowerCase().trim();
-            
-            if (!query) {
-                document.querySelectorAll('.surah-card').forEach(c => c.style.display = 'block');
-                return;
-            }
-            
-            const cards = document.querySelectorAll('.surah-card');
-            let found = false;
-            
-            cards.forEach(card => {
-                const text = card.textContent.toLowerCase();
-                if (text.includes(query) || query === card.dataset.id) {
-                    card.style.display = 'block';
-                    found = true;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-            
-            if (!found) {
-                alert(`Geen soera gevonden met "${query}"`);
-                input.value = '';
-                cards.forEach(c => c.style.display = 'block');
-            }
-        }
+// ========== CLEAR LAST READ ==========
+clearLastReadBtn.addEventListener('click', () => {
+  confirmModal.classList.add('show');
+});
 
-        function toggleTheme() {
-            const btn = document.getElementById('themeToggle');
-            const icon = btn.querySelector('i');
-            
-            if (icon.classList.contains('fa-moon')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-                document.documentElement.style.setProperty('--bg-light', '#1a1a1a');
-                document.documentElement.style.setProperty('--text-dark', '#ffffff');
-                document.documentElement.style.setProperty('--white', '#2d2d2d');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-                document.documentElement.style.setProperty('--bg-light', '#f9f5e9');
-                document.documentElement.style.setProperty('--text-dark', '#2c3e50');
-                document.documentElement.style.setProperty('--white', '#ffffff');
-            }
-        }
+closeConfirmModal.addEventListener('click', () => {
+  confirmModal.classList.remove('show');
+});
 
-        // ===== EVENT LISTENERS =====
-        document.addEventListener('DOMContentLoaded', function() {
-            loadSurahs();
-            
-            // Filter buttons
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    filterSurahs(this.dataset.filter);
-                });
-            });
-            
-            // Search
-            document.getElementById('searchBtn').addEventListener('click', searchSurahs);
-            document.getElementById('searchInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') searchSurahs();
-            });
-            
-            // Theme toggle
-            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-        });
-    </script>
+confirmClearBtn.addEventListener('click', () => {
+  if (currentSurahId) {
+    localStorage.removeItem(`lastRead-${currentSurahId}`);
+    openSurah(currentSurahId);
+    confirmModal.classList.remove('show');
+  }
+});
+
+// Klik buiten modal sluiten
+window.addEventListener('click', (e) => {
+  if (e.target === confirmModal) {
+    confirmModal.classList.remove('show');
+  }
+});
+
+// ========== THEMA ==========
+document.getElementById('themeBtn').addEventListener('click', () => {
+  document.documentElement.classList.toggle('dark');
+});
+
+// ========== TAAL ==========
+document.getElementById('languageSelect').addEventListener('change', (e) => {
+  currentLanguage = e.target.value;
+  updateUILanguage();
+  
+  if (currentSurahId) {
+    openSurah(currentSurahId);
+  } else {
+    loadSurahList();
+  }
+});
+
+// ========== INIT ==========
+updateUILanguage();
+loadSurahList();
+</script>
+
 </body>
 </html>
