@@ -1,215 +1,406 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Favicon (Basmala) -->
-  <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23eab308'/%3E%3Ctext x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Amiri'%3E﷽%3C/text%3E%3C/svg%3E">
-  <title>Quran | Index + Gebedstijden</title>
-  <!-- Tailwind + config -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { darkMode: 'class' }
-  </script>
-  <!-- Google Fonts: Amiri (arabic) / Poppins (NL/EN) -->
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <!-- Font Awesome 6 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
-    * { transition: background-color 0.2s ease, border-color 0.2s; }
-    body { font-family: 'Poppins', sans-serif; background-color: #f9fafb; }
-    .dark body { background-color: #111827; }
-    .arabic-text { font-family: 'Amiri', serif; font-size: clamp(1.6rem, 5vw, 2.2rem); direction: rtl; }
-    /* header */
-    .header { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 12px 0; }
-    .dark .header { background: #1f2937; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
-    /* welkom kaart */
-    .welcome-message { background: linear-gradient(135deg, #fef9e7 0%, #ffffff 100%); border-radius: 1.5rem; padding: 1.5rem; }
-    .dark .welcome-message { background: linear-gradient(135deg, #1f2937 0%, #111827 100%); }
-    /* surah card */
-    .surah-card { background: white; border-radius: 1.25rem; padding: 1.5rem; cursor: pointer; border: 1px solid transparent; transition: all 0.25s; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
-    .dark .surah-card { background: #1f2937; }
-    .surah-card:hover { transform: translateY(-6px); box-shadow: 0 20px 25px -8px rgba(0,0,0,0.15); border-color: #eab308; }
-    /* last-read card (goud) */
-    .last-read-card { background: linear-gradient(105deg, #fbbf24, #f59e0b); color: #1e293b; border-radius: 1.5rem; padding: 1.2rem 1.8rem; margin-bottom: 1.8rem; cursor: pointer; box-shadow: 0 8px 20px rgba(245,158,11,0.3); transition: 0.2s; }
-    .dark .last-read-card { background: linear-gradient(105deg, #b45309, #92400e); color: white; }
-    .last-read-card:hover { transform: scale(1.01) translateY(-2px); box-shadow: 0 14px 28px rgba(245,158,11,0.4); }
-    /* verse container */
-    .verse-container { background: white; border-radius: 1rem; padding: 1.25rem; border: 1px solid transparent; transition: 0.15s; cursor: pointer; margin-bottom: 0.5rem; }
-    .dark .verse-container { background: #1f2937; }
-    .verse-container:hover { border-color: #eab308; background-color: #fef9e7; }
-    .dark .verse-container:hover { background-color: #2d3748; border-color: #eab308; }
-    .last-read { border-left: 6px solid #eab308; background: rgba(234,179,8,0.07); }
-    .last-read-highlight { animation: pulseGold 1.6s ease; }
-    @keyframes pulseGold { 0% { background-color: rgba(234,179,8,0); } 30% { background-color: rgba(234,179,8,0.4); } 100% { background-color: rgba(234,179,8,0); } }
-    /* search box */
-    .search-box { display: flex; align-items: center; background: white; border-radius: 60px; padding: 0.25rem 0.25rem 0.25rem 1.5rem; box-shadow: 0 4px 14px rgba(0,0,0,0.03); border: 2px solid transparent; }
-    .dark .search-box { background: #1f2937; }
-    .search-box:focus-within { border-color: #eab308; box-shadow: 0 8px 20px rgba(234,179,8,0.2); }
-    .search-input { flex:1; padding: 0.85rem 0; background: transparent; border: none; outline: none; font-size: 1rem; }
-    .dark .search-input { color: white; }
-    .search-btn { background: #eab308; width: 52px; height: 52px; border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; transition: 0.2s; cursor: pointer; border: none; }
-    .search-btn:hover { background: #fbbf24; transform: scale(1.04); }
-    .search-results-info { background: rgba(234,179,8,0.1); border-radius: 40px; padding: 0.5rem 1.2rem; text-align: center; margin: 0.8rem 0 0.2rem; font-size: 0.95rem; }
-    .reset-search-btn { background: none; border: none; color: #eab308; font-weight: 600; margin-left: 0.5rem; cursor: pointer; }
-    .reset-search-btn:hover { text-decoration: underline; }
-    .loading-spinner { width: 50px; height: 50px; border: 4px solid #f3f3f3; border-top: 4px solid #eab308; border-radius: 50%; animation: spin 0.9s linear infinite; margin: 3rem auto; }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    .footer { background: white; border-top: 1px solid #e5e7eb; padding: 2rem 0; margin-top: 3rem; }
-    .dark .footer { background: #1f2937; border-color: #374151; }
-    .support-email { background: #eab308; color: #1e293b; padding: 0.8rem 2rem; border-radius: 60px; font-weight: 700; display: inline-flex; gap: 10px; transition: 0.2s; }
-    .support-email:hover { background: #fbbf24; transform: scale(1.03); box-shadow: 0 12px 24px -8px #eab308; }
-    /* modal */
-    .modal-container { background: rgba(0,0,0,0.5); backdrop-filter: blur(2px); }
-    /* voortgangsindicatie (extra) */
-    .progress-pill { background: #e5e7eb; border-radius: 40px; padding: 0.3rem 1.2rem; font-size: 0.8rem; display: inline-block; }
-    .dark .progress-pill { background: #374151; }
-    /* Gebedstijden knop & kaart */
-    .prayer-btn { background-color: #10b981; color: white; border-radius: 40px; padding: 0.4rem 1.2rem; font-weight: 600; transition: all 0.2s; border: none; display: flex; align-items: center; gap: 0.5rem; }
-    .prayer-btn:hover { background-color: #059669; transform: scale(1.02); }
-    .prayer-card { background: linear-gradient(145deg, #d1fae5, #ffffff); border-radius: 2rem; padding: 1.5rem; box-shadow: 0 10px 25px -5px rgba(16,185,129,0.3); border: 1px solid #6ee7b7; }
-    .dark .prayer-card { background: #1e3a2f; border-color: #065f46; color: white; }
-    .prayer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 0.8rem; }
-    .prayer-item { background: rgba(255,255,255,0.6); border-radius: 1.2rem; padding: 0.6rem; text-align: center; backdrop-filter: blur(4px); }
-    .dark .prayer-item { background: #2d4a3b; }
-    .prayer-label { font-size: 0.7rem; text-transform: uppercase; opacity: 0.8; }
-    .prayer-value { font-weight: 700; font-size: 1.1rem; }
-  </style>
-</head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- HEADER (met gebedstijden knop) -->
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23eab308'/%3E%3Ctext x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Amiri'%3E﷽%3C/text%3E%3C/svg%3E">
+
+<title>Quran</title>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { darkMode: 'class' }
+</script>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+  body { font-family: 'Poppins', sans-serif; }
+  
+  .header {
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    padding: 12px 0;
+  }
+  
+  .dark .header {
+    background: #1f2937;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  }
+  
+  .welcome-message {
+    background: linear-gradient(135deg, #fef9e7 0%, #ffffff 100%);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .dark .welcome-message {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  }
+  
+  .arabic-text {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    direction: rtl;
+  }
+  
+  .surah-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid transparent;
+  }
+  
+  .dark .surah-card {
+    background: #1f2937;
+  }
+  
+  .surah-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2);
+    border-color: #eab308;
+  }
+  
+  .last-read {
+    border-left: 4px solid #eab308;
+    background: rgba(234, 179, 8, 0.05);
+  }
+  
+  .last-read-highlight {
+    animation: highlightPulse 1.5s ease;
+  }
+  
+  @keyframes highlightPulse {
+    0% { background-color: rgba(234, 179, 8, 0); }
+    50% { background-color: rgba(234, 179, 8, 0.3); }
+    100% { background-color: rgba(234, 179, 8, 0); }
+  }
+  
+  .last-read-badge {
+    display: inline-block;
+    background: #eab308;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-left: 8px;
+  }
+  
+  .loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #eab308;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 40px auto;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .footer {
+    background: white;
+    border-top: 1px solid #e5e7eb;
+    padding: 30px 0;
+    margin-top: 50px;
+  }
+  
+  .dark .footer {
+    background: #1f2937;
+    border-color: #374151;
+  }
+  
+  .support-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 25px;
+    background: #eab308;
+    color: #1e293b;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: all 0.3s;
+  }
+  
+  .support-email:hover {
+    background: #fbbf24;
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px -5px rgba(234, 179, 8, 0.5);
+  }
+  
+  .clear-btn {
+    color: #6b7280;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  
+  .clear-btn:hover {
+    color: #ef4444;
+  }
+  
+  .search-container {
+    margin-bottom: 24px;
+  }
+  
+  .search-box {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 50px;
+    padding: 4px 4px 4px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border: 2px solid transparent;
+    transition: all 0.3s;
+  }
+  
+  .dark .search-box {
+    background: #1f2937;
+  }
+  
+  .search-box:focus-within {
+    border-color: #eab308;
+    box-shadow: 0 4px 15px rgba(234, 179, 8, 0.2);
+  }
+  
+  .search-input {
+    flex: 1;
+    padding: 12px 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+  }
+  
+  .dark .search-input {
+    color: white;
+  }
+  
+  .search-input::placeholder {
+    color: #9ca3af;
+  }
+  
+  .search-btn {
+    background: #eab308;
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .search-btn:hover {
+    background: #fbbf24;
+    transform: scale(1.05);
+  }
+  
+  .search-results-info {
+    text-align: center;
+    margin: 10px 0;
+    padding: 8px;
+    background: rgba(234, 179, 8, 0.1);
+    border-radius: 20px;
+    font-size: 0.9rem;
+  }
+  
+  .reset-search-btn {
+    background: none;
+    border: none;
+    color: #eab308;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  
+  .reset-search-btn:hover {
+    text-decoration: underline;
+  }
+  
+  .no-results {
+    text-align: center;
+    padding: 40px;
+    color: #9ca3af;
+    font-style: italic;
+  }
+  
+  /* Last read card op main pagina */
+  .last-read-card {
+    background: linear-gradient(135deg, #eab308 0%, #fbbf24 100%);
+    color: #1e293b;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .last-read-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px -5px rgba(234, 179, 8, 0.5);
+  }
+  
+  .dark .last-read-card {
+    background: linear-gradient(135deg, #b45309 0%, #d97706 100%);
+    color: white;
+  }
+</style>
+</head>
+
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+
+<!-- ========== HEADER ========== -->
 <header class="header">
-  <div class="max-w-7xl mx-auto px-4 flex flex-wrap justify-between items-center">
-    <h1 class="text-2xl font-bold" id="headerTitle">Quran</h1>
-    <div class="flex gap-2 items-center">
-      <!-- NIEUW: Gebedstijden knop -->
-      <button id="prayerTimeBtn" class="prayer-btn">
-        <i class="fas fa-mosque"></i> <span id="prayerBtnText">Gebedstijden</span>
-      </button>
-      <select id="languageSelect" class="px-3 py-1.5 border rounded-full text-sm bg-white dark:bg-gray-700 dark:text-white">
-        <option value="arabic">🇸🇦 العربية</option>
-        <option value="nl" selected>🇳🇱 Nederlands</option>
-        <option value="en">🇬🇧 English</option>
-      </select>
-      <button id="themeBtn" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-amber-500 transition-all">
-        <i class="fas fa-moon dark:hidden"></i>
-        <i class="fas fa-sun hidden dark:inline"></i>
-      </button>
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex flex-wrap justify-between items-center gap-2">
+      <h1 class="text-2xl font-bold" id="headerTitle">Quran</h1>
+      
+      <div class="flex gap-2 items-center">
+        <select id="languageSelect" class="px-2 py-1 border rounded text-sm bg-white dark:bg-gray-700 dark:text-white">
+          <option value="arabic">🇸🇦 العربية</option>
+          <option value="nl">🇳🇱 Nederlands</option>
+          <option value="en">🇬🇧 English</option>
+        </select>
+        <button id="themeBtn" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-amber-500 transition-all">
+          <i class="fas fa-moon dark:hidden"></i>
+          <i class="fas fa-sun hidden dark:inline"></i>
+        </button>
+      </div>
     </div>
   </div>
 </header>
 
 <main class="max-w-7xl mx-auto px-4 py-6">
-  <!-- WELKOM -->
-  <div class="welcome-message mb-6">
-    <div class="flex items-center gap-4">
-      <i class="fas fa-book-open text-amber-500 text-4xl"></i>
+
+  <!-- Welkomstbericht -->
+  <div class="welcome-message">
+    <div class="flex items-center gap-3">
+      <i class="fas fa-book-open text-amber-500 text-3xl"></i>
       <div>
         <h2 class="text-xl font-bold" id="welcomeTitle">Welkom bij Quran</h2>
-        <p class="text-gray-600 dark:text-gray-400" id="welcomeText">Klik op een soera om de verzen te lezen</p>
+        <p class="text-gray-600 dark:text-gray-400" id="welcomeText">Klik op een soera om te beginnen met lezen</p>
       </div>
     </div>
   </div>
 
-  <!-- LAST READ CARD (op index) -->
+  <!-- ===== LAST READ CARD (OP MAIN PAGINA) ===== -->
   <div id="lastReadCard" class="last-read-card hidden">
-    <div class="flex items-center justify-between flex-wrap gap-3">
-      <div class="flex items-center gap-4">
-        <i class="fas fa-bookmark text-3xl"></i>
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <i class="fas fa-bookmark text-2xl"></i>
         <div>
-          <div class="text-sm opacity-80" id="lastReadLabel">Laatst gelezen</div>
-          <div class="font-bold text-xl" id="lastReadDisplay">
-            <span id="lastReadSurahName"></span> - <span id="lastReadVerseNumber"></span>
+          <div class="text-sm opacity-90" id="lastReadLabel">Laatst gelezen</div>
+          <div class="font-bold text-lg" id="lastReadDisplay">
+            <span id="lastReadSurahName"></span> - 
+            <span id="lastReadVerseNumber"></span>
           </div>
         </div>
       </div>
       <div class="flex gap-2">
-        <button id="jumpToLastReadBtn" class="bg-white text-amber-700 px-5 py-2 rounded-full text-sm font-semibold hover:bg-amber-100 shadow-sm transition">
+        <button id="jumpToLastReadBtn" class="bg-white text-amber-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-amber-100 transition">
           <i class="fas fa-arrow-right mr-1"></i> <span id="jumpBtnText">Ga verder</span>
         </button>
-        <button id="clearLastReadBtn" class="bg-amber-600 text-white px-4 py-2 rounded-full text-sm hover:bg-amber-700 transition">
+        <button id="clearLastReadBtn" class="bg-amber-600 text-white px-3 py-2 rounded-lg text-sm hover:bg-amber-700 transition">
           <i class="fas fa-trash-alt"></i>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- ZOEKEN & VOORTGANG -->
-  <div class="search-container mb-4">
+  <!-- Zoekbalk -->
+  <div class="search-container">
     <div class="search-box">
       <input type="text" id="searchInput" class="search-input" placeholder="Zoek soera (naam of nummer)...">
-      <button id="searchBtn" class="search-btn"><i class="fas fa-search"></i></button>
+      <button id="searchBtn" class="search-btn">
+        <i class="fas fa-search"></i>
+      </button>
     </div>
     <div id="searchInfo" class="search-results-info hidden">
       <span id="searchResultsCount"></span>
-      <button id="resetSearchBtn" class="reset-search-btn"><i class="fas fa-times"></i> Wissen</button>
+      <button id="resetSearchBtn" class="reset-search-btn">
+        <i class="fas fa-times"></i> Wissen
+      </button>
     </div>
   </div>
 
-  <!-- Gebedstijden kaart (verschijnt na klik op knop) -->
-  <div id="prayerTimesContainer" class="hidden mb-6 prayer-card"></div>
-
-  <!-- Voortgangsindicatie (extra) -->
-  <div id="progressIndicator" class="progress-pill mb-4 hidden">
-    <i class="fas fa-list mr-2 text-amber-500"></i>
-    <span id="progressText">Soera 0 van 114</span>
-  </div>
-
-  <!-- LOADING -->
+  <!-- Loading spinner -->
   <div id="loadingSpinner" class="loading-spinner hidden"></div>
 
-  <!-- SOERA INDEX (lijst) -->
-  <div id="surahList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"></div>
+  <!-- Soera lijst -->
+  <div id="surahList" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
 
-  <!-- SOERA PAGINA (verzen) -->
+  <!-- Soera pagina -->
   <div id="surahPage" class="hidden">
-    <button id="backBtn" class="mb-5 px-5 py-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-amber-500 transition-all">
+    <button id="backBtn" class="mb-4 px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-amber-500 transition-all">
       <i class="fas fa-arrow-left mr-1"></i> <span id="backText">Terug</span>
     </button>
 
-    <!-- Surah header met last-read badge -->
     <div class="bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 mb-6">
       <h2 id="surahTitle" class="text-3xl font-bold mb-1"></h2>
       <p id="surahInfo" class="text-gray-600 dark:text-gray-400 mb-2"></p>
-      <div id="lastReadBadgeContainer">
-        <span id="lastReadBadge" class="hidden inline-flex items-center gap-1 bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200 text-xs px-3 py-1.5 rounded-full">
-          <i class="fas fa-bookmark text-amber-500"></i> <span id="lastReadBadgeText">Laatst gelezen: vers</span>
-        </span>
+      
+      <!-- Last read badge in soera header -->
+      <div class="flex items-center gap-2 mt-2" id="lastReadBadgeContainer">
+        <div id="lastReadBadge" class="hidden">
+          <span class="inline-flex items-center gap-1 bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200 text-xs px-2 py-1 rounded-full">
+            <i class="fas fa-bookmark text-amber-500"></i>
+            <span id="lastReadBadgeText">Laatst gelezen: vers </span>
+          </span>
+        </div>
       </div>
     </div>
 
-    <!-- Audio tafsir / recitatie -->
     <div class="bg-white dark:bg-gray-800 rounded-xl p-4 mb-6">
       <audio id="surahAudio" controls class="w-full"></audio>
     </div>
 
-    <!-- Verzen container -->
-    <div id="surahText" class="space-y-3"></div>
+    <div id="surahText" class="space-y-4"></div>
   </div>
+
 </main>
 
-<!-- CONFIRM MODAL (voor last-read wissen) -->
-<div id="confirmModal" class="fixed inset-0 modal-container flex items-center justify-center z-50 hidden">
-  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 max-w-sm mx-4 w-full shadow-2xl">
+<!-- ========== CONFIRMATIE MODAL ========== -->
+<div id="confirmModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 max-w-sm mx-4">
     <div class="flex justify-between items-center mb-4">
       <h3 class="text-xl font-bold text-amber-500" id="modalTitle">Bevestigen</h3>
-      <button id="closeConfirmModal" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 text-xl"><i class="fas fa-times"></i></button>
+      <button id="closeConfirmModal" class="text-gray-500 hover:text-gray-700 dark:text-gray-400">
+        <i class="fas fa-times"></i>
+      </button>
     </div>
-    <p class="mb-6 text-center" id="modalText">Weet je zeker dat je de last-read marker wilt verwijderen?</p>
+    <p class="mb-6 text-center" id="modalText">Weet je zeker dat je de last read marker wilt verwijderen?</p>
     <button id="confirmClearBtn" class="w-full bg-red-500 text-white py-3 rounded-lg font-semibold hover:bg-red-600 transition">
       <i class="fas fa-trash-alt mr-2"></i> <span id="confirmBtnText">Ja, verwijder</span>
     </button>
   </div>
 </div>
 
-<!-- FOOTER -->
+<!-- ========== FOOTER ========== -->
 <footer class="footer">
   <div class="max-w-7xl mx-auto px-4 text-center">
     <h3 class="text-lg font-semibold mb-4" id="supportTitle">Heb je vragen of hulp nodig?</h3>
+    
     <a href="mailto:elmouchania@hotmail.com" class="support-email">
-      <i class="fas fa-envelope"></i> elmouchania@hotmail.com
+      <i class="fas fa-envelope"></i>
+      <span>elmouchania@hotmail.com</span>
     </a>
+    
     <div class="mt-6 text-sm text-gray-500 dark:text-gray-400">
       <p>© 2026 Quran. Alle rechten voorbehouden.</p>
       <p class="mt-1" id="responseTime">Antwoord binnen 24 uur op werkdagen</p>
@@ -218,232 +409,492 @@
 </footer>
 
 <script>
-  (function() {
-    // --- state ---
-    let currentLanguage = 'nl';
-    let currentSurahId = null;
-    let allSurahsData = [];
-    let searchActive = false;
-    let searchTermStored = '';
+// ========== STATE ==========
+let currentLanguage = 'nl';
+let currentSurahId = null;
+let allSurahsData = [];
+let searchActive = false;
 
-    // --- DOM elements ---
-    const headerTitle = document.getElementById('headerTitle');
-    const backText = document.getElementById('backText');
-    const welcomeTitle = document.getElementById('welcomeTitle');
-    const welcomeText = document.getElementById('welcomeText');
-    const supportTitle = document.getElementById('supportTitle');
-    const responseTime = document.getElementById('responseTime');
-    const searchInput = document.getElementById('searchInput');
-    const searchBtn = document.getElementById('searchBtn');
-    const searchInfo = document.getElementById('searchInfo');
-    const searchResultsCount = document.getElementById('searchResultsCount');
-    const resetSearchBtn = document.getElementById('resetSearchBtn');
-    const surahListDiv = document.getElementById('surahList');
-    const surahPageDiv = document.getElementById('surahPage');
-    const backBtn = document.getElementById('backBtn');
-    const loadingSpinner = document.getElementById('loadingSpinner');
-    const surahTitle = document.getElementById('surahTitle');
-    const surahInfo = document.getElementById('surahInfo');
-    const surahAudio = document.getElementById('surahAudio');
-    const surahTextDiv = document.getElementById('surahText');
-    const themeBtn = document.getElementById('themeBtn');
-    const languageSelect = document.getElementById('languageSelect');
-    const progressIndicator = document.getElementById('progressIndicator');
-    const progressText = document.getElementById('progressText');
-    // nieuwe elementen voor gebedstijden
-    const prayerTimeBtn = document.getElementById('prayerTimeBtn');
-    const prayerBtnText = document.getElementById('prayerBtnText');
-    const prayerTimesContainer = document.getElementById('prayerTimesContainer');
+// ========== DOM ELEMENTEN ==========
+const searchInput = document.getElementById('searchInput');
+const searchBtn = document.getElementById('searchBtn');
+const searchInfo = document.getElementById('searchInfo');
+const searchResultsCount = document.getElementById('searchResultsCount');
+const resetSearchBtn = document.getElementById('resetSearchBtn');
 
-    // last-read elements
-    const lastReadCard = document.getElementById('lastReadCard');
-    const lastReadSurahName = document.getElementById('lastReadSurahName');
-    const lastReadVerseNumber = document.getElementById('lastReadVerseNumber');
-    const lastReadLabel = document.getElementById('lastReadLabel');
-    const jumpBtnText = document.getElementById('jumpBtnText');
-    const jumpToLastReadBtn = document.getElementById('jumpToLastReadBtn');
-    const clearLastReadBtn = document.getElementById('clearLastReadBtn');
-    const lastReadBadge = document.getElementById('lastReadBadge');
-    const lastReadBadgeText = document.getElementById('lastReadBadgeText');
+// Last read elements
+const lastReadCard = document.getElementById('lastReadCard');
+const lastReadSurahName = document.getElementById('lastReadSurahName');
+const lastReadVerseNumber = document.getElementById('lastReadVerseNumber');
+const jumpToLastReadBtn = document.getElementById('jumpToLastReadBtn');
+const clearLastReadBtn = document.getElementById('clearLastReadBtn');
+const lastReadBadge = document.getElementById('lastReadBadge');
+const lastReadBadgeText = document.getElementById('lastReadBadgeText');
+const lastReadLabel = document.getElementById('lastReadLabel');
+const jumpBtnText = document.getElementById('jumpBtnText');
 
-    // modal
-    const confirmModal = document.getElementById('confirmModal');
-    const closeConfirmModal = document.getElementById('closeConfirmModal');
-    const confirmClearBtn = document.getElementById('confirmClearBtn');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalText = document.getElementById('modalText');
-    const confirmBtnText = document.getElementById('confirmBtnText');
+// Modal elements
+const confirmModal = document.getElementById('confirmModal');
+const closeConfirmModal = document.getElementById('closeConfirmModal');
+const confirmClearBtn = document.getElementById('confirmClearBtn');
+const modalTitle = document.getElementById('modalTitle');
+const modalText = document.getElementById('modalText');
+const confirmBtnText = document.getElementById('confirmBtnText');
 
-    // --- translation strings ---
-    const translations = {
-      arabic: {
-        headerTitle: "القرآن", back: "رجوع", verses: "آيات",
-        welcomeTitle: "مرحبًا بك في القرآن", welcomeText: "انقر على سورة لبدء القراءة",
-        supportTitle: "هل لديك أسئلة أو تحتاج مساعدة؟", responseTime: "الرد خلال 24 ساعة في أيام العمل",
-        searchPlaceholder: "ابحث عن سورة...", searchResults: "نتائج", resetSearch: "مسح",
-        lastReadLabel: "آخر قراءة", jumpBtn: "استمر", lastReadBadge: "آخر قراءة: آية",
-        modalTitle: "تأكيد", modalText: "هل أنت متأكد أنك تريد مسح آخر قراءة؟", confirmBtn: "نعم، مسح",
-        prayerBtn: "أوقات الصلاة"
-      },
-      nl: {
-        headerTitle: "Quran", back: "Terug", verses: "verzen",
-        welcomeTitle: "Welkom bij Quran", welcomeText: "Klik op een soera om de verzen te lezen",
-        supportTitle: "Heb je vragen of hulp nodig?", responseTime: "Antwoord binnen 24 uur op werkdagen",
-        searchPlaceholder: "Zoek soera (naam of nummer)...", searchResults: "resultaten gevonden", resetSearch: "Wissen",
-        lastReadLabel: "Laatst gelezen", jumpBtn: "Ga verder", lastReadBadge: "Laatst gelezen: vers",
-        modalTitle: "Bevestigen", modalText: "Weet je zeker dat je de last-read marker wilt verwijderen?", confirmBtn: "Ja, verwijder",
-        prayerBtn: "Gebedstijden"
-      },
-      en: {
-        headerTitle: "Quran", back: "Back", verses: "verses",
-        welcomeTitle: "Welcome to Quran", welcomeText: "Click a surah to read verses",
-        supportTitle: "Do you have questions or need help?", responseTime: "Reply within 24 hours on weekdays",
-        searchPlaceholder: "Search surah (name or number)...", searchResults: "results found", resetSearch: "Clear",
-        lastReadLabel: "Last read", jumpBtn: "Continue", lastReadBadge: "Last read: verse",
-        modalTitle: "Confirm", modalText: "Are you sure you want to clear last read?", confirmBtn: "Yes, clear",
-        prayerBtn: "Prayer times"
-      }
+// ========== TALEN ==========
+const translations = {
+  arabic: {
+    headerTitle: "القرآن",
+    back: "رجوع",
+    verses: "آيات",
+    welcomeTitle: "مرحبًا بك في القرآن",
+    welcomeText: "انقر على سورة لبدء القراءة",
+    supportTitle: "هل لديك أسئلة أو تحتاج مساعدة؟",
+    responseTime: "الرد خلال 24 ساعة في أيام العمل",
+    searchPlaceholder: "ابحث عن سورة...",
+    searchResults: "نتائج",
+    resetSearch: "مسح",
+    lastReadLabel: "آخر قراءة",
+    jumpBtn: "استمر",
+    lastReadBadge: "آخر قراءة: آية",
+    modalTitle: "تأكيد",
+    modalText: "هل أنت متأكد أنك تريد مسح آخر قراءة؟",
+    confirmBtn: "نعم، مسح"
+  },
+  nl: {
+    headerTitle: "Quran",
+    back: "Terug",
+    verses: "verzen",
+    welcomeTitle: "Welkom bij Quran",
+    welcomeText: "Klik op een soera om te beginnen met lezen",
+    supportTitle: "Heb je vragen of hulp nodig?",
+    responseTime: "Antwoord binnen 24 uur op werkdagen",
+    searchPlaceholder: "Zoek soera (naam of nummer)...",
+    searchResults: "resultaten gevonden",
+    resetSearch: "Wissen",
+    lastReadLabel: "Laatst gelezen",
+    jumpBtn: "Ga verder",
+    lastReadBadge: "Laatst gelezen: vers",
+    modalTitle: "Bevestigen",
+    modalText: "Weet je zeker dat je de last read marker wilt verwijderen?",
+    confirmBtn: "Ja, verwijder"
+  },
+  en: {
+    headerTitle: "Quran",
+    back: "Back",
+    verses: "verses",
+    welcomeTitle: "Welcome to Quran",
+    welcomeText: "Click on a surah to start reading",
+    supportTitle: "Do you have questions or need help?",
+    responseTime: "Reply within 24 hours on weekdays",
+    searchPlaceholder: "Search surah (name or number)...",
+    searchResults: "results found",
+    resetSearch: "Clear",
+    lastReadLabel: "Last read",
+    jumpBtn: "Continue",
+    lastReadBadge: "Last read: verse",
+    modalTitle: "Confirm",
+    modalText: "Are you sure you want to clear last read?",
+    confirmBtn: "Yes, clear"
+  }
+};
+
+// ========== SOERA NAMEN ==========
+const latinSuraNames = [
+  "Al-Fatiha", "Al-Baqara", "Aal-E-Imran", "An-Nisa", "Al-Ma'idah",
+  "Al-An'am", "Al-A'raf", "Al-Anfal", "At-Tawbah", "Yunus",
+  "Hud", "Yusuf", "Ar-Ra'd", "Ibrahim", "Al-Hijr",
+  "An-Nahl", "Al-Isra", "Al-Kahf", "Maryam", "Ta-Ha",
+  "Al-Anbiya", "Al-Hajj", "Al-Mu'minun", "An-Nur", "Al-Furqan",
+  "Ash-Shu'ara", "An-Naml", "Al-Qasas", "Al-Ankabut", "Ar-Rum",
+  "Luqman", "As-Sajda", "Al-Ahzab", "Saba", "Fatir",
+  "Ya-Sin", "As-Saffat", "Sad", "Az-Zumar", "Ghafir",
+  "Fussilat", "Ash-Shura", "Az-Zukhruf", "Ad-Dukhan", "Al-Jathiya",
+  "Al-Ahqaf", "Muhammad", "Al-Fath", "Al-Hujurat", "Qaf",
+  "Adh-Dhariyat", "At-Tur", "An-Najm", "Al-Qamar", "Ar-Rahman",
+  "Al-Waqia", "Al-Hadid", "Al-Mujadila", "Al-Hashr", "Al-Mumtahina",
+  "As-Saff", "Al-Jumu'a", "Al-Munafiqun", "At-Taghabun", "At-Talaq",
+  "At-Tahrim", "Al-Mulk", "Al-Qalam", "Al-Haqqa", "Al-Ma'arij",
+  "Nuh", "Al-Jinn", "Al-Muzzammil", "Al-Muddaththir", "Al-Qiyama",
+  "Al-Insan", "Al-Mursalat", "An-Naba", "An-Nazi'at", "Abasa",
+  "At-Takwir", "Al-Infitar", "Al-Mutaffifin", "Al-Inshiqaq", "Al-Buruj",
+  "At-Tariq", "Al-A'la", "Al-Ghashiya", "Al-Fajr", "Al-Balad",
+  "Ash-Shams", "Al-Lail", "Ad-Duha", "Ash-Sharh", "At-Tin",
+  "Al-Alaq", "Al-Qadr", "Al-Bayyina", "Az-Zalzala", "Al-Adiyat",
+  "Al-Qaria", "At-Takathur", "Al-Asr", "Al-Humaza", "Al-Fil",
+  "Quraish", "Al-Ma'un", "Al-Kawthar", "Al-Kafirun", "An-Nasr",
+  "Al-Masad", "Al-Ikhlas", "Al-Falaq", "An-Nas"
+];
+
+const arabicSuraNames = [
+  "الفاتحة", "البقرة", "آل عمران", "النساء", "المائدة",
+  "الأنعام", "الأعراف", "الأنفال", "التوبة", "يونس",
+  "هود", "يوسف", "الرعد", "إبراهيم", "الحجر",
+  "النحل", "الإسراء", "الكهف", "مريم", "طه",
+  "الأنبياء", "الحج", "المؤمنون", "النور", "الفرقان",
+  "الشعراء", "النمل", "القصص", "العنكبوت", "الروم",
+  "لقمان", "السجدة", "الأحزاب", "سبإ", "فاطر",
+  "يس", "الصافات", "ص", "الزمر", "غافر",
+  "فصلت", "الشورى", "الزخرف", "الدخان", "الجاثية",
+  "الأحقاف", "محمد", "الفتح", "الحجرات", "ق",
+  "الذاريات", "الطور", "النجم", "القمر", "الرحمن",
+  "الواقعة", "الحديد", "المجادلة", "الحشر", "الممتحنة",
+  "الصف", "الجمعة", "المنافقون", "التغابن", "الطلاق",
+  "التحريم", "الملك", "القلم", "الحاقة", "المعارج",
+  "نوح", "الجن", "المزمل", "المدثر", "القيامة",
+  "الإنسان", "المرسلات", "النبإ", "النازعات", "عبس",
+  "التكوير", "الإنفطار", "المطففين", "الإنشقاق", "البروج",
+  "الطارق", "الأعلى", "الغاشية", "الفجر", "البلد",
+  "الشمس", "الليل", "الضحى", "الشرح", "التين",
+  "العلق", "القدر", "البينة", "الزلزلة", "العاديات",
+  "القارعة", "التكاثر", "العصر", "الهمزة", "الفيل",
+  "قريش", "الماعون", "الكوثر", "الكافرون", "النصر",
+  "المسد", "الإخلاص", "الفلق", "الناس"
+];
+
+// ========== LAST READ FUNCTIES ==========
+function saveLastRead(surahId, verseNumber) {
+  try {
+    const lastRead = {
+      surahId: surahId,
+      verseNumber: verseNumber,
+      timestamp: new Date().toISOString()
     };
-
-    // Surah names (Latin + Arabic)
-    const latinSuraNames = [ "Al-Fatiha", "Al-Baqara", "Aal-E-Imran", "An-Nisa", "Al-Ma'idah","Al-An'am", "Al-A'raf", "Al-Anfal", "At-Tawbah", "Yunus", "Hud", "Yusuf", "Ar-Ra'd", "Ibrahim", "Al-Hijr","An-Nahl", "Al-Isra", "Al-Kahf", "Maryam", "Ta-Ha", "Al-Anbiya", "Al-Hajj", "Al-Mu'minun", "An-Nur", "Al-Furqan","Ash-Shu'ara", "An-Naml", "Al-Qasas", "Al-Ankabut", "Ar-Rum", "Luqman", "As-Sajda", "Al-Ahzab", "Saba", "Fatir","Ya-Sin", "As-Saffat", "Sad", "Az-Zumar", "Ghafir", "Fussilat", "Ash-Shura", "Az-Zukhruf", "Ad-Dukhan", "Al-Jathiya","Al-Ahqaf", "Muhammad", "Al-Fath", "Al-Hujurat", "Qaf", "Adh-Dhariyat", "At-Tur", "An-Najm", "Al-Qamar", "Ar-Rahman","Al-Waqia", "Al-Hadid", "Al-Mujadila", "Al-Hashr", "Al-Mumtahina", "As-Saff", "Al-Jumu'a", "Al-Munafiqun", "At-Taghabun", "At-Talaq","At-Tahrim", "Al-Mulk", "Al-Qalam", "Al-Haqqa", "Al-Ma'arij", "Nuh", "Al-Jinn", "Al-Muzzammil", "Al-Muddaththir", "Al-Qiyama","Al-Insan", "Al-Mursalat", "An-Naba", "An-Nazi'at", "Abasa", "At-Takwir", "Al-Infitar", "Al-Mutaffifin", "Al-Inshiqaq", "Al-Buruj","At-Tariq", "Al-A'la", "Al-Ghashiya", "Al-Fajr", "Al-Balad", "Ash-Shams", "Al-Lail", "Ad-Duha", "Ash-Sharh", "At-Tin","Al-Alaq", "Al-Qadr", "Al-Bayyina", "Az-Zalzala", "Al-Adiyat", "Al-Qaria", "At-Takathur", "Al-Asr", "Al-Humaza", "Al-Fil","Quraish", "Al-Ma'un", "Al-Kawthar", "Al-Kafirun", "An-Nasr", "Al-Masad", "Al-Ikhlas", "Al-Falaq", "An-Nas" ];
-    const arabicSuraNames = [ "الفاتحة", "البقرة", "آل عمران", "النساء", "المائدة","الأنعام", "الأعراف", "الأنفال", "التوبة", "يونس", "هود", "يوسف", "الرعد", "إبراهيم", "الحجر","النحل", "الإسراء", "الكهف", "مريم", "طه", "الأنبياء", "الحج", "المؤمنون", "النور", "الفرقان","الشعراء", "النمل", "القصص", "العنكبوت", "الروم", "لقمان", "السجدة", "الأحزاب", "سبإ", "فاطر","يس", "الصافات", "ص", "الزمر", "غافر", "فصلت", "الشورى", "الزخرف", "الدخان", "الجاثية","الأحقاف", "محمد", "الفتح", "الحجرات", "ق", "الذاريات", "الطور", "النجم", "القمر", "الرحمن","الواقعة", "الحديد", "المجادلة", "الحشر", "الممتحنة", "الصف", "الجمعة", "المنافقون", "التغابن", "الطلاق","التحريم", "الملك", "القلم", "الحاقة", "المعارج", "نوح", "الجن", "المزمل", "المدثر", "القيامة","الإنسان", "المرسلات", "النبإ", "النازعات", "عبس", "التكوير", "الإنفطار", "المطففين", "الإنشقاق", "البروج","الطارق", "الأعلى", "الغاشية", "الفجر", "البلد", "الشمس", "الليل", "الضحى", "الشرح", "التين","العلق", "القدر", "البينة", "الزلزلة", "العاديات", "القارعة", "التكاثر", "العصر", "الهمزة", "الفيل","قريش", "الماعون", "الكوثر", "الكافرون", "النصر", "المسد", "الإخلاص", "الفلق", "الناس" ];
-
-    // --- last read helpers (ongewijzigd) ---
-    function saveLastRead(surahId, verseNumber) { localStorage.setItem('lastRead', JSON.stringify({ surahId, verseNumber, timestamp: new Date().toISOString() })); updateLastReadUI(); }
-    function getLastRead() { const item = localStorage.getItem('lastRead'); return item ? JSON.parse(item) : null; }
-    function clearLastRead() { localStorage.removeItem('lastRead'); updateLastReadUI(); if (currentSurahId) openSurah(currentSurahId); }
-    function updateLastReadUI() {
-      const lastRead = getLastRead();
-      if (lastRead && lastReadCard) {
-        const idx = lastRead.surahId - 1;
-        const name = currentLanguage === 'arabic' ? (arabicSuraNames[idx] || `سورة ${lastRead.surahId}`) : (latinSuraNames[idx] || `Soera ${lastRead.surahId}`);
-        lastReadSurahName.textContent = name; lastReadVerseNumber.textContent = lastRead.verseNumber; lastReadCard.classList.remove('hidden');
-        lastReadLabel.textContent = translations[currentLanguage].lastReadLabel; jumpBtnText.textContent = translations[currentLanguage].jumpBtn;
-      } else { lastReadCard?.classList.add('hidden'); }
-    }
-
-    // --- UI language update ---
-    function updateUILanguage() {
-      const t = translations[currentLanguage];
-      headerTitle.textContent = t.headerTitle; backText.textContent = t.back; welcomeTitle.textContent = t.welcomeTitle; welcomeText.textContent = t.welcomeText;
-      supportTitle.textContent = t.supportTitle; responseTime.textContent = t.responseTime; searchInput.placeholder = t.searchPlaceholder;
-      modalTitle.textContent = t.modalTitle; modalText.textContent = t.modalText; confirmBtnText.textContent = t.confirmBtn;
-      prayerBtnText.textContent = t.prayerBtn;
-      updateLastReadUI();
-      if (currentSurahId) openSurah(currentSurahId); else if (searchActive && searchTermStored) performSearch(true); else displaySurahs(allSurahsData);
-    }
-
-    // --- filter / display (ongewijzigd) ---
-    function filterSurahs(term) { if (!term.trim()) return allSurahsData; const lowTerm = term.toLowerCase().trim(); return allSurahsData.filter(s => { const idx = s.number-1; const latin = latinSuraNames[idx]||''; const arabic = arabicSuraNames[idx]||''; return s.number.toString()===lowTerm || latin.toLowerCase().includes(lowTerm) || arabic.includes(lowTerm); }); }
-    function displaySurahs(surahs) {
-      surahListDiv.innerHTML = '';
-      if (!surahs || surahs.length===0) { surahListDiv.innerHTML = '<div class="col-span-full text-center py-10 text-gray-500"><i class="fas fa-search mr-2"></i>Geen soera\'s gevonden</div>'; return; }
-      progressIndicator.classList.remove('hidden'); const total = allSurahsData.length; progressText.textContent = searchActive ? `${surahs.length} van ${total} getoond` : `Soera ${currentSurahId?currentSurahId:'—'} van ${total}`;
-      surahs.forEach(s => {
-        const idx = s.number-1; const card = document.createElement('div'); card.className = 'surah-card';
-        let title = currentLanguage==='arabic' ? `<div class="arabic-text text-2xl mb-2">${arabicSuraNames[idx]||s.name}</div>` : `<h3 class="font-bold text-lg">${s.number}. ${latinSuraNames[idx]||s.englishName}</h3>`;
-        card.innerHTML = title + `<div class="mt-2 text-sm text-gray-500">${s.numberOfAyahs} ${translations[currentLanguage].verses}</div>` + (currentLanguage!=='arabic'?`<div class="arabic-text text-right text-sm mt-2">${arabicSuraNames[idx]||s.name}</div>`:'');
-        card.onclick = () => openSurah(s.number); surahListDiv.appendChild(card);
-      });
-    }
-    function performSearch(skipFocus = false) { const term = searchInput.value; searchTermStored = term; if (!term.trim()) { searchActive = false; searchInfo.classList.add('hidden'); displaySurahs(allSurahsData); return; } const filtered = filterSurahs(term); searchActive = true; searchResultsCount.textContent = `${filtered.length} ${translations[currentLanguage].searchResults}`; searchInfo.classList.remove('hidden'); displaySurahs(filtered); }
-    function resetSearch() { searchInput.value = ''; searchTermStored = ''; searchActive = false; searchInfo.classList.add('hidden'); displaySurahs(allSurahsData); }
-
-    // --- load surah list ---
-    async function loadSurahList() {
-      loadingSpinner.classList.remove('hidden');
-      try { const res = await fetch('https://api.alquran.cloud/v1/surah'); const json = await res.json(); allSurahsData = json.data; displaySurahs(allSurahsData); } catch (err) { surahListDiv.innerHTML = '<div class="col-span-full text-red-500 text-center">Fout bij laden.</div>'; }
-      loadingSpinner.classList.add('hidden');
-    }
-
-    // --- open surah (ongewijzigd) ---
-    async function openSurah(id) {
-      currentSurahId = id; surahListDiv.classList.add('hidden'); surahPageDiv.classList.remove('hidden'); progressIndicator.classList.remove('hidden'); progressText.textContent = `Soera ${id} van 114`;
-      loadingSpinner.classList.remove('hidden'); surahTextDiv.innerHTML = '';
-      try {
-        const res = await fetch(`https://api.alquran.cloud/v1/surah/${id}`); const json = await res.json(); const s = json.data; const idx = s.number-1;
-        surahTitle.textContent = currentLanguage==='arabic' ? `${s.number}. ${arabicSuraNames[idx]||s.name}` : `${s.number}. ${latinSuraNames[idx]||s.englishName}`;
-        surahInfo.textContent = `${s.numberOfAyahs} ${translations[currentLanguage].verses}`; surahAudio.src = `https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/${id}.mp3`;
-        const lastRead = getLastRead();
-        s.ayahs.forEach(aya => {
-          const verseDiv = document.createElement('div'); verseDiv.className = 'verse-container'; const isLast = lastRead && lastRead.surahId===id && lastRead.verseNumber===aya.numberInSurah;
-          if (isLast) verseDiv.classList.add('last-read');
-          verseDiv.innerHTML = `<div class="arabic-text">${aya.text}</div><div class="text-xs text-gray-500 mt-2">${currentLanguage==='arabic'?'آية':'Vers'} ${aya.numberInSurah}</div>`;
-          verseDiv.onclick = () => { const newLast = getLastRead(); if (newLast && newLast.surahId===id && newLast.verseNumber===aya.numberInSurah) clearLastRead(); else saveLastRead(id, aya.numberInSurah); openSurah(id); };
-          surahTextDiv.appendChild(verseDiv);
-        });
-        if (lastRead && lastRead.surahId===id) { lastReadBadge.classList.remove('hidden'); lastReadBadgeText.textContent = `${translations[currentLanguage].lastReadBadge} ${lastRead.verseNumber}`; setTimeout(() => { const targets = document.querySelectorAll('.verse-container'); targets.forEach((el,i)=>{ if(i+1===lastRead.verseNumber) el.scrollIntoView({behavior:'smooth',block:'center'}); }); },300); } else lastReadBadge.classList.add('hidden');
-      } catch (e) { surahTextDiv.innerHTML = '<div class="text-red-500">Fout bij laden verzen.</div>'; }
-      loadingSpinner.classList.add('hidden');
-    }
-
-    // --- GEBEDSTIJDEN FUNCTIE (NIEUW) ---
-    async function fetchPrayerTimesByLocation() {
-      if (!navigator.geolocation) {
-        alert('Geolocation wordt niet ondersteund door je browser.');
-        return;
-      }
-      prayerTimesContainer.innerHTML = '<div class="text-center py-4"><i class="fas fa-spinner fa-spin"></i> Locatie bepalen...</div>';
-      prayerTimesContainer.classList.remove('hidden');
-      navigator.geolocation.getCurrentPosition(async (position) => {
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-        try {
-          // Gebruik Aladhan API (geschikt voor wereldwijde gebedstijden) [citation:4][citation:8]
-          const res = await fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=5&school=1`);
-          const data = await res.json();
-          if (data.code !== 200) throw new Error('API fout');
-          const timings = data.data.timings;
-          const date = data.data.date.readable;
-          const plaats = `Coördinaten: ${lat.toFixed(3)}, ${lon.toFixed(3)}`;
-          prayerTimesContainer.innerHTML = `
-            <div class="flex justify-between items-center mb-3">
-              <h3 class="text-xl font-bold"><i class="fas fa-mosque mr-2 text-emerald-600"></i>Gebedstijden - ${date}</h3>
-              <button id="closePrayerCard" class="text-gray-600 hover:text-red-500 text-xl"><i class="fas fa-times-circle"></i></button>
-            </div>
-            <p class="text-sm mb-4 opacity-80">${plaats}</p>
-            <div class="prayer-grid">
-              <div class="prayer-item"><div class="prayer-label">Fajr</div><div class="prayer-value">${timings.Fajr}</div></div>
-              <div class="prayer-item"><div class="prayer-label">Dhuhr</div><div class="prayer-value">${timings.Dhuhr}</div></div>
-              <div class="prayer-item"><div class="prayer-label">Asr</div><div class="prayer-value">${timings.Asr}</div></div>
-              <div class="prayer-item"><div class="prayer-label">Maghrib</div><div class="prayer-value">${timings.Maghrib}</div></div>
-              <div class="prayer-item"><div class="prayer-label">Isha</div><div class="prayer-value">${timings.Isha}</div></div>
-              <div class="prayer-item"><div class="prayer-label">Sunrise</div><div class="prayer-value">${timings.Sunrise}</div></div>
-            </div>
-            <p class="text-xs mt-3 opacity-60">Methode: Muslim World League (via Aladhan API)</p>
-          `;
-          document.getElementById('closePrayerCard')?.addEventListener('click', ()=>{
-            prayerTimesContainer.classList.add('hidden');
-          });
-        } catch (err) {
-          prayerTimesContainer.innerHTML = `<div class="text-red-500 p-4 text-center">Fout bij ophalen gebedstijden.</div>`;
-        }
-      }, (error) => {
-        let msg = 'Locatie niet verkregen.';
-        if (error.code === error.PERMISSION_DENIED) msg = 'Toestemming voor locatie geweigerd.';
-        prayerTimesContainer.innerHTML = `<div class="text-red-500 p-4 text-center">${msg}</div>`;
-      });
-    }
-
-    // --- event listeners (bestaand + nieuw) ---
-    backBtn.addEventListener('click', () => { surahPageDiv.classList.add('hidden'); surahListDiv.classList.remove('hidden'); currentSurahId = null; updateLastReadUI(); if (searchActive) performSearch(); else displaySurahs(allSurahsData); });
-    searchBtn.addEventListener('click', () => performSearch()); searchInput.addEventListener('input', performSearch); resetSearchBtn.addEventListener('click', resetSearch);
-    jumpToLastReadBtn.addEventListener('click', () => { const lr = getLastRead(); if (lr) openSurah(lr.surahId); });
-    clearLastReadBtn.addEventListener('click', () => confirmModal.classList.remove('hidden'));
-    closeConfirmModal.addEventListener('click', () => confirmModal.classList.add('hidden'));
-    confirmClearBtn.addEventListener('click', () => { clearLastRead(); confirmModal.classList.add('hidden'); });
-    window.addEventListener('click', e => { if (e.target === confirmModal) confirmModal.classList.add('hidden'); });
-    themeBtn.addEventListener('click', () => document.documentElement.classList.toggle('dark'));
-    languageSelect.addEventListener('change', e => { currentLanguage = e.target.value; updateUILanguage(); });
-    // Nieuwe listener voor gebedstijden knop
-    prayerTimeBtn.addEventListener('click', fetchPrayerTimesByLocation);
-
-    // init
-    updateUILanguage();
-    loadSurahList();
+    localStorage.setItem('lastRead', JSON.stringify(lastRead));
     updateLastReadUI();
-  })();
+  } catch (error) {
+    console.error('Fout bij opslaan last read:', error);
+  }
+}
+
+function getLastRead() {
+  try {
+    const lastReadJson = localStorage.getItem('lastRead');
+    if (!lastReadJson) return null;
+    return JSON.parse(lastReadJson);
+  } catch (error) {
+    console.error('Fout bij ophalen last read:', error);
+    return null;
+  }
+}
+
+function clearLastRead() {
+  localStorage.removeItem('lastRead');
+  updateLastReadUI();
+  if (currentSurahId) {
+    openSurah(currentSurahId);
+  }
+}
+
+function updateLastReadUI() {
+  const lastRead = getLastRead();
+  
+  // Update last read card op main pagina
+  if (lastRead && lastReadCard) {
+    const surahIndex = lastRead.surahId - 1;
+    const surahName = currentLanguage === 'arabic' 
+      ? (arabicSuraNames[surahIndex] || `سورة ${lastRead.surahId}`)
+      : (latinSuraNames[surahIndex] || `Surah ${lastRead.surahId}`);
+    
+    lastReadSurahName.textContent = surahName;
+    lastReadVerseNumber.textContent = `${lastRead.verseNumber}`;
+    lastReadCard.classList.remove('hidden');
+    
+    // Update teksten
+    lastReadLabel.textContent = translations[currentLanguage].lastReadLabel;
+    jumpBtnText.textContent = translations[currentLanguage].jumpBtn;
+  } else if (lastReadCard) {
+    lastReadCard.classList.add('hidden');
+  }
+}
+
+function jumpToLastRead() {
+  const lastRead = getLastRead();
+  if (!lastRead) return;
+  openSurah(lastRead.surahId);
+}
+
+// ========== UPDATE UI LANGUAGE ==========
+function updateUILanguage() {
+  document.getElementById('headerTitle').textContent = translations[currentLanguage].headerTitle;
+  document.getElementById('backText').textContent = translations[currentLanguage].back;
+  document.getElementById('welcomeTitle').textContent = translations[currentLanguage].welcomeTitle;
+  document.getElementById('welcomeText').textContent = translations[currentLanguage].welcomeText;
+  document.getElementById('supportTitle').textContent = translations[currentLanguage].supportTitle;
+  document.getElementById('responseTime').textContent = translations[currentLanguage].responseTime;
+  
+  searchInput.placeholder = translations[currentLanguage].searchPlaceholder;
+  
+  // Modal teksten
+  modalTitle.textContent = translations[currentLanguage].modalTitle;
+  modalText.textContent = translations[currentLanguage].modalText;
+  confirmBtnText.textContent = translations[currentLanguage].confirmBtn;
+  
+  updateLastReadUI();
+}
+
+// ========== FILTER SOERA'S ==========
+function filterSurahs(searchTerm) {
+  if (!searchTerm.trim()) return allSurahsData;
+  
+  const term = searchTerm.toLowerCase().trim();
+  
+  return allSurahsData.filter(surah => {
+    const index = surah.number - 1;
+    const latinName = latinSuraNames[index] || surah.englishName;
+    const arabicName = arabicSuraNames[index] || surah.name;
+    
+    return surah.number.toString() === term ||
+           latinName.toLowerCase().includes(term) ||
+           arabicName.includes(term);
+  });
+}
+
+// ========== DISPLAY SOERA'S ==========
+function displaySurahs(surahsToShow) {
+  const surahList = document.getElementById('surahList');
+  
+  if (!surahsToShow || surahsToShow.length === 0) {
+    surahList.innerHTML = '<div class="col-span-full no-results"><i class="fas fa-search mr-2"></i>Geen soera\'s gevonden</div>';
+    return;
+  }
+  
+  surahList.innerHTML = '';
+  
+  surahsToShow.forEach(surah => {
+    const index = surah.number - 1;
+    const card = document.createElement("div");
+    card.className = "surah-card";
+
+    let title = '';
+    
+    if (currentLanguage === 'arabic') {
+      title = `<div class="arabic-text text-2xl mb-2">${arabicSuraNames[index] || surah.name}</div>`;
+    } else {
+      title = `<h3 class="font-bold text-lg">${surah.number}. ${latinSuraNames[index] || surah.englishName}</h3>`;
+    }
+
+    card.innerHTML = `
+      ${title}
+      <div class="mt-2 text-sm text-gray-500">${surah.numberOfAyahs} ${translations[currentLanguage].verses}</div>
+      ${currentLanguage !== 'arabic' ? `<div class="arabic-text text-right text-sm mt-2">${arabicSuraNames[index] || surah.name}</div>` : ''}
+    `;
+
+    card.onclick = () => openSurah(surah.number);
+    surahList.appendChild(card);
+  });
+}
+
+// ========== ZOEKFUNCTIE ==========
+function performSearch() {
+  const searchTerm = searchInput.value;
+  
+  if (!searchTerm.trim()) {
+    searchActive = false;
+    searchInfo.classList.add('hidden');
+    displaySurahs(allSurahsData);
+    return;
+  }
+  
+  const filteredSurahs = filterSurahs(searchTerm);
+  searchActive = true;
+  
+  searchResultsCount.textContent = `${filteredSurahs.length} ${translations[currentLanguage].searchResults}`;
+  searchInfo.classList.remove('hidden');
+  
+  displaySurahs(filteredSurahs);
+}
+
+function resetSearch() {
+  searchInput.value = '';
+  searchActive = false;
+  searchInfo.classList.add('hidden');
+  displaySurahs(allSurahsData);
+}
+
+// ========== LAAD SOERA LIJST ==========
+async function loadSurahList() {
+  const surahList = document.getElementById('surahList');
+  const loadingSpinner = document.getElementById('loadingSpinner');
+  
+  loadingSpinner.classList.remove('hidden');
+  surahList.innerHTML = '';
+  
+  try {
+    const response = await fetch("https://api.alquran.cloud/v1/surah");
+    const data = await response.json();
+    allSurahsData = data.data;
+    displaySurahs(allSurahsData);
+  } catch (error) {
+    surahList.innerHTML = '<div class="col-span-full text-center text-red-500">Fout bij laden</div>';
+  }
+  
+  loadingSpinner.classList.add('hidden');
+}
+
+// ========== OPEN SURAH ==========
+async function openSurah(id) {
+  currentSurahId = id;
+  
+  document.getElementById('surahList').classList.add('hidden');
+  document.getElementById('surahPage').classList.remove('hidden');
+  
+  const loadingSpinner = document.getElementById('loadingSpinner');
+  loadingSpinner.classList.remove('hidden');
+  
+  try {
+    const response = await fetch(`https://api.alquran.cloud/v1/surah/${id}`);
+    const data = await response.json();
+    const s = data.data;
+    const index = s.number - 1;
+
+    // Toon soera informatie
+    let title = '';
+    if (currentLanguage === 'arabic') {
+      title = `${s.number}. ${arabicSuraNames[index] || s.name}`;
+    } else {
+      title = `${s.number}. ${latinSuraNames[index] || s.englishName}`;
+    }
+    
+    document.getElementById('surahTitle').textContent = title;
+    document.getElementById('surahInfo').textContent = `${s.numberOfAyahs} ${translations[currentLanguage].verses}`;
+    document.getElementById('surahAudio').src = `https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/${id}.mp3`;
+
+    const surahText = document.getElementById('surahText');
+    surahText.innerHTML = '';
+
+    const lastRead = getLastRead();
+
+    s.ayahs.forEach(a => {
+      const d = document.createElement('div');
+      d.className = "verse-container bg-white dark:bg-gray-800 rounded-lg p-4 cursor-pointer hover:border-amber-500 border border-transparent transition-all";
+      
+      // Check if this is the last read verse
+      const isLastRead = lastRead && lastRead.surahId === id && lastRead.verseNumber === a.numberInSurah;
+      
+      if (isLastRead) {
+        d.classList.add('last-read');
+      }
+
+      d.innerHTML = `
+        <div class="arabic-text">${a.text}</div>
+        <div class="text-xs text-gray-500 mt-2">${currentLanguage === 'arabic' ? 'آية' : 'Vers'} ${a.numberInSurah}</div>
+      `;
+
+      d.onclick = () => {
+        const verseNumber = a.numberInSurah;
+        const currentLastRead = getLastRead();
+        
+        if (currentLastRead && currentLastRead.surahId === id && currentLastRead.verseNumber === verseNumber) {
+          clearLastRead();
+        } else {
+          saveLastRead(id, verseNumber);
+        }
+        
+        openSurah(id);
+      };
+
+      surahText.appendChild(d);
+    });
+
+    // Update last read badge in header
+    if (lastRead && lastRead.surahId === id) {
+      lastReadBadge.classList.remove('hidden');
+      lastReadBadgeText.textContent = `${translations[currentLanguage].lastReadBadge} ${lastRead.verseNumber}`;
+    } else {
+      lastReadBadge.classList.add('hidden');
+    }
+
+    // Scroll to last read verse if exists
+    if (lastRead && lastRead.surahId === id) {
+      setTimeout(() => {
+        const verseElements = document.querySelectorAll('.verse-container');
+        verseElements.forEach((el, index) => {
+          if (index + 1 === lastRead.verseNumber) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            el.classList.add('last-read-highlight');
+            setTimeout(() => el.classList.remove('last-read-highlight'), 2000);
+          }
+        });
+      }, 500);
+    }
+    
+  } catch (error) {
+    document.getElementById('surahText').innerHTML = '<div class="text-red-500">Fout bij laden</div>';
+  }
+  
+  loadingSpinner.classList.add('hidden');
+}
+
+// ========== EVENT LISTENERS ==========
+document.getElementById('backBtn').addEventListener('click', () => {
+  document.getElementById('surahPage').classList.add('hidden');
+  document.getElementById('surahList').classList.remove('hidden');
+  currentSurahId = null;
+  updateLastReadUI();
+  
+  if (searchActive) {
+    resetSearch();
+  } else {
+    displaySurahs(allSurahsData);
+  }
+});
+
+clearLastReadBtn?.addEventListener('click', () => {
+  confirmModal.classList.remove('hidden');
+});
+
+closeConfirmModal?.addEventListener('click', () => {
+  confirmModal.classList.add('hidden');
+});
+
+confirmClearBtn?.addEventListener('click', () => {
+  clearLastRead();
+  confirmModal.classList.add('hidden');
+});
+
+window.addEventListener('click', (e) => {
+  if (e.target === confirmModal) {
+    confirmModal.classList.add('hidden');
+  }
+});
+
+document.getElementById('themeBtn').addEventListener('click', () => {
+  document.documentElement.classList.toggle('dark');
+});
+
+searchInput.addEventListener('input', performSearch);
+searchBtn.addEventListener('click', performSearch);
+resetSearchBtn.addEventListener('click', resetSearch);
+
+searchInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    performSearch();
+  }
+});
+
+jumpToLastReadBtn?.addEventListener('click', jumpToLastRead);
+
+document.getElementById('languageSelect').addEventListener('change', (e) => {
+  currentLanguage = e.target.value;
+  updateUILanguage();
+  
+  if (currentSurahId) {
+    openSurah(currentSurahId);
+  } else {
+    if (searchActive && searchInput.value.trim()) {
+      performSearch();
+    } else {
+      displaySurahs(allSurahsData);
+    }
+  }
+});
+
+// ========== INIT ==========
+updateUILanguage();
+loadSurahList();
+updateLastReadUI();
 </script>
+
 </body>
 </html>
