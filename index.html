@@ -1,24 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Favicon -->
+<!-- ========== BASIS SEO ========== -->
+<title>Quran </title>
+<meta name="description" content="Lees de Quran online in het Arabisch. Alle 114 soera's met Arabische tekst en audio recitatie. Gratis en zonder registratie.">
+<meta name="keywords" content="Quran online lezen, Koran Arabisch, soera lijst, Quran audio, Koran soera's, Quran recitatie, Al-Fatiha, Yaseen, Ar-Rahman, online Koran">
+<meta name="author" content="onlinequran.nl">
+<meta name="robots" content="index, follow">
+
+<!-- ========== OPEN GRAPH ========== -->
+<meta property="og:title" content="Quran online lezen in het Arabisch | Soera lijst">
+<meta property="og:description" content="Lees de Quran online in het Arabisch. Alle 114 soera's met Arabische tekst en audio recitatie.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onlinequran.nl">
+<meta property="og:image" content="https://onlinequran.nl/og-image.jpg">
+
+<!-- ========== CANONICAL URL ========== -->
+<link rel="canonical" href="https://onlinequran.nl">
+
+<!-- ========== FAVICON ========== -->
 <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23eab308'/%3E%3Ctext x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Amiri'%3E﷽%3C/text%3E%3C/svg%3E">
 
-<title>Quran | Index + Lees-pagina</title>
-
-<!-- Tailwind CSS -->
+<!-- ========== TAILWIND CSS ========== -->
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = { darkMode: 'class' }
 </script>
 
-<!-- Google Fonts -->
+<!-- ========== GOOGLE FONTS ========== -->
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-<!-- Font Awesome -->
+<!-- ========== FONT AWESOME ========== -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <style>
@@ -86,16 +101,6 @@
     100% { background-color: rgba(234, 179, 8, 0); }
   }
   
-  .last-read-badge {
-    display: inline-block;
-    background: #eab308;
-    color: white;
-    font-size: 0.7rem;
-    padding: 2px 8px;
-    border-radius: 12px;
-    margin-left: 8px;
-  }
-  
   .loading-spinner {
     width: 50px;
     height: 50px;
@@ -139,16 +144,6 @@
     background: #fbbf24;
     transform: scale(1.05);
     box-shadow: 0 10px 20px -5px rgba(234, 179, 8, 0.5);
-  }
-  
-  .clear-btn {
-    color: #6b7280;
-    transition: all 0.2s;
-    cursor: pointer;
-  }
-  
-  .clear-btn:hover {
-    color: #ef4444;
   }
   
   .search-container {
@@ -240,7 +235,6 @@
     font-style: italic;
   }
   
-  /* Last read card op main pagina */
   .last-read-card {
     background: linear-gradient(135deg, #eab308 0%, #fbbf24 100%);
     color: #1e293b;
@@ -261,7 +255,6 @@
     color: white;
   }
 
-  /* Voortgangsindicatie */
   .progress-pill {
     background: #e5e7eb;
     border-radius: 40px;
@@ -275,11 +268,10 @@
     background: #374151;
   }
 
-  /* ===== NIEUWE STYLE VOOR TAAL BALK ===== */
   .language-select {
     background-color: white;
     border: 1px solid #d1d5db;
-    border-radius: 12px;  /* Mooi afgerond, niet helemaal rond */
+    border-radius: 12px;
     padding: 0.4rem 1.8rem 0.4rem 1rem;
     font-size: 0.9rem;
     color: #374151;
@@ -304,14 +296,8 @@
     border-color: #eab308;
   }
 
-  .language-select:focus {
-    border-color: #eab308;
-    box-shadow: 0 0 0 2px rgba(234, 179, 8, 0.2);
-  }
-
-  /* Theme knop ook wat ronder */
   .theme-btn {
-    border-radius: 12px;  /* Zelfde radius als taal balk */
+    border-radius: 12px;
     width: 42px;
     height: 42px;
     display: flex;
@@ -342,17 +328,15 @@
 <header class="header">
   <div class="max-w-7xl mx-auto px-4">
     <div class="flex flex-wrap justify-between items-center gap-2">
-      <h1 class="text-2xl font-bold" id="headerTitle">Quran</h1>
+      <h1 class="text-2xl font-bold" id="headerTitle">Quran lezen</h1>
       
       <div class="flex gap-2 items-center">
-        <!-- VERBETERDE TAAL BALK - mooi afgerond -->
         <select id="languageSelect" class="language-select">
           <option value="arabic">🇸🇦 العربية</option>
           <option value="nl" selected>🇳🇱 Nederlands</option>
           <option value="en">🇬🇧 English</option>
         </select>
         
-        <!-- Theme knop ook aangepast -->
         <button id="themeBtn" class="theme-btn">
           <i class="fas fa-moon dark:hidden"></i>
           <i class="fas fa-sun hidden dark:inline"></i>
@@ -369,13 +353,13 @@
     <div class="flex items-center gap-3">
       <i class="fas fa-book-open text-amber-500 text-3xl"></i>
       <div>
-        <h2 class="text-xl font-bold" id="welcomeTitle">Welkom bij Quran</h2>
-        <p class="text-gray-600 dark:text-gray-400" id="welcomeText">Klik op een soera om te beginnen met lezen</p>
+        <h2 class="text-xl font-bold" id="welcomeTitle">Welkom bij onlinequran.nl</h2>
+        <p class="text-gray-600 dark:text-gray-400" id="welcomeText">Klik op een soera om te beginnen met lezen. Alle 114 soera's met Arabische tekst en audio recitatie.</p>
       </div>
     </div>
   </div>
 
-  <!-- ===== LAST READ CARD ===== -->
+  <!-- Last read card -->
   <div id="lastReadCard" class="last-read-card hidden">
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-3">
@@ -390,7 +374,7 @@
       </div>
       <div class="flex gap-2">
         <button id="jumpToLastReadBtn" class="bg-white text-amber-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-amber-100 transition">
-          <i class="fas fa-arrow-right mr-1"></i> <span id="jumpBtnText">Ga verder</span>
+          <i class="fas fa-arrow-right mr-1"></i> <span id="jumpBtnText">Ga verder met lezen</span>
         </button>
         <button id="clearLastReadBtn" class="bg-amber-600 text-white px-3 py-2 rounded-lg text-sm hover:bg-amber-700 transition">
           <i class="fas fa-trash-alt"></i>
@@ -402,7 +386,7 @@
   <!-- Zoekbalk -->
   <div class="search-container">
     <div class="search-box">
-      <input type="text" id="searchInput" class="search-input" placeholder="Zoek soera (naam of nummer)...">
+      <input type="text" id="searchInput" class="search-input" placeholder="Zoek soera op naam of nummer...">
       <button id="searchBtn" class="search-btn">
         <i class="fas fa-search"></i>
       </button>
@@ -430,7 +414,7 @@
   <!-- Soera pagina -->
   <div id="surahPage" class="hidden">
     <button id="backBtn" class="mb-4 px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-amber-500 transition-all">
-      <i class="fas fa-arrow-left mr-1"></i> <span id="backText">Terug</span>
+      <i class="fas fa-arrow-left mr-1"></i> <span id="backText">Terug naar alle soera's</span>
     </button>
 
     <div class="bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 mb-6">
@@ -475,7 +459,7 @@
 <!-- ========== FOOTER ========== -->
 <footer class="footer">
   <div class="max-w-7xl mx-auto px-4 text-center">
-    <h3 class="text-lg font-semibold mb-4" id="supportTitle">Heb je vragen of hulp nodig?</h3>
+    <h3 class="text-lg font-semibold mb-4" id="supportTitle">Heb je vragen of opmerkingen?</h3>
     
     <a href="mailto:elmouchania@hotmail.com" class="support-email">
       <i class="fas fa-envelope"></i>
@@ -483,11 +467,23 @@
     </a>
     
     <div class="mt-6 text-sm text-gray-500 dark:text-gray-400">
-      <p>© 2026 Quran. Alle rechten voorbehouden.</p>
-      <p class="mt-1" id="responseTime">Antwoord binnen 24 uur op werkdagen</p>
+      <p id="copyrightText">© 2026 onlinequran.nl - Quran online lezen in het Arabisch met audio</p>
+      <p class="mt-1" id="responseTimeText">Antwoord binnen 24 uur op werkdagen</p>
     </div>
   </div>
 </footer>
+
+<!-- ========== GESTRUCTUREERDE DATA ========== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "onlinequran.nl",
+  "url": "https://onlinequran.nl",
+  "description": "Lees de Quran online in het Arabisch. Alle 114 soera's met Arabische tekst en audio recitatie.",
+  "inLanguage": "nl"
+}
+</script>
 
 <script>
 // ========== STATE ==========
@@ -526,61 +522,68 @@ const confirmBtnText = document.getElementById('confirmBtnText');
 const progressIndicator = document.getElementById('progressIndicator');
 const progressText = document.getElementById('progressText');
 
+// Footer elementen
+const copyrightText = document.getElementById('copyrightText');
+const responseTimeText = document.getElementById('responseTimeText');
+
 // ========== TALEN ==========
 const translations = {
   arabic: {
-    headerTitle: "القرآن",
-    back: "رجوع",
+    headerTitle: "قراءة القرآن",
+    back: "رجوع إلى جميع السور",
     verses: "آيات",
-    welcomeTitle: "مرحبًا بك في القرآن",
-    welcomeText: "انقر على سورة لبدء القراءة",
-    supportTitle: "هل لديك أسئلة أو تحتاج مساعدة؟",
-    responseTime: "الرد خلال 24 ساعة في أيام العمل",
-    searchPlaceholder: "ابحث عن سورة...",
+    welcomeTitle: "مرحبًا بك في onlinequran.nl",
+    welcomeText: "انقر على سورة لبدء القراءة. جميع السور الـ 114 مع النص العربي والصوت.",
+    supportTitle: "هل لديك أسئلة أو استفسارات؟",
+    searchPlaceholder: "ابحث عن سورة بالاسم أو الرقم...",
     searchResults: "نتائج",
     resetSearch: "مسح",
     lastReadLabel: "آخر قراءة",
-    jumpBtn: "استمر",
+    jumpBtn: "استمر في القراءة",
     lastReadBadge: "آخر قراءة: آية",
     modalTitle: "تأكيد",
     modalText: "هل أنت متأكد أنك تريد مسح آخر قراءة؟",
-    confirmBtn: "نعم، مسح"
+    confirmBtn: "نعم، مسح",
+    copyright: "© 2026 onlinequran.nl - قراءة القرآن الكريم بالعربية مع الصوت",
+    responseTimeText: "الرد خلال 24 ساعة في أيام العمل"
   },
   nl: {
-    headerTitle: "Quran",
-    back: "Terug",
+    headerTitle: "Quran lezen",
+    back: "Terug naar alle soera's",
     verses: "verzen",
-    welcomeTitle: "Welkom bij Quran",
-    welcomeText: "Klik op een soera om te beginnen met lezen",
-    supportTitle: "Heb je vragen of hulp nodig?",
-    responseTime: "Antwoord binnen 24 uur op werkdagen",
-    searchPlaceholder: "Zoek soera (naam of nummer)...",
+    welcomeTitle: "Welkom bij onlinequran.nl",
+    welcomeText: "Klik op een soera om te beginnen met lezen. Alle 114 soera's met Arabische tekst en audio recitatie.",
+    supportTitle: "Heb je vragen of opmerkingen?",
+    searchPlaceholder: "Zoek soera op naam of nummer...",
     searchResults: "resultaten gevonden",
     resetSearch: "Wissen",
     lastReadLabel: "Laatst gelezen",
-    jumpBtn: "Ga verder",
+    jumpBtn: "Ga verder met lezen",
     lastReadBadge: "Laatst gelezen: vers",
     modalTitle: "Bevestigen",
     modalText: "Weet je zeker dat je de last read marker wilt verwijderen?",
-    confirmBtn: "Ja, verwijder"
+    confirmBtn: "Ja, verwijder",
+    copyright: "© 2026 onlinequran.nl - Quran online lezen in het Arabisch met audio",
+    responseTimeText: "Antwoord binnen 24 uur op werkdagen"
   },
   en: {
-    headerTitle: "Quran",
-    back: "Back",
+    headerTitle: "Read Quran",
+    back: "Back to all surahs",
     verses: "verses",
-    welcomeTitle: "Welcome to Quran",
-    welcomeText: "Click on a surah to start reading",
-    supportTitle: "Do you have questions or need help?",
-    responseTime: "Reply within 24 hours on weekdays",
-    searchPlaceholder: "Search surah (name or number)...",
+    welcomeTitle: "Welcome to onlinequran.nl",
+    welcomeText: "Click on a surah to start reading. All 114 surahs with Arabic text and audio recitation.",
+    supportTitle: "Questions or feedback?",
+    searchPlaceholder: "Search surah by name or number...",
     searchResults: "results found",
     resetSearch: "Clear",
     lastReadLabel: "Last read",
-    jumpBtn: "Continue",
+    jumpBtn: "Continue reading",
     lastReadBadge: "Last read: verse",
     modalTitle: "Confirm",
     modalText: "Are you sure you want to clear last read?",
-    confirmBtn: "Yes, clear"
+    confirmBtn: "Yes, clear",
+    copyright: "© 2026 onlinequran.nl - Read Quran in Arabic with audio",
+    responseTimeText: "Reply within 24 hours on weekdays"
   }
 };
 
@@ -704,7 +707,6 @@ function updateUILanguage() {
   document.getElementById('welcomeTitle').textContent = translations[currentLanguage].welcomeTitle;
   document.getElementById('welcomeText').textContent = translations[currentLanguage].welcomeText;
   document.getElementById('supportTitle').textContent = translations[currentLanguage].supportTitle;
-  document.getElementById('responseTime').textContent = translations[currentLanguage].responseTime;
   
   searchInput.placeholder = translations[currentLanguage].searchPlaceholder;
   
@@ -712,6 +714,10 @@ function updateUILanguage() {
   modalTitle.textContent = translations[currentLanguage].modalTitle;
   modalText.textContent = translations[currentLanguage].modalText;
   confirmBtnText.textContent = translations[currentLanguage].confirmBtn;
+  
+  // Footer teksten
+  copyrightText.textContent = translations[currentLanguage].copyright;
+  responseTimeText.textContent = translations[currentLanguage].responseTimeText;
   
   updateLastReadUI();
 }
@@ -744,7 +750,6 @@ function displaySurahs(surahsToShow) {
   
   surahList.innerHTML = '';
   
-  // Update voortgang
   progressIndicator.classList.remove('hidden');
   const totalSurahs = allSurahsData.length;
   const currentCount = surahsToShow.length;
@@ -833,7 +838,6 @@ async function openSurah(id) {
   document.getElementById('surahList').classList.add('hidden');
   document.getElementById('surahPage').classList.remove('hidden');
   
-  // Update voortgang
   progressText.textContent = `Soera ${id} van 114`;
   
   const loadingSpinner = document.getElementById('loadingSpinner');
