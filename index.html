@@ -7,7 +7,7 @@
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23eab308'/%3E%3Ctext x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Amiri'%3E﷽%3C/text%3E%3C/svg%3E">
 
-<title>Quran</title>
+<title>Quran | Index + Lees-pagina</title>
 
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com"></script>
@@ -260,6 +260,79 @@
     background: linear-gradient(135deg, #b45309 0%, #d97706 100%);
     color: white;
   }
+
+  /* Voortgangsindicatie */
+  .progress-pill {
+    background: #e5e7eb;
+    border-radius: 40px;
+    padding: 0.3rem 1.2rem;
+    font-size: 0.8rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  .dark .progress-pill {
+    background: #374151;
+  }
+
+  /* ===== NIEUWE STYLE VOOR TAAL BALK ===== */
+  .language-select {
+    background-color: white;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;  /* Mooi afgerond, niet helemaal rond */
+    padding: 0.4rem 1.8rem 0.4rem 1rem;
+    font-size: 0.9rem;
+    color: #374151;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.2rem;
+  }
+
+  .dark .language-select {
+    background-color: #374151;
+    border-color: #4b5563;
+    color: white;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+  }
+
+  .language-select:hover {
+    border-color: #eab308;
+  }
+
+  .language-select:focus {
+    border-color: #eab308;
+    box-shadow: 0 0 0 2px rgba(234, 179, 8, 0.2);
+  }
+
+  /* Theme knop ook wat ronder */
+  .theme-btn {
+    border-radius: 12px;  /* Zelfde radius als taal balk */
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f4f6;
+    border: 1px solid #d1d5db;
+    transition: all 0.2s;
+  }
+
+  .dark .theme-btn {
+    background-color: #374151;
+    border-color: #4b5563;
+    color: white;
+  }
+
+  .theme-btn:hover {
+    background-color: #eab308;
+    border-color: #eab308;
+    color: white;
+  }
 </style>
 </head>
 
@@ -272,12 +345,15 @@
       <h1 class="text-2xl font-bold" id="headerTitle">Quran</h1>
       
       <div class="flex gap-2 items-center">
-        <select id="languageSelect" class="px-2 py-1 border rounded text-sm bg-white dark:bg-gray-700 dark:text-white">
+        <!-- VERBETERDE TAAL BALK - mooi afgerond -->
+        <select id="languageSelect" class="language-select">
           <option value="arabic">🇸🇦 العربية</option>
-          <option value="nl">🇳🇱 Nederlands</option>
+          <option value="nl" selected>🇳🇱 Nederlands</option>
           <option value="en">🇬🇧 English</option>
         </select>
-        <button id="themeBtn" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-amber-500 transition-all">
+        
+        <!-- Theme knop ook aangepast -->
+        <button id="themeBtn" class="theme-btn">
           <i class="fas fa-moon dark:hidden"></i>
           <i class="fas fa-sun hidden dark:inline"></i>
         </button>
@@ -299,7 +375,7 @@
     </div>
   </div>
 
-  <!-- ===== LAST READ CARD (OP MAIN PAGINA) ===== -->
+  <!-- ===== LAST READ CARD ===== -->
   <div id="lastReadCard" class="last-read-card hidden">
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-3">
@@ -339,6 +415,12 @@
     </div>
   </div>
 
+  <!-- Voortgangsindicatie -->
+  <div id="progressIndicator" class="progress-pill hidden">
+    <i class="fas fa-list mr-2 text-amber-500"></i>
+    <span id="progressText">Soera 0 van 114</span>
+  </div>
+
   <!-- Loading spinner -->
   <div id="loadingSpinner" class="loading-spinner hidden"></div>
 
@@ -355,7 +437,6 @@
       <h2 id="surahTitle" class="text-3xl font-bold mb-1"></h2>
       <p id="surahInfo" class="text-gray-600 dark:text-gray-400 mb-2"></p>
       
-      <!-- Last read badge in soera header -->
       <div class="flex items-center gap-2 mt-2" id="lastReadBadgeContainer">
         <div id="lastReadBadge" class="hidden">
           <span class="inline-flex items-center gap-1 bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200 text-xs px-2 py-1 rounded-full">
@@ -440,6 +521,10 @@ const confirmClearBtn = document.getElementById('confirmClearBtn');
 const modalTitle = document.getElementById('modalTitle');
 const modalText = document.getElementById('modalText');
 const confirmBtnText = document.getElementById('confirmBtnText');
+
+// Voortgangsindicatie
+const progressIndicator = document.getElementById('progressIndicator');
+const progressText = document.getElementById('progressText');
 
 // ========== TALEN ==========
 const translations = {
@@ -589,7 +674,6 @@ function clearLastRead() {
 function updateLastReadUI() {
   const lastRead = getLastRead();
   
-  // Update last read card op main pagina
   if (lastRead && lastReadCard) {
     const surahIndex = lastRead.surahId - 1;
     const surahName = currentLanguage === 'arabic' 
@@ -600,7 +684,6 @@ function updateLastReadUI() {
     lastReadVerseNumber.textContent = `${lastRead.verseNumber}`;
     lastReadCard.classList.remove('hidden');
     
-    // Update teksten
     lastReadLabel.textContent = translations[currentLanguage].lastReadLabel;
     jumpBtnText.textContent = translations[currentLanguage].jumpBtn;
   } else if (lastReadCard) {
@@ -660,6 +743,17 @@ function displaySurahs(surahsToShow) {
   }
   
   surahList.innerHTML = '';
+  
+  // Update voortgang
+  progressIndicator.classList.remove('hidden');
+  const totalSurahs = allSurahsData.length;
+  const currentCount = surahsToShow.length;
+  
+  if (searchActive) {
+    progressText.textContent = `${currentCount} van ${totalSurahs} getoond`;
+  } else {
+    progressText.textContent = `Soera ${currentSurahId || '0'} van ${totalSurahs}`;
+  }
   
   surahsToShow.forEach(surah => {
     const index = surah.number - 1;
@@ -739,6 +833,9 @@ async function openSurah(id) {
   document.getElementById('surahList').classList.add('hidden');
   document.getElementById('surahPage').classList.remove('hidden');
   
+  // Update voortgang
+  progressText.textContent = `Soera ${id} van 114`;
+  
   const loadingSpinner = document.getElementById('loadingSpinner');
   loadingSpinner.classList.remove('hidden');
   
@@ -748,7 +845,6 @@ async function openSurah(id) {
     const s = data.data;
     const index = s.number - 1;
 
-    // Toon soera informatie
     let title = '';
     if (currentLanguage === 'arabic') {
       title = `${s.number}. ${arabicSuraNames[index] || s.name}`;
@@ -769,7 +865,6 @@ async function openSurah(id) {
       const d = document.createElement('div');
       d.className = "verse-container bg-white dark:bg-gray-800 rounded-lg p-4 cursor-pointer hover:border-amber-500 border border-transparent transition-all";
       
-      // Check if this is the last read verse
       const isLastRead = lastRead && lastRead.surahId === id && lastRead.verseNumber === a.numberInSurah;
       
       if (isLastRead) {
@@ -797,7 +892,6 @@ async function openSurah(id) {
       surahText.appendChild(d);
     });
 
-    // Update last read badge in header
     if (lastRead && lastRead.surahId === id) {
       lastReadBadge.classList.remove('hidden');
       lastReadBadgeText.textContent = `${translations[currentLanguage].lastReadBadge} ${lastRead.verseNumber}`;
@@ -805,7 +899,6 @@ async function openSurah(id) {
       lastReadBadge.classList.add('hidden');
     }
 
-    // Scroll to last read verse if exists
     if (lastRead && lastRead.surahId === id) {
       setTimeout(() => {
         const verseElements = document.querySelectorAll('.verse-container');
