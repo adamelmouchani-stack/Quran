@@ -1,10 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- ========== BASIS SEO ========== -->
+
 <title>Quran </title>
 <meta name="description" content="Lees de Quran online in het Arabisch. Alle 114 soera's met Arabische tekst en audio recitatie. Gratis en zonder registratie.">
 <meta name="keywords" content="Quran online lezen, Koran Arabisch, soera lijst, Quran audio, Koran soera's, Quran recitatie, Al-Fatiha, Yaseen, Ar-Rahman, online Koran">
@@ -12,6 +14,7 @@
 <meta name="robots" content="index, follow">
 
 <!-- ========== OPEN GRAPH ========== -->
+
 <meta property="og:title" content="Quran online lezen in het Arabisch | Soera lijst">
 <meta property="og:description" content="Lees de Quran online in het Arabisch. Alle 114 soera's met Arabische tekst en audio recitatie.">
 <meta property="og:type" content="website">
@@ -19,21 +22,27 @@
 <meta property="og:image" content="https://onlinequran.nl/og-image.jpg">
 
 <!-- ========== CANONICAL URL ========== -->
+
 <link rel="canonical" href="https://onlinequran.nl">
 
 <!-- ========== FAVICON ========== -->
-<link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23eab308'/%3E%3Ctext x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Amiri'%3E﷽%3C/text%3E%3C/svg%3E">
+
+<link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23eab308'/%3E%3Ctext x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Amiri'%3E%EF%BB%BF%3C/text%3E%3C/svg%3E">
 
 <!-- ========== TAILWIND CSS ========== -->
+
 <script src="https://cdn.tailwindcss.com"></script>
+
 <script>
   tailwind.config = { darkMode: 'class' }
 </script>
 
 <!-- ========== GOOGLE FONTS ========== -->
+
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <!-- ========== FONT AWESOME ========== -->
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <style>
@@ -320,35 +329,41 @@
     color: white;
   }
 </style>
+
 </head>
 
 <body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
 
 <!-- ========== HEADER ========== -->
+
 <header class="header">
   <div class="max-w-7xl mx-auto px-4">
     <div class="flex flex-wrap justify-between items-center gap-2">
       <h1 class="text-2xl font-bold" id="headerTitle">Quran lezen</h1>
-      
-      <div class="flex gap-2 items-center">
-        <select id="languageSelect" class="language-select">
-          <option value="arabic">🇸🇦 العربية</option>
-          <option value="nl" selected>🇳🇱 Nederlands</option>
-          <option value="en">🇬🇧 English</option>
-        </select>
-        
-        <button id="themeBtn" class="theme-btn">
-          <i class="fas fa-moon dark:hidden"></i>
-          <i class="fas fa-sun hidden dark:inline"></i>
-        </button>
-      </div>
-    </div>
+
+```
+  <div class="flex gap-2 items-center">
+    <select id="languageSelect" class="language-select">
+      <option value="arabic">&#x1F1F8;&#x1F1E6; العربية</option>
+      <option value="nl" selected>&#x1F1F3;&#x1F1F1; Nederlands</option>
+      <option value="en">&#x1F1EC;&#x1F1E7; English</option>
+    </select>
+    
+    <button id="themeBtn" class="theme-btn">
+      <i class="fas fa-moon dark:hidden"></i>
+      <i class="fas fa-sun hidden dark:inline"></i>
+    </button>
+  </div>
+</div>
+```
+
   </div>
 </header>
 
 <main class="max-w-7xl mx-auto px-4 py-6">
 
   <!-- Welkomstbericht -->
+
   <div class="welcome-message">
     <div class="flex items-center gap-3">
       <i class="fas fa-book-open text-amber-500 text-3xl"></i>
@@ -360,6 +375,7 @@
   </div>
 
   <!-- Last read card -->
+
   <div id="lastReadCard" class="last-read-card hidden">
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-3">
@@ -384,6 +400,7 @@
   </div>
 
   <!-- Zoekbalk -->
+
   <div class="search-container">
     <div class="search-box">
       <input type="text" id="searchInput" class="search-input" placeholder="Zoek soera op naam of nummer...">
@@ -400,47 +417,55 @@
   </div>
 
   <!-- Voortgangsindicatie -->
+
   <div id="progressIndicator" class="progress-pill hidden">
     <i class="fas fa-list mr-2 text-amber-500"></i>
     <span id="progressText">Soera 0 van 114</span>
   </div>
 
   <!-- Loading spinner -->
+
   <div id="loadingSpinner" class="loading-spinner hidden"></div>
 
   <!-- Soera lijst -->
+
   <div id="surahList" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
 
   <!-- Soera pagina -->
+
   <div id="surahPage" class="hidden">
     <button id="backBtn" class="mb-4 px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-amber-500 transition-all">
       <i class="fas fa-arrow-left mr-1"></i> <span id="backText">Terug naar alle soera's</span>
     </button>
 
-    <div class="bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 mb-6">
-      <h2 id="surahTitle" class="text-3xl font-bold mb-1"></h2>
-      <p id="surahInfo" class="text-gray-600 dark:text-gray-400 mb-2"></p>
-      
-      <div class="flex items-center gap-2 mt-2" id="lastReadBadgeContainer">
-        <div id="lastReadBadge" class="hidden">
-          <span class="inline-flex items-center gap-1 bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200 text-xs px-2 py-1 rounded-full">
-            <i class="fas fa-bookmark text-amber-500"></i>
-            <span id="lastReadBadgeText">Laatst gelezen: vers </span>
-          </span>
-        </div>
-      </div>
+```
+<div class="bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 mb-6">
+  <h2 id="surahTitle" class="text-3xl font-bold mb-1"></h2>
+  <p id="surahInfo" class="text-gray-600 dark:text-gray-400 mb-2"></p>
+  
+  <div class="flex items-center gap-2 mt-2" id="lastReadBadgeContainer">
+    <div id="lastReadBadge" class="hidden">
+      <span class="inline-flex items-center gap-1 bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200 text-xs px-2 py-1 rounded-full">
+        <i class="fas fa-bookmark text-amber-500"></i>
+        <span id="lastReadBadgeText">Laatst gelezen: vers </span>
+      </span>
     </div>
+  </div>
+</div>
 
-    <div class="bg-white dark:bg-gray-800 rounded-xl p-4 mb-6">
-      <audio id="surahAudio" controls class="w-full"></audio>
-    </div>
+<div class="bg-white dark:bg-gray-800 rounded-xl p-4 mb-6">
+  <audio id="surahAudio" controls class="w-full"></audio>
+</div>
 
-    <div id="surahText" class="space-y-4"></div>
+<div id="surahText" class="space-y-4"></div>
+```
+
   </div>
 
 </main>
 
 <!-- ========== CONFIRMATIE MODAL ========== -->
+
 <div id="confirmModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
   <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 max-w-sm mx-4">
     <div class="flex justify-between items-center mb-4">
@@ -457,23 +482,28 @@
 </div>
 
 <!-- ========== FOOTER ========== -->
+
 <footer class="footer">
   <div class="max-w-7xl mx-auto px-4 text-center">
     <h3 class="text-lg font-semibold mb-4" id="supportTitle">Heb je vragen of opmerkingen?</h3>
-    
-    <a href="mailto:elmouchania@hotmail.com" class="support-email">
-      <i class="fas fa-envelope"></i>
-      <span>elmouchania@hotmail.com</span>
-    </a>
-    
-    <div class="mt-6 text-sm text-gray-500 dark:text-gray-400">
-      <p id="copyrightText">© 2026 onlinequran.nl - Quran online lezen in het Arabisch met audio</p>
-      <p class="mt-1" id="responseTimeText">Antwoord binnen 24 uur op werkdagen</p>
-    </div>
+
+```
+<a href="mailto:elmouchania@hotmail.com" class="support-email">
+  <i class="fas fa-envelope"></i>
+  <span>elmouchania@hotmail.com</span>
+</a>
+
+<div class="mt-6 text-sm text-gray-500 dark:text-gray-400">
+  <p id="copyrightText">© 2026 onlinequran.nl - Quran online lezen in het Arabisch met audio</p>
+  <p class="mt-1" id="responseTimeText">Antwoord binnen 24 uur op werkdagen</p>
+</div>
+```
+
   </div>
 </footer>
 
 <!-- ========== GESTRUCTUREERDE DATA ========== -->
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -529,23 +559,23 @@ const responseTimeText = document.getElementById('responseTimeText');
 // ========== TALEN ==========
 const translations = {
   arabic: {
-    headerTitle: "قراءة القرآن",
-    back: "رجوع إلى جميع السور",
-    verses: "آيات",
-    welcomeTitle: "مرحبًا بك في onlinequran.nl",
-    welcomeText: "انقر على سورة لبدء القراءة. جميع السور الـ 114 مع النص العربي والصوت.",
-    supportTitle: "هل لديك أسئلة أو استفسارات؟",
-    searchPlaceholder: "ابحث عن سورة بالاسم أو الرقم...",
-    searchResults: "نتائج",
-    resetSearch: "مسح",
-    lastReadLabel: "آخر قراءة",
-    jumpBtn: "استمر في القراءة",
-    lastReadBadge: "آخر قراءة: آية",
-    modalTitle: "تأكيد",
-    modalText: "هل أنت متأكد أنك تريد مسح آخر قراءة؟",
-    confirmBtn: "نعم، مسح",
-    copyright: "© 2026 onlinequran.nl - قراءة القرآن الكريم بالعربية مع الصوت",
-    responseTimeText: "الرد خلال 24 ساعة في أيام العمل"
+    headerTitle: "\u0642\u0631\u0627\u0621\u0629 \u0627\u0644\u0642\u0631\u0622\u0646",
+    back: "\u0631\u062C\u0648\u0639 \u0625\u0644\u0649 \u062C\u0645\u064A\u0639 \u0627\u0644\u0633\u0648\u0631",
+    verses: "\u0622\u064A\u0627\u062A",
+    welcomeTitle: "\u0645\u0631\u062D\u0628\u064B\u0627 \u0628\u0643 \u0641\u064A onlinequran.nl",
+    welcomeText: "\u0627\u0646\u0642\u0631 \u0639\u0644\u0649 \u0633\u0648\u0631\u0629 \u0644\u0628\u062F\u0621 \u0627\u0644\u0642\u0631\u0627\u0621\u0629. \u062C\u0645\u064A\u0639 \u0627\u0644\u0633\u0648\u0631 \u0627\u0644\u0640 114 \u0645\u0639 \u0627\u0644\u0646\u0635 \u0627\u0644\u0639\u0631\u0628\u064A \u0648\u0627\u0644\u0635\u0648\u062A.",
+    supportTitle: "\u0647\u0644 \u0644\u062F\u064A\u0643 \u0623\u0633\u0626\u0644\u0629 \u0623\u0648 \u0627\u0633\u062A\u0641\u0633\u0627\u0631\u0627\u062A\u061F",
+    searchPlaceholder: "\u0627\u0628\u062D\u062B \u0639\u0646 \u0633\u0648\u0631\u0629 \u0628\u0627\u0644\u0627\u0633\u0645 \u0623\u0648 \u0627\u0644\u0631\u0642\u0645...",
+    searchResults: "\u0646\u062A\u0627\u0626\u062C",
+    resetSearch: "\u0645\u0633\u062D",
+    lastReadLabel: "\u0622\u062E\u0631 \u0642\u0631\u0627\u0621\u0629",
+    jumpBtn: "\u0627\u0633\u062A\u0645\u0631 \u0641\u064A \u0627\u0644\u0642\u0631\u0627\u0621\u0629",
+    lastReadBadge: "\u0622\u062E\u0631 \u0642\u0631\u0627\u0621\u0629: \u0622\u064A\u0629",
+    modalTitle: "\u062A\u0623\u0643\u064A\u062F",
+    modalText: "\u0647\u0644 \u0623\u0646\u062A \u0645\u062A\u0623\u0643\u062F \u0623\u0646\u0643 \u062A\u0631\u064A\u062F \u0645\u0633\u062D \u0622\u062E\u0631 \u0642\u0631\u0627\u0621\u0629\u061F",
+    confirmBtn: "\u0646\u0639\u0645\u060C \u0645\u0633\u062D",
+    copyright: "\u00A9 2026 onlinequran.nl - \u0642\u0631\u0627\u0621\u0629 \u0627\u0644\u0642\u0631\u0622\u0646 \u0627\u0644\u0643\u0631\u064A\u0645 \u0628\u0627\u0644\u0639\u0631\u0628\u064A\u0629 \u0645\u0639 \u0627\u0644\u0635\u0648\u062A",
+    responseTimeText: "\u0627\u0644\u0631\u062F \u062E\u0644\u0627\u0644 24 \u0633\u0627\u0639\u0629 \u0641\u064A \u0623\u064A\u0627\u0645 \u0627\u0644\u0639\u0645\u0644"
   },
   nl: {
     headerTitle: "Quran lezen",
@@ -563,7 +593,7 @@ const translations = {
     modalTitle: "Bevestigen",
     modalText: "Weet je zeker dat je de last read marker wilt verwijderen?",
     confirmBtn: "Ja, verwijder",
-    copyright: "© 2026 onlinequran.nl - Quran online lezen in het Arabisch met audio",
+    copyright: "\u00A9 2026 onlinequran.nl - Quran online lezen in het Arabisch met audio",
     responseTimeText: "Antwoord binnen 24 uur op werkdagen"
   },
   en: {
@@ -582,7 +612,7 @@ const translations = {
     modalTitle: "Confirm",
     modalText: "Are you sure you want to clear last read?",
     confirmBtn: "Yes, clear",
-    copyright: "© 2026 onlinequran.nl - Read Quran in Arabic with audio",
+    copyright: "\u00A9 2026 onlinequran.nl - Read Quran in Arabic with audio",
     responseTimeText: "Reply within 24 hours on weekdays"
   }
 };
@@ -615,29 +645,29 @@ const latinSuraNames = [
 ];
 
 const arabicSuraNames = [
-‎  "الفاتحة", "البقرة", "آل عمران", "النساء", "المائدة",
-‎  "الأنعام", "الأعراف", "الأنفال", "التوبة", "يونس",
-‎  "هود", "يوسف", "الرعد", "إبراهيم", "الحجر",
-‎  "النحل", "الإسراء", "الكهف", "مريم", "طه",
-‎  "الأنبياء", "الحج", "المؤمنون", "النور", "الفرقان",
-‎  "الشعراء", "النمل", "القصص", "العنكبوت", "الروم",
-‎  "لقمان", "السجدة", "الأحزاب", "سبإ", "فاطر",
-‎  "يس", "الصافات", "ص", "الزمر", "غافر",
-‎  "فصلت", "الشورى", "الزخرف", "الدخان", "الجاثية",
-‎  "الأحقاف", "محمد", "الفتح", "الحجرات", "ق",
-‎  "الذاريات", "الطور", "النجم", "القمر", "الرحمن",
-‎  "الواقعة", "الحديد", "المجادلة", "الحشر", "الممتحنة",
-‎  "الصف", "الجمعة", "المنافقون", "التغابن", "الطلاق",
-‎  "التحريم", "الملك", "القلم", "الحاقة", "المعارج",
-‎  "نوح", "الجن", "المزمل", "المدثر", "القيامة",
-‎  "الإنسان", "المرسلات", "النبإ", "النازعات", "عبس",
-‎  "التكوير", "الإنفطار", "المطففين", "الإنشقاق", "البروج",
-‎  "الطارق", "الأعلى", "الغاشية", "الفجر", "البلد",
-‎  "الشمس", "الليل", "الضحى", "الشرح", "التين",
-‎  "العلق", "القدر", "البينة", "الزلزلة", "العاديات",
-‎  "القارعة", "التكاثر", "العصر", "الهمزة", "الفيل",
-‎  "قريش", "الماعون", "الكوثر", "الكافرون", "النصر",
-‎  "المسد", "الإخلاص", "الفلق", "الناس"
+  "\u0627\u0644\u0641\u0627\u062A\u062D\u0629", "\u0627\u0644\u0628\u0642\u0631\u0629", "\u0622\u0644 \u0639\u0645\u0631\u0627\u0646", "\u0627\u0644\u0646\u0633\u0627\u0621", "\u0627\u0644\u0645\u0627\u0626\u062F\u0629",
+  "\u0627\u0644\u0623\u0646\u0639\u0627\u0645", "\u0627\u0644\u0623\u0639\u0631\u0627\u0641", "\u0627\u0644\u0623\u0646\u0641\u0627\u0644", "\u0627\u0644\u062A\u0648\u0628\u0629", "\u064A\u0648\u0646\u0633",
+  "\u0647\u0648\u062F", "\u064A\u0648\u0633\u0641", "\u0627\u0644\u0631\u0639\u062F", "\u0625\u0628\u0631\u0627\u0647\u064A\u0645", "\u0627\u0644\u062D\u062C\u0631",
+  "\u0627\u0644\u0646\u062D\u0644", "\u0627\u0644\u0625\u0633\u0631\u0627\u0621", "\u0627\u0644\u0643\u0647\u0641", "\u0645\u0631\u064A\u0645", "\u0637\u0647",
+  "\u0627\u0644\u0623\u0646\u0628\u064A\u0627\u0621", "\u0627\u0644\u062D\u062C", "\u0627\u0644\u0645\u0624\u0645\u0646\u0648\u0646", "\u0627\u0644\u0646\u0648\u0631", "\u0627\u0644\u0641\u0631\u0642\u0627\u0646",
+  "\u0627\u0644\u0634\u0639\u0631\u0627\u0621", "\u0627\u0644\u0646\u0645\u0644", "\u0627\u0644\u0642\u0635\u0635", "\u0627\u0644\u0639\u0646\u0643\u0628\u0648\u062A", "\u0627\u0644\u0631\u0648\u0645",
+  "\u0644\u0642\u0645\u0627\u0646", "\u0627\u0644\u0633\u062C\u062F\u0629", "\u0627\u0644\u0623\u062D\u0632\u0627\u0628", "\u0633\u0628\u0625", "\u0641\u0627\u0637\u0631",
+  "\u064A\u0633", "\u0627\u0644\u0635\u0627\u0641\u0627\u062A", "\u0635", "\u0627\u0644\u0632\u0645\u0631", "\u063A\u0627\u0641\u0631",
+  "\u0641\u0635\u0644\u062A", "\u0627\u0644\u0634\u0648\u0631\u0649", "\u0627\u0644\u0632\u062E\u0631\u0641", "\u0627\u0644\u062F\u062E\u0627\u0646", "\u0627\u0644\u062C\u0627\u062B\u064A\u0629",
+  "\u0627\u0644\u0623\u062D\u0642\u0627\u0641", "\u0645\u062D\u0645\u062F", "\u0627\u0644\u0641\u062A\u062D", "\u0627\u0644\u062D\u062C\u0631\u0627\u062A", "\u0642",
+  "\u0627\u0644\u0630\u0627\u0631\u064A\u0627\u062A", "\u0627\u0644\u0637\u0648\u0631", "\u0627\u0644\u0646\u062C\u0645", "\u0627\u0644\u0642\u0645\u0631", "\u0627\u0644\u0631\u062D\u0645\u0646",
+  "\u0627\u0644\u0648\u0627\u0642\u0639\u0629", "\u0627\u0644\u062D\u062F\u064A\u062F", "\u0627\u0644\u0645\u062C\u0627\u062F\u0644\u0629", "\u0627\u0644\u062D\u0634\u0631", "\u0627\u0644\u0645\u0645\u062A\u062D\u0646\u0629",
+  "\u0627\u0644\u0635\u0641", "\u0627\u0644\u062C\u0645\u0639\u0629", "\u0627\u0644\u0645\u0646\u0627\u0641\u0642\u0648\u0646", "\u0627\u0644\u062A\u063A\u0627\u0628\u0646", "\u0627\u0644\u0637\u0644\u0627\u0642",
+  "\u0627\u0644\u062A\u062D\u0631\u064A\u0645", "\u0627\u0644\u0645\u0644\u0643", "\u0627\u0644\u0642\u0644\u0645", "\u0627\u0644\u062D\u0627\u0642\u0629", "\u0627\u0644\u0645\u0639\u0627\u0631\u062C",
+  "\u0646\u0648\u062D", "\u0627\u0644\u062C\u0646", "\u0627\u0644\u0645\u0632\u0645\u0644", "\u0627\u0644\u0645\u062F\u062B\u0631", "\u0627\u0644\u0642\u064A\u0627\u0645\u0629",
+  "\u0627\u0644\u0625\u0646\u0633\u0627\u0646", "\u0627\u0644\u0645\u0631\u0633\u0644\u0627\u062A", "\u0627\u0644\u0646\u0628\u0625", "\u0627\u0644\u0646\u0627\u0632\u0639\u0627\u062A", "\u0639\u0628\u0633",
+  "\u0627\u0644\u062A\u0643\u0648\u064A\u0631", "\u0627\u0644\u0625\u0646\u0641\u0637\u0627\u0631", "\u0627\u0644\u0645\u0637\u0641\u0641\u064A\u0646", "\u0627\u0644\u0625\u0646\u0634\u0642\u0627\u0642", "\u0627\u0644\u0628\u0631\u0648\u062C",
+  "\u0627\u0644\u0637\u0627\u0631\u0642", "\u0627\u0644\u0623\u0639\u0644\u0649", "\u0627\u0644\u063A\u0627\u0634\u064A\u0629", "\u0627\u0644\u0641\u062C\u0631", "\u0627\u0644\u0628\u0644\u062F",
+  "\u0627\u0644\u0634\u0645\u0633", "\u0627\u0644\u0644\u064A\u0644", "\u0627\u0644\u0636\u062D\u0649", "\u0627\u0644\u0634\u0631\u062D", "\u0627\u0644\u062A\u064A\u0646",
+  "\u0627\u0644\u0639\u0644\u0642", "\u0627\u0644\u0642\u062F\u0631", "\u0627\u0644\u0628\u064A\u0646\u0629", "\u0627\u0644\u0632\u0644\u0632\u0644\u0629", "\u0627\u0644\u0639\u0627\u062F\u064A\u0627\u062A",
+  "\u0627\u0644\u0642\u0627\u0631\u0639\u0629", "\u0627\u0644\u062A\u0643\u0627\u062B\u0631", "\u0627\u0644\u0639\u0635\u0631", "\u0627\u0644\u0647\u0645\u0632\u0629", "\u0627\u0644\u0641\u064A\u0644",
+  "\u0642\u0631\u064A\u0634", "\u0627\u0644\u0645\u0627\u0639\u0648\u0646", "\u0627\u0644\u0643\u0648\u062B\u0631", "\u0627\u0644\u0643\u0627\u0641\u0631\u0648\u0646", "\u0627\u0644\u0646\u0635\u0631",
+  "\u0627\u0644\u0645\u0633\u062F", "\u0627\u0644\u0625\u062E\u0644\u0627\u0635", "\u0627\u0644\u0641\u0644\u0642", "\u0627\u0644\u0646\u0627\u0633"
 ];
 
 // ========== LAST READ FUNCTIES ==========
@@ -680,11 +710,11 @@ function updateLastReadUI() {
   if (lastRead && lastReadCard) {
     const surahIndex = lastRead.surahId - 1;
     const surahName = currentLanguage === 'arabic' 
-      ? (arabicSuraNames[surahIndex] || `سورة ${lastRead.surahId}`)
-      : (latinSuraNames[surahIndex] || `Surah ${lastRead.surahId}`);
+      ? (arabicSuraNames[surahIndex] || '\u0633\u0648\u0631\u0629 ' + lastRead.surahId)
+      : (latinSuraNames[surahIndex] || 'Surah ' + lastRead.surahId);
     
     lastReadSurahName.textContent = surahName;
-    lastReadVerseNumber.textContent = `${lastRead.verseNumber}`;
+    lastReadVerseNumber.textContent = '' + lastRead.verseNumber;
     lastReadCard.classList.remove('hidden');
     
     lastReadLabel.textContent = translations[currentLanguage].lastReadLabel;
@@ -755,9 +785,9 @@ function displaySurahs(surahsToShow) {
   const currentCount = surahsToShow.length;
   
   if (searchActive) {
-    progressText.textContent = `${currentCount} van ${totalSurahs} getoond`;
+    progressText.textContent = currentCount + ' van ' + totalSurahs + ' getoond';
   } else {
-    progressText.textContent = `Soera ${currentSurahId || '0'} van ${totalSurahs}`;
+    progressText.textContent = 'Soera ' + (currentSurahId || '0') + ' van ' + totalSurahs;
   }
   
   surahsToShow.forEach(surah => {
@@ -768,16 +798,14 @@ function displaySurahs(surahsToShow) {
     let title = '';
     
     if (currentLanguage === 'arabic') {
-      title = `<div class="arabic-text text-2xl mb-2">${arabicSuraNames[index] || surah.name}</div>`;
+      title = '<div class="arabic-text text-2xl mb-2">' + (arabicSuraNames[index] || surah.name) + '</div>';
     } else {
-      title = `<h3 class="font-bold text-lg">${surah.number}. ${latinSuraNames[index] || surah.englishName}</h3>`;
+      title = '<h3 class="font-bold text-lg">' + surah.number + '. ' + (latinSuraNames[index] || surah.englishName) + '</h3>';
     }
 
-    card.innerHTML = `
-      ${title}
-      <div class="mt-2 text-sm text-gray-500">${surah.numberOfAyahs} ${translations[currentLanguage].verses}</div>
-      ${currentLanguage !== 'arabic' ? `<div class="arabic-text text-right text-sm mt-2">${arabicSuraNames[index] || surah.name}</div>` : ''}
-    `;
+    card.innerHTML = title +
+      '<div class="mt-2 text-sm text-gray-500">' + surah.numberOfAyahs + ' ' + translations[currentLanguage].verses + '</div>' +
+      (currentLanguage !== 'arabic' ? '<div class="arabic-text text-right text-sm mt-2">' + (arabicSuraNames[index] || surah.name) + '</div>' : '');
 
     card.onclick = () => openSurah(surah.number);
     surahList.appendChild(card);
@@ -798,7 +826,7 @@ function performSearch() {
   const filteredSurahs = filterSurahs(searchTerm);
   searchActive = true;
   
-  searchResultsCount.textContent = `${filteredSurahs.length} ${translations[currentLanguage].searchResults}`;
+  searchResultsCount.textContent = filteredSurahs.length + ' ' + translations[currentLanguage].searchResults;
   searchInfo.classList.remove('hidden');
   
   displaySurahs(filteredSurahs);
@@ -838,27 +866,27 @@ async function openSurah(id) {
   document.getElementById('surahList').classList.add('hidden');
   document.getElementById('surahPage').classList.remove('hidden');
   
-  progressText.textContent = `Soera ${id} van 114`;
+  progressText.textContent = 'Soera ' + id + ' van 114';
   
   const loadingSpinner = document.getElementById('loadingSpinner');
   loadingSpinner.classList.remove('hidden');
   
   try {
-    const response = await fetch(`https://api.alquran.cloud/v1/surah/${id}`);
+    const response = await fetch('https://api.alquran.cloud/v1/surah/' + id);
     const data = await response.json();
     const s = data.data;
     const index = s.number - 1;
 
     let title = '';
     if (currentLanguage === 'arabic') {
-      title = `${s.number}. ${arabicSuraNames[index] || s.name}`;
+      title = s.number + '. ' + (arabicSuraNames[index] || s.name);
     } else {
-      title = `${s.number}. ${latinSuraNames[index] || s.englishName}`;
+      title = s.number + '. ' + (latinSuraNames[index] || s.englishName);
     }
     
     document.getElementById('surahTitle').textContent = title;
-    document.getElementById('surahInfo').textContent = `${s.numberOfAyahs} ${translations[currentLanguage].verses}`;
-    document.getElementById('surahAudio').src = `https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/${id}.mp3`;
+    document.getElementById('surahInfo').textContent = s.numberOfAyahs + ' ' + translations[currentLanguage].verses;
+    document.getElementById('surahAudio').src = 'https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/' + id + '.mp3';
 
     const surahText = document.getElementById('surahText');
     surahText.innerHTML = '';
@@ -875,10 +903,9 @@ async function openSurah(id) {
         d.classList.add('last-read');
       }
 
-      d.innerHTML = `
-        <div class="arabic-text">${a.text}</div>
-        <div class="text-xs text-gray-500 mt-2">${currentLanguage === 'arabic' ? 'آية' : 'Vers'} ${a.numberInSurah}</div>
-      `;
+      d.innerHTML =
+        '<div class="arabic-text">' + a.text + '</div>' +
+        '<div class="text-xs text-gray-500 mt-2">' + (currentLanguage === 'arabic' ? '\u0622\u064A\u0629' : 'Vers') + ' ' + a.numberInSurah + '</div>';
 
       d.onclick = () => {
         const verseNumber = a.numberInSurah;
@@ -898,7 +925,7 @@ async function openSurah(id) {
 
     if (lastRead && lastRead.surahId === id) {
       lastReadBadge.classList.remove('hidden');
-      lastReadBadgeText.textContent = `${translations[currentLanguage].lastReadBadge} ${lastRead.verseNumber}`;
+      lastReadBadgeText.textContent = translations[currentLanguage].lastReadBadge + ' ' + lastRead.verseNumber;
     } else {
       lastReadBadge.classList.add('hidden');
     }
@@ -937,15 +964,15 @@ document.getElementById('backBtn').addEventListener('click', () => {
   }
 });
 
-clearLastReadBtn?.addEventListener('click', () => {
+clearLastReadBtn && clearLastReadBtn.addEventListener('click', () => {
   confirmModal.classList.remove('hidden');
 });
 
-closeConfirmModal?.addEventListener('click', () => {
+closeConfirmModal && closeConfirmModal.addEventListener('click', () => {
   confirmModal.classList.add('hidden');
 });
 
-confirmClearBtn?.addEventListener('click', () => {
+confirmClearBtn && confirmClearBtn.addEventListener('click', () => {
   clearLastRead();
   confirmModal.classList.add('hidden');
 });
@@ -970,7 +997,7 @@ searchInput.addEventListener('keypress', (e) => {
   }
 });
 
-jumpToLastReadBtn?.addEventListener('click', jumpToLastRead);
+jumpToLastReadBtn && jumpToLastReadBtn.addEventListener('click', jumpToLastRead);
 
 document.getElementById('languageSelect').addEventListener('change', (e) => {
   currentLanguage = e.target.value;
