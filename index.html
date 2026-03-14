@@ -14,9 +14,7 @@
   <meta property="og:title" content="Quran Online - Lees de Koran Gratis">
   <meta property="og:description" content="Lees alle 114 soera's van de Quran met Arabische tekst en audio.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://onlinequran.nl">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#c9962c">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,47 +22,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri:wght@400;700&family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* === RESET === */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    .hidden { display: none !important; }
 
 ```
-/* === HIDDEN (KRITIEK) === */
-.hidden { display: none !important; }
-
-/* === CSS VARIABELEN === */
 :root {
-  --gold:       #c9962c;
-  --gold-light: #e8b84b;
-  --gold-glow:  rgba(201,150,44,0.22);
-  --ink:        #1a1208;
-  --cream:      #faf6ee;
-  --cream-dark: #f0e8d5;
-  --parchment:  #e8dcc4;
-  --text-muted: #7a6540;
-  --border:     rgba(201,150,44,0.22);
-  --shadow:     0 4px 24px rgba(26,18,8,0.10);
-  --shadow-lg:  0 12px 48px rgba(26,18,8,0.16);
-  --hdr-bg:     rgba(250,246,238,0.96);
-  --quran-size: 1.7rem;
-  --radius:     16px;
-  --radius-sm:  10px;
-  --t:          0.28s cubic-bezier(0.4,0,0.2,1);
+  --gold: #c9962c; --gold-light: #e8b84b; --gold-glow: rgba(201,150,44,0.22);
+  --ink: #1a1208; --cream: #faf6ee; --cream-dark: #f0e8d5; --parchment: #e8dcc4;
+  --text-muted: #7a6540; --border: rgba(201,150,44,0.22);
+  --shadow: 0 4px 24px rgba(26,18,8,0.10); --shadow-lg: 0 12px 48px rgba(26,18,8,0.16);
+  --hdr-bg: rgba(250,246,238,0.96); --quran-size: 1.7rem;
+  --radius: 16px; --radius-sm: 10px; --t: 0.28s cubic-bezier(0.4,0,0.2,1);
 }
-
-/* === DONKER THEMA === */
 [data-theme="dark"] {
-  --ink:        #ecdfc8;
-  --cream:      #181008;
-  --cream-dark: #22180a;
-  --parchment:  #2c1f0c;
-  --text-muted: #a08858;
-  --border:     rgba(201,150,44,0.22);
-  --shadow:     0 4px 24px rgba(0,0,0,0.5);
-  --shadow-lg:  0 12px 48px rgba(0,0,0,0.65);
-  --hdr-bg:     rgba(24,16,8,0.97);
+  --ink: #ecdfc8; --cream: #181008; --cream-dark: #22180a; --parchment: #2c1f0c;
+  --text-muted: #a08858; --border: rgba(201,150,44,0.22);
+  --shadow: 0 4px 24px rgba(0,0,0,0.5); --shadow-lg: 0 12px 48px rgba(0,0,0,0.65);
+  --hdr-bg: rgba(24,16,8,0.97);
 }
 
-/* === 34 KLEUR THEMAS === */
+/* 34 KLEUREN */
 [data-color="gold"]     { --gold:#c9962c; --gold-light:#e8b84b; --gold-glow:rgba(201,150,44,0.22); }
 [data-color="amber"]    { --gold:#b45309; --gold-light:#d97706; --gold-glow:rgba(180,83,9,0.22); }
 [data-color="copper"]   { --gold:#b45309; --gold-light:#f59e0b; --gold-glow:rgba(180,83,9,0.22); }
@@ -100,354 +77,232 @@
 [data-color="black"]    { --gold:#111111; --gold-light:#333333; --gold-glow:rgba(17,17,17,0.28); }
 [data-color="white"]    { --gold:#aaaaaa; --gold-light:#cccccc; --gold-glow:rgba(170,170,170,0.30); }
 
-/* === BASIS === */
 html { scroll-behavior: smooth; }
-body {
-  font-family: 'Lato', sans-serif;
-  background: var(--cream);
-  color: var(--ink);
-  min-height: 100vh;
-  overflow-x: hidden;
-  transition: background var(--t), color var(--t);
+body { font-family:'Lato',sans-serif; background:var(--cream); color:var(--ink); min-height:100vh; overflow-x:hidden; transition:background var(--t),color var(--t); }
+body::before { content:''; position:fixed; inset:0; background:radial-gradient(circle at 15% 15%,rgba(201,150,44,0.06) 0%,transparent 50%),radial-gradient(circle at 85% 85%,rgba(201,150,44,0.04) 0%,transparent 50%); pointer-events:none; z-index:0; }
+::-webkit-scrollbar{width:5px} ::-webkit-scrollbar-track{background:var(--cream-dark)} ::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+
+/* HEADER */
+.hdr { position:sticky; top:0; z-index:100; background:var(--hdr-bg); border-bottom:1px solid var(--border); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); transition:background var(--t),border-color var(--t); }
+.hdr-in { max-width:1200px; margin:0 auto; padding:0 20px; height:64px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.logo { display:flex; align-items:center; gap:10px; }
+.logo-ico { width:36px; height:36px; background:linear-gradient(135deg,var(--gold),var(--gold-light)); border-radius:10px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:15px; box-shadow:0 2px 8px var(--gold-glow); flex-shrink:0; transition:background 0.3s; }
+.logo-txt { font-family:'Cinzel',serif; font-size:1.05rem; font-weight:700; color:var(--ink); transition:color var(--t); }
+.hdr-ctrl { display:flex; align-items:center; gap:8px; }
+.lang-group { display:flex; align-items:center; background:var(--cream-dark); border:1px solid var(--border); border-radius:50px; padding:3px; gap:2px; }
+.lang-btn { padding:6px 12px; border:none; border-radius:50px; background:transparent; color:var(--text-muted); font-family:'Lato',sans-serif; font-size:0.82rem; font-weight:700; cursor:pointer; transition:all var(--t); white-space:nowrap; }
+.lang-btn:hover { color:var(--ink); }
+.lang-btn.active { background:var(--gold); color:#fff; box-shadow:0 2px 8px var(--gold-glow); }
+.ico-btn { width:38px; height:38px; border:1px solid var(--border); border-radius:50px; background:var(--cream-dark); color:var(--ink); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:14px; transition:all var(--t); flex-shrink:0; }
+.ico-btn:hover, .ico-btn.active-set { background:var(--gold); border-color:var(--gold); color:#fff; }
+
+/* MAIN */
+.main { max-width:1200px; margin:0 auto; padding:28px 20px 80px; position:relative; z-index:1; }
+
+/* HERO */
+.hero { background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 55%,var(--gold) 100%); border-radius:var(--radius); padding:28px 24px; margin-bottom:24px; position:relative; overflow:hidden; box-shadow:var(--shadow-lg); animation:fadeUp 0.45s ease both; transition:background 0.3s; }
+.hero::before { content:''; position:absolute; inset:0; background-image:url("data:image/svg+xml,%3Csvg width='52' height='52' viewBox='0 0 52 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='0.07'%3E%3Cpath d='M26 0l7.5 4.33V13L26 17.33 18.5 13V4.33z'/%3E%3C/g%3E%3C/svg%3E"); }
+.hero-con { position:relative; z-index:1; display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+.hero-ar { font-family:'Amiri',serif; font-size:clamp(1.6rem,5vw,2.5rem); color:#fff; text-shadow:0 2px 8px rgba(0,0,0,0.18); direction:rtl; flex-shrink:0; line-height:1; }
+.hero-txt h2 { font-family:'Cinzel',serif; font-size:clamp(1rem,2.5vw,1.3rem); color:#fff; margin-bottom:5px; font-weight:700; }
+.hero-txt p { font-size:0.88rem; color:rgba(255,255,255,0.88); line-height:1.55; }
+
+/* LR BANNER */
+.lr-banner { background:var(--cream-dark); border:1px solid var(--border); border-left:4px solid var(--gold); border-radius:var(--radius); padding:14px 18px; margin-bottom:20px; display:flex; align-items:center; justify-content:space-between; gap:10px; box-shadow:var(--shadow); cursor:pointer; transition:all var(--t); }
+.lr-banner:hover { box-shadow:var(--shadow-lg); transform:translateY(-1px); }
+.lr-left { display:flex; align-items:center; gap:12px; flex:1; min-width:0; }
+.lr-ico { width:38px; height:38px; background:linear-gradient(135deg,var(--gold),var(--gold-light)); border-radius:9px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; flex-shrink:0; transition:background 0.3s; }
+.lr-lbl { font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:2px; }
+.lr-name { font-family:'Cinzel',serif; font-size:0.9rem; font-weight:600; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.lr-acts { display:flex; align-items:center; gap:6px; flex-shrink:0; }
+.btn-cont { display:flex; align-items:center; gap:6px; padding:8px 14px; background:var(--gold); color:#fff; border:none; border-radius:var(--radius-sm); font-family:'Lato',sans-serif; font-size:0.83rem; font-weight:700; cursor:pointer; transition:all var(--t); white-space:nowrap; }
+.btn-cont:hover { background:var(--gold-light); transform:translateX(2px); }
+.btn-trash { width:34px; height:34px; border:1px solid var(--border); border-radius:var(--radius-sm); background:transparent; color:var(--text-muted); cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all var(--t); }
+.btn-trash:hover { background:#fee2e2; border-color:#fca5a5; color:#dc2626; }
+
+/* ZOEKBALK */
+.srch-wrap { margin-bottom:20px; animation:fadeUp 0.45s 0.12s ease both; }
+.srch-box { display:flex; align-items:center; background:var(--cream-dark); border:1px solid var(--border); border-radius:50px; padding:4px 4px 4px 18px; transition:all var(--t); box-shadow:var(--shadow); }
+.srch-box:focus-within { border-color:var(--gold); box-shadow:0 0 0 3px var(--gold-glow),var(--shadow); }
+.srch-in { flex:1; border:none; background:transparent; color:var(--ink); font-family:'Lato',sans-serif; font-size:0.93rem; padding:10px 0; outline:none; min-width:0; }
+.srch-in::placeholder { color:var(--text-muted); }
+.srch-btn { width:42px; height:42px; background:linear-gradient(135deg,var(--gold),var(--gold-light)); border:none; border-radius:50%; color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:14px; transition:all var(--t); flex-shrink:0; }
+.srch-btn:hover { transform:scale(1.08); }
+.srch-meta { display:flex; align-items:center; justify-content:space-between; margin-top:8px; padding:0 4px; font-size:0.83rem; color:var(--text-muted); }
+.btn-clr { background:none; border:none; color:var(--gold); cursor:pointer; font-size:0.83rem; font-weight:700; display:flex; align-items:center; gap:4px; }
+
+/* STATS */
+.stats { display:flex; align-items:center; gap:12px; margin-bottom:18px; animation:fadeUp 0.45s 0.16s ease both; }
+.stat-pill { display:inline-flex; align-items:center; gap:5px; padding:5px 13px; background:var(--cream-dark); border:1px solid var(--border); border-radius:50px; font-size:0.8rem; color:var(--text-muted); }
+.stat-pill i { color:var(--gold); font-size:10px; }
+
+/* LOADING */
+.ld-wrap { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:60px 20px; gap:14px; color:var(--text-muted); font-size:0.88rem; }
+.spinner { width:42px; height:42px; border:3px solid var(--parchment); border-top-color:var(--gold); border-radius:50%; animation:spin 0.85s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* GRID */
+.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:12px; animation:fadeUp 0.45s 0.2s ease both; }
+.scard { background:var(--cream-dark); border:1px solid var(--border); border-radius:var(--radius); padding:16px 18px; cursor:pointer; transition:all var(--t); display:flex; flex-direction:column; gap:7px; position:relative; overflow:hidden; }
+.scard::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,var(--gold-glow),transparent); opacity:0; transition:opacity var(--t); pointer-events:none; }
+.scard:hover { border-color:var(--gold); transform:translateY(-3px); box-shadow:var(--shadow-lg); }
+.scard:hover::after { opacity:1; }
+.scard-hd { display:flex; align-items:center; justify-content:space-between; gap:6px; }
+.scard-num { width:30px; height:30px; background:linear-gradient(135deg,var(--gold),var(--gold-light)); border-radius:8px; display:flex; align-items:center; justify-content:center; color:#fff; font-family:'Cinzel',serif; font-size:0.72rem; font-weight:700; flex-shrink:0; transition:background 0.3s; }
+.scard-ar { font-family:'Amiri',serif; font-size:1.2rem; color:var(--gold); direction:rtl; line-height:1; }
+.scard-title { font-family:'Cinzel',serif; font-size:0.86rem; font-weight:600; color:var(--ink); line-height:1.3; }
+.scard-meta { font-size:0.76rem; color:var(--text-muted); display:flex; align-items:center; gap:4px; }
+.scard-meta i { font-size:9px; color:var(--gold); }
+.no-res { grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--text-muted); }
+.no-res i { font-size:1.8rem; color:var(--parchment); display:block; margin-bottom:10px; }
+
+/* DETAIL */
+.spage { animation:fadeUp 0.35s ease both; }
+.back-btn { display:inline-flex; align-items:center; gap:7px; padding:9px 16px; background:var(--cream-dark); border:1px solid var(--border); border-radius:50px; color:var(--ink); font-family:'Lato',sans-serif; font-size:0.88rem; font-weight:700; cursor:pointer; margin-bottom:18px; transition:all var(--t); }
+.back-btn:hover { background:var(--gold); border-color:var(--gold); color:#fff; }
+.shdr { background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%); border-radius:var(--radius); padding:26px 22px; margin-bottom:18px; position:relative; overflow:hidden; box-shadow:var(--shadow-lg); transition:background 0.3s; }
+.shdr::before { content:''; position:absolute; inset:0; background-image:url("data:image/svg+xml,%3Csvg width='36' height='36' viewBox='0 0 36 36' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='0.07'%3E%3Cpath d='M18 0l5.2 3v6L18 12 12.8 9V3z'/%3E%3C/g%3E%3C/svg%3E"); }
+.shdr-con { position:relative; z-index:1; }
+.shdr-top { display:flex; align-items:flex-start; justify-content:space-between; gap:14px; margin-bottom:8px; }
+.shdr-latin { font-family:'Cinzel',serif; font-size:clamp(1.2rem,3.5vw,1.7rem); color:#fff; font-weight:700; }
+.shdr-arabic { font-family:'Amiri',serif; font-size:clamp(1.4rem,4vw,2rem); color:rgba(255,255,255,0.92); direction:rtl; }
+.shdr-meta { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.sbadge { display:inline-flex; align-items:center; gap:4px; padding:4px 11px; background:rgba(255,255,255,0.2); backdrop-filter:blur(4px); border-radius:50px; color:#fff; font-size:0.78rem; font-weight:700; }
+.lr-badge-inline { display:inline-flex; align-items:center; gap:4px; padding:4px 11px; background:rgba(255,255,255,0.92); border-radius:50px; color:var(--gold); font-size:0.78rem; font-weight:700; }
+
+/* AUDIO */
+.audio-sec { background:var(--cream-dark); border:1px solid var(--border); border-radius:var(--radius); padding:14px 18px; margin-bottom:20px; display:flex; align-items:center; gap:10px; box-shadow:var(--shadow); }
+.audio-lbl { display:flex; align-items:center; gap:5px; color:var(--gold); font-size:0.82rem; font-weight:700; flex-shrink:0; white-space:nowrap; }
+audio { flex:1; height:34px; border-radius:8px; min-width:0; }
+
+/* VERZEN */
+.vlist { display:flex; flex-direction:column; gap:8px; }
+.vcard { background:var(--cream-dark); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; cursor:pointer; transition:all var(--t); position:relative; }
+.vcard:hover { border-color:var(--gold); box-shadow:var(--shadow); transform:translateX(4px); }
+.vcard.lr { border-left:4px solid var(--gold); background:linear-gradient(to right,rgba(201,150,44,0.07),var(--cream-dark)); }
+.vcard-ar { font-family:'Amiri Quran','Amiri',serif; font-size:var(--quran-size); line-height:2.1; direction:rtl; color:var(--ink); text-align:right; margin-bottom:8px; word-break:break-word; transition:font-size var(--t); }
+.vcard-ft { display:flex; align-items:center; justify-content:space-between; gap:6px; }
+.vnum { display:inline-flex; align-items:center; gap:5px; font-size:0.76rem; color:var(--text-muted); }
+.vnum-badge { width:22px; height:22px; background:var(--gold); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:#fff; font-size:0.68rem; font-weight:700; font-family:'Cinzel',serif; transition:background 0.3s; }
+.vhint { font-size:0.73rem; color:var(--text-muted); opacity:0; transition:opacity var(--t); display:flex; align-items:center; gap:3px; }
+.vcard:hover .vhint, .vcard.lr .vhint { opacity:1; }
+.vcard.lr .vhint { color:var(--gold); }
+@keyframes vflash { 0%{background:var(--cream-dark)} 35%{background:rgba(201,150,44,0.18);box-shadow:0 0 0 3px var(--gold-glow)} 100%{background:var(--cream-dark)} }
+.vcard.flash { animation:vflash 1.8s ease; }
+
+/* SETTINGS */
+.settings-ov { position:fixed; inset:0; background:rgba(26,18,8,0.65); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); z-index:300; display:flex; align-items:flex-end; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.32s ease; }
+.settings-ov.open { opacity:1; pointer-events:all; }
+@media(min-width:600px){.settings-ov{align-items:center;padding:20px}}
+.settings-panel { background:var(--cream); border-radius:24px 24px 0 0; width:100%; max-width:500px; max-height:92vh; overflow-y:auto; overflow-x:hidden; box-shadow:var(--shadow-lg); transform:translateY(100%); transition:transform 0.38s cubic-bezier(0.4,0,0.2,1),background var(--t); padding-bottom:24px; }
+.settings-ov.open .settings-panel { transform:translateY(0); }
+@media(min-width:600px){.settings-panel{border-radius:24px;max-height:88vh;transform:translateY(24px) scale(0.97);opacity:0;transition:transform 0.36s cubic-bezier(0.4,0,0.2,1),opacity 0.32s ease,background var(--t)}.settings-ov.open .settings-panel{transform:translateY(0) scale(1);opacity:1}}
+.set-handle { width:40px; height:4px; background:var(--parchment); border-radius:2px; margin:16px auto 0; }
+@media(min-width:600px){.set-handle{display:none}}
+.set-hdr { display:flex; align-items:center; justify-content:space-between; padding:18px 22px 14px; border-bottom:1px solid var(--border); position:sticky; top:0; background:var(--cream); backdrop-filter:blur(8px); z-index:2; transition:background var(--t); }
+.set-title { font-family:'Cinzel',serif; font-size:1.1rem; font-weight:700; color:var(--ink); display:flex; align-items:center; gap:8px; }
+.set-title i { color:var(--gold); }
+.set-close { width:32px; height:32px; border-radius:50%; border:1px solid var(--border); background:var(--cream-dark); color:var(--text-muted); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:13px; transition:all var(--t); }
+.set-close:hover { background:var(--gold); border-color:var(--gold); color:#fff; }
+.set-body { padding:20px 22px 8px; display:flex; flex-direction:column; gap:26px; }
+.set-lbl { font-size:0.72rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px; display:flex; align-items:center; gap:7px; }
+.set-lbl i { color:var(--gold); }
+.set-lbl::after { content:''; flex:1; height:1px; background:var(--border); }
+
+/* KLEUR SWATCHES */
+.color-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:9px; }
+.color-swatch { aspect-ratio:1; border-radius:50%; cursor:pointer; border:3px solid transparent; transition:all 0.22s ease; position:relative; }
+.color-swatch:hover { transform:scale(1.18); }
+.color-swatch.active { border-color:var(--ink) !important; box-shadow:0 0 0 2px var(--cream),0 0 0 4px var(--gold); }
+.color-swatch::after { content:'✓'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#fff; font-size:0.85rem; font-weight:900; opacity:0; transition:opacity 0.2s; text-shadow:0 1px 3px rgba(0,0,0,0.5); }
+.color-swatch.active::after { opacity:1; }
+.color-swatch[data-color="white"].active::after { color:#333; text-shadow:none; }
+
+/* DARK TOGGLE */
+.theme-row { display:flex; align-items:center; justify-content:space-between; background:var(--cream-dark); border:1px solid var(--border); border-radius:var(--radius-sm); padding:13px 16px; }
+.theme-lbl { display:flex; align-items:center; gap:10px; font-size:0.9rem; font-weight:600; color:var(--ink); }
+.theme-lbl i { color:var(--gold); width:16px; text-align:center; }
+.toggle-sw { width:48px; height:26px; background:var(--parchment); border-radius:50px; cursor:pointer; position:relative; transition:background 0.3s; border:none; flex-shrink:0; }
+.toggle-sw.on { background:var(--gold); }
+.toggle-sw::after { content:''; position:absolute; width:20px; height:20px; background:#fff; border-radius:50%; top:3px; left:3px; transition:transform 0.3s ease; box-shadow:0 1px 4px rgba(0,0,0,0.2); }
+.toggle-sw.on::after { transform:translateX(22px); }
+
+/* FONT GROOTTE */
+.font-row { background:var(--cream-dark); border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px 16px; }
+.font-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.font-lbl2 { display:flex; align-items:center; gap:10px; font-size:0.9rem; font-weight:600; color:var(--ink); }
+.font-lbl2 i { color:var(--gold); width:16px; text-align:center; }
+.font-val { font-family:'Cinzel',serif; font-size:0.82rem; color:var(--gold); font-weight:700; background:rgba(201,150,44,0.12); padding:3px 10px; border-radius:50px; }
+.size-slider { width:100%; accent-color:var(--gold); cursor:pointer; height:4px; border-radius:2px; }
+.size-btns { display:flex; gap:7px; margin-top:11px; }
+.size-preset { flex:1; padding:7px 4px; border:1px solid var(--border); border-radius:var(--radius-sm); background:transparent; color:var(--text-muted); font-family:'Lato',sans-serif; font-size:0.78rem; cursor:pointer; transition:all var(--t); font-weight:700; }
+.size-preset:hover { border-color:var(--gold); color:var(--gold); }
+.size-preset.active { background:var(--gold); border-color:var(--gold); color:#fff; }
+
+/* RECITEUR */
+.reciter-grid { display:flex; flex-direction:column; gap:8px; }
+.reciter-opt { display:flex; align-items:center; gap:12px; padding:11px 14px; border:1px solid var(--border); border-radius:var(--radius-sm); background:var(--cream-dark); cursor:pointer; transition:all var(--t); }
+.reciter-opt:hover { border-color:var(--gold); transform:translateX(2px); }
+.reciter-opt.active { border-color:var(--gold); background:rgba(201,150,44,0.08); }
+.reciter-dot { width:10px; height:10px; border-radius:50%; border:2px solid var(--parchment); flex-shrink:0; transition:all var(--t); }
+.reciter-opt.active .reciter-dot { background:var(--gold); border-color:var(--gold); }
+.reciter-info { flex:1; min-width:0; }
+.reciter-name { font-size:0.88rem; font-weight:600; color:var(--ink); }
+.reciter-sub { font-size:0.74rem; color:var(--text-muted); margin-top:1px; }
+.reciter-play { width:30px; height:30px; border-radius:50%; flex-shrink:0; border:1px solid var(--border); background:var(--cream); color:var(--gold); cursor:pointer; font-size:10px; display:flex; align-items:center; justify-content:center; transition:all var(--t); }
+.reciter-play:hover { background:var(--gold); color:#fff; border-color:var(--gold); transform:scale(1.1); }
+.reciter-play.playing { background:var(--gold); color:#fff; border-color:var(--gold); animation:pulse-play 1s ease infinite; }
+@keyframes pulse-play { 0%,100%{box-shadow:0 0 0 0 var(--gold-glow)} 50%{box-shadow:0 0 0 5px transparent} }
+
+/* KAART STIJL */
+.style-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.style-opt { padding:14px; border:1px solid var(--border); border-radius:var(--radius-sm); background:var(--cream-dark); cursor:pointer; transition:all var(--t); text-align:center; }
+.style-opt:hover { border-color:var(--gold); }
+.style-opt.active { border-color:var(--gold); background:rgba(201,150,44,0.08); }
+.style-ico { font-size:1.5rem; margin-bottom:5px; line-height:1; }
+.style-name { font-size:0.82rem; font-weight:700; color:var(--ink); }
+.style-sub { font-size:0.72rem; color:var(--text-muted); margin-top:2px; }
+
+/* RESET */
+.set-reset { display:flex; align-items:center; justify-content:center; gap:7px; width:100%; padding:12px; border:1px dashed var(--border); border-radius:var(--radius-sm); background:transparent; color:var(--text-muted); font-family:'Lato',sans-serif; font-size:0.85rem; font-weight:700; cursor:pointer; transition:all var(--t); }
+.set-reset:hover { border-color:#ef4444; color:#ef4444; background:rgba(239,68,68,0.06); }
+
+/* MODAL */
+.modal-ov { position:fixed; inset:0; background:rgba(26,18,8,0.72); backdrop-filter:blur(4px); display:flex; align-items:flex-end; justify-content:center; z-index:200; }
+@media(min-width:600px){.modal-ov{align-items:center;padding:20px}}
+.modal-box { background:var(--cream); border-radius:var(--radius) var(--radius) 0 0; padding:26px 22px 30px; width:100%; max-width:420px; box-shadow:var(--shadow-lg); animation:slideUp 0.28s ease; }
+@media(min-width:600px){.modal-box{border-radius:var(--radius)}}
+@keyframes slideUp { from{transform:translateY(40px);opacity:0} to{transform:translateY(0);opacity:1} }
+.modal-handle { width:38px; height:4px; background:var(--parchment); border-radius:2px; margin:0 auto 18px; }
+@media(min-width:600px){.modal-handle{display:none}}
+.modal-title { font-family:'Cinzel',serif; font-size:1.05rem; font-weight:700; color:var(--ink); margin-bottom:7px; }
+.modal-body { color:var(--text-muted); font-size:0.88rem; line-height:1.6; margin-bottom:22px; }
+.modal-acts { display:flex; gap:9px; }
+.btn-cancel { flex:1; padding:11px; border:1px solid var(--border); border-radius:var(--radius-sm); background:transparent; color:var(--ink); font-family:'Lato',sans-serif; font-size:0.88rem; font-weight:700; cursor:pointer; transition:all var(--t); }
+.btn-cancel:hover { background:var(--cream-dark); }
+.btn-danger { flex:1; padding:11px; border:none; border-radius:var(--radius-sm); background:#dc2626; color:#fff; font-family:'Lato',sans-serif; font-size:0.88rem; font-weight:700; cursor:pointer; transition:all var(--t); }
+.btn-danger:hover { background:#b91c1c; }
+
+/* FOOTER */
+footer { background:var(--cream-dark); border-top:1px solid var(--border); padding:36px 20px; margin-top:50px; text-align:center; transition:background var(--t); }
+.ft-in { max-width:580px; margin:0 auto; }
+.ft-title { font-family:'Cinzel',serif; font-size:0.95rem; color:var(--ink); margin-bottom:14px; }
+.mail-link { display:inline-flex; align-items:center; gap:7px; padding:11px 22px; background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:#fff; text-decoration:none; border-radius:50px; font-weight:700; font-size:0.88rem; transition:all var(--t); box-shadow:0 4px 14px var(--gold-glow); }
+.mail-link:hover { transform:translateY(-2px); box-shadow:0 8px 22px var(--gold-glow); }
+.ft-copy { margin-top:18px; font-size:0.78rem; color:var(--text-muted); line-height:1.7; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .main{padding:18px 14px 60px} .grid{grid-template-columns:1fr 1fr;gap:9px} .scard{padding:12px 13px}
+  .hero{padding:20px 16px} .btn-cont span{display:none} .audio-sec{flex-direction:column;align-items:stretch}
+  .audio-lbl{justify-content:center} .hdr-in{height:58px} .lang-btn{padding:5px 9px;font-size:0.79rem}
+  .lang-group{padding:2px;gap:1px} .color-grid{gap:7px}
 }
-body::before {
-  content: ''; position: fixed; inset: 0;
-  background: radial-gradient(circle at 15% 15%, rgba(201,150,44,0.06) 0%, transparent 50%),
-              radial-gradient(circle at 85% 85%, rgba(201,150,44,0.04) 0%, transparent 50%);
-  pointer-events: none; z-index: 0;
-}
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--cream-dark); }
-::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
-
-/* === HEADER === */
-.hdr {
-  position: sticky; top: 0; z-index: 100;
-  background: var(--hdr-bg);
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  transition: background var(--t), border-color var(--t);
-}
-.hdr-in {
-  max-width: 1200px; margin: 0 auto; padding: 0 20px;
-  height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
-}
-.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.logo-ico {
-  width: 36px; height: 36px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  border-radius: 10px; display: flex; align-items: center; justify-content: center;
-  color: #fff; font-size: 15px; box-shadow: 0 2px 8px var(--gold-glow); flex-shrink: 0;
-  transition: background 0.3s;
-}
-.logo-txt { font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 700; color: var(--ink); transition: color var(--t); }
-.hdr-ctrl { display: flex; align-items: center; gap: 8px; }
-.lang-group {
-  display: flex; align-items: center;
-  background: var(--cream-dark); border: 1px solid var(--border);
-  border-radius: 50px; padding: 3px; gap: 2px;
-}
-.lang-btn {
-  padding: 6px 12px; border: none; border-radius: 50px;
-  background: transparent; color: var(--text-muted);
-  font-family: 'Lato', sans-serif; font-size: 0.82rem; font-weight: 700;
-  cursor: pointer; transition: all var(--t); white-space: nowrap;
-}
-.lang-btn:hover { color: var(--ink); }
-.lang-btn.active { background: var(--gold); color: #fff; box-shadow: 0 2px 8px var(--gold-glow); }
-.ico-btn {
-  width: 38px; height: 38px; border: 1px solid var(--border); border-radius: 50px;
-  background: var(--cream-dark); color: var(--ink); cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; transition: all var(--t); flex-shrink: 0;
-}
-.ico-btn:hover, .ico-btn.active-set { background: var(--gold); border-color: var(--gold); color: #fff; }
-
-/* === MAIN === */
-.main { max-width: 1200px; margin: 0 auto; padding: 28px 20px 80px; position: relative; z-index: 1; }
-
-/* === HERO === */
-.hero {
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 55%, var(--gold) 100%);
-  border-radius: var(--radius); padding: 28px 24px; margin-bottom: 24px;
-  position: relative; overflow: hidden; box-shadow: var(--shadow-lg);
-  animation: fadeUp 0.45s ease both; transition: background 0.3s;
-}
-.hero::before {
-  content: ''; position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='52' height='52' viewBox='0 0 52 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='0.07'%3E%3Cpath d='M26 0l7.5 4.33V13L26 17.33 18.5 13V4.33z'/%3E%3C/g%3E%3C/svg%3E");
-}
-.hero-con { position: relative; z-index: 1; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
-.hero-ar { font-family: 'Amiri', serif; font-size: clamp(1.6rem,5vw,2.5rem); color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.18); direction: rtl; flex-shrink: 0; line-height: 1; }
-.hero-txt h2 { font-family: 'Cinzel', serif; font-size: clamp(1rem,2.5vw,1.3rem); color: #fff; margin-bottom: 5px; font-weight: 700; }
-.hero-txt p { font-size: 0.88rem; color: rgba(255,255,255,0.88); line-height: 1.55; }
-
-/* === LAATSTE GELEZEN BANNER === */
-.lr-banner {
-  background: var(--cream-dark); border: 1px solid var(--border); border-left: 4px solid var(--gold);
-  border-radius: var(--radius); padding: 14px 18px; margin-bottom: 20px;
-  display: flex; align-items: center; justify-content: space-between; gap: 10px;
-  box-shadow: var(--shadow); cursor: pointer; transition: all var(--t);
-}
-.lr-banner:hover { box-shadow: var(--shadow-lg); transform: translateY(-1px); }
-.lr-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
-.lr-ico {
-  width: 38px; height: 38px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  border-radius: 9px; display: flex; align-items: center; justify-content: center;
-  color: #fff; font-size: 14px; flex-shrink: 0; transition: background 0.3s;
-}
-.lr-lbl { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
-.lr-name { font-family: 'Cinzel', serif; font-size: 0.9rem; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.lr-acts { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
-.btn-cont {
-  display: flex; align-items: center; gap: 6px; padding: 8px 14px;
-  background: var(--gold); color: #fff; border: none; border-radius: var(--radius-sm);
-  font-family: 'Lato', sans-serif; font-size: 0.83rem; font-weight: 700;
-  cursor: pointer; transition: all var(--t); white-space: nowrap;
-}
-.btn-cont:hover { background: var(--gold-light); transform: translateX(2px); }
-.btn-trash {
-  width: 34px; height: 34px; border: 1px solid var(--border); border-radius: var(--radius-sm);
-  background: transparent; color: var(--text-muted); cursor: pointer;
-  display: flex; align-items: center; justify-content: center; transition: all var(--t);
-}
-.btn-trash:hover { background: #fee2e2; border-color: #fca5a5; color: #dc2626; }
-
-/* === ZOEKBALK === */
-.srch-wrap { margin-bottom: 20px; animation: fadeUp 0.45s 0.12s ease both; }
-.srch-box {
-  display: flex; align-items: center;
-  background: var(--cream-dark); border: 1px solid var(--border);
-  border-radius: 50px; padding: 4px 4px 4px 18px;
-  transition: all var(--t); box-shadow: var(--shadow);
-}
-.srch-box:focus-within { border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-glow), var(--shadow); }
-.srch-in { flex: 1; border: none; background: transparent; color: var(--ink); font-family: 'Lato', sans-serif; font-size: 0.93rem; padding: 10px 0; outline: none; min-width: 0; }
-.srch-in::placeholder { color: var(--text-muted); }
-.srch-btn {
-  width: 42px; height: 42px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  border: none; border-radius: 50%; color: #fff; cursor: pointer;
-  display: flex; align-items: center; justify-content: center; font-size: 14px;
-  transition: all var(--t); flex-shrink: 0;
-}
-.srch-btn:hover { transform: scale(1.08); box-shadow: 0 4px 12px var(--gold-glow); }
-.srch-meta { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; padding: 0 4px; font-size: 0.83rem; color: var(--text-muted); }
-.btn-clr { background: none; border: none; color: var(--gold); cursor: pointer; font-size: 0.83rem; font-weight: 700; display: flex; align-items: center; gap: 4px; transition: color var(--t); }
-.btn-clr:hover { color: var(--gold-light); }
-
-/* === STATS === */
-.stats { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; animation: fadeUp 0.45s 0.16s ease both; }
-.stat-pill { display: inline-flex; align-items: center; gap: 5px; padding: 5px 13px; background: var(--cream-dark); border: 1px solid var(--border); border-radius: 50px; font-size: 0.8rem; color: var(--text-muted); }
-.stat-pill i { color: var(--gold); font-size: 10px; }
-
-/* === LOADING === */
-.ld-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 20px; gap: 14px; color: var(--text-muted); font-size: 0.88rem; }
-.spinner { width: 42px; height: 42px; border: 3px solid var(--parchment); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.85s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* === SOERA GRID === */
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 12px; animation: fadeUp 0.45s 0.2s ease both; }
-.scard {
-  background: var(--cream-dark); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 16px 18px; cursor: pointer; transition: all var(--t);
-  display: flex; flex-direction: column; gap: 7px; position: relative; overflow: hidden;
-}
-.scard::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--gold-glow), transparent); opacity: 0; transition: opacity var(--t); pointer-events: none; }
-.scard:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-.scard:hover::after { opacity: 1; }
-.scard-hd { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
-.scard-num { width: 30px; height: 30px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-family: 'Cinzel', serif; font-size: 0.72rem; font-weight: 700; flex-shrink: 0; transition: background 0.3s; }
-.scard-ar { font-family: 'Amiri', serif; font-size: 1.2rem; color: var(--gold); direction: rtl; line-height: 1; }
-.scard-title { font-family: 'Cinzel', serif; font-size: 0.86rem; font-weight: 600; color: var(--ink); line-height: 1.3; }
-.scard-meta { font-size: 0.76rem; color: var(--text-muted); display: flex; align-items: center; gap: 4px; }
-.scard-meta i { font-size: 9px; color: var(--gold); }
-.no-res { grid-column: 1/-1; text-align: center; padding: 60px 20px; color: var(--text-muted); }
-.no-res i { font-size: 1.8rem; color: var(--parchment); display: block; margin-bottom: 10px; }
-
-/* === SOERA DETAIL === */
-.spage { animation: fadeUp 0.35s ease both; }
-.back-btn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 16px; background: var(--cream-dark); border: 1px solid var(--border); border-radius: 50px; color: var(--ink); font-family: 'Lato', sans-serif; font-size: 0.88rem; font-weight: 700; cursor: pointer; margin-bottom: 18px; transition: all var(--t); }
-.back-btn:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
-.shdr { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%); border-radius: var(--radius); padding: 26px 22px; margin-bottom: 18px; position: relative; overflow: hidden; box-shadow: var(--shadow-lg); transition: background 0.3s; }
-.shdr::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg width='36' height='36' viewBox='0 0 36 36' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='0.07'%3E%3Cpath d='M18 0l5.2 3v6L18 12 12.8 9V3z'/%3E%3C/g%3E%3C/svg%3E"); }
-.shdr-con { position: relative; z-index: 1; }
-.shdr-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 8px; }
-.shdr-latin { font-family: 'Cinzel', serif; font-size: clamp(1.2rem,3.5vw,1.7rem); color: #fff; font-weight: 700; }
-.shdr-arabic { font-family: 'Amiri', serif; font-size: clamp(1.4rem,4vw,2rem); color: rgba(255,255,255,0.92); direction: rtl; }
-.shdr-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.sbadge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 11px; background: rgba(255,255,255,0.2); backdrop-filter: blur(4px); border-radius: 50px; color: #fff; font-size: 0.78rem; font-weight: 700; }
-.lr-badge-inline { display: inline-flex; align-items: center; gap: 4px; padding: 4px 11px; background: rgba(255,255,255,0.92); border-radius: 50px; color: var(--gold); font-size: 0.78rem; font-weight: 700; }
-
-/* === AUDIO === */
-.audio-sec { background: var(--cream-dark); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; box-shadow: var(--shadow); }
-.audio-lbl { display: flex; align-items: center; gap: 5px; color: var(--gold); font-size: 0.82rem; font-weight: 700; flex-shrink: 0; white-space: nowrap; }
-audio { flex: 1; height: 34px; border-radius: 8px; min-width: 0; }
-
-/* === VERS CARDS === */
-.vlist { display: flex; flex-direction: column; gap: 8px; }
-.vcard { background: var(--cream-dark); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; cursor: pointer; transition: all var(--t); position: relative; }
-.vcard:hover { border-color: var(--gold); box-shadow: var(--shadow); transform: translateX(4px); }
-.vcard.lr { border-left: 4px solid var(--gold); background: linear-gradient(to right, rgba(201,150,44,0.07), var(--cream-dark)); }
-.vcard-ar { font-family: 'Amiri Quran', 'Amiri', serif; font-size: var(--quran-size); line-height: 2.1; direction: rtl; color: var(--ink); text-align: right; margin-bottom: 8px; word-break: break-word; transition: font-size var(--t); }
-.vcard-ft { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
-.vnum { display: inline-flex; align-items: center; gap: 5px; font-size: 0.76rem; color: var(--text-muted); }
-.vnum-badge { width: 22px; height: 22px; background: var(--gold); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 0.68rem; font-weight: 700; font-family: 'Cinzel', serif; transition: background 0.3s; }
-.vhint { font-size: 0.73rem; color: var(--text-muted); opacity: 0; transition: opacity var(--t); display: flex; align-items: center; gap: 3px; }
-.vcard:hover .vhint, .vcard.lr .vhint { opacity: 1; }
-.vcard.lr .vhint { color: var(--gold); }
-@keyframes vflash { 0% { background: var(--cream-dark); } 35% { background: rgba(201,150,44,0.18); box-shadow: 0 0 0 3px var(--gold-glow); } 100% { background: var(--cream-dark); } }
-.vcard.flash { animation: vflash 1.8s ease; }
-
-/* === SETTINGS PANEL === */
-.settings-ov {
-  position: fixed; inset: 0;
-  background: rgba(26,18,8,0.65);
-  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-  z-index: 300; display: flex; align-items: flex-end; justify-content: center;
-  opacity: 0; pointer-events: none; transition: opacity 0.32s ease;
-}
-.settings-ov.open { opacity: 1; pointer-events: all; }
-@media (min-width: 600px) { .settings-ov { align-items: center; padding: 20px; } }
-
-.settings-panel {
-  background: var(--cream); border-radius: 24px 24px 0 0;
-  width: 100%; max-width: 500px; max-height: 92vh;
-  overflow-y: auto; overflow-x: hidden;
-  box-shadow: var(--shadow-lg);
-  transform: translateY(100%);
-  transition: transform 0.38s cubic-bezier(0.4,0,0.2,1), background var(--t);
-  padding-bottom: 24px;
-}
-.settings-ov.open .settings-panel { transform: translateY(0); }
-@media (min-width: 600px) {
-  .settings-panel { border-radius: 24px; max-height: 88vh; transform: translateY(24px) scale(0.97); opacity: 0; transition: transform 0.36s cubic-bezier(0.4,0,0.2,1), opacity 0.32s ease, background var(--t); }
-  .settings-ov.open .settings-panel { transform: translateY(0) scale(1); opacity: 1; }
-}
-
-.set-handle { width: 40px; height: 4px; background: var(--parchment); border-radius: 2px; margin: 16px auto 0; }
-@media (min-width: 600px) { .set-handle { display: none; } }
-
-.set-hdr {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 22px 14px; border-bottom: 1px solid var(--border);
-  position: sticky; top: 0; background: var(--cream);
-  backdrop-filter: blur(8px); z-index: 2; transition: background var(--t);
-}
-.set-title { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); display: flex; align-items: center; gap: 8px; }
-.set-title i { color: var(--gold); }
-.set-close { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: var(--cream-dark); color: var(--text-muted); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: all var(--t); }
-.set-close:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
-.set-body { padding: 20px 22px 8px; display: flex; flex-direction: column; gap: 26px; }
-
-.set-section-label { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; display: flex; align-items: center; gap: 7px; }
-.set-section-label i { color: var(--gold); }
-.set-section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
-/* Kleur grid — 6 kolommen */
-.color-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
-.color-swatch { aspect-ratio: 1; border-radius: 50%; cursor: pointer; border: 3px solid transparent; transition: all 0.22s ease; position: relative; }
-.color-swatch:hover { transform: scale(1.18); }
-.color-swatch.active { border-color: var(--ink) !important; box-shadow: 0 0 0 2px var(--cream), 0 0 0 4px var(--gold); }
-.color-swatch::after { content: '✓'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.85rem; font-weight: 900; opacity: 0; transition: opacity 0.2s; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
-.color-swatch.active::after { opacity: 1; }
-.color-swatch[data-color="white"].active::after { color: #333; text-shadow: none; }
-
-/* Dark mode toggle */
-.theme-toggle-row { display: flex; align-items: center; justify-content: space-between; background: var(--cream-dark); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 13px 16px; }
-.theme-toggle-lbl { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600; color: var(--ink); }
-.theme-toggle-lbl i { color: var(--gold); width: 16px; text-align: center; }
-.toggle-sw { width: 48px; height: 26px; background: var(--parchment); border-radius: 50px; cursor: pointer; position: relative; transition: background 0.3s; border: none; flex-shrink: 0; }
-.toggle-sw.on { background: var(--gold); }
-.toggle-sw::after { content: ''; position: absolute; width: 20px; height: 20px; background: #fff; border-radius: 50%; top: 3px; left: 3px; transition: transform 0.3s ease; box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
-.toggle-sw.on::after { transform: translateX(22px); }
-
-/* Font grootte */
-.font-size-row { background: var(--cream-dark); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; }
-.font-size-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-.font-size-lbl { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600; color: var(--ink); }
-.font-size-lbl i { color: var(--gold); width: 16px; text-align: center; }
-.font-size-val { font-family: 'Cinzel', serif; font-size: 0.82rem; color: var(--gold); font-weight: 700; background: rgba(201,150,44,0.12); padding: 3px 10px; border-radius: 50px; }
-.size-slider { width: 100%; accent-color: var(--gold); cursor: pointer; height: 4px; border-radius: 2px; }
-.font-size-btns { display: flex; gap: 7px; margin-top: 11px; }
-.size-preset { flex: 1; padding: 7px 4px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: transparent; color: var(--text-muted); font-family: 'Lato', sans-serif; font-size: 0.78rem; cursor: pointer; transition: all var(--t); font-weight: 700; }
-.size-preset:hover { border-color: var(--gold); color: var(--gold); }
-.size-preset.active { background: var(--gold); border-color: var(--gold); color: #fff; }
-
-/* Reciteur */
-.reciter-grid { display: flex; flex-direction: column; gap: 8px; }
-.reciter-opt { display: flex; align-items: center; gap: 12px; padding: 11px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--cream-dark); cursor: pointer; transition: all var(--t); }
-.reciter-opt:hover { border-color: var(--gold); transform: translateX(2px); }
-.reciter-opt.active { border-color: var(--gold); background: rgba(201,150,44,0.08); }
-.reciter-dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--parchment); flex-shrink: 0; transition: all var(--t); }
-.reciter-opt.active .reciter-dot { background: var(--gold); border-color: var(--gold); }
-.reciter-info { flex: 1; min-width: 0; }
-.reciter-name { font-size: 0.88rem; font-weight: 600; color: var(--ink); }
-.reciter-sub { font-size: 0.74rem; color: var(--text-muted); margin-top: 1px; }
-.reciter-play { width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; border: 1px solid var(--border); background: var(--cream); color: var(--gold); cursor: pointer; font-size: 10px; display: flex; align-items: center; justify-content: center; transition: all var(--t); }
-.reciter-play:hover { background: var(--gold); color: #fff; border-color: var(--gold); transform: scale(1.1); }
-.reciter-play.playing { background: var(--gold); color: #fff; border-color: var(--gold); animation: pulse-play 1s ease infinite; }
-@keyframes pulse-play { 0%,100% { box-shadow: 0 0 0 0 var(--gold-glow); } 50% { box-shadow: 0 0 0 5px transparent; } }
-
-/* Kaart stijl */
-.card-style-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.card-style-opt { padding: 14px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--cream-dark); cursor: pointer; transition: all var(--t); text-align: center; }
-.card-style-opt:hover { border-color: var(--gold); }
-.card-style-opt.active { border-color: var(--gold); background: rgba(201,150,44,0.08); }
-.card-style-ico { font-size: 1.5rem; margin-bottom: 5px; line-height: 1; }
-.card-style-name { font-size: 0.82rem; font-weight: 700; color: var(--ink); }
-.card-style-sub { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
-
-/* Reset knop */
-.set-reset { display: flex; align-items: center; justify-content: center; gap: 7px; width: 100%; padding: 12px; border: 1px dashed var(--border); border-radius: var(--radius-sm); background: transparent; color: var(--text-muted); font-family: 'Lato', sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: all var(--t); }
-.set-reset:hover { border-color: #ef4444; color: #ef4444; background: rgba(239,68,68,0.06); }
-
-/* === MODAL === */
-.modal-ov { position: fixed; inset: 0; background: rgba(26,18,8,0.72); backdrop-filter: blur(4px); display: flex; align-items: flex-end; justify-content: center; z-index: 200; }
-@media (min-width: 600px) { .modal-ov { align-items: center; padding: 20px; } }
-.modal-box { background: var(--cream); border-radius: var(--radius) var(--radius) 0 0; padding: 26px 22px 30px; width: 100%; max-width: 420px; box-shadow: var(--shadow-lg); animation: slideUp 0.28s ease; }
-@media (min-width: 600px) { .modal-box { border-radius: var(--radius); } }
-@keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-.modal-handle { width: 38px; height: 4px; background: var(--parchment); border-radius: 2px; margin: 0 auto 18px; }
-@media (min-width: 600px) { .modal-handle { display: none; } }
-.modal-title { font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 7px; }
-.modal-body { color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; margin-bottom: 22px; }
-.modal-acts { display: flex; gap: 9px; }
-.btn-cancel { flex: 1; padding: 11px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: transparent; color: var(--ink); font-family: 'Lato', sans-serif; font-size: 0.88rem; font-weight: 700; cursor: pointer; transition: all var(--t); }
-.btn-cancel:hover { background: var(--cream-dark); }
-.btn-danger { flex: 1; padding: 11px; border: none; border-radius: var(--radius-sm); background: #dc2626; color: #fff; font-family: 'Lato', sans-serif; font-size: 0.88rem; font-weight: 700; cursor: pointer; transition: all var(--t); }
-.btn-danger:hover { background: #b91c1c; }
-
-/* === FOOTER === */
-footer { background: var(--cream-dark); border-top: 1px solid var(--border); padding: 36px 20px; margin-top: 50px; text-align: center; transition: background var(--t); }
-.ft-in { max-width: 580px; margin: 0 auto; }
-.ft-title { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--ink); margin-bottom: 14px; }
-.mail-link { display: inline-flex; align-items: center; gap: 7px; padding: 11px 22px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: #fff; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 0.88rem; transition: all var(--t); box-shadow: 0 4px 14px var(--gold-glow); }
-.mail-link:hover { transform: translateY(-2px); box-shadow: 0 8px 22px var(--gold-glow); }
-.ft-copy { margin-top: 18px; font-size: 0.78rem; color: var(--text-muted); line-height: 1.7; }
-
-/* === ANIMATIES === */
-@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-
-/* === RESPONSIVE === */
-@media (max-width: 640px) {
-  .main { padding: 18px 14px 60px; }
-  .grid { grid-template-columns: 1fr 1fr; gap: 9px; }
-  .scard { padding: 12px 13px; }
-  .scard-title { font-size: 0.79rem; }
-  .hero { padding: 20px 16px; }
-  .btn-cont span { display: none; }
-  .audio-sec { flex-direction: column; align-items: stretch; }
-  .audio-lbl { justify-content: center; }
-  .hdr-in { height: 58px; }
-  .lang-btn { padding: 5px 9px; font-size: 0.79rem; }
-  .lang-group { padding: 2px; gap: 1px; }
-  .color-grid { gap: 7px; }
-}
-@media (max-width: 360px) { .grid { grid-template-columns: 1fr; } }
-@media (min-width: 641px) and (max-width: 1024px) { .grid { grid-template-columns: repeat(3,1fr); } }
-@media (min-width: 1025px) { .grid { grid-template-columns: repeat(4,1fr); } .main { padding: 36px 24px 80px; } }
+@media(max-width:360px){.grid{grid-template-columns:1fr}}
+@media(min-width:641px) and (max-width:1024px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1025px){.grid{grid-template-columns:repeat(4,1fr)} .main{padding:36px 24px 80px}}
 ```
 
   </style>
@@ -468,7 +323,7 @@ footer { background: var(--cream-dark); border-top: 1px solid var(--border); pad
           <button class="lang-btn active" data-lang="nl">NL</button>
           <button class="lang-btn" data-lang="en">EN</button>
         </div>
-        <button class="ico-btn" id="themeBtn" aria-label="Donker/licht modus"><i class="fas fa-moon" id="themeIco"></i></button>
+        <button class="ico-btn" id="themeBtn" aria-label="Thema"><i class="fas fa-moon" id="themeIco"></i></button>
         <button class="ico-btn" id="settingsBtn" aria-label="Instellingen"><i class="fas fa-sliders-h"></i></button>
       </div>
     </div>
@@ -493,19 +348,19 @@ footer { background: var(--cream-dark); border-top: 1px solid var(--border); pad
     <div class="lr-ico"><i class="fas fa-bookmark"></i></div>
     <div>
       <div class="lr-lbl" id="lrLbl">Laatst gelezen</div>
-      <div class="lr-name"><span id="lrName">—</span> &middot; <span id="lrVerse">vers 1</span></div>
+      <div class="lr-name"><span id="lrName">—</span> · <span id="lrVerse">vers 1</span></div>
     </div>
   </div>
   <div class="lr-acts">
     <button class="btn-cont" id="btnCont"><i class="fas fa-arrow-right"></i><span id="btnContTxt">Ga verder</span></button>
-    <button class="btn-trash" id="btnTrash" aria-label="Verwijder bladwijzer"><i class="fas fa-trash-alt"></i></button>
+    <button class="btn-trash" id="btnTrash"><i class="fas fa-trash-alt"></i></button>
   </div>
 </div>
 
 <div class="srch-wrap">
   <div class="srch-box">
     <input type="text" id="srchIn" class="srch-in" placeholder="Zoek soera op naam of nummer...">
-    <button class="srch-btn" id="srchBtn" aria-label="Zoeken"><i class="fas fa-search"></i></button>
+    <button class="srch-btn" id="srchBtn"><i class="fas fa-search"></i></button>
   </div>
   <div class="srch-meta hidden" id="srchMeta">
     <span id="srchCount">0 resultaten</span>
@@ -548,7 +403,7 @@ footer { background: var(--cream-dark); border-top: 1px solid var(--border); pad
 
   </main>
 
-  <!-- SETTINGS PANEL -->
+  <!-- SETTINGS -->
 
   <div class="settings-ov" id="settingsOv">
     <div class="settings-panel">
@@ -560,72 +415,66 @@ footer { background: var(--cream-dark); border-top: 1px solid var(--border); pad
       <div class="set-body">
 
 ```
-    <!-- ACCENTKLEUR -->
+    <!-- KLEUR -->
     <div>
-      <div class="set-section-label"><i class="fas fa-palette"></i><span id="setColorLbl">Accentkleur</span></div>
+      <div class="set-lbl"><i class="fas fa-palette"></i><span id="setColorLbl">Accentkleur</span></div>
       <div class="color-grid">
-        <!-- Warm -->
         <div class="color-swatch active" data-color="gold"     style="background:linear-gradient(135deg,#c9962c,#e8b84b)"  title="Goud"></div>
         <div class="color-swatch"        data-color="amber"    style="background:linear-gradient(135deg,#b45309,#d97706)"  title="Amber"></div>
         <div class="color-swatch"        data-color="copper"   style="background:linear-gradient(135deg,#b45309,#f59e0b)"  title="Koper"></div>
         <div class="color-swatch"        data-color="orange"   style="background:linear-gradient(135deg,#ea580c,#f97316)"  title="Oranje"></div>
         <div class="color-swatch"        data-color="peach"    style="background:linear-gradient(135deg,#c2410c,#ea580c)"  title="Perzik"></div>
         <div class="color-swatch"        data-color="sand"     style="background:linear-gradient(135deg,#92400e,#d97706)"  title="Zand"></div>
-        <!-- Rood/Roze -->
         <div class="color-swatch"        data-color="ruby"     style="background:linear-gradient(135deg,#be123c,#e11d48)"  title="Robijn"></div>
         <div class="color-swatch"        data-color="rose"     style="background:linear-gradient(135deg,#e11d48,#f43f5e)"  title="Rood"></div>
         <div class="color-swatch"        data-color="crimson"  style="background:linear-gradient(135deg,#9b1c1c,#c81e1e)"  title="Karmozijn"></div>
         <div class="color-swatch"        data-color="coral"    style="background:linear-gradient(135deg,#f05252,#f98080)"  title="Koraal"></div>
         <div class="color-swatch"        data-color="pink"     style="background:linear-gradient(135deg,#db2777,#ec4899)"  title="Roze"></div>
         <div class="color-swatch"        data-color="magenta"  style="background:linear-gradient(135deg,#a21caf,#c026d3)"  title="Magenta"></div>
-        <!-- Paars/Blauw -->
         <div class="color-swatch"        data-color="lavender" style="background:linear-gradient(135deg,#9333ea,#a855f7)"  title="Lavendel"></div>
         <div class="color-swatch"        data-color="purple"   style="background:linear-gradient(135deg,#7c3aed,#8b5cf6)"  title="Paars"></div>
         <div class="color-swatch"        data-color="violet"   style="background:linear-gradient(135deg,#5b21b6,#7c3aed)"  title="Violet"></div>
         <div class="color-swatch"        data-color="indigo"   style="background:linear-gradient(135deg,#4338ca,#6366f1)"  title="Indigo"></div>
         <div class="color-swatch"        data-color="blue"     style="background:linear-gradient(135deg,#2563eb,#3b82f6)"  title="Blauw"></div>
         <div class="color-swatch"        data-color="steel"    style="background:linear-gradient(135deg,#1e40af,#3b82f6)"  title="Staal"></div>
-        <!-- Blauw/Groen -->
         <div class="color-swatch"        data-color="navy"     style="background:linear-gradient(135deg,#1e3a5f,#2e5a8f)"  title="Marine"></div>
         <div class="color-swatch"        data-color="ocean"    style="background:linear-gradient(135deg,#164e63,#0891b2)"  title="Oceaan"></div>
         <div class="color-swatch"        data-color="sky"      style="background:linear-gradient(135deg,#0284c7,#0ea5e9)"  title="Hemelsblauw"></div>
         <div class="color-swatch"        data-color="cyan"     style="background:linear-gradient(135deg,#0891b2,#06b6d4)"  title="Cyaan"></div>
         <div class="color-swatch"        data-color="teal"     style="background:linear-gradient(135deg,#0d9488,#14b8a6)"  title="Teal"></div>
         <div class="color-swatch"        data-color="mint"     style="background:linear-gradient(135deg,#0f766e,#2dd4bf)"  title="Mint"></div>
-        <!-- Groen -->
         <div class="color-swatch"        data-color="emerald"  style="background:linear-gradient(135deg,#059669,#10b981)"  title="Smaragd"></div>
         <div class="color-swatch"        data-color="green"    style="background:linear-gradient(135deg,#16a34a,#22c55e)"  title="Groen"></div>
         <div class="color-swatch"        data-color="forest"   style="background:linear-gradient(135deg,#1a4731,#2d6a4f)"  title="Bos"></div>
         <div class="color-swatch"        data-color="neon"     style="background:linear-gradient(135deg,#16a34a,#4ade80)"  title="Neon"></div>
         <div class="color-swatch"        data-color="lime"     style="background:linear-gradient(135deg,#65a30d,#84cc16)"  title="Limoen"></div>
         <div class="color-swatch"        data-color="bronze"   style="background:linear-gradient(135deg,#78350f,#92400e)"  title="Brons"></div>
-        <!-- Neutraal + Zwart/Wit -->
         <div class="color-swatch"        data-color="graphite" style="background:linear-gradient(135deg,#374151,#4b5563)"  title="Grafiet"></div>
         <div class="color-swatch"        data-color="slate"    style="background:linear-gradient(135deg,#475569,#64748b)"  title="Grijs"></div>
-        <div class="color-swatch"        data-color="black"    style="background:linear-gradient(135deg,#111111,#333333);border:2px solid #555" title="Zwart"></div>
-        <div class="color-swatch"        data-color="white"    style="background:linear-gradient(135deg,#cccccc,#eeeeee);border:2px solid #bbb" title="Wit"></div>
+        <div class="color-swatch"        data-color="black"    style="background:linear-gradient(135deg,#111,#333);border:2px solid #555" title="Zwart"></div>
+        <div class="color-swatch"        data-color="white"    style="background:linear-gradient(135deg,#ccc,#eee);border:2px solid #bbb" title="Wit"></div>
       </div>
     </div>
 
     <!-- WEERGAVE -->
     <div>
-      <div class="set-section-label"><i class="fas fa-adjust"></i><span id="setAppearLbl">Weergave</span></div>
-      <div class="theme-toggle-row">
-        <div class="theme-toggle-lbl"><i class="fas fa-moon" id="setThemeIco"></i><span id="setThemeTxt">Donkere modus</span></div>
+      <div class="set-lbl"><i class="fas fa-adjust"></i><span id="setAppearLbl">Weergave</span></div>
+      <div class="theme-row">
+        <div class="theme-lbl"><i class="fas fa-moon" id="setThemeIco"></i><span id="setThemeTxt">Donkere modus</span></div>
         <button class="toggle-sw" id="setThemeToggle"></button>
       </div>
     </div>
 
     <!-- TEKST GROOTTE -->
     <div>
-      <div class="set-section-label"><i class="fas fa-text-height"></i><span id="setFontLbl">Arabische tekst grootte</span></div>
-      <div class="font-size-row">
-        <div class="font-size-top">
-          <div class="font-size-lbl"><i class="fas fa-font"></i><span id="setFontSizeTxt">Grootte</span></div>
-          <div class="font-size-val" id="fontSizeVal">Normaal</div>
+      <div class="set-lbl"><i class="fas fa-text-height"></i><span id="setFontLbl">Arabische tekst grootte</span></div>
+      <div class="font-row">
+        <div class="font-top">
+          <div class="font-lbl2"><i class="fas fa-font"></i><span id="setFontSizeTxt">Grootte</span></div>
+          <div class="font-val" id="fontSizeVal">Normaal</div>
         </div>
         <input type="range" class="size-slider" id="fontSlider" min="1" max="5" step="1" value="3">
-        <div class="font-size-btns">
+        <div class="size-btns">
           <button class="size-preset" data-size="1">XS</button>
           <button class="size-preset" data-size="2">S</button>
           <button class="size-preset active" data-size="3">M</button>
@@ -637,7 +486,7 @@ footer { background: var(--cream-dark); border-top: 1px solid var(--border); pad
 
     <!-- RECITEUR -->
     <div>
-      <div class="set-section-label"><i class="fas fa-microphone"></i><span id="setReciterLbl">Reciteur</span></div>
+      <div class="set-lbl"><i class="fas fa-microphone"></i><span id="setReciterLbl">Reciteur</span></div>
       <audio id="previewAudio" preload="none" style="display:none"></audio>
       <div class="reciter-grid">
         <div class="reciter-opt active" data-reciter="ar.alafasy">
@@ -675,26 +524,14 @@ footer { background: var(--cream-dark); border-top: 1px solid var(--border); pad
 
     <!-- KAART STIJL -->
     <div>
-      <div class="set-section-label"><i class="fas fa-th"></i><span id="setLayoutLbl">Kaart stijl</span></div>
-      <div class="card-style-grid">
-        <div class="card-style-opt active" data-style="grid">
-          <div class="card-style-ico">⊞</div>
-          <div class="card-style-name" id="styleGridTxt">Raster</div>
-          <div class="card-style-sub" id="styleGridSub">Compact overzicht</div>
-        </div>
-        <div class="card-style-opt" data-style="list">
-          <div class="card-style-ico">☰</div>
-          <div class="card-style-name" id="styleListTxt">Lijst</div>
-          <div class="card-style-sub" id="styleListSub">Breed overzicht</div>
-        </div>
+      <div class="set-lbl"><i class="fas fa-th"></i><span id="setLayoutLbl">Kaart stijl</span></div>
+      <div class="style-grid">
+        <div class="style-opt active" data-style="grid"><div class="style-ico">⊞</div><div class="style-name" id="styleGridTxt">Raster</div><div class="style-sub" id="styleGridSub">Compact overzicht</div></div>
+        <div class="style-opt" data-style="list"><div class="style-ico">☰</div><div class="style-name" id="styleListTxt">Lijst</div><div class="style-sub" id="styleListSub">Breed overzicht</div></div>
       </div>
     </div>
 
-    <!-- RESET -->
-    <button class="set-reset" id="setReset">
-      <i class="fas fa-undo"></i><span id="setResetTxt">Standaard instellingen herstellen</span>
-    </button>
-
+    <button class="set-reset" id="setReset"><i class="fas fa-undo"></i><span id="setResetTxt">Standaard instellingen herstellen</span></button>
   </div>
 </div>
 ```
@@ -732,317 +569,312 @@ footer { background: var(--cream-dark); border-top: 1px solid var(--border); pad
   (function() {
     'use strict';
 
-    // === STAAT ===
-    let lang = 'nl', surahsAll = [], activeSurah = null, searching = false;
-    let reciter = 'ar.alafasy', cardStyle = 'grid', fontSizeIdx = 3;
+    // ===== INGEBOUWDE SOERA DATA (geen API nodig voor het grid) =====
+    const SURAHS = [
+      {n:1,ar:'الفاتحة',en:'Al-Fatiha',v:7},{n:2,ar:'البقرة',en:'Al-Baqara',v:286},{n:3,ar:'آل عمران',en:'Aal-E-Imran',v:200},{n:4,ar:'النساء',en:'An-Nisa',v:176},{n:5,ar:'المائدة',en:"Al-Ma'idah",v:120},{n:6,ar:'الأنعام',en:"Al-An'am",v:165},{n:7,ar:'الأعراف',en:"Al-A'raf",v:206},{n:8,ar:'الأنفال',en:'Al-Anfal',v:75},{n:9,ar:'التوبة',en:'At-Tawbah',v:129},
+      {n:10,ar:'يونس',en:'Yunus',v:109},{n:11,ar:'هود',en:'Hud',v:123},{n:12,ar:'يوسف',en:'Yusuf',v:111},{n:13,ar:'الرعد',en:"Ar-Ra'd",v:43},{n:14,ar:'إبراهيم',en:'Ibrahim',v:52},{n:15,ar:'الحجر',en:'Al-Hijr',v:99},{n:16,ar:'النحل',en:'An-Nahl',v:128},{n:17,ar:'الإسراء',en:'Al-Isra',v:111},{n:18,ar:'الكهف',en:'Al-Kahf',v:110},{n:19,ar:'مريم',en:'Maryam',v:98},{n:20,ar:'طه',en:'Ta-Ha',v:135},
+      {n:21,ar:'الأنبياء',en:'Al-Anbiya',v:112},{n:22,ar:'الحج',en:'Al-Hajj',v:78},{n:23,ar:'المؤمنون',en:"Al-Mu'minun",v:118},{n:24,ar:'النور',en:'An-Nur',v:64},{n:25,ar:'الفرقان',en:'Al-Furqan',v:77},{n:26,ar:'الشعراء',en:"Ash-Shu'ara",v:227},{n:27,ar:'النمل',en:'An-Naml',v:93},{n:28,ar:'القصص',en:'Al-Qasas',v:88},{n:29,ar:'العنكبوت',en:'Al-Ankabut',v:69},{n:30,ar:'الروم',en:'Ar-Rum',v:60},
+      {n:31,ar:'لقمان',en:'Luqman',v:34},{n:32,ar:'السجدة',en:'As-Sajda',v:30},{n:33,ar:'الأحزاب',en:'Al-Ahzab',v:73},{n:34,ar:'سبإ',en:'Saba',v:54},{n:35,ar:'فاطر',en:'Fatir',v:45},{n:36,ar:'يس',en:'Ya-Sin',v:83},{n:37,ar:'الصافات',en:'As-Saffat',v:182},{n:38,ar:'ص',en:'Sad',v:88},{n:39,ar:'الزمر',en:'Az-Zumar',v:75},{n:40,ar:'غافر',en:'Ghafir',v:85},
+      {n:41,ar:'فصلت',en:'Fussilat',v:54},{n:42,ar:'الشورى',en:'Ash-Shura',v:53},{n:43,ar:'الزخرف',en:'Az-Zukhruf',v:89},{n:44,ar:'الدخان',en:'Ad-Dukhan',v:59},{n:45,ar:'الجاثية',en:'Al-Jathiya',v:37},{n:46,ar:'الأحقاف',en:'Al-Ahqaf',v:35},{n:47,ar:'محمد',en:'Muhammad',v:38},{n:48,ar:'الفتح',en:'Al-Fath',v:29},{n:49,ar:'الحجرات',en:'Al-Hujurat',v:18},{n:50,ar:'ق',en:'Qaf',v:45},
+      {n:51,ar:'الذاريات',en:'Adh-Dhariyat',v:60},{n:52,ar:'الطور',en:'At-Tur',v:49},{n:53,ar:'النجم',en:'An-Najm',v:62},{n:54,ar:'القمر',en:'Al-Qamar',v:55},{n:55,ar:'الرحمن',en:'Ar-Rahman',v:78},{n:56,ar:'الواقعة',en:'Al-Waqia',v:96},{n:57,ar:'الحديد',en:'Al-Hadid',v:29},{n:58,ar:'المجادلة',en:'Al-Mujadila',v:22},{n:59,ar:'الحشر',en:'Al-Hashr',v:24},{n:60,ar:'الممتحنة',en:'Al-Mumtahina',v:13},
+      {n:61,ar:'الصف',en:'As-Saff',v:14},{n:62,ar:'الجمعة',en:"Al-Jumu'a",v:11},{n:63,ar:'المنافقون',en:'Al-Munafiqun',v:11},{n:64,ar:'التغابن',en:'At-Taghabun',v:18},{n:65,ar:'الطلاق',en:'At-Talaq',v:12},{n:66,ar:'التحريم',en:'At-Tahrim',v:12},{n:67,ar:'الملك',en:'Al-Mulk',v:30},{n:68,ar:'القلم',en:'Al-Qalam',v:52},{n:69,ar:'الحاقة',en:'Al-Haqqa',v:52},{n:70,ar:'المعارج',en:"Al-Ma'arij",v:44},
+      {n:71,ar:'نوح',en:'Nuh',v:28},{n:72,ar:'الجن',en:'Al-Jinn',v:28},{n:73,ar:'المزمل',en:'Al-Muzzammil',v:20},{n:74,ar:'المدثر',en:'Al-Muddaththir',v:56},{n:75,ar:'القيامة',en:'Al-Qiyama',v:40},{n:76,ar:'الإنسان',en:'Al-Insan',v:31},{n:77,ar:'المرسلات',en:'Al-Mursalat',v:50},{n:78,ar:'النبإ',en:'An-Naba',v:40},{n:79,ar:'النازعات',en:"An-Nazi'at",v:46},{n:80,ar:'عبس',en:'Abasa',v:42},
+      {n:81,ar:'التكوير',en:'At-Takwir',v:29},{n:82,ar:'الإنفطار',en:'Al-Infitar',v:19},{n:83,ar:'المطففين',en:'Al-Mutaffifin',v:36},{n:84,ar:'الإنشقاق',en:'Al-Inshiqaq',v:25},{n:85,ar:'البروج',en:'Al-Buruj',v:22},{n:86,ar:'الطارق',en:'At-Tariq',v:17},{n:87,ar:'الأعلى',en:"Al-A'la",v:19},{n:88,ar:'الغاشية',en:'Al-Ghashiya',v:26},{n:89,ar:'الفجر',en:'Al-Fajr',v:30},{n:90,ar:'البلد',en:'Al-Balad',v:20},
+      {n:91,ar:'الشمس',en:'Ash-Shams',v:15},{n:92,ar:'الليل',en:'Al-Lail',v:21},{n:93,ar:'الضحى',en:'Ad-Duha',v:11},{n:94,ar:'الشرح',en:'Ash-Sharh',v:8},{n:95,ar:'التين',en:'At-Tin',v:8},{n:96,ar:'العلق',en:'Al-Alaq',v:19},{n:97,ar:'القدر',en:'Al-Qadr',v:5},{n:98,ar:'البينة',en:'Al-Bayyina',v:8},{n:99,ar:'الزلزلة',en:'Az-Zalzala',v:8},{n:100,ar:'العاديات',en:'Al-Adiyat',v:11},
+      {n:101,ar:'القارعة',en:'Al-Qaria',v:11},{n:102,ar:'التكاثر',en:'At-Takathur',v:8},{n:103,ar:'العصر',en:'Al-Asr',v:3},{n:104,ar:'الهمزة',en:'Al-Humaza',v:9},{n:105,ar:'الفيل',en:'Al-Fil',v:5},{n:106,ar:'قريش',en:'Quraish',v:4},{n:107,ar:'الماعون',en:"Al-Ma'un",v:7},{n:108,ar:'الكوثر',en:'Al-Kawthar',v:3},{n:109,ar:'الكافرون',en:'Al-Kafirun',v:6},{n:110,ar:'النصر',en:'An-Nasr',v:3},
+      {n:111,ar:'المسد',en:'Al-Masad',v:5},{n:112,ar:'الإخلاص',en:'Al-Ikhlas',v:4},{n:113,ar:'الفلق',en:'Al-Falaq',v:5},{n:114,ar:'الناس',en:'An-Nas',v:6}
+    ];
 
+    // ===== STAAT =====
+    let lang='nl', activeSurah=null, searching=false;
+    let reciter='ar.alafasy', cardStyle='grid', fontSizeIdx=3;
     const FONT_SIZES  = ['1.2rem','1.45rem','1.7rem','2rem','2.4rem'];
     const FONT_LABELS = { nl:['XS','S','Normaal','L','XL'], en:['XS','S','Normal','L','XL'], arabic:['ص','صغير','عادي','كبير','ك'] };
 
-    // === VERTALINGEN ===
+    // ===== VERTALINGEN =====
     const T = {
-      nl: { hdr:'Quran', wt:'Welkom bij onlinequran.nl', wp:"Alle 114 soera's met Arabische tekst en audio recitatie. Klik op een soera om te beginnen.", back:"Alle soera's", verses:'verzen', lrLbl:'Laatst gelezen', contBtn:'Ga verder', srchPh:'Zoek soera op naam of nummer…', srchRes:'resultaten', ld:"Soera's laden…", mTitle:'Bookmark verwijderen?', mBody:'Weet je zeker dat je de leespositie wilt verwijderen?', cancel:'Annuleren', confirm:'Verwijderen', ftTitle:'Vragen of opmerkingen?', cp:'© 2026 onlinequran.nl — Quran online lezen', rp:'Antwoord binnen 24 uur op werkdagen', vers:'Vers', versL:'vers', bmAdd:'Zet bladwijzer', bmRm:'Verwijder bladwijzer', surahs:"soera's", setTitle:'Instellingen', setColor:'Accentkleur', setAppear:'Weergave', setDark:'Donkere modus', setFont:'Arabische tekst grootte', setFontSize:'Grootte', setReciter:'Reciteur', setLayout:'Kaart stijl', styleGrid:'Raster', styleGridSub:'Compact overzicht', styleList:'Lijst', styleListSub:'Breed overzicht', setReset:'Standaard instellingen herstellen' },
-      en: { hdr:'Quran', wt:'Welcome to onlinequran.nl', wp:'All 114 surahs with Arabic text and audio recitation. Click a surah to start.', back:'All surahs', verses:'verses', lrLbl:'Last read', contBtn:'Continue', srchPh:'Search by name or number…', srchRes:'results', ld:'Loading surahs…', mTitle:'Remove bookmark?', mBody:'Are you sure you want to remove your reading position?', cancel:'Cancel', confirm:'Remove', ftTitle:'Questions or feedback?', cp:'© 2026 onlinequran.nl — Read Quran in Arabic', rp:'Reply within 24 hours on weekdays', vers:'Verse', versL:'verse', bmAdd:'Set bookmark', bmRm:'Remove bookmark', surahs:'surahs', setTitle:'Settings', setColor:'Accent color', setAppear:'Appearance', setDark:'Dark mode', setFont:'Arabic text size', setFontSize:'Size', setReciter:'Reciter', setLayout:'Card style', styleGrid:'Grid', styleGridSub:'Compact overview', styleList:'List', styleListSub:'Wide overview', setReset:'Reset to default settings' },
-      arabic: { hdr:'قرآن', wt:'مرحباً بك', wp:'جميع السور الـ 114 مع النص العربي والصوت.', back:'جميع السور', verses:'آيات', lrLbl:'آخر قراءة', contBtn:'استمر', srchPh:'ابحث…', srchRes:'نتائج', ld:'جارٍ التحميل…', mTitle:'حذف العلامة؟', mBody:'هل أنت متأكد؟', cancel:'إلغاء', confirm:'حذف', ftTitle:'هل لديك أسئلة؟', cp:'© 2026 onlinequran.nl', rp:'الرد خلال 24 ساعة', vers:'آية', versL:'آية', bmAdd:'إضافة علامة', bmRm:'حذف علامة', surahs:'سورة', setTitle:'الإعدادات', setColor:'لون التمييز', setAppear:'المظهر', setDark:'الوضع المظلم', setFont:'حجم النص', setFontSize:'الحجم', setReciter:'القارئ', setLayout:'نمط البطاقة', styleGrid:'شبكة', styleGridSub:'عرض مضغوط', styleList:'قائمة', styleListSub:'عرض واسع', setReset:'إعادة الضبط' }
+      nl:{ hdr:'Quran', wt:'Welkom bij onlinequran.nl', wp:"Alle 114 soera's met Arabische tekst en audio recitatie. Klik op een soera om te beginnen.", back:"Alle soera's", verses:'verzen', lrLbl:'Laatst gelezen', contBtn:'Ga verder', srchPh:'Zoek soera op naam of nummer…', srchRes:'resultaten', ld:"Soera's laden…", mTitle:'Bookmark verwijderen?', mBody:'Weet je zeker dat je de leespositie wilt verwijderen?', cancel:'Annuleren', confirm:'Verwijderen', ftTitle:'Vragen of opmerkingen?', cp:'© 2026 onlinequran.nl', rp:'Antwoord binnen 24 uur op werkdagen', vers:'Vers', versL:'vers', bmAdd:'Zet bladwijzer', bmRm:'Verwijder bladwijzer', surahs:"soera's", setTitle:'Instellingen', setColor:'Accentkleur', setAppear:'Weergave', setDark:'Donkere modus', setFont:'Arabische tekst grootte', setFontSize:'Grootte', setReciter:'Reciteur', setLayout:'Kaart stijl', styleGrid:'Raster', styleGridSub:'Compact overzicht', styleList:'Lijst', styleListSub:'Breed overzicht', setReset:'Standaard instellingen herstellen' },
+      en:{ hdr:'Quran', wt:'Welcome to onlinequran.nl', wp:'All 114 surahs with Arabic text and audio recitation. Click a surah to start.', back:'All surahs', verses:'verses', lrLbl:'Last read', contBtn:'Continue', srchPh:'Search by name or number…', srchRes:'results', ld:'Loading surahs…', mTitle:'Remove bookmark?', mBody:'Are you sure you want to remove your reading position?', cancel:'Cancel', confirm:'Remove', ftTitle:'Questions or feedback?', cp:'© 2026 onlinequran.nl', rp:'Reply within 24 hours on weekdays', vers:'Verse', versL:'verse', bmAdd:'Set bookmark', bmRm:'Remove bookmark', surahs:'surahs', setTitle:'Settings', setColor:'Accent color', setAppear:'Appearance', setDark:'Dark mode', setFont:'Arabic text size', setFontSize:'Size', setReciter:'Reciter', setLayout:'Card style', styleGrid:'Grid', styleGridSub:'Compact overview', styleList:'List', styleListSub:'Wide overview', setReset:'Reset to default settings' },
+      arabic:{ hdr:'قرآن', wt:'مرحباً بك', wp:'جميع السور الـ 114 مع النص العربي والصوت.', back:'جميع السور', verses:'آيات', lrLbl:'آخر قراءة', contBtn:'استمر', srchPh:'ابحث…', srchRes:'نتائج', ld:'جارٍ التحميل…', mTitle:'حذف العلامة؟', mBody:'هل أنت متأكد؟', cancel:'إلغاء', confirm:'حذف', ftTitle:'هل لديك أسئلة؟', cp:'© 2026 onlinequran.nl', rp:'الرد خلال 24 ساعة', vers:'آية', versL:'آية', bmAdd:'إضافة علامة', bmRm:'حذف علامة', surahs:'سورة', setTitle:'الإعدادات', setColor:'لون التمييز', setAppear:'المظهر', setDark:'الوضع المظلم', setFont:'حجم النص', setFontSize:'الحجم', setReciter:'القارئ', setLayout:'نمط البطاقة', styleGrid:'شبكة', styleGridSub:'عرض مضغوط', styleList:'قائمة', styleListSub:'عرض واسع', setReset:'إعادة الضبط' }
     };
 
-    const LN = ['Al-Fatiha','Al-Baqara','Aal-E-Imran','An-Nisa',"Al-Ma'idah","Al-An'am","Al-A'raf",'Al-Anfal','At-Tawbah','Yunus','Hud','Yusuf',"Ar-Ra'd",'Ibrahim','Al-Hijr','An-Nahl','Al-Isra','Al-Kahf','Maryam','Ta-Ha','Al-Anbiya','Al-Hajj',"Al-Mu'minun",'An-Nur','Al-Furqan',"Ash-Shu'ara",'An-Naml','Al-Qasas','Al-Ankabut','Ar-Rum','Luqman','As-Sajda','Al-Ahzab','Saba','Fatir','Ya-Sin','As-Saffat','Sad','Az-Zumar','Ghafir','Fussilat','Ash-Shura','Az-Zukhruf','Ad-Dukhan','Al-Jathiya','Al-Ahqaf','Muhammad','Al-Fath','Al-Hujurat','Qaf','Adh-Dhariyat','At-Tur','An-Najm','Al-Qamar','Ar-Rahman','Al-Waqia','Al-Hadid','Al-Mujadila','Al-Hashr','Al-Mumtahina','As-Saff',"Al-Jumu'a",'Al-Munafiqun','At-Taghabun','At-Talaq','At-Tahrim','Al-Mulk','Al-Qalam','Al-Haqqa',"Al-Ma'arij",'Nuh','Al-Jinn','Al-Muzzammil','Al-Muddaththir','Al-Qiyama','Al-Insan','Al-Mursalat','An-Naba',"An-Nazi'at",'Abasa','At-Takwir','Al-Infitar','Al-Mutaffifin','Al-Inshiqaq','Al-Buruj','At-Tariq',"Al-A'la",'Al-Ghashiya','Al-Fajr','Al-Balad','Ash-Shams','Al-Lail','Ad-Duha','Ash-Sharh','At-Tin','Al-Alaq','Al-Qadr','Al-Bayyina','Az-Zalzala','Al-Adiyat','Al-Qaria','At-Takathur','Al-Asr','Al-Humaza','Al-Fil',"Quraish","Al-Ma'un",'Al-Kawthar','Al-Kafirun','An-Nasr','Al-Masad','Al-Ikhlas','Al-Falaq','An-Nas'];
-    const AN = ['الفاتحة','البقرة','آل عمران','النساء','المائدة','الأنعام','الأعراف','الأنفال','التوبة','يونس','هود','يوسف','الرعد','إبراهيم','الحجر','النحل','الإسراء','الكهف','مريم','طه','الأنبياء','الحج','المؤمنون','النور','الفرقان','الشعراء','النمل','القصص','العنكبوت','الروم','لقمان','السجدة','الأحزاب','سبإ','فاطر','يس','الصافات','ص','الزمر','غافر','فصلت','الشورى','الزخرف','الدخان','الجاثية','الأحقاف','محمد','الفتح','الحجرات','ق','الذاريات','الطور','النجم','القمر','الرحمن','الواقعة','الحديد','المجادلة','الحشر','الممتحنة','الصف','الجمعة','المنافقون','التغابن','الطلاق','التحريم','الملك','القلم','الحاقة','المعارج','نوح','الجن','المزمل','المدثر','القيامة','الإنسان','المرسلات','النبإ','النازعات','عبس','التكوير','الإنفطار','المطففين','الإنشقاق','البروج','الطارق','الأعلى','الغاشية','الفجر','البلد','الشمس','الليل','الضحى','الشرح','التين','العلق','القدر','البينة','الزلزلة','العاديات','القارعة','التكاثر','العصر','الهمزة','الفيل','قريش','الماعون','الكوثر','الكافرون','النصر','المسد','الإخلاص','الفلق','الناس'];
+    // ===== HELPERS =====
+    const $ = id => document.getElementById(id);
+    const setText = (id, txt) => { const el=$(id); if(el) el.textContent=txt; };
 
-    // === HELPERS ===
-    function $(id) { return document.getElementById(id); }
-    function setText(id, txt) { const el = $(id); if (el) el.textContent = txt; }
-
-    function getLR() { try { const r = localStorage.getItem('lr'); return r ? JSON.parse(r) : null; } catch { return null; } }
-    function saveLR(id, v) { try { localStorage.setItem('lr', JSON.stringify({surahId:id, verse:v})); } catch(e){} renderLR(); if (activeSurah) openSurah(activeSurah); }
-    function clearLR() { localStorage.removeItem('lr'); renderLR(); if (activeSurah) openSurah(activeSurah); }
-
+    function getLR() { try { const r=localStorage.getItem('lr'); return r?JSON.parse(r):null; } catch{return null;} }
+    function saveLR(id,v) { try{localStorage.setItem('lr',JSON.stringify({surahId:id,verse:v}));}catch(e){} renderLR(); if(activeSurah)reloadVerses(); }
+    function clearLR() { localStorage.removeItem('lr'); renderLR(); if(activeSurah)reloadVerses(); }
     function renderLR() {
-      const lr = getLR(), banner = $('lrBanner');
-      if (!lr) { banner.classList.add('hidden'); return; }
-      banner.classList.remove('hidden');
-      const t = T[lang];
-      setText('lrName', lang === 'arabic' ? AN[lr.surahId-1] : LN[lr.surahId-1]);
-      setText('lrVerse', t.versL + ' ' + lr.verse);
+      const lr=getLR(), b=$('lrBanner');
+      if(!lr){b.classList.add('hidden');return;}
+      b.classList.remove('hidden');
+      const t=T[lang], s=SURAHS[lr.surahId-1];
+      setText('lrName', lang==='arabic'?s.ar:s.en);
+      setText('lrVerse', t.versL+' '+lr.verse);
       setText('lrLbl', t.lrLbl);
       setText('btnContTxt', t.contBtn);
     }
 
-    // === INSTELLINGEN OPSLAAN / LADEN ===
+    // ===== INSTELLINGEN =====
     function saveSettings() {
-      try {
-        localStorage.setItem('qs', JSON.stringify({
-          color: document.documentElement.getAttribute('data-color') || 'gold',
-          theme: document.documentElement.getAttribute('data-theme') || '',
-          fontSizeIdx, reciter, cardStyle, lang
-        }));
-      } catch(e) {}
+      try{ localStorage.setItem('qs',JSON.stringify({ color:document.documentElement.getAttribute('data-color')||'gold', theme:document.documentElement.getAttribute('data-theme')||'', fontSizeIdx,reciter,cardStyle,lang })); }catch(e){}
     }
-
     function loadSettings() {
-      try {
-        const s = JSON.parse(localStorage.getItem('qs') || '{}');
-        if (s.color)      applyColor(s.color, false);
-        if (s.theme === 'dark') {
-          document.documentElement.setAttribute('data-theme', 'dark');
-          $('themeIco').className = 'fas fa-sun';
-          $('setThemeToggle').classList.add('on');
-        }
-        if (s.fontSizeIdx) applyFontSize(parseInt(s.fontSizeIdx), false);
-        if (s.reciter)    applyReciter(s.reciter, false);
-        if (s.cardStyle)  applyCardStyle(s.cardStyle, false);
-        if (s.lang)       lang = s.lang;
-      } catch(e) {}
+      try{
+        const s=JSON.parse(localStorage.getItem('qs')||'{}');
+        if(s.color) applyColor(s.color,false);
+        if(s.theme==='dark'){ document.documentElement.setAttribute('data-theme','dark'); $('themeIco').className='fas fa-sun'; $('setThemeToggle').classList.add('on'); }
+        if(s.fontSizeIdx) applyFontSize(parseInt(s.fontSizeIdx),false);
+        if(s.reciter) applyReciter(s.reciter,false);
+        if(s.cardStyle) applyCardStyle(s.cardStyle,false);
+        if(s.lang) lang=s.lang;
+      }catch(e){}
     }
 
-    // === KLEUR ===
-    function applyColor(color, save=true) {
-      document.documentElement.setAttribute('data-color', color);
-      document.querySelectorAll('.color-swatch').forEach(sw => sw.classList.toggle('active', sw.dataset.color === color));
-      if (save) saveSettings();
+    function applyColor(c,save=true) {
+      document.documentElement.setAttribute('data-color',c);
+      document.querySelectorAll('.color-swatch').forEach(sw=>sw.classList.toggle('active',sw.dataset.color===c));
+      if(save) saveSettings();
+    }
+    function applyFontSize(idx,save=true) {
+      fontSizeIdx=idx;
+      document.documentElement.style.setProperty('--quran-size',FONT_SIZES[idx-1]);
+      $('fontSlider').value=idx;
+      setText('fontSizeVal',(FONT_LABELS[lang]||FONT_LABELS.nl)[idx-1]);
+      document.querySelectorAll('.size-preset').forEach(b=>b.classList.toggle('active',parseInt(b.dataset.size)===idx));
+      if(save) saveSettings();
+    }
+    function applyReciter(id,save=true) {
+      reciter=id;
+      document.querySelectorAll('.reciter-opt').forEach(o=>o.classList.toggle('active',o.dataset.reciter===id));
+      if(activeSurah) $('sAudio').src=`https://cdn.islamic.network/quran/audio-surah/128/${reciter}/${activeSurah}.mp3`;
+      if(save) saveSettings();
+    }
+    function applyCardStyle(style,save=true) {
+      cardStyle=style;
+      document.querySelectorAll('.style-opt').forEach(o=>o.classList.toggle('active',o.dataset.style===style));
+      $('surahGrid').style.gridTemplateColumns=style==='list'?'1fr':'';
+      if(save) saveSettings();
     }
 
-    // === LETTERGROOTTE ===
-    function applyFontSize(idx, save=true) {
-      fontSizeIdx = idx;
-      document.documentElement.style.setProperty('--quran-size', FONT_SIZES[idx-1]);
-      $('fontSlider').value = idx;
-      setText('fontSizeVal', (FONT_LABELS[lang]||FONT_LABELS.nl)[idx-1]);
-      document.querySelectorAll('.size-preset').forEach(btn => btn.classList.toggle('active', parseInt(btn.dataset.size) === idx));
-      if (save) saveSettings();
-    }
-
-    // === RECITEUR ===
-    function applyReciter(id, save=true) {
-      reciter = id;
-      document.querySelectorAll('.reciter-opt').forEach(opt => opt.classList.toggle('active', opt.dataset.reciter === id));
-      if (activeSurah) $('sAudio').src = `https://cdn.islamic.network/quran/audio-surah/128/${reciter}/${activeSurah}.mp3`;
-      if (save) saveSettings();
-    }
-
-    // === KAART STIJL ===
-    function applyCardStyle(style, save=true) {
-      cardStyle = style;
-      document.querySelectorAll('.card-style-opt').forEach(opt => opt.classList.toggle('active', opt.dataset.style === style));
-      $('surahGrid').style.gridTemplateColumns = style === 'list' ? '1fr' : '';
-      if (save) saveSettings();
-    }
-
-    // === TAAL ===
+    // ===== TAAL =====
     function applyLang() {
-      const t = T[lang];
-      setText('headerTitle', t.hdr); setText('welcomeTitle', t.wt); setText('welcomeText', t.wp);
-      setText('backTxt', t.back); setText('ldTxt', t.ld);
-      setText('modalTitle', t.mTitle); setText('modalBody', t.mBody);
-      setText('btnMCancel', t.cancel); setText('btnMConfirm', t.confirm);
-      setText('ftTitle', t.ftTitle); setText('cpTxt', t.cp); setText('rpTxt', t.rp);
-      setText('setTitleTxt', t.setTitle); setText('setColorLbl', t.setColor);
-      setText('setAppearLbl', t.setAppear); setText('setThemeTxt', t.setDark);
-      setText('setFontLbl', t.setFont); setText('setFontSizeTxt', t.setFontSize);
-      setText('setReciterLbl', t.setReciter); setText('setLayoutLbl', t.setLayout);
-      setText('styleGridTxt', t.styleGrid); setText('styleGridSub', t.styleGridSub);
-      setText('styleListTxt', t.styleList); setText('styleListSub', t.styleListSub);
-      setText('setResetTxt', t.setReset);
-      $('srchIn').placeholder = t.srchPh;
-      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
-      setText('fontSizeVal', (FONT_LABELS[lang]||FONT_LABELS.nl)[fontSizeIdx-1]);
+      const t=T[lang];
+      setText('headerTitle',t.hdr); setText('welcomeTitle',t.wt); setText('welcomeText',t.wp);
+      setText('backTxt',t.back); setText('ldTxt',t.ld);
+      setText('modalTitle',t.mTitle); setText('modalBody',t.mBody);
+      setText('btnMCancel',t.cancel); setText('btnMConfirm',t.confirm);
+      setText('ftTitle',t.ftTitle); setText('cpTxt',t.cp); setText('rpTxt',t.rp);
+      setText('setTitleTxt',t.setTitle); setText('setColorLbl',t.setColor);
+      setText('setAppearLbl',t.setAppear); setText('setThemeTxt',t.setDark);
+      setText('setFontLbl',t.setFont); setText('setFontSizeTxt',t.setFontSize);
+      setText('setReciterLbl',t.setReciter); setText('setLayoutLbl',t.setLayout);
+      setText('styleGridTxt',t.styleGrid); setText('styleGridSub',t.styleGridSub);
+      setText('styleListTxt',t.styleList); setText('styleListSub',t.styleListSub);
+      setText('setResetTxt',t.setReset);
+      $('srchIn').placeholder=t.srchPh;
+      document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+      setText('fontSizeVal',(FONT_LABELS[lang]||FONT_LABELS.nl)[fontSizeIdx-1]);
       renderLR();
     }
 
-    // === GRID ===
+    // ===== GRID (gebruikt ingebouwde data) =====
+    let filteredSurahs = SURAHS.slice();
     function renderGrid(list) {
-      const grid = $('surahGrid'), statsBar = $('statsBar');
-      grid.innerHTML = '';
-      if (!list || !list.length) {
-        grid.innerHTML = '<div class="no-res"><i class="fas fa-search"></i>Geen soera\'s gevonden</div>';
-        grid.classList.remove('hidden'); statsBar.classList.add('hidden'); return;
+      const grid=$('surahGrid'), stats=$('statsBar');
+      grid.innerHTML='';
+      if(!list||!list.length) {
+        grid.innerHTML='<div class="no-res"><i class="fas fa-search"></i>Geen soera\'s gevonden</div>';
+        grid.classList.remove('hidden'); stats.classList.add('hidden'); return;
       }
-      setText('statsTxt', list.length + ' ' + T[lang].surahs);
-      statsBar.classList.remove('hidden');
-      list.forEach(s => {
-        const idx = s.number - 1, card = document.createElement('div');
-        card.className = 'scard';
-        card.innerHTML = cardStyle === 'list'
-          ? `<div class="scard-hd"><div class="scard-num">${s.number}</div><div style="flex:1;min-width:0"><div class="scard-title">${LN[idx]||s.englishName}</div><div class="scard-meta"><i class="fas fa-layer-group"></i>${s.numberOfAyahs} ${T[lang].verses}</div></div><div class="scard-ar">${AN[idx]||s.name}</div></div>`
-          : `<div class="scard-hd"><div class="scard-num">${s.number}</div><div class="scard-ar">${AN[idx]||s.name}</div></div><div class="scard-title">${LN[idx]||s.englishName}</div><div class="scard-meta"><i class="fas fa-layer-group"></i>${s.numberOfAyahs} ${T[lang].verses}</div>`;
-        card.addEventListener('click', () => openSurah(s.number));
+      setText('statsTxt',list.length+' '+T[lang].surahs);
+      stats.classList.remove('hidden');
+      list.forEach(s=>{
+        const card=document.createElement('div');
+        card.className='scard';
+        card.innerHTML = cardStyle==='list'
+          ? `<div class="scard-hd"><div class="scard-num">${s.n}</div><div style="flex:1;min-width:0"><div class="scard-title">${s.en}</div><div class="scard-meta"><i class="fas fa-layer-group"></i>${s.v} ${T[lang].verses}</div></div><div class="scard-ar">${s.ar}</div></div>`
+          : `<div class="scard-hd"><div class="scard-num">${s.n}</div><div class="scard-ar">${s.ar}</div></div><div class="scard-title">${s.en}</div><div class="scard-meta"><i class="fas fa-layer-group"></i>${s.v} ${T[lang].verses}</div>`;
+        card.addEventListener('click',()=>openSurah(s.n));
         grid.appendChild(card);
       });
       grid.classList.remove('hidden');
-      applyCardStyle(cardStyle, false);
+      $('surahGrid').style.gridTemplateColumns=cardStyle==='list'?'1fr':'';
     }
 
-    // === ZOEKEN ===
+    // ===== ZOEKEN =====
     function doSearch() {
-      const term = $('srchIn').value.trim().toLowerCase(), meta = $('srchMeta');
-      if (!term) { searching = false; meta.classList.add('hidden'); renderGrid(surahsAll); return; }
-      searching = true;
-      const res = surahsAll.filter(s => {
-        const i = s.number - 1;
-        return (LN[i]||'').toLowerCase().includes(term) || (AN[i]||'').includes(term) || s.number.toString() === term;
-      });
+      const term=$('srchIn').value.trim().toLowerCase(), meta=$('srchMeta');
+      if(!term){ searching=false; meta.classList.add('hidden'); renderGrid(SURAHS); return; }
+      searching=true;
+      const res=SURAHS.filter(s=>(s.en||'').toLowerCase().includes(term)||(s.ar||'').includes(term)||s.n.toString()===term);
       meta.classList.remove('hidden');
-      setText('srchCount', res.length + ' ' + T[lang].srchRes);
+      setText('srchCount',res.length+' '+T[lang].srchRes);
       renderGrid(res);
     }
 
-    // === DATA LADEN ===
-    async function loadList() {
-      $('ldWrap').classList.remove('hidden'); $('surahGrid').classList.add('hidden');
-      try {
-        const data = await (await fetch('https://api.alquran.cloud/v1/surah')).json();
-        surahsAll = data.data; renderGrid(surahsAll);
-      } catch(e) {
-        $('surahGrid').innerHTML = '<div class="no-res"><i class="fas fa-exclamation-circle"></i>Kon soera\'s niet laden. Controleer je verbinding.</div>';
-        $('surahGrid').classList.remove('hidden');
-      } finally { $('ldWrap').classList.add('hidden'); }
-    }
-
-    // === SOERA OPENEN ===
+    // ===== SOERA OPENEN (haalt verzen op via API) =====
+    let versesCache = {};
     async function openSurah(id) {
-      activeSurah = id;
-      ['surahGrid','heroSec','lrBanner','statsBar'].forEach(i => $(i).classList.add('hidden'));
+      activeSurah=id;
+      ['surahGrid','heroSec','lrBanner','statsBar'].forEach(i=>$(i).classList.add('hidden'));
       $('surahPage').classList.remove('hidden');
       $('ldWrap').classList.remove('hidden');
-      $('vList').innerHTML = '';
-      window.scrollTo({top:0, behavior:'smooth'});
+      $('vList').innerHTML='';
+      window.scrollTo({top:0,behavior:'smooth'});
+      const s=SURAHS[id-1];
+      setText('sLatin',`${id}. ${s.en}`);
+      setText('sArabic',s.ar);
+      setText('sVerses',s.v+' '+T[lang].verses);
+      $('sAudio').src=`https://cdn.islamic.network/quran/audio-surah/128/${reciter}/${id}.mp3`;
+      const lr=getLR();
+      const badge=$('lrBadgeInline');
+      if(lr&&lr.surahId===id){badge.classList.remove('hidden');setText('lrBadgeTxt',T[lang].versL+' '+lr.verse);}
+      else{badge.classList.add('hidden');}
       try {
-        const surah = (await (await fetch(`https://api.alquran.cloud/v1/surah/${id}`)).json()).data;
-        const idx = surah.number - 1, lr = getLR();
-        setText('sLatin',  `${surah.number}. ${LN[idx]||surah.englishName}`);
-        setText('sArabic', AN[idx]||surah.name);
-        setText('sVerses', surah.numberOfAyahs + ' ' + T[lang].verses);
-        $('sAudio').src = `https://cdn.islamic.network/quran/audio-surah/128/${reciter}/${id}.mp3`;
-        const badge = $('lrBadgeInline');
-        if (lr && lr.surahId === id) { badge.classList.remove('hidden'); setText('lrBadgeTxt', T[lang].versL + ' ' + lr.verse); }
-        else { badge.classList.add('hidden'); }
-        const vList = $('vList');
-        surah.ayahs.forEach(aya => {
-          const isLR = lr && lr.surahId === id && lr.verse === aya.numberInSurah;
-          const vc = document.createElement('div');
-          vc.className = 'vcard' + (isLR ? ' lr' : '');
-          vc.dataset.v = aya.numberInSurah;
-          vc.innerHTML = `<div class="vcard-ar">${aya.text}</div><div class="vcard-ft"><div class="vnum"><span class="vnum-badge">${aya.numberInSurah}</span>${T[lang].vers} ${aya.numberInSurah}</div><div class="vhint"><i class="fas fa-bookmark"></i>${isLR ? T[lang].bmRm : T[lang].bmAdd}</div></div>`;
-          vc.addEventListener('click', () => {
-            const cur = getLR();
-            if (cur && cur.surahId === id && cur.verse === aya.numberInSurah) clearLR(); else saveLR(id, aya.numberInSurah);
-          });
-          vList.appendChild(vc);
-        });
-        if (lr && lr.surahId === id) {
-          setTimeout(() => {
-            const tgt = vList.querySelector(`[data-v="${lr.verse}"]`);
-            if (tgt) { tgt.scrollIntoView({behavior:'smooth', block:'center'}); tgt.classList.add('flash'); setTimeout(() => tgt.classList.remove('flash'), 2000); }
-          }, 400);
+        let ayahs;
+        if(versesCache[id]) {
+          ayahs=versesCache[id];
+        } else {
+          const resp=await fetch(`https://api.alquran.cloud/v1/surah/${id}`);
+          const data=await resp.json();
+          ayahs=data.data.ayahs;
+          versesCache[id]=ayahs;
         }
+        renderVerses(id, ayahs);
       } catch(e) {
-        $('vList').innerHTML = '<div class="no-res"><i class="fas fa-exclamation-circle"></i>Kon soera niet laden.</div>';
+        $('vList').innerHTML='<div class="no-res"><i class="fas fa-exclamation-circle"></i>Kon verzen niet laden. Controleer je verbinding.</div>';
       } finally { $('ldWrap').classList.add('hidden'); }
     }
 
-    // === TERUG ===
-    function goBack() {
-      activeSurah = null;
-      $('surahPage').classList.add('hidden');
-      ['heroSec','surahGrid','statsBar'].forEach(i => $(i).classList.remove('hidden'));
-      renderLR();
-      if (searching && $('srchIn').value.trim()) doSearch(); else renderGrid(surahsAll);
-    }
-
-    // === SETTINGS ===
-    function openSettings()  { $('settingsOv').classList.add('open');    $('settingsBtn').classList.add('active-set');    document.body.style.overflow = 'hidden'; }
-    function closeSettings() { $('settingsOv').classList.remove('open'); $('settingsBtn').classList.remove('active-set'); document.body.style.overflow = '';       stopPreview(); }
-
-    // === PREVIEW AUDIO ===
-    let currentPlayBtn = null;
-    function stopPreview() {
-      const pa = $('previewAudio');
-      if (pa) { pa.pause(); pa.src = ''; }
-      if (currentPlayBtn) { currentPlayBtn.innerHTML = '<i class="fas fa-play"></i>'; currentPlayBtn.classList.remove('playing'); currentPlayBtn = null; }
-    }
-
-    // === EVENT LISTENERS ===
-    $('backBtn').addEventListener('click', goBack);
-
-    $('themeBtn').addEventListener('click', () => {
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      document.documentElement.setAttribute('data-theme', isDark ? '' : 'dark');
-      $('themeIco').className = isDark ? 'fas fa-moon' : 'fas fa-sun';
-      $('setThemeToggle').classList.toggle('on', !isDark);
-      saveSettings();
-    });
-
-    document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => {
-      lang = btn.dataset.lang; applyLang(); saveSettings();
-      if (activeSurah) openSurah(activeSurah);
-      else if (searching && $('srchIn').value.trim()) doSearch();
-      else renderGrid(surahsAll);
-    }));
-
-    $('srchIn').addEventListener('input', doSearch);
-    $('srchBtn').addEventListener('click', doSearch);
-    $('srchIn').addEventListener('keypress', e => { if (e.key === 'Enter') doSearch(); });
-    $('btnClr').addEventListener('click', () => { $('srchIn').value = ''; doSearch(); });
-
-    $('btnCont').addEventListener('click', () => { const lr = getLR(); if (lr) openSurah(lr.surahId); });
-    $('lrBanner').addEventListener('click', e => { if (!e.target.closest('#btnTrash') && !e.target.closest('#btnCont')) { const lr = getLR(); if (lr) openSurah(lr.surahId); } });
-    $('btnTrash').addEventListener('click', e => { e.stopPropagation(); $('modal').classList.remove('hidden'); });
-
-    $('btnMCancel').addEventListener('click',  () => $('modal').classList.add('hidden'));
-    $('btnMConfirm').addEventListener('click', () => { clearLR(); $('modal').classList.add('hidden'); });
-    $('modal').addEventListener('click', function(e) { if (e.target === this) this.classList.add('hidden'); });
-
-    $('settingsBtn').addEventListener('click', openSettings);
-    $('setClose').addEventListener('click',    closeSettings);
-    $('settingsOv').addEventListener('click',  e => { if (e.target === $('settingsOv')) closeSettings(); });
-
-    document.querySelectorAll('.color-swatch').forEach(sw => sw.addEventListener('click', () => applyColor(sw.dataset.color)));
-
-    $('setThemeToggle').addEventListener('click', () => {
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      document.documentElement.setAttribute('data-theme', isDark ? '' : 'dark');
-      $('themeIco').className = isDark ? 'fas fa-moon' : 'fas fa-sun';
-      $('setThemeToggle').classList.toggle('on', !isDark);
-      saveSettings();
-    });
-
-    $('fontSlider').addEventListener('input', e => applyFontSize(parseInt(e.target.value)));
-    document.querySelectorAll('.size-preset').forEach(btn => btn.addEventListener('click', () => applyFontSize(parseInt(btn.dataset.size))));
-
-    document.querySelectorAll('.reciter-opt').forEach(opt => opt.addEventListener('click', e => {
-      if (!e.target.closest('.reciter-play')) applyReciter(opt.dataset.reciter);
-    }));
-
-    document.querySelectorAll('.reciter-play').forEach(btn => btn.addEventListener('click', e => {
-      e.stopPropagation();
-      const pa = $('previewAudio'), url = `https://cdn.islamic.network/quran/audio-surah/128/${btn.dataset.preview}/1.mp3`;
-      if (currentPlayBtn === btn && !pa.paused) { stopPreview(); }
-      else {
-        stopPreview();
-        pa.src = url; pa.play().catch(()=>{});
-        btn.innerHTML = '<i class="fas fa-pause"></i>'; btn.classList.add('playing'); currentPlayBtn = btn;
+    function renderVerses(id, ayahs) {
+      const vList=$('vList'), lr=getLR();
+      vList.innerHTML='';
+      ayahs.forEach(aya=>{
+        const isLR=lr&&lr.surahId===id&&lr.verse===aya.numberInSurah;
+        const vc=document.createElement('div');
+        vc.className='vcard'+(isLR?' lr':'');
+        vc.dataset.v=aya.numberInSurah;
+        vc.innerHTML=`<div class="vcard-ar">${aya.text}</div><div class="vcard-ft"><div class="vnum"><span class="vnum-badge">${aya.numberInSurah}</span>${T[lang].vers} ${aya.numberInSurah}</div><div class="vhint"><i class="fas fa-bookmark"></i>${isLR?T[lang].bmRm:T[lang].bmAdd}</div></div>`;
+        vc.addEventListener('click',()=>{
+          const cur=getLR();
+          if(cur&&cur.surahId===id&&cur.verse===aya.numberInSurah) clearLR(); else saveLR(id,aya.numberInSurah);
+        });
+        vList.appendChild(vc);
+      });
+      if(lr&&lr.surahId===id){
+        setTimeout(()=>{
+          const tgt=vList.querySelector(`[data-v="${lr.verse}"]`);
+          if(tgt){tgt.scrollIntoView({behavior:'smooth',block:'center'});tgt.classList.add('flash');setTimeout(()=>tgt.classList.remove('flash'),2000);}
+        },300);
       }
-    }));
-    $('previewAudio').addEventListener('ended', stopPreview);
+    }
 
-    document.querySelectorAll('.card-style-opt').forEach(opt => opt.addEventListener('click', () => {
-      applyCardStyle(opt.dataset.style); if (!activeSurah) renderGrid(surahsAll);
+    function reloadVerses() {
+      if(!activeSurah) return;
+      const cached=versesCache[activeSurah];
+      if(cached) renderVerses(activeSurah, cached);
+    }
+
+    // ===== TERUG =====
+    function goBack() {
+      activeSurah=null;
+      $('surahPage').classList.add('hidden');
+      ['heroSec','surahGrid','statsBar'].forEach(i=>$(i).classList.remove('hidden'));
+      renderLR();
+      if(searching&&$('srchIn').value.trim()) doSearch(); else renderGrid(SURAHS);
+    }
+
+    // ===== SETTINGS =====
+    function openSettings()  { $('settingsOv').classList.add('open');    $('settingsBtn').classList.add('active-set');    document.body.style.overflow='hidden'; }
+    function closeSettings() { $('settingsOv').classList.remove('open'); $('settingsBtn').classList.remove('active-set'); document.body.style.overflow=''; stopPreview(); }
+
+    let currentPlayBtn=null;
+    function stopPreview() {
+      const pa=$('previewAudio');
+      if(pa){pa.pause();pa.src='';}
+      if(currentPlayBtn){currentPlayBtn.innerHTML='<i class="fas fa-play"></i>';currentPlayBtn.classList.remove('playing');currentPlayBtn=null;}
+    }
+
+    // ===== EVENTS =====
+    $('backBtn').addEventListener('click',goBack);
+
+    $('themeBtn').addEventListener('click',()=>{
+      const dark=document.documentElement.getAttribute('data-theme')==='dark';
+      document.documentElement.setAttribute('data-theme',dark?'':'dark');
+      $('themeIco').className=dark?'fas fa-moon':'fas fa-sun';
+      $('setThemeToggle').classList.toggle('on',!dark);
+      saveSettings();
+    });
+
+    document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>{
+      lang=b.dataset.lang; applyLang(); saveSettings();
+      if(activeSurah){ setText('sVerses',SURAHS[activeSurah-1].v+' '+T[lang].verses); reloadVerses(); }
+      else if(searching&&$('srchIn').value.trim()) doSearch(); else renderGrid(SURAHS);
     }));
 
-    $('setReset').addEventListener('click', () => {
+    $('srchIn').addEventListener('input',doSearch);
+    $('srchBtn').addEventListener('click',doSearch);
+    $('srchIn').addEventListener('keypress',e=>{if(e.key==='Enter')doSearch();});
+    $('btnClr').addEventListener('click',()=>{$('srchIn').value='';doSearch();});
+
+    $('btnCont').addEventListener('click',()=>{const lr=getLR();if(lr)openSurah(lr.surahId);});
+    $('lrBanner').addEventListener('click',e=>{if(!e.target.closest('#btnTrash')&&!e.target.closest('#btnCont')){const lr=getLR();if(lr)openSurah(lr.surahId);}});
+    $('btnTrash').addEventListener('click',e=>{e.stopPropagation();$('modal').classList.remove('hidden');});
+
+    $('btnMCancel').addEventListener('click',()=>$('modal').classList.add('hidden'));
+    $('btnMConfirm').addEventListener('click',()=>{clearLR();$('modal').classList.add('hidden');});
+    $('modal').addEventListener('click',function(e){if(e.target===this)this.classList.add('hidden');});
+
+    $('settingsBtn').addEventListener('click',openSettings);
+    $('setClose').addEventListener('click',closeSettings);
+    $('settingsOv').addEventListener('click',e=>{if(e.target===$('settingsOv'))closeSettings();});
+
+    document.querySelectorAll('.color-swatch').forEach(sw=>sw.addEventListener('click',()=>applyColor(sw.dataset.color)));
+
+    $('setThemeToggle').addEventListener('click',()=>{
+      const dark=document.documentElement.getAttribute('data-theme')==='dark';
+      document.documentElement.setAttribute('data-theme',dark?'':'dark');
+      $('themeIco').className=dark?'fas fa-moon':'fas fa-sun';
+      $('setThemeToggle').classList.toggle('on',!dark);
+      saveSettings();
+    });
+
+    $('fontSlider').addEventListener('input',e=>applyFontSize(parseInt(e.target.value)));
+    document.querySelectorAll('.size-preset').forEach(b=>b.addEventListener('click',()=>applyFontSize(parseInt(b.dataset.size))));
+
+    document.querySelectorAll('.reciter-opt').forEach(o=>o.addEventListener('click',e=>{
+      if(!e.target.closest('.reciter-play')) applyReciter(o.dataset.reciter);
+    }));
+
+    document.querySelectorAll('.reciter-play').forEach(btn=>btn.addEventListener('click',e=>{
+      e.stopPropagation();
+      const pa=$('previewAudio'), url=`https://cdn.islamic.network/quran/audio-surah/128/${btn.dataset.preview}/1.mp3`;
+      if(currentPlayBtn===btn&&!pa.paused){stopPreview();}
+      else{stopPreview();pa.src=url;pa.play().catch(()=>{});btn.innerHTML='<i class="fas fa-pause"></i>';btn.classList.add('playing');currentPlayBtn=btn;}
+    }));
+    $('previewAudio').addEventListener('ended',stopPreview);
+
+    document.querySelectorAll('.style-opt').forEach(o=>o.addEventListener('click',()=>{
+      applyCardStyle(o.dataset.style); renderGrid(searching&&$('srchIn').value.trim()?SURAHS.filter(s=>(s.en||'').toLowerCase().includes($('srchIn').value.trim().toLowerCase())||(s.ar||'').includes($('srchIn').value.trim())||s.n.toString()===$('srchIn').value.trim()):SURAHS);
+    }));
+
+    $('setReset').addEventListener('click',()=>{
       stopPreview();
       applyColor('gold'); applyFontSize(3); applyReciter('ar.alafasy'); applyCardStyle('grid');
-      document.documentElement.setAttribute('data-theme', '');
-      $('themeIco').className = 'fas fa-moon'; $('setThemeToggle').classList.remove('on');
-      lang = 'nl'; applyLang();
-      if (!activeSurah) renderGrid(surahsAll);
+      document.documentElement.setAttribute('data-theme','');
+      $('themeIco').className='fas fa-moon'; $('setThemeToggle').classList.remove('on');
+      lang='nl'; applyLang(); renderGrid(SURAHS);
       localStorage.removeItem('qs');
     });
 
-    // === INIT ===
+    // ===== INIT (geen API nodig voor initieel laden) =====
     loadSettings();
     applyLang();
-    loadList();
+    // Toon grid direct met ingebouwde data
+    $('ldWrap').classList.add('hidden');
+    renderGrid(SURAHS);
 
   })();
   </script>
