@@ -2,882 +2,918 @@
 
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Quran Online | Lees de Koran Gratis in het Arabisch</title>
-  <meta name="description" content="Lees de Quran online in het Arabisch. Alle 114 soera's met Arabische tekst en audio recitatie.">
-  <meta name="keywords" content="Quran online, Koran lezen, Quran arabisch, Islam Quran, Soera lezen">
-  <meta name="author" content="onlinequran.nl">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://onlinequran.nl">
-  <meta property="og:title" content="Quran Online - Lees de Koran Gratis">
-  <meta property="og:description" content="Lees alle 114 soera's van de Quran met Arabische tekst en audio.">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#c9962c">
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri:wght@400;700&family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    .hidden { display: none !important; }
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Quran Online | Lees de Koran Gratis in het Arabisch</title>
+<meta name="description" content="Lees de Quran online in het Arabisch. Alle 114 soeras met Arabische tekst en audio recitatie.">
+<meta name="keywords" content="Quran online, Koran lezen, Quran arabisch, Islam Quran, Soera lezen">
+<meta name="author" content="onlinequran.nl">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://onlinequran.nl">
+<meta property="og:title" content="Quran Online - Lees de Koran Gratis">
+<meta property="og:description" content="Lees alle 114 soeras van de Quran met Arabische tekst en audio.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#c9962c">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri:wght@400;700&family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+.hidden{display:none!important}
 
-```
-:root {
-  --gold: #c9962c; --gold-light: #e8b84b; --gold-glow: rgba(201,150,44,0.22);
-  --ink: #1a1208; --cream: #faf6ee; --cream-dark: #f0e8d5; --parchment: #e8dcc4;
-  --text-muted: #7a6540; --border: rgba(201,150,44,0.22);
-  --shadow: 0 4px 24px rgba(26,18,8,0.10); --shadow-lg: 0 12px 48px rgba(26,18,8,0.16);
-  --hdr-bg: rgba(250,246,238,0.96); --quran-size: 1.7rem;
-  --radius: 16px; --radius-sm: 10px; --t: 0.28s cubic-bezier(0.4,0,0.2,1);
+:root{
+–ac:#c9962c;–ac2:#e8b84b;–acg:rgba(201,150,44,0.22);
+–ink:#1a1208;–bg:#faf6ee;–bg2:#f0e8d5;–bg3:#e8dcc4;
+–muted:#7a6540;–border:rgba(201,150,44,0.22);
+–sh:0 4px 24px rgba(26,18,8,.10);–shlg:0 12px 48px rgba(26,18,8,.16);
+–hbg:rgba(250,246,238,0.96);–qsz:1.7rem;
+–r:16px;–rsm:10px;–t:.28s cubic-bezier(.4,0,.2,1);
 }
-[data-theme="dark"] {
-  --ink: #ecdfc8; --cream: #181008; --cream-dark: #22180a; --parchment: #2c1f0c;
-  --text-muted: #a08858; --border: rgba(201,150,44,0.22);
-  --shadow: 0 4px 24px rgba(0,0,0,0.5); --shadow-lg: 0 12px 48px rgba(0,0,0,0.65);
-  --hdr-bg: rgba(24,16,8,0.97);
+[data-theme=dark]{
+–ink:#ecdfc8;–bg:#181008;–bg2:#22180a;–bg3:#2c1f0c;
+–muted:#a08858;–border:rgba(201,150,44,0.22);
+–sh:0 4px 24px rgba(0,0,0,.5);–shlg:0 12px 48px rgba(0,0,0,.65);
+–hbg:rgba(24,16,8,0.97);
 }
 
-/* 34 KLEUREN */
-[data-color="gold"]     { --gold:#c9962c; --gold-light:#e8b84b; --gold-glow:rgba(201,150,44,0.22); }
-[data-color="amber"]    { --gold:#b45309; --gold-light:#d97706; --gold-glow:rgba(180,83,9,0.22); }
-[data-color="copper"]   { --gold:#b45309; --gold-light:#f59e0b; --gold-glow:rgba(180,83,9,0.22); }
-[data-color="orange"]   { --gold:#ea580c; --gold-light:#f97316; --gold-glow:rgba(234,88,12,0.22); }
-[data-color="peach"]    { --gold:#c2410c; --gold-light:#ea580c; --gold-glow:rgba(194,65,12,0.22); }
-[data-color="sand"]     { --gold:#92400e; --gold-light:#b45309; --gold-glow:rgba(146,64,14,0.22); }
-[data-color="ruby"]     { --gold:#be123c; --gold-light:#e11d48; --gold-glow:rgba(190,18,60,0.22); }
-[data-color="rose"]     { --gold:#e11d48; --gold-light:#f43f5e; --gold-glow:rgba(225,29,72,0.22); }
-[data-color="crimson"]  { --gold:#9b1c1c; --gold-light:#c81e1e; --gold-glow:rgba(155,28,28,0.25); }
-[data-color="coral"]    { --gold:#f05252; --gold-light:#f98080; --gold-glow:rgba(240,82,82,0.22); }
-[data-color="pink"]     { --gold:#db2777; --gold-light:#ec4899; --gold-glow:rgba(219,39,119,0.22); }
-[data-color="magenta"]  { --gold:#a21caf; --gold-light:#c026d3; --gold-glow:rgba(162,28,175,0.22); }
-[data-color="lavender"] { --gold:#9333ea; --gold-light:#a855f7; --gold-glow:rgba(147,51,234,0.22); }
-[data-color="purple"]   { --gold:#7c3aed; --gold-light:#8b5cf6; --gold-glow:rgba(124,58,237,0.22); }
-[data-color="violet"]   { --gold:#5b21b6; --gold-light:#7c3aed; --gold-glow:rgba(91,33,182,0.25); }
-[data-color="indigo"]   { --gold:#4338ca; --gold-light:#6366f1; --gold-glow:rgba(67,56,202,0.22); }
-[data-color="blue"]     { --gold:#2563eb; --gold-light:#3b82f6; --gold-glow:rgba(37,99,235,0.22); }
-[data-color="steel"]    { --gold:#1e40af; --gold-light:#3b82f6; --gold-glow:rgba(30,64,175,0.22); }
-[data-color="navy"]     { --gold:#1e3a5f; --gold-light:#2e5a8f; --gold-glow:rgba(30,58,95,0.25); }
-[data-color="ocean"]    { --gold:#164e63; --gold-light:#0891b2; --gold-glow:rgba(22,78,99,0.25); }
-[data-color="sky"]      { --gold:#0284c7; --gold-light:#0ea5e9; --gold-glow:rgba(2,132,199,0.22); }
-[data-color="cyan"]     { --gold:#0891b2; --gold-light:#06b6d4; --gold-glow:rgba(8,145,178,0.22); }
-[data-color="teal"]     { --gold:#0d9488; --gold-light:#14b8a6; --gold-glow:rgba(13,148,136,0.22); }
-[data-color="mint"]     { --gold:#0f766e; --gold-light:#2dd4bf; --gold-glow:rgba(15,118,110,0.22); }
-[data-color="emerald"]  { --gold:#059669; --gold-light:#10b981; --gold-glow:rgba(5,150,105,0.22); }
-[data-color="green"]    { --gold:#16a34a; --gold-light:#22c55e; --gold-glow:rgba(22,163,74,0.22); }
-[data-color="forest"]   { --gold:#1a4731; --gold-light:#2d6a4f; --gold-glow:rgba(26,71,49,0.25); }
-[data-color="neon"]     { --gold:#16a34a; --gold-light:#4ade80; --gold-glow:rgba(22,163,74,0.28); }
-[data-color="lime"]     { --gold:#65a30d; --gold-light:#84cc16; --gold-glow:rgba(101,163,13,0.22); }
-[data-color="bronze"]   { --gold:#78350f; --gold-light:#92400e; --gold-glow:rgba(120,53,15,0.25); }
-[data-color="graphite"] { --gold:#374151; --gold-light:#4b5563; --gold-glow:rgba(55,65,81,0.25); }
-[data-color="slate"]    { --gold:#475569; --gold-light:#64748b; --gold-glow:rgba(71,85,105,0.22); }
-[data-color="black"]    { --gold:#111111; --gold-light:#333333; --gold-glow:rgba(17,17,17,0.28); }
-[data-color="white"]    { --gold:#aaaaaa; --gold-light:#cccccc; --gold-glow:rgba(170,170,170,0.30); }
+[data-color=gold]    {–ac:#c9962c;–ac2:#e8b84b;–acg:rgba(201,150,44,.22)}
+[data-color=amber]   {–ac:#b45309;–ac2:#d97706;–acg:rgba(180,83,9,.22)}
+[data-color=copper]  {–ac:#b45309;–ac2:#f59e0b;–acg:rgba(180,83,9,.22)}
+[data-color=orange]  {–ac:#ea580c;–ac2:#f97316;–acg:rgba(234,88,12,.22)}
+[data-color=peach]   {–ac:#c2410c;–ac2:#ea580c;–acg:rgba(194,65,12,.22)}
+[data-color=sand]    {–ac:#92400e;–ac2:#b45309;–acg:rgba(146,64,14,.22)}
+[data-color=ruby]    {–ac:#be123c;–ac2:#e11d48;–acg:rgba(190,18,60,.22)}
+[data-color=rose]    {–ac:#e11d48;–ac2:#f43f5e;–acg:rgba(225,29,72,.22)}
+[data-color=crimson] {–ac:#9b1c1c;–ac2:#c81e1e;–acg:rgba(155,28,28,.25)}
+[data-color=coral]   {–ac:#f05252;–ac2:#f98080;–acg:rgba(240,82,82,.22)}
+[data-color=pink]    {–ac:#db2777;–ac2:#ec4899;–acg:rgba(219,39,119,.22)}
+[data-color=magenta] {–ac:#a21caf;–ac2:#c026d3;–acg:rgba(162,28,175,.22)}
+[data-color=lavender]{–ac:#9333ea;–ac2:#a855f7;–acg:rgba(147,51,234,.22)}
+[data-color=purple]  {–ac:#7c3aed;–ac2:#8b5cf6;–acg:rgba(124,58,237,.22)}
+[data-color=violet]  {–ac:#5b21b6;–ac2:#7c3aed;–acg:rgba(91,33,182,.25)}
+[data-color=indigo]  {–ac:#4338ca;–ac2:#6366f1;–acg:rgba(67,56,202,.22)}
+[data-color=blue]    {–ac:#2563eb;–ac2:#3b82f6;–acg:rgba(37,99,235,.22)}
+[data-color=steel]   {–ac:#1e40af;–ac2:#3b82f6;–acg:rgba(30,64,175,.22)}
+[data-color=navy]    {–ac:#1e3a5f;–ac2:#2e5a8f;–acg:rgba(30,58,95,.25)}
+[data-color=ocean]   {–ac:#164e63;–ac2:#0891b2;–acg:rgba(22,78,99,.25)}
+[data-color=sky]     {–ac:#0284c7;–ac2:#0ea5e9;–acg:rgba(2,132,199,.22)}
+[data-color=cyan]    {–ac:#0891b2;–ac2:#06b6d4;–acg:rgba(8,145,178,.22)}
+[data-color=teal]    {–ac:#0d9488;–ac2:#14b8a6;–acg:rgba(13,148,136,.22)}
+[data-color=mint]    {–ac:#0f766e;–ac2:#2dd4bf;–acg:rgba(15,118,110,.22)}
+[data-color=emerald] {–ac:#059669;–ac2:#10b981;–acg:rgba(5,150,105,.22)}
+[data-color=green]   {–ac:#16a34a;–ac2:#22c55e;–acg:rgba(22,163,74,.22)}
+[data-color=forest]  {–ac:#1a4731;–ac2:#2d6a4f;–acg:rgba(26,71,49,.25)}
+[data-color=neon]    {–ac:#16a34a;–ac2:#4ade80;–acg:rgba(22,163,74,.28)}
+[data-color=lime]    {–ac:#65a30d;–ac2:#84cc16;–acg:rgba(101,163,13,.22)}
+[data-color=bronze]  {–ac:#78350f;–ac2:#92400e;–acg:rgba(120,53,15,.25)}
+[data-color=graphite]{–ac:#374151;–ac2:#4b5563;–acg:rgba(55,65,81,.25)}
+[data-color=slate]   {–ac:#475569;–ac2:#64748b;–acg:rgba(71,85,105,.22)}
+[data-color=black]   {–ac:#222;–ac2:#444;–acg:rgba(34,34,34,.28)}
+[data-color=white]   {–ac:#888;–ac2:#aaa;–acg:rgba(136,136,136,.30)}
 
-html { scroll-behavior: smooth; }
-body { font-family:'Lato',sans-serif; background:var(--cream); color:var(--ink); min-height:100vh; overflow-x:hidden; transition:background var(--t),color var(--t); }
-body::before { content:''; position:fixed; inset:0; background:radial-gradient(circle at 15% 15%,rgba(201,150,44,0.06) 0%,transparent 50%),radial-gradient(circle at 85% 85%,rgba(201,150,44,0.04) 0%,transparent 50%); pointer-events:none; z-index:0; }
-::-webkit-scrollbar{width:5px} ::-webkit-scrollbar-track{background:var(--cream-dark)} ::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+html{scroll-behavior:smooth}
+body{font-family:‘Lato’,sans-serif;background:var(–bg);color:var(–ink);min-height:100vh;overflow-x:hidden;transition:background var(–t),color var(–t)}
+body::before{content:’’;position:fixed;inset:0;background:radial-gradient(circle at 15% 15%,rgba(201,150,44,.06) 0%,transparent 50%),radial-gradient(circle at 85% 85%,rgba(201,150,44,.04) 0%,transparent 50%);pointer-events:none;z-index:0}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(–bg2)}::-webkit-scrollbar-thumb{background:var(–ac);border-radius:3px}
 
 /* HEADER */
-.hdr { position:sticky; top:0; z-index:100; background:var(--hdr-bg); border-bottom:1px solid var(--border); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); transition:background var(--t),border-color var(--t); }
-.hdr-in { max-width:1200px; margin:0 auto; padding:0 20px; height:64px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
-.logo { display:flex; align-items:center; gap:10px; }
-.logo-ico { width:36px; height:36px; background:linear-gradient(135deg,var(--gold),var(--gold-light)); border-radius:10px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:15px; box-shadow:0 2px 8px var(--gold-glow); flex-shrink:0; transition:background 0.3s; }
-.logo-txt { font-family:'Cinzel',serif; font-size:1.05rem; font-weight:700; color:var(--ink); transition:color var(--t); }
-.hdr-ctrl { display:flex; align-items:center; gap:8px; }
-.lang-group { display:flex; align-items:center; background:var(--cream-dark); border:1px solid var(--border); border-radius:50px; padding:3px; gap:2px; }
-.lang-btn { padding:6px 12px; border:none; border-radius:50px; background:transparent; color:var(--text-muted); font-family:'Lato',sans-serif; font-size:0.82rem; font-weight:700; cursor:pointer; transition:all var(--t); white-space:nowrap; }
-.lang-btn:hover { color:var(--ink); }
-.lang-btn.active { background:var(--gold); color:#fff; box-shadow:0 2px 8px var(--gold-glow); }
-.ico-btn { width:38px; height:38px; border:1px solid var(--border); border-radius:50px; background:var(--cream-dark); color:var(--ink); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:14px; transition:all var(--t); flex-shrink:0; }
-.ico-btn:hover, .ico-btn.active-set { background:var(--gold); border-color:var(--gold); color:#fff; }
+.hdr{position:sticky;top:0;z-index:100;background:var(–hbg);border-bottom:1px solid var(–border);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:background var(–t),border-color var(–t)}
+.hdr-in{max-width:1200px;margin:0 auto;padding:0 20px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-ico{width:36px;height:36px;background:linear-gradient(135deg,var(–ac),var(–ac2));border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;box-shadow:0 2px 8px var(–acg);flex-shrink:0;transition:background .3s}
+.logo-txt{font-family:‘Cinzel’,serif;font-size:1.05rem;font-weight:700;color:var(–ink);transition:color var(–t)}
+.hdr-ctrl{display:flex;align-items:center;gap:8px}
+.lang-group{display:flex;align-items:center;background:var(–bg2);border:1px solid var(–border);border-radius:50px;padding:3px;gap:2px}
+.lang-btn{padding:6px 12px;border:none;border-radius:50px;background:transparent;color:var(–muted);font-family:‘Lato’,sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;transition:all var(–t);white-space:nowrap}
+.lang-btn:hover{color:var(–ink)}
+.lang-btn.active{background:var(–ac);color:#fff;box-shadow:0 2px 8px var(–acg)}
+.ico-btn{width:38px;height:38px;border:1px solid var(–border);border-radius:50px;background:var(–bg2);color:var(–ink);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all var(–t);flex-shrink:0}
+.ico-btn:hover,.ico-btn.on{background:var(–ac);border-color:var(–ac);color:#fff}
 
 /* MAIN */
-.main { max-width:1200px; margin:0 auto; padding:28px 20px 80px; position:relative; z-index:1; }
+.main{max-width:1200px;margin:0 auto;padding:28px 20px 80px;position:relative;z-index:1}
 
 /* HERO */
-.hero { background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 55%,var(--gold) 100%); border-radius:var(--radius); padding:28px 24px; margin-bottom:24px; position:relative; overflow:hidden; box-shadow:var(--shadow-lg); animation:fadeUp 0.45s ease both; transition:background 0.3s; }
-.hero::before { content:''; position:absolute; inset:0; background-image:url("data:image/svg+xml,%3Csvg width='52' height='52' viewBox='0 0 52 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='0.07'%3E%3Cpath d='M26 0l7.5 4.33V13L26 17.33 18.5 13V4.33z'/%3E%3C/g%3E%3C/svg%3E"); }
-.hero-con { position:relative; z-index:1; display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
-.hero-ar { font-family:'Amiri',serif; font-size:clamp(1.6rem,5vw,2.5rem); color:#fff; text-shadow:0 2px 8px rgba(0,0,0,0.18); direction:rtl; flex-shrink:0; line-height:1; }
-.hero-txt h2 { font-family:'Cinzel',serif; font-size:clamp(1rem,2.5vw,1.3rem); color:#fff; margin-bottom:5px; font-weight:700; }
-.hero-txt p { font-size:0.88rem; color:rgba(255,255,255,0.88); line-height:1.55; }
+.hero{background:linear-gradient(135deg,var(–ac) 0%,var(–ac2) 55%,var(–ac) 100%);border-radius:var(–r);padding:28px 24px;margin-bottom:24px;position:relative;overflow:hidden;box-shadow:var(–shlg);animation:fadeUp .45s ease both;transition:background .3s}
+.hero::before{content:’’;position:absolute;inset:0;background-image:url(“data:image/svg+xml,%3Csvg width=‘52’ height=‘52’ viewBox=‘0 0 52 52’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cg fill=’%23fff’ fill-opacity=‘0.07’%3E%3Cpath d=‘M26 0l7.5 4.33V13L26 17.33 18.5 13V4.33z’/%3E%3C/g%3E%3C/svg%3E”)}
+.hero-con{position:relative;z-index:1;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.hero-ar{font-family:‘Amiri’,serif;font-size:clamp(1.6rem,5vw,2.5rem);color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.18);direction:rtl;flex-shrink:0;line-height:1}
+.hero-txt h2{font-family:‘Cinzel’,serif;font-size:clamp(1rem,2.5vw,1.3rem);color:#fff;margin-bottom:5px;font-weight:700}
+.hero-txt p{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.55}
 
 /* LR BANNER */
-.lr-banner { background:var(--cream-dark); border:1px solid var(--border); border-left:4px solid var(--gold); border-radius:var(--radius); padding:14px 18px; margin-bottom:20px; display:flex; align-items:center; justify-content:space-between; gap:10px; box-shadow:var(--shadow); cursor:pointer; transition:all var(--t); }
-.lr-banner:hover { box-shadow:var(--shadow-lg); transform:translateY(-1px); }
-.lr-left { display:flex; align-items:center; gap:12px; flex:1; min-width:0; }
-.lr-ico { width:38px; height:38px; background:linear-gradient(135deg,var(--gold),var(--gold-light)); border-radius:9px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; flex-shrink:0; transition:background 0.3s; }
-.lr-lbl { font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:2px; }
-.lr-name { font-family:'Cinzel',serif; font-size:0.9rem; font-weight:600; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.lr-acts { display:flex; align-items:center; gap:6px; flex-shrink:0; }
-.btn-cont { display:flex; align-items:center; gap:6px; padding:8px 14px; background:var(--gold); color:#fff; border:none; border-radius:var(--radius-sm); font-family:'Lato',sans-serif; font-size:0.83rem; font-weight:700; cursor:pointer; transition:all var(--t); white-space:nowrap; }
-.btn-cont:hover { background:var(--gold-light); transform:translateX(2px); }
-.btn-trash { width:34px; height:34px; border:1px solid var(--border); border-radius:var(--radius-sm); background:transparent; color:var(--text-muted); cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all var(--t); }
-.btn-trash:hover { background:#fee2e2; border-color:#fca5a5; color:#dc2626; }
+.lr-banner{background:var(–bg2);border:1px solid var(–border);border-left:4px solid var(–ac);border-radius:var(–r);padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:10px;box-shadow:var(–sh);cursor:pointer;transition:all var(–t)}
+.lr-banner:hover{box-shadow:var(–shlg);transform:translateY(-1px)}
+.lr-left{display:flex;align-items:center;gap:12px;flex:1;min-width:0}
+.lr-ico{width:38px;height:38px;background:linear-gradient(135deg,var(–ac),var(–ac2));border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;flex-shrink:0;transition:background .3s}
+.lr-lbl{font-size:.72rem;color:var(–muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+.lr-name{font-family:‘Cinzel’,serif;font-size:.9rem;font-weight:600;color:var(–ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lr-acts{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.btn-cont{display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(–ac);color:#fff;border:none;border-radius:var(–rsm);font-family:‘Lato’,sans-serif;font-size:.83rem;font-weight:700;cursor:pointer;transition:all var(–t);white-space:nowrap}
+.btn-cont:hover{background:var(–ac2);transform:translateX(2px)}
+.btn-trash{width:34px;height:34px;border:1px solid var(–border);border-radius:var(–rsm);background:transparent;color:var(–muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(–t)}
+.btn-trash:hover{background:#fee2e2;border-color:#fca5a5;color:#dc2626}
 
 /* ZOEKBALK */
-.srch-wrap { margin-bottom:20px; animation:fadeUp 0.45s 0.12s ease both; }
-.srch-box { display:flex; align-items:center; background:var(--cream-dark); border:1px solid var(--border); border-radius:50px; padding:4px 4px 4px 18px; transition:all var(--t); box-shadow:var(--shadow); }
-.srch-box:focus-within { border-color:var(--gold); box-shadow:0 0 0 3px var(--gold-glow),var(--shadow); }
-.srch-in { flex:1; border:none; background:transparent; color:var(--ink); font-family:'Lato',sans-serif; font-size:0.93rem; padding:10px 0; outline:none; min-width:0; }
-.srch-in::placeholder { color:var(--text-muted); }
-.srch-btn { width:42px; height:42px; background:linear-gradient(135deg,var(--gold),var(--gold-light)); border:none; border-radius:50%; color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:14px; transition:all var(--t); flex-shrink:0; }
-.srch-btn:hover { transform:scale(1.08); }
-.srch-meta { display:flex; align-items:center; justify-content:space-between; margin-top:8px; padding:0 4px; font-size:0.83rem; color:var(--text-muted); }
-.btn-clr { background:none; border:none; color:var(--gold); cursor:pointer; font-size:0.83rem; font-weight:700; display:flex; align-items:center; gap:4px; }
+.srch-wrap{margin-bottom:20px;animation:fadeUp .45s .12s ease both}
+.srch-box{display:flex;align-items:center;background:var(–bg2);border:1px solid var(–border);border-radius:50px;padding:4px 4px 4px 18px;transition:all var(–t);box-shadow:var(–sh)}
+.srch-box:focus-within{border-color:var(–ac);box-shadow:0 0 0 3px var(–acg),var(–sh)}
+.srch-in{flex:1;border:none;background:transparent;color:var(–ink);font-family:‘Lato’,sans-serif;font-size:.93rem;padding:10px 0;outline:none;min-width:0}
+.srch-in::placeholder{color:var(–muted)}
+.srch-btn{width:42px;height:42px;background:linear-gradient(135deg,var(–ac),var(–ac2));border:none;border-radius:50%;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all var(–t);flex-shrink:0}
+.srch-btn:hover{transform:scale(1.08)}
+.srch-meta{display:flex;align-items:center;justify-content:space-between;margin-top:8px;padding:0 4px;font-size:.83rem;color:var(–muted)}
+.btn-clr{background:none;border:none;color:var(–ac);cursor:pointer;font-size:.83rem;font-weight:700;display:flex;align-items:center;gap:4px}
 
 /* STATS */
-.stats { display:flex; align-items:center; gap:12px; margin-bottom:18px; animation:fadeUp 0.45s 0.16s ease both; }
-.stat-pill { display:inline-flex; align-items:center; gap:5px; padding:5px 13px; background:var(--cream-dark); border:1px solid var(--border); border-radius:50px; font-size:0.8rem; color:var(--text-muted); }
-.stat-pill i { color:var(--gold); font-size:10px; }
+.stats{display:flex;align-items:center;gap:12px;margin-bottom:18px;animation:fadeUp .45s .16s ease both}
+.stat-pill{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;background:var(–bg2);border:1px solid var(–border);border-radius:50px;font-size:.8rem;color:var(–muted)}
+.stat-pill i{color:var(–ac);font-size:10px}
 
 /* LOADING */
-.ld-wrap { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:60px 20px; gap:14px; color:var(--text-muted); font-size:0.88rem; }
-.spinner { width:42px; height:42px; border:3px solid var(--parchment); border-top-color:var(--gold); border-radius:50%; animation:spin 0.85s linear infinite; }
-@keyframes spin { to { transform:rotate(360deg); } }
+.ld-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;gap:14px;color:var(–muted);font-size:.88rem}
+.spinner{width:42px;height:42px;border:3px solid var(–bg3);border-top-color:var(–ac);border-radius:50%;animation:spin .85s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 
 /* GRID */
-.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:12px; animation:fadeUp 0.45s 0.2s ease both; }
-.scard { background:var(--cream-dark); border:1px solid var(--border); border-radius:var(--radius); padding:16px 18px; cursor:pointer; transition:all var(--t); display:flex; flex-direction:column; gap:7px; position:relative; overflow:hidden; }
-.scard::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,var(--gold-glow),transparent); opacity:0; transition:opacity var(--t); pointer-events:none; }
-.scard:hover { border-color:var(--gold); transform:translateY(-3px); box-shadow:var(--shadow-lg); }
-.scard:hover::after { opacity:1; }
-.scard-hd { display:flex; align-items:center; justify-content:space-between; gap:6px; }
-.scard-num { width:30px; height:30px; background:linear-gradient(135deg,var(--gold),var(--gold-light)); border-radius:8px; display:flex; align-items:center; justify-content:center; color:#fff; font-family:'Cinzel',serif; font-size:0.72rem; font-weight:700; flex-shrink:0; transition:background 0.3s; }
-.scard-ar { font-family:'Amiri',serif; font-size:1.2rem; color:var(--gold); direction:rtl; line-height:1; }
-.scard-title { font-family:'Cinzel',serif; font-size:0.86rem; font-weight:600; color:var(--ink); line-height:1.3; }
-.scard-meta { font-size:0.76rem; color:var(--text-muted); display:flex; align-items:center; gap:4px; }
-.scard-meta i { font-size:9px; color:var(--gold); }
-.no-res { grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--text-muted); }
-.no-res i { font-size:1.8rem; color:var(--parchment); display:block; margin-bottom:10px; }
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;animation:fadeUp .45s .2s ease both}
+.scard{background:var(–bg2);border:1px solid var(–border);border-radius:var(–r);padding:16px 18px;cursor:pointer;transition:all var(–t);display:flex;flex-direction:column;gap:7px;position:relative;overflow:hidden}
+.scard::after{content:’’;position:absolute;inset:0;background:linear-gradient(135deg,var(–acg),transparent);opacity:0;transition:opacity var(–t);pointer-events:none}
+.scard:hover{border-color:var(–ac);transform:translateY(-3px);box-shadow:var(–shlg)}
+.scard:hover::after{opacity:1}
+.scard-hd{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.scard-num{width:30px;height:30px;background:linear-gradient(135deg,var(–ac),var(–ac2));border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:‘Cinzel’,serif;font-size:.72rem;font-weight:700;flex-shrink:0;transition:background .3s}
+.scard-ar{font-family:‘Amiri’,serif;font-size:1.2rem;color:var(–ac);direction:rtl;line-height:1}
+.scard-title{font-family:‘Cinzel’,serif;font-size:.86rem;font-weight:600;color:var(–ink);line-height:1.3}
+.scard-meta{font-size:.76rem;color:var(–muted);display:flex;align-items:center;gap:4px}
+.scard-meta i{font-size:9px;color:var(–ac)}
+.no-res{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(–muted)}
+.no-res i{font-size:1.8rem;color:var(–bg3);display:block;margin-bottom:10px}
 
 /* DETAIL */
-.spage { animation:fadeUp 0.35s ease both; }
-.back-btn { display:inline-flex; align-items:center; gap:7px; padding:9px 16px; background:var(--cream-dark); border:1px solid var(--border); border-radius:50px; color:var(--ink); font-family:'Lato',sans-serif; font-size:0.88rem; font-weight:700; cursor:pointer; margin-bottom:18px; transition:all var(--t); }
-.back-btn:hover { background:var(--gold); border-color:var(--gold); color:#fff; }
-.shdr { background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%); border-radius:var(--radius); padding:26px 22px; margin-bottom:18px; position:relative; overflow:hidden; box-shadow:var(--shadow-lg); transition:background 0.3s; }
-.shdr::before { content:''; position:absolute; inset:0; background-image:url("data:image/svg+xml,%3Csvg width='36' height='36' viewBox='0 0 36 36' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='0.07'%3E%3Cpath d='M18 0l5.2 3v6L18 12 12.8 9V3z'/%3E%3C/g%3E%3C/svg%3E"); }
-.shdr-con { position:relative; z-index:1; }
-.shdr-top { display:flex; align-items:flex-start; justify-content:space-between; gap:14px; margin-bottom:8px; }
-.shdr-latin { font-family:'Cinzel',serif; font-size:clamp(1.2rem,3.5vw,1.7rem); color:#fff; font-weight:700; }
-.shdr-arabic { font-family:'Amiri',serif; font-size:clamp(1.4rem,4vw,2rem); color:rgba(255,255,255,0.92); direction:rtl; }
-.shdr-meta { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
-.sbadge { display:inline-flex; align-items:center; gap:4px; padding:4px 11px; background:rgba(255,255,255,0.2); backdrop-filter:blur(4px); border-radius:50px; color:#fff; font-size:0.78rem; font-weight:700; }
-.lr-badge-inline { display:inline-flex; align-items:center; gap:4px; padding:4px 11px; background:rgba(255,255,255,0.92); border-radius:50px; color:var(--gold); font-size:0.78rem; font-weight:700; }
+.spage{animation:fadeUp .35s ease both}
+.back-btn{display:inline-flex;align-items:center;gap:7px;padding:9px 16px;background:var(–bg2);border:1px solid var(–border);border-radius:50px;color:var(–ink);font-family:‘Lato’,sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;margin-bottom:18px;transition:all var(–t)}
+.back-btn:hover{background:var(–ac);border-color:var(–ac);color:#fff}
+.shdr{background:linear-gradient(135deg,var(–ac) 0%,var(–ac2) 100%);border-radius:var(–r);padding:26px 22px;margin-bottom:18px;position:relative;overflow:hidden;box-shadow:var(–shlg);transition:background .3s}
+.shdr::before{content:’’;position:absolute;inset:0;background-image:url(“data:image/svg+xml,%3Csvg width=‘36’ height=‘36’ viewBox=‘0 0 36 36’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cg fill=’%23fff’ fill-opacity=‘0.07’%3E%3Cpath d=‘M18 0l5.2 3v6L18 12 12.8 9V3z’/%3E%3C/g%3E%3C/svg%3E”)}
+.shdr-con{position:relative;z-index:1}
+.shdr-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:8px}
+.shdr-latin{font-family:‘Cinzel’,serif;font-size:clamp(1.2rem,3.5vw,1.7rem);color:#fff;font-weight:700}
+.shdr-arabic{font-family:‘Amiri’,serif;font-size:clamp(1.4rem,4vw,2rem);color:rgba(255,255,255,.92);direction:rtl}
+.shdr-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sbadge{display:inline-flex;align-items:center;gap:4px;padding:4px 11px;background:rgba(255,255,255,.2);backdrop-filter:blur(4px);border-radius:50px;color:#fff;font-size:.78rem;font-weight:700}
+.lrbadge{display:inline-flex;align-items:center;gap:4px;padding:4px 11px;background:rgba(255,255,255,.92);border-radius:50px;color:var(–ac);font-size:.78rem;font-weight:700}
 
 /* AUDIO */
-.audio-sec { background:var(--cream-dark); border:1px solid var(--border); border-radius:var(--radius); padding:14px 18px; margin-bottom:20px; display:flex; align-items:center; gap:10px; box-shadow:var(--shadow); }
-.audio-lbl { display:flex; align-items:center; gap:5px; color:var(--gold); font-size:0.82rem; font-weight:700; flex-shrink:0; white-space:nowrap; }
-audio { flex:1; height:34px; border-radius:8px; min-width:0; }
+.audio-sec{background:var(–bg2);border:1px solid var(–border);border-radius:var(–r);padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;gap:10px;box-shadow:var(–sh)}
+.audio-lbl{display:flex;align-items:center;gap:5px;color:var(–ac);font-size:.82rem;font-weight:700;flex-shrink:0;white-space:nowrap}
+audio{flex:1;height:34px;border-radius:8px;min-width:0}
 
 /* VERZEN */
-.vlist { display:flex; flex-direction:column; gap:8px; }
-.vcard { background:var(--cream-dark); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; cursor:pointer; transition:all var(--t); position:relative; }
-.vcard:hover { border-color:var(--gold); box-shadow:var(--shadow); transform:translateX(4px); }
-.vcard.lr { border-left:4px solid var(--gold); background:linear-gradient(to right,rgba(201,150,44,0.07),var(--cream-dark)); }
-.vcard-ar { font-family:'Amiri Quran','Amiri',serif; font-size:var(--quran-size); line-height:2.1; direction:rtl; color:var(--ink); text-align:right; margin-bottom:8px; word-break:break-word; transition:font-size var(--t); }
-.vcard-ft { display:flex; align-items:center; justify-content:space-between; gap:6px; }
-.vnum { display:inline-flex; align-items:center; gap:5px; font-size:0.76rem; color:var(--text-muted); }
-.vnum-badge { width:22px; height:22px; background:var(--gold); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:#fff; font-size:0.68rem; font-weight:700; font-family:'Cinzel',serif; transition:background 0.3s; }
-.vhint { font-size:0.73rem; color:var(--text-muted); opacity:0; transition:opacity var(--t); display:flex; align-items:center; gap:3px; }
-.vcard:hover .vhint, .vcard.lr .vhint { opacity:1; }
-.vcard.lr .vhint { color:var(--gold); }
-@keyframes vflash { 0%{background:var(--cream-dark)} 35%{background:rgba(201,150,44,0.18);box-shadow:0 0 0 3px var(--gold-glow)} 100%{background:var(--cream-dark)} }
-.vcard.flash { animation:vflash 1.8s ease; }
+.vlist{display:flex;flex-direction:column;gap:8px}
+.vcard{background:var(–bg2);border:1px solid var(–border);border-radius:var(–r);padding:18px 20px;cursor:pointer;transition:all var(–t);position:relative}
+.vcard:hover{border-color:var(–ac);box-shadow:var(–sh);transform:translateX(4px)}
+.vcard.lr{border-left:4px solid var(–ac);background:linear-gradient(to right,rgba(201,150,44,.07),var(–bg2))}
+.vcard-ar{font-family:‘Amiri Quran’,‘Amiri’,serif;font-size:var(–qsz);line-height:2.1;direction:rtl;color:var(–ink);text-align:right;margin-bottom:8px;word-break:break-word;transition:font-size var(–t)}
+.vcard-ft{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.vnum{display:inline-flex;align-items:center;gap:5px;font-size:.76rem;color:var(–muted)}
+.vnum-badge{width:22px;height:22px;background:var(–ac);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:.68rem;font-weight:700;font-family:‘Cinzel’,serif;transition:background .3s}
+.vhint{font-size:.73rem;color:var(–muted);opacity:0;transition:opacity var(–t);display:flex;align-items:center;gap:3px}
+.vcard:hover .vhint,.vcard.lr .vhint{opacity:1}
+.vcard.lr .vhint{color:var(–ac)}
+@keyframes vflash{0%{background:var(–bg2)}35%{background:rgba(201,150,44,.18);box-shadow:0 0 0 3px var(–acg)}100%{background:var(–bg2)}}
+.vcard.flash{animation:vflash 1.8s ease}
 
 /* SETTINGS */
-.settings-ov { position:fixed; inset:0; background:rgba(26,18,8,0.65); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); z-index:300; display:flex; align-items:flex-end; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.32s ease; }
-.settings-ov.open { opacity:1; pointer-events:all; }
-@media(min-width:600px){.settings-ov{align-items:center;padding:20px}}
-.settings-panel { background:var(--cream); border-radius:24px 24px 0 0; width:100%; max-width:500px; max-height:92vh; overflow-y:auto; overflow-x:hidden; box-shadow:var(--shadow-lg); transform:translateY(100%); transition:transform 0.38s cubic-bezier(0.4,0,0.2,1),background var(--t); padding-bottom:24px; }
-.settings-ov.open .settings-panel { transform:translateY(0); }
-@media(min-width:600px){.settings-panel{border-radius:24px;max-height:88vh;transform:translateY(24px) scale(0.97);opacity:0;transition:transform 0.36s cubic-bezier(0.4,0,0.2,1),opacity 0.32s ease,background var(--t)}.settings-ov.open .settings-panel{transform:translateY(0) scale(1);opacity:1}}
-.set-handle { width:40px; height:4px; background:var(--parchment); border-radius:2px; margin:16px auto 0; }
+.set-ov{position:fixed;inset:0;background:rgba(26,18,8,.65);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:300;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .32s ease}
+.set-ov.open{opacity:1;pointer-events:all}
+@media(min-width:600px){.set-ov{align-items:center;padding:20px}}
+.set-panel{background:var(–bg);border-radius:24px 24px 0 0;width:100%;max-width:500px;max-height:92vh;overflow-y:auto;overflow-x:hidden;box-shadow:var(–shlg);transform:translateY(100%);transition:transform .38s cubic-bezier(.4,0,.2,1),background var(–t);padding-bottom:24px}
+.set-ov.open .set-panel{transform:translateY(0)}
+@media(min-width:600px){
+.set-panel{border-radius:24px;max-height:88vh;transform:translateY(24px) scale(.97);opacity:0;transition:transform .36s cubic-bezier(.4,0,.2,1),opacity .32s ease,background var(–t)}
+.set-ov.open .set-panel{transform:translateY(0) scale(1);opacity:1}
+}
+
+/* Settings panel altijd leesbaar ongeacht kleurthema */
+.set-panel,.set-hdr{–panel-bg:var(–bg);–panel-bg2:var(–bg2);–panel-ink:var(–ink);–panel-muted:var(–muted);–panel-border:var(–border)}
+[data-color=white] .set-panel,[data-color=white] .set-hdr{background:#f0f0f0!important}
+[data-color=white] .set-panel .set-lbl,[data-color=white] .set-panel .theme-lbl,
+[data-color=white] .set-panel .font-lbl2,[data-color=white] .set-panel .set-title{color:#222!important}
+[data-color=white] .set-panel .reciter-name,[data-color=white] .set-panel .style-name{color:#222!important}
+[data-color=white] .set-panel .reciter-opt,[data-color=white] .set-panel .theme-row,
+[data-color=white] .set-panel .font-row,[data-color=white] .set-panel .style-opt{background:#e0e0e0!important;border-color:#bbb!important}
+[data-color=white] .set-panel .reciter-sub,[data-color=white] .set-panel .style-sub{color:#555!important}
+[data-color=white] .set-panel .set-lbl::after{background:#bbb!important}
+[data-color=black] .set-panel,[data-color=black] .set-hdr{background:#1c1c1c!important}
+[data-color=black] .set-panel .set-lbl,[data-color=black] .set-panel .theme-lbl,
+[data-color=black] .set-panel .font-lbl2,[data-color=black] .set-panel .set-title{color:#eee!important}
+[data-color=black] .set-panel .reciter-name,[data-color=black] .set-panel .style-name{color:#eee!important}
+[data-color=black] .set-panel .reciter-opt,[data-color=black] .set-panel .theme-row,
+[data-color=black] .set-panel .font-row,[data-color=black] .set-panel .style-opt{background:#2a2a2a!important;border-color:#444!important}
+[data-color=black] .set-panel .reciter-sub,[data-color=black] .set-panel .style-sub{color:#aaa!important}
+[data-color=black] .set-panel .set-lbl::after{background:#444!important}
+
+.set-handle{width:40px;height:4px;background:var(–bg3);border-radius:2px;margin:16px auto 0}
 @media(min-width:600px){.set-handle{display:none}}
-.set-hdr { display:flex; align-items:center; justify-content:space-between; padding:18px 22px 14px; border-bottom:1px solid var(--border); position:sticky; top:0; background:var(--cream); backdrop-filter:blur(8px); z-index:2; transition:background var(--t); }
-.set-title { font-family:'Cinzel',serif; font-size:1.1rem; font-weight:700; color:var(--ink); display:flex; align-items:center; gap:8px; }
-.set-title i { color:var(--gold); }
-.set-close { width:32px; height:32px; border-radius:50%; border:1px solid var(--border); background:var(--cream-dark); color:var(--text-muted); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:13px; transition:all var(--t); }
-.set-close:hover { background:var(--gold); border-color:var(--gold); color:#fff; }
-.set-body { padding:20px 22px 8px; display:flex; flex-direction:column; gap:26px; }
-.set-lbl { font-size:0.72rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px; display:flex; align-items:center; gap:7px; }
-.set-lbl i { color:var(--gold); }
-.set-lbl::after { content:''; flex:1; height:1px; background:var(--border); }
+.set-hdr{display:flex;align-items:center;justify-content:space-between;padding:18px 22px 14px;border-bottom:1px solid var(–border);position:sticky;top:0;background:var(–bg);backdrop-filter:blur(8px);z-index:2;transition:background var(–t)}
+.set-title{font-family:‘Cinzel’,serif;font-size:1.1rem;font-weight:700;color:var(–ink);display:flex;align-items:center;gap:8px}
+.set-title i{color:var(–ac)}
+.set-close{width:32px;height:32px;border-radius:50%;border:1px solid var(–border);background:var(–bg2);color:var(–muted);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;transition:all var(–t)}
+.set-close:hover{background:var(–ac);border-color:var(–ac);color:#fff}
+.set-body{padding:20px 22px 8px;display:flex;flex-direction:column;gap:26px}
+.set-lbl{font-size:.72rem;font-weight:700;color:var(–muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.set-lbl i{color:var(–ac)}
+.set-lbl::after{content:’’;flex:1;height:1px;background:var(–border)}
 
-/* KLEUR SWATCHES */
-.color-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:9px; }
-.color-swatch { aspect-ratio:1; border-radius:50%; cursor:pointer; border:3px solid transparent; transition:all 0.22s ease; position:relative; }
-.color-swatch:hover { transform:scale(1.18); }
-.color-swatch.active { border-color:var(--ink) !important; box-shadow:0 0 0 2px var(--cream),0 0 0 4px var(--gold); }
-.color-swatch::after { content:'✓'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#fff; font-size:0.85rem; font-weight:900; opacity:0; transition:opacity 0.2s; text-shadow:0 1px 3px rgba(0,0,0,0.5); }
-.color-swatch.active::after { opacity:1; }
-.color-swatch[data-color="white"].active::after { color:#333; text-shadow:none; }
+/* Kleur swatches */
+.color-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:9px}
+.sw{aspect-ratio:1;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:all .22s ease;position:relative}
+.sw:hover{transform:scale(1.18)}
+.sw.active{border-color:var(–ink)!important;box-shadow:0 0 0 2px var(–bg),0 0 0 4px var(–ac)}
+.sw::after{content:‘✓’;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.85rem;font-weight:900;opacity:0;transition:opacity .2s;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.sw.active::after{opacity:1}
+.sw[data-color=white].active::after{color:#333;text-shadow:none}
 
-/* DARK TOGGLE */
-.theme-row { display:flex; align-items:center; justify-content:space-between; background:var(--cream-dark); border:1px solid var(--border); border-radius:var(--radius-sm); padding:13px 16px; }
-.theme-lbl { display:flex; align-items:center; gap:10px; font-size:0.9rem; font-weight:600; color:var(--ink); }
-.theme-lbl i { color:var(--gold); width:16px; text-align:center; }
-.toggle-sw { width:48px; height:26px; background:var(--parchment); border-radius:50px; cursor:pointer; position:relative; transition:background 0.3s; border:none; flex-shrink:0; }
-.toggle-sw.on { background:var(--gold); }
-.toggle-sw::after { content:''; position:absolute; width:20px; height:20px; background:#fff; border-radius:50%; top:3px; left:3px; transition:transform 0.3s ease; box-shadow:0 1px 4px rgba(0,0,0,0.2); }
-.toggle-sw.on::after { transform:translateX(22px); }
+/* Dark toggle */
+.theme-row{display:flex;align-items:center;justify-content:space-between;background:var(–bg2);border:1px solid var(–border);border-radius:var(–rsm);padding:13px 16px}
+.theme-lbl{display:flex;align-items:center;gap:10px;font-size:.9rem;font-weight:600;color:var(–ink)}
+.theme-lbl i{color:var(–ac);width:16px;text-align:center}
+.toggle{width:48px;height:26px;background:var(–bg3);border-radius:50px;cursor:pointer;position:relative;transition:background .3s;border:none;flex-shrink:0}
+.toggle.on{background:var(–ac)}
+.toggle::after{content:’’;position:absolute;width:20px;height:20px;background:#fff;border-radius:50%;top:3px;left:3px;transition:transform .3s ease;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.toggle.on::after{transform:translateX(22px)}
 
-/* FONT GROOTTE */
-.font-row { background:var(--cream-dark); border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px 16px; }
-.font-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
-.font-lbl2 { display:flex; align-items:center; gap:10px; font-size:0.9rem; font-weight:600; color:var(--ink); }
-.font-lbl2 i { color:var(--gold); width:16px; text-align:center; }
-.font-val { font-family:'Cinzel',serif; font-size:0.82rem; color:var(--gold); font-weight:700; background:rgba(201,150,44,0.12); padding:3px 10px; border-radius:50px; }
-.size-slider { width:100%; accent-color:var(--gold); cursor:pointer; height:4px; border-radius:2px; }
-.size-btns { display:flex; gap:7px; margin-top:11px; }
-.size-preset { flex:1; padding:7px 4px; border:1px solid var(--border); border-radius:var(--radius-sm); background:transparent; color:var(--text-muted); font-family:'Lato',sans-serif; font-size:0.78rem; cursor:pointer; transition:all var(--t); font-weight:700; }
-.size-preset:hover { border-color:var(--gold); color:var(--gold); }
-.size-preset.active { background:var(--gold); border-color:var(--gold); color:#fff; }
+/* Font */
+.font-row{background:var(–bg2);border:1px solid var(–border);border-radius:var(–rsm);padding:14px 16px}
+.font-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.font-lbl2{display:flex;align-items:center;gap:10px;font-size:.9rem;font-weight:600;color:var(–ink)}
+.font-lbl2 i{color:var(–ac);width:16px;text-align:center}
+.font-val{font-family:‘Cinzel’,serif;font-size:.82rem;color:var(–ac);font-weight:700;background:rgba(201,150,44,.12);padding:3px 10px;border-radius:50px}
+.sz-slider{width:100%;accent-color:var(–ac);cursor:pointer;height:4px;border-radius:2px}
+.sz-btns{display:flex;gap:7px;margin-top:11px}
+.sz-btn{flex:1;padding:7px 4px;border:1px solid var(–border);border-radius:var(–rsm);background:transparent;color:var(–muted);font-family:‘Lato’,sans-serif;font-size:.78rem;cursor:pointer;transition:all var(–t);font-weight:700}
+.sz-btn:hover{border-color:var(–ac);color:var(–ac)}
+.sz-btn.active{background:var(–ac);border-color:var(–ac);color:#fff}
 
-/* RECITEUR */
-.reciter-grid { display:flex; flex-direction:column; gap:8px; }
-.reciter-opt { display:flex; align-items:center; gap:12px; padding:11px 14px; border:1px solid var(--border); border-radius:var(--radius-sm); background:var(--cream-dark); cursor:pointer; transition:all var(--t); }
-.reciter-opt:hover { border-color:var(--gold); transform:translateX(2px); }
-.reciter-opt.active { border-color:var(--gold); background:rgba(201,150,44,0.08); }
-.reciter-dot { width:10px; height:10px; border-radius:50%; border:2px solid var(--parchment); flex-shrink:0; transition:all var(--t); }
-.reciter-opt.active .reciter-dot { background:var(--gold); border-color:var(--gold); }
-.reciter-info { flex:1; min-width:0; }
-.reciter-name { font-size:0.88rem; font-weight:600; color:var(--ink); }
-.reciter-sub { font-size:0.74rem; color:var(--text-muted); margin-top:1px; }
-.reciter-play { width:30px; height:30px; border-radius:50%; flex-shrink:0; border:1px solid var(--border); background:var(--cream); color:var(--gold); cursor:pointer; font-size:10px; display:flex; align-items:center; justify-content:center; transition:all var(--t); }
-.reciter-play:hover { background:var(--gold); color:#fff; border-color:var(--gold); transform:scale(1.1); }
-.reciter-play.playing { background:var(--gold); color:#fff; border-color:var(--gold); animation:pulse-play 1s ease infinite; }
-@keyframes pulse-play { 0%,100%{box-shadow:0 0 0 0 var(--gold-glow)} 50%{box-shadow:0 0 0 5px transparent} }
+/* Reciteur */
+.rec-grid{display:flex;flex-direction:column;gap:8px}
+.rec-opt{display:flex;align-items:center;gap:12px;padding:11px 14px;border:1px solid var(–border);border-radius:var(–rsm);background:var(–bg2);cursor:pointer;transition:all var(–t)}
+.rec-opt:hover{border-color:var(–ac);transform:translateX(2px)}
+.rec-opt.active{border-color:var(–ac);background:rgba(201,150,44,.08)}
+.rec-dot{width:10px;height:10px;border-radius:50%;border:2px solid var(–bg3);flex-shrink:0;transition:all var(–t)}
+.rec-opt.active .rec-dot{background:var(–ac);border-color:var(–ac)}
+.rec-info{flex:1;min-width:0}
+.reciter-name{font-size:.88rem;font-weight:600;color:var(–ink)}
+.reciter-sub{font-size:.74rem;color:var(–muted);margin-top:1px}
+.rec-play{width:30px;height:30px;border-radius:50%;flex-shrink:0;border:1px solid var(–border);background:var(–bg);color:var(–ac);cursor:pointer;font-size:10px;display:flex;align-items:center;justify-content:center;transition:all var(–t)}
+.rec-play:hover{background:var(–ac);color:#fff;border-color:var(–ac);transform:scale(1.1)}
+.rec-play.playing{background:var(–ac);color:#fff;border-color:var(–ac);animation:pulse 1s ease infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 var(–acg)}50%{box-shadow:0 0 0 5px transparent}}
 
-/* KAART STIJL */
-.style-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-.style-opt { padding:14px; border:1px solid var(--border); border-radius:var(--radius-sm); background:var(--cream-dark); cursor:pointer; transition:all var(--t); text-align:center; }
-.style-opt:hover { border-color:var(--gold); }
-.style-opt.active { border-color:var(--gold); background:rgba(201,150,44,0.08); }
-.style-ico { font-size:1.5rem; margin-bottom:5px; line-height:1; }
-.style-name { font-size:0.82rem; font-weight:700; color:var(--ink); }
-.style-sub { font-size:0.72rem; color:var(--text-muted); margin-top:2px; }
+/* Kaart stijl */
+.style-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.style-opt{padding:14px;border:1px solid var(–border);border-radius:var(–rsm);background:var(–bg2);cursor:pointer;transition:all var(–t);text-align:center}
+.style-opt:hover{border-color:var(–ac)}
+.style-opt.active{border-color:var(–ac);background:rgba(201,150,44,.08)}
+.style-ico{font-size:1.5rem;margin-bottom:5px;line-height:1}
+.style-name{font-size:.82rem;font-weight:700;color:var(–ink)}
+.style-sub{font-size:.72rem;color:var(–muted);margin-top:2px}
 
-/* RESET */
-.set-reset { display:flex; align-items:center; justify-content:center; gap:7px; width:100%; padding:12px; border:1px dashed var(--border); border-radius:var(--radius-sm); background:transparent; color:var(--text-muted); font-family:'Lato',sans-serif; font-size:0.85rem; font-weight:700; cursor:pointer; transition:all var(--t); }
-.set-reset:hover { border-color:#ef4444; color:#ef4444; background:rgba(239,68,68,0.06); }
+/* Reset */
+.set-reset{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:12px;border:1px dashed var(–border);border-radius:var(–rsm);background:transparent;color:var(–muted);font-family:‘Lato’,sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;transition:all var(–t)}
+.set-reset:hover{border-color:#ef4444;color:#ef4444;background:rgba(239,68,68,.06)}
 
-/* MODAL */
-.modal-ov { position:fixed; inset:0; background:rgba(26,18,8,0.72); backdrop-filter:blur(4px); display:flex; align-items:flex-end; justify-content:center; z-index:200; }
+/* Modal */
+.modal-ov{position:fixed;inset:0;background:rgba(26,18,8,.72);backdrop-filter:blur(4px);display:flex;align-items:flex-end;justify-content:center;z-index:200}
 @media(min-width:600px){.modal-ov{align-items:center;padding:20px}}
-.modal-box { background:var(--cream); border-radius:var(--radius) var(--radius) 0 0; padding:26px 22px 30px; width:100%; max-width:420px; box-shadow:var(--shadow-lg); animation:slideUp 0.28s ease; }
-@media(min-width:600px){.modal-box{border-radius:var(--radius)}}
-@keyframes slideUp { from{transform:translateY(40px);opacity:0} to{transform:translateY(0);opacity:1} }
-.modal-handle { width:38px; height:4px; background:var(--parchment); border-radius:2px; margin:0 auto 18px; }
+.modal-box{background:var(–bg);border-radius:var(–r) var(–r) 0 0;padding:26px 22px 30px;width:100%;max-width:420px;box-shadow:var(–shlg);animation:slideUp .28s ease}
+@media(min-width:600px){.modal-box{border-radius:var(–r)}}
+@keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-handle{width:38px;height:4px;background:var(–bg3);border-radius:2px;margin:0 auto 18px}
 @media(min-width:600px){.modal-handle{display:none}}
-.modal-title { font-family:'Cinzel',serif; font-size:1.05rem; font-weight:700; color:var(--ink); margin-bottom:7px; }
-.modal-body { color:var(--text-muted); font-size:0.88rem; line-height:1.6; margin-bottom:22px; }
-.modal-acts { display:flex; gap:9px; }
-.btn-cancel { flex:1; padding:11px; border:1px solid var(--border); border-radius:var(--radius-sm); background:transparent; color:var(--ink); font-family:'Lato',sans-serif; font-size:0.88rem; font-weight:700; cursor:pointer; transition:all var(--t); }
-.btn-cancel:hover { background:var(--cream-dark); }
-.btn-danger { flex:1; padding:11px; border:none; border-radius:var(--radius-sm); background:#dc2626; color:#fff; font-family:'Lato',sans-serif; font-size:0.88rem; font-weight:700; cursor:pointer; transition:all var(--t); }
-.btn-danger:hover { background:#b91c1c; }
+.modal-title{font-family:‘Cinzel’,serif;font-size:1.05rem;font-weight:700;color:var(–ink);margin-bottom:7px}
+.modal-body{color:var(–muted);font-size:.88rem;line-height:1.6;margin-bottom:22px}
+.modal-acts{display:flex;gap:9px}
+.btn-cancel{flex:1;padding:11px;border:1px solid var(–border);border-radius:var(–rsm);background:transparent;color:var(–ink);font-family:‘Lato’,sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;transition:all var(–t)}
+.btn-cancel:hover{background:var(–bg2)}
+.btn-danger{flex:1;padding:11px;border:none;border-radius:var(–rsm);background:#dc2626;color:#fff;font-family:‘Lato’,sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;transition:all var(–t)}
+.btn-danger:hover{background:#b91c1c}
 
-/* FOOTER */
-footer { background:var(--cream-dark); border-top:1px solid var(--border); padding:36px 20px; margin-top:50px; text-align:center; transition:background var(--t); }
-.ft-in { max-width:580px; margin:0 auto; }
-.ft-title { font-family:'Cinzel',serif; font-size:0.95rem; color:var(--ink); margin-bottom:14px; }
-.mail-link { display:inline-flex; align-items:center; gap:7px; padding:11px 22px; background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:#fff; text-decoration:none; border-radius:50px; font-weight:700; font-size:0.88rem; transition:all var(--t); box-shadow:0 4px 14px var(--gold-glow); }
-.mail-link:hover { transform:translateY(-2px); box-shadow:0 8px 22px var(--gold-glow); }
-.ft-copy { margin-top:18px; font-size:0.78rem; color:var(--text-muted); line-height:1.7; }
+/* Footer */
+footer{background:var(–bg2);border-top:1px solid var(–border);padding:36px 20px;margin-top:50px;text-align:center;transition:background var(–t)}
+.ft-in{max-width:580px;margin:0 auto}
+.ft-title{font-family:‘Cinzel’,serif;font-size:.95rem;color:var(–ink);margin-bottom:14px}
+.mail-link{display:inline-flex;align-items:center;gap:7px;padding:11px 22px;background:linear-gradient(135deg,var(–ac),var(–ac2));color:#fff;text-decoration:none;border-radius:50px;font-weight:700;font-size:.88rem;transition:all var(–t);box-shadow:0 4px 14px var(–acg)}
+.mail-link:hover{transform:translateY(-2px);box-shadow:0 8px 22px var(–acg)}
+.ft-copy{margin-top:18px;font-size:.78rem;color:var(–muted);line-height:1.7}
 
-@keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
-/* RESPONSIVE */
 @media(max-width:640px){
-  .main{padding:18px 14px 60px} .grid{grid-template-columns:1fr 1fr;gap:9px} .scard{padding:12px 13px}
-  .hero{padding:20px 16px} .btn-cont span{display:none} .audio-sec{flex-direction:column;align-items:stretch}
-  .audio-lbl{justify-content:center} .hdr-in{height:58px} .lang-btn{padding:5px 9px;font-size:0.79rem}
-  .lang-group{padding:2px;gap:1px} .color-grid{gap:7px}
+.main{padding:18px 14px 60px}.grid{grid-template-columns:1fr 1fr;gap:9px}.scard{padding:12px 13px}
+.hero{padding:20px 16px}.btn-cont span{display:none}.audio-sec{flex-direction:column;align-items:stretch}
+.audio-lbl{justify-content:center}.hdr-in{height:58px}.lang-btn{padding:5px 9px;font-size:.79rem}
+.lang-group{padding:2px;gap:1px}.color-grid{gap:7px}
 }
 @media(max-width:360px){.grid{grid-template-columns:1fr}}
 @media(min-width:641px) and (max-width:1024px){.grid{grid-template-columns:repeat(3,1fr)}}
-@media(min-width:1025px){.grid{grid-template-columns:repeat(4,1fr)} .main{padding:36px 24px 80px}}
-```
+@media(min-width:1025px){.grid{grid-template-columns:repeat(4,1fr)}.main{padding:36px 24px 80px}}
+</style>
 
-  </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-
-  <header class="hdr">
-    <div class="hdr-in">
-      <div class="logo">
-        <div class="logo-ico"><i class="fas fa-book-open"></i></div>
-        <span class="logo-txt" id="headerTitle">Quran</span>
+<header class="hdr">
+  <div class="hdr-in">
+    <div class="logo">
+      <div class="logo-ico"><i class="fas fa-book-open"></i></div>
+      <span class="logo-txt" id="hTitle">Quran</span>
+    </div>
+    <div class="hdr-ctrl">
+      <div class="lang-group">
+        <button class="lang-btn" data-lang="arabic">عر</button>
+        <button class="lang-btn active" data-lang="nl">NL</button>
+        <button class="lang-btn" data-lang="en">EN</button>
       </div>
-      <div class="hdr-ctrl">
-        <div class="lang-group">
-          <button class="lang-btn" data-lang="arabic">عر</button>
-          <button class="lang-btn active" data-lang="nl">NL</button>
-          <button class="lang-btn" data-lang="en">EN</button>
-        </div>
-        <button class="ico-btn" id="themeBtn" aria-label="Thema"><i class="fas fa-moon" id="themeIco"></i></button>
-        <button class="ico-btn" id="settingsBtn" aria-label="Instellingen"><i class="fas fa-sliders-h"></i></button>
+      <button class="ico-btn" id="themeBtn"><i class="fas fa-moon" id="themeIco"></i></button>
+      <button class="ico-btn" id="setBtn"><i class="fas fa-sliders-h"></i></button>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+  <div class="hero" id="heroSec">
+    <div class="hero-con">
+      <div class="hero-ar">الرحمن</div>
+      <div class="hero-txt">
+        <h2 id="wTitle">Welkom bij onlinequran.nl</h2>
+        <p id="wText">Alle 114 soeras met Arabische tekst en audio recitatie. Klik op een soera om te beginnen.</p>
       </div>
     </div>
-  </header>
+  </div>
 
-  <!-- MAIN -->
+  <div class="lr-banner hidden" id="lrBanner">
+    <div class="lr-left">
+      <div class="lr-ico"><i class="fas fa-bookmark"></i></div>
+      <div>
+        <div class="lr-lbl" id="lrLbl">Laatst gelezen</div>
+        <div class="lr-name"><span id="lrName">—</span> · <span id="lrVerse">vers 1</span></div>
+      </div>
+    </div>
+    <div class="lr-acts">
+      <button class="btn-cont" id="btnCont"><i class="fas fa-arrow-right"></i><span id="btnContTxt">Ga verder</span></button>
+      <button class="btn-trash" id="btnTrash"><i class="fas fa-trash-alt"></i></button>
+    </div>
+  </div>
 
-  <main class="main">
-    <div class="hero" id="heroSec">
-      <div class="hero-con">
-        <div class="hero-ar">الرحمن</div>
-        <div class="hero-txt">
-          <h2 id="welcomeTitle">Welkom bij onlinequran.nl</h2>
-          <p id="welcomeText">Alle 114 soera's met Arabische tekst en audio recitatie. Klik op een soera om te beginnen.</p>
+  <div class="srch-wrap">
+    <div class="srch-box">
+      <input type="text" id="srchIn" class="srch-in" placeholder="Zoek soera op naam of nummer...">
+      <button class="srch-btn" id="srchBtn"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="srch-meta hidden" id="srchMeta">
+      <span id="srchCount">0 resultaten</span>
+      <button class="btn-clr" id="btnClr"><i class="fas fa-times"></i> Wissen</button>
+    </div>
+  </div>
+
+  <div class="stats hidden" id="statsBar">
+    <div class="stat-pill"><i class="fas fa-list"></i><span id="statsTxt">114 soeras</span></div>
+  </div>
+
+  <div class="ld-wrap" id="ldWrap">
+    <div class="spinner"></div>
+    <span id="ldTxt">Laden...</span>
+  </div>
+
+  <div class="grid hidden" id="surahGrid"></div>
+
+  <div class="spage hidden" id="surahPage">
+    <button class="back-btn" id="backBtn"><i class="fas fa-arrow-left"></i><span id="backTxt">Alle soeras</span></button>
+    <div class="shdr">
+      <div class="shdr-con">
+        <div class="shdr-top">
+          <div class="shdr-latin" id="sLatin"></div>
+          <div class="shdr-arabic" id="sArabic"></div>
+        </div>
+        <div class="shdr-meta">
+          <span class="sbadge"><i class="fas fa-layer-group"></i><span id="sVerses"></span></span>
+          <span class="lrbadge hidden" id="lrBadge"><i class="fas fa-bookmark"></i><span id="lrBadgeTxt">vers 1</span></span>
         </div>
       </div>
     </div>
+    <div class="audio-sec">
+      <div class="audio-lbl"><i class="fas fa-headphones"></i><span id="recitatieLabel">Recitatie</span></div>
+      <audio id="sAudio" controls preload="none"></audio>
+    </div>
+    <div class="vlist" id="vList"></div>
+  </div>
+</main>
+
+<!-- SETTINGS PANEL -->
+
+<div class="set-ov" id="setOv">
+  <div class="set-panel">
+    <div class="set-handle"></div>
+    <div class="set-hdr">
+      <div class="set-title"><i class="fas fa-sliders-h"></i><span id="setTitle">Instellingen</span></div>
+      <button class="set-close" id="setClose"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="set-body">
 
 ```
-<div class="lr-banner hidden" id="lrBanner">
-  <div class="lr-left">
-    <div class="lr-ico"><i class="fas fa-bookmark"></i></div>
-    <div>
-      <div class="lr-lbl" id="lrLbl">Laatst gelezen</div>
-      <div class="lr-name"><span id="lrName">—</span> · <span id="lrVerse">vers 1</span></div>
+  <!-- KLEUR -->
+  <div>
+    <div class="set-lbl"><i class="fas fa-palette"></i><span id="setColorLbl">Accentkleur</span></div>
+    <div class="color-grid">
+      <div class="sw active" data-color="gold"    style="background:linear-gradient(135deg,#c9962c,#e8b84b)"  title="Goud"></div>
+      <div class="sw"        data-color="amber"   style="background:linear-gradient(135deg,#b45309,#d97706)"  title="Amber"></div>
+      <div class="sw"        data-color="copper"  style="background:linear-gradient(135deg,#b45309,#f59e0b)"  title="Koper"></div>
+      <div class="sw"        data-color="orange"  style="background:linear-gradient(135deg,#ea580c,#f97316)"  title="Oranje"></div>
+      <div class="sw"        data-color="peach"   style="background:linear-gradient(135deg,#c2410c,#ea580c)"  title="Perzik"></div>
+      <div class="sw"        data-color="sand"    style="background:linear-gradient(135deg,#92400e,#d97706)"  title="Zand"></div>
+      <div class="sw"        data-color="ruby"    style="background:linear-gradient(135deg,#be123c,#e11d48)"  title="Robijn"></div>
+      <div class="sw"        data-color="rose"    style="background:linear-gradient(135deg,#e11d48,#f43f5e)"  title="Rood"></div>
+      <div class="sw"        data-color="crimson" style="background:linear-gradient(135deg,#9b1c1c,#c81e1e)"  title="Karmozijn"></div>
+      <div class="sw"        data-color="coral"   style="background:linear-gradient(135deg,#f05252,#f98080)"  title="Koraal"></div>
+      <div class="sw"        data-color="pink"    style="background:linear-gradient(135deg,#db2777,#ec4899)"  title="Roze"></div>
+      <div class="sw"        data-color="magenta" style="background:linear-gradient(135deg,#a21caf,#c026d3)"  title="Magenta"></div>
+      <div class="sw"        data-color="lavender"style="background:linear-gradient(135deg,#9333ea,#a855f7)"  title="Lavendel"></div>
+      <div class="sw"        data-color="purple"  style="background:linear-gradient(135deg,#7c3aed,#8b5cf6)"  title="Paars"></div>
+      <div class="sw"        data-color="violet"  style="background:linear-gradient(135deg,#5b21b6,#7c3aed)"  title="Violet"></div>
+      <div class="sw"        data-color="indigo"  style="background:linear-gradient(135deg,#4338ca,#6366f1)"  title="Indigo"></div>
+      <div class="sw"        data-color="blue"    style="background:linear-gradient(135deg,#2563eb,#3b82f6)"  title="Blauw"></div>
+      <div class="sw"        data-color="steel"   style="background:linear-gradient(135deg,#1e40af,#3b82f6)"  title="Staal"></div>
+      <div class="sw"        data-color="navy"    style="background:linear-gradient(135deg,#1e3a5f,#2e5a8f)"  title="Marine"></div>
+      <div class="sw"        data-color="ocean"   style="background:linear-gradient(135deg,#164e63,#0891b2)"  title="Oceaan"></div>
+      <div class="sw"        data-color="sky"     style="background:linear-gradient(135deg,#0284c7,#0ea5e9)"  title="Hemelsblauw"></div>
+      <div class="sw"        data-color="cyan"    style="background:linear-gradient(135deg,#0891b2,#06b6d4)"  title="Cyaan"></div>
+      <div class="sw"        data-color="teal"    style="background:linear-gradient(135deg,#0d9488,#14b8a6)"  title="Teal"></div>
+      <div class="sw"        data-color="mint"    style="background:linear-gradient(135deg,#0f766e,#2dd4bf)"  title="Mint"></div>
+      <div class="sw"        data-color="emerald" style="background:linear-gradient(135deg,#059669,#10b981)"  title="Smaragd"></div>
+      <div class="sw"        data-color="green"   style="background:linear-gradient(135deg,#16a34a,#22c55e)"  title="Groen"></div>
+      <div class="sw"        data-color="forest"  style="background:linear-gradient(135deg,#1a4731,#2d6a4f)"  title="Bos"></div>
+      <div class="sw"        data-color="neon"    style="background:linear-gradient(135deg,#16a34a,#4ade80)"  title="Neon"></div>
+      <div class="sw"        data-color="lime"    style="background:linear-gradient(135deg,#65a30d,#84cc16)"  title="Limoen"></div>
+      <div class="sw"        data-color="bronze"  style="background:linear-gradient(135deg,#78350f,#92400e)"  title="Brons"></div>
+      <div class="sw"        data-color="graphite"style="background:linear-gradient(135deg,#374151,#4b5563)"  title="Grafiet"></div>
+      <div class="sw"        data-color="slate"   style="background:linear-gradient(135deg,#475569,#64748b)"  title="Grijs"></div>
+      <div class="sw"        data-color="black"   style="background:linear-gradient(135deg,#111,#333);border:2px solid #555" title="Zwart"></div>
+      <div class="sw"        data-color="white"   style="background:linear-gradient(135deg,#ccc,#eee);border:2px solid #bbb" title="Wit"></div>
     </div>
   </div>
-  <div class="lr-acts">
-    <button class="btn-cont" id="btnCont"><i class="fas fa-arrow-right"></i><span id="btnContTxt">Ga verder</span></button>
-    <button class="btn-trash" id="btnTrash"><i class="fas fa-trash-alt"></i></button>
+
+  <!-- WEERGAVE -->
+  <div>
+    <div class="set-lbl"><i class="fas fa-adjust"></i><span id="setAppearLbl">Weergave</span></div>
+    <div class="theme-row">
+      <div class="theme-lbl"><i class="fas fa-moon" id="setThemeIco"></i><span id="setThemeTxt">Donkere modus</span></div>
+      <button class="toggle" id="setToggle"></button>
+    </div>
   </div>
-</div>
 
-<div class="srch-wrap">
-  <div class="srch-box">
-    <input type="text" id="srchIn" class="srch-in" placeholder="Zoek soera op naam of nummer...">
-    <button class="srch-btn" id="srchBtn"><i class="fas fa-search"></i></button>
-  </div>
-  <div class="srch-meta hidden" id="srchMeta">
-    <span id="srchCount">0 resultaten</span>
-    <button class="btn-clr" id="btnClr"><i class="fas fa-times"></i> Wissen</button>
-  </div>
-</div>
-
-<div class="stats hidden" id="statsBar">
-  <div class="stat-pill"><i class="fas fa-list"></i><span id="statsTxt">114 soera's</span></div>
-</div>
-
-<div class="ld-wrap" id="ldWrap">
-  <div class="spinner"></div>
-  <span id="ldTxt">Soera's laden...</span>
-</div>
-
-<div class="grid hidden" id="surahGrid"></div>
-
-<div class="spage hidden" id="surahPage">
-  <button class="back-btn" id="backBtn"><i class="fas fa-arrow-left"></i><span id="backTxt">Alle soera's</span></button>
-  <div class="shdr">
-    <div class="shdr-con">
-      <div class="shdr-top">
-        <div class="shdr-latin" id="sLatin"></div>
-        <div class="shdr-arabic" id="sArabic"></div>
+  <!-- TEKST GROOTTE -->
+  <div>
+    <div class="set-lbl"><i class="fas fa-text-height"></i><span id="setFontLbl">Arabische tekst grootte</span></div>
+    <div class="font-row">
+      <div class="font-top">
+        <div class="font-lbl2"><i class="fas fa-font"></i><span id="setFontSzTxt">Grootte</span></div>
+        <div class="font-val" id="fontVal">Normaal</div>
       </div>
-      <div class="shdr-meta">
-        <span class="sbadge"><i class="fas fa-layer-group"></i><span id="sVerses"></span></span>
-        <span class="lr-badge-inline hidden" id="lrBadgeInline"><i class="fas fa-bookmark"></i><span id="lrBadgeTxt">vers 1</span></span>
+      <input type="range" class="sz-slider" id="szSlider" min="1" max="5" step="1" value="3">
+      <div class="sz-btns">
+        <button class="sz-btn" data-sz="1">XS</button>
+        <button class="sz-btn" data-sz="2">S</button>
+        <button class="sz-btn active" data-sz="3">M</button>
+        <button class="sz-btn" data-sz="4">L</button>
+        <button class="sz-btn" data-sz="5">XL</button>
       </div>
     </div>
   </div>
-  <div class="audio-sec">
-    <div class="audio-lbl"><i class="fas fa-headphones"></i> Recitatie</div>
-    <audio id="sAudio" controls preload="none"></audio>
+
+  <!-- RECITEUR -->
+  <div>
+    <div class="set-lbl"><i class="fas fa-microphone"></i><span id="setRecLbl">Reciteur</span></div>
+    <audio id="prevAudio" preload="none" style="display:none"></audio>
+    <div class="rec-grid">
+      <div class="rec-opt active" data-rec="ar.alafasy">
+        <div class="rec-dot"></div>
+        <div class="rec-info"><div class="reciter-name">Mishary Alafasy</div><div class="reciter-sub">مشاري العفاسي · Koeweit</div></div>
+        <button class="rec-play" data-prev="ar.alafasy"><i class="fas fa-play"></i></button>
+      </div>
+      <div class="rec-opt" data-rec="ar.abdurrahmaansudais">
+        <div class="rec-dot"></div>
+        <div class="rec-info"><div class="reciter-name">Abdurrahman Al-Sudais</div><div class="reciter-sub">عبدالرحمن السديس · Saudi-Arabië</div></div>
+        <button class="rec-play" data-prev="ar.abdurrahmaansudais"><i class="fas fa-play"></i></button>
+      </div>
+      <div class="rec-opt" data-rec="ar.husary">
+        <div class="rec-dot"></div>
+        <div class="rec-info"><div class="reciter-name">Mahmoud Khalil Al-Husary</div><div class="reciter-sub">محمود خليل الحصري · Egypte</div></div>
+        <button class="rec-play" data-prev="ar.husary"><i class="fas fa-play"></i></button>
+      </div>
+      <div class="rec-opt" data-rec="ar.minshawi">
+        <div class="rec-dot"></div>
+        <div class="rec-info"><div class="reciter-name">Mohamed Siddiq Al-Minshawi</div><div class="reciter-sub">محمد صديق المنشاوي · Egypte</div></div>
+        <button class="rec-play" data-prev="ar.minshawi"><i class="fas fa-play"></i></button>
+      </div>
+      <div class="rec-opt" data-rec="ar.mahermuaiqly">
+        <div class="rec-dot"></div>
+        <div class="rec-info"><div class="reciter-name">Maher Al-Muaiqly</div><div class="reciter-sub">ماهر المعيقلي · Saudi-Arabië</div></div>
+        <button class="rec-play" data-prev="ar.mahermuaiqly"><i class="fas fa-play"></i></button>
+      </div>
+      <div class="rec-opt" data-rec="ar.saoodshuraym">
+        <div class="rec-dot"></div>
+        <div class="rec-info"><div class="reciter-name">Saud Al-Shuraym</div><div class="reciter-sub">سعود الشريم · Saudi-Arabië</div></div>
+        <button class="rec-play" data-prev="ar.saoodshuraym"><i class="fas fa-play"></i></button>
+      </div>
+    </div>
   </div>
-  <div class="vlist" id="vList"></div>
-</div>
-```
 
-  </main>
-
-  <!-- SETTINGS -->
-
-  <div class="settings-ov" id="settingsOv">
-    <div class="settings-panel">
-      <div class="set-handle"></div>
-      <div class="set-hdr">
-        <div class="set-title"><i class="fas fa-sliders-h"></i><span id="setTitleTxt">Instellingen</span></div>
-        <button class="set-close" id="setClose"><i class="fas fa-times"></i></button>
-      </div>
-      <div class="set-body">
-
-```
-    <!-- KLEUR -->
-    <div>
-      <div class="set-lbl"><i class="fas fa-palette"></i><span id="setColorLbl">Accentkleur</span></div>
-      <div class="color-grid">
-        <div class="color-swatch active" data-color="gold"     style="background:linear-gradient(135deg,#c9962c,#e8b84b)"  title="Goud"></div>
-        <div class="color-swatch"        data-color="amber"    style="background:linear-gradient(135deg,#b45309,#d97706)"  title="Amber"></div>
-        <div class="color-swatch"        data-color="copper"   style="background:linear-gradient(135deg,#b45309,#f59e0b)"  title="Koper"></div>
-        <div class="color-swatch"        data-color="orange"   style="background:linear-gradient(135deg,#ea580c,#f97316)"  title="Oranje"></div>
-        <div class="color-swatch"        data-color="peach"    style="background:linear-gradient(135deg,#c2410c,#ea580c)"  title="Perzik"></div>
-        <div class="color-swatch"        data-color="sand"     style="background:linear-gradient(135deg,#92400e,#d97706)"  title="Zand"></div>
-        <div class="color-swatch"        data-color="ruby"     style="background:linear-gradient(135deg,#be123c,#e11d48)"  title="Robijn"></div>
-        <div class="color-swatch"        data-color="rose"     style="background:linear-gradient(135deg,#e11d48,#f43f5e)"  title="Rood"></div>
-        <div class="color-swatch"        data-color="crimson"  style="background:linear-gradient(135deg,#9b1c1c,#c81e1e)"  title="Karmozijn"></div>
-        <div class="color-swatch"        data-color="coral"    style="background:linear-gradient(135deg,#f05252,#f98080)"  title="Koraal"></div>
-        <div class="color-swatch"        data-color="pink"     style="background:linear-gradient(135deg,#db2777,#ec4899)"  title="Roze"></div>
-        <div class="color-swatch"        data-color="magenta"  style="background:linear-gradient(135deg,#a21caf,#c026d3)"  title="Magenta"></div>
-        <div class="color-swatch"        data-color="lavender" style="background:linear-gradient(135deg,#9333ea,#a855f7)"  title="Lavendel"></div>
-        <div class="color-swatch"        data-color="purple"   style="background:linear-gradient(135deg,#7c3aed,#8b5cf6)"  title="Paars"></div>
-        <div class="color-swatch"        data-color="violet"   style="background:linear-gradient(135deg,#5b21b6,#7c3aed)"  title="Violet"></div>
-        <div class="color-swatch"        data-color="indigo"   style="background:linear-gradient(135deg,#4338ca,#6366f1)"  title="Indigo"></div>
-        <div class="color-swatch"        data-color="blue"     style="background:linear-gradient(135deg,#2563eb,#3b82f6)"  title="Blauw"></div>
-        <div class="color-swatch"        data-color="steel"    style="background:linear-gradient(135deg,#1e40af,#3b82f6)"  title="Staal"></div>
-        <div class="color-swatch"        data-color="navy"     style="background:linear-gradient(135deg,#1e3a5f,#2e5a8f)"  title="Marine"></div>
-        <div class="color-swatch"        data-color="ocean"    style="background:linear-gradient(135deg,#164e63,#0891b2)"  title="Oceaan"></div>
-        <div class="color-swatch"        data-color="sky"      style="background:linear-gradient(135deg,#0284c7,#0ea5e9)"  title="Hemelsblauw"></div>
-        <div class="color-swatch"        data-color="cyan"     style="background:linear-gradient(135deg,#0891b2,#06b6d4)"  title="Cyaan"></div>
-        <div class="color-swatch"        data-color="teal"     style="background:linear-gradient(135deg,#0d9488,#14b8a6)"  title="Teal"></div>
-        <div class="color-swatch"        data-color="mint"     style="background:linear-gradient(135deg,#0f766e,#2dd4bf)"  title="Mint"></div>
-        <div class="color-swatch"        data-color="emerald"  style="background:linear-gradient(135deg,#059669,#10b981)"  title="Smaragd"></div>
-        <div class="color-swatch"        data-color="green"    style="background:linear-gradient(135deg,#16a34a,#22c55e)"  title="Groen"></div>
-        <div class="color-swatch"        data-color="forest"   style="background:linear-gradient(135deg,#1a4731,#2d6a4f)"  title="Bos"></div>
-        <div class="color-swatch"        data-color="neon"     style="background:linear-gradient(135deg,#16a34a,#4ade80)"  title="Neon"></div>
-        <div class="color-swatch"        data-color="lime"     style="background:linear-gradient(135deg,#65a30d,#84cc16)"  title="Limoen"></div>
-        <div class="color-swatch"        data-color="bronze"   style="background:linear-gradient(135deg,#78350f,#92400e)"  title="Brons"></div>
-        <div class="color-swatch"        data-color="graphite" style="background:linear-gradient(135deg,#374151,#4b5563)"  title="Grafiet"></div>
-        <div class="color-swatch"        data-color="slate"    style="background:linear-gradient(135deg,#475569,#64748b)"  title="Grijs"></div>
-        <div class="color-swatch"        data-color="black"    style="background:linear-gradient(135deg,#111,#333);border:2px solid #555" title="Zwart"></div>
-        <div class="color-swatch"        data-color="white"    style="background:linear-gradient(135deg,#ccc,#eee);border:2px solid #bbb" title="Wit"></div>
-      </div>
+  <!-- KAART STIJL -->
+  <div>
+    <div class="set-lbl"><i class="fas fa-th"></i><span id="setLayoutLbl">Kaart stijl</span></div>
+    <div class="style-grid">
+      <div class="style-opt active" data-sty="grid"><div class="style-ico">⊞</div><div class="style-name" id="styGridTxt">Raster</div><div class="style-sub" id="styGridSub">Compact overzicht</div></div>
+      <div class="style-opt" data-sty="list"><div class="style-ico">☰</div><div class="style-name" id="styListTxt">Lijst</div><div class="style-sub" id="styListSub">Breed overzicht</div></div>
     </div>
-
-    <!-- WEERGAVE -->
-    <div>
-      <div class="set-lbl"><i class="fas fa-adjust"></i><span id="setAppearLbl">Weergave</span></div>
-      <div class="theme-row">
-        <div class="theme-lbl"><i class="fas fa-moon" id="setThemeIco"></i><span id="setThemeTxt">Donkere modus</span></div>
-        <button class="toggle-sw" id="setThemeToggle"></button>
-      </div>
-    </div>
-
-    <!-- TEKST GROOTTE -->
-    <div>
-      <div class="set-lbl"><i class="fas fa-text-height"></i><span id="setFontLbl">Arabische tekst grootte</span></div>
-      <div class="font-row">
-        <div class="font-top">
-          <div class="font-lbl2"><i class="fas fa-font"></i><span id="setFontSizeTxt">Grootte</span></div>
-          <div class="font-val" id="fontSizeVal">Normaal</div>
-        </div>
-        <input type="range" class="size-slider" id="fontSlider" min="1" max="5" step="1" value="3">
-        <div class="size-btns">
-          <button class="size-preset" data-size="1">XS</button>
-          <button class="size-preset" data-size="2">S</button>
-          <button class="size-preset active" data-size="3">M</button>
-          <button class="size-preset" data-size="4">L</button>
-          <button class="size-preset" data-size="5">XL</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- RECITEUR -->
-    <div>
-      <div class="set-lbl"><i class="fas fa-microphone"></i><span id="setReciterLbl">Reciteur</span></div>
-      <audio id="previewAudio" preload="none" style="display:none"></audio>
-      <div class="reciter-grid">
-        <div class="reciter-opt active" data-reciter="ar.alafasy">
-          <div class="reciter-dot"></div>
-          <div class="reciter-info"><div class="reciter-name">Mishary Alafasy</div><div class="reciter-sub">مشاري العفاسي · Koeweit</div></div>
-          <button class="reciter-play" data-preview="ar.alafasy"><i class="fas fa-play"></i></button>
-        </div>
-        <div class="reciter-opt" data-reciter="ar.abdurrahmaansudais">
-          <div class="reciter-dot"></div>
-          <div class="reciter-info"><div class="reciter-name">Abdurrahman Al-Sudais</div><div class="reciter-sub">عبدالرحمن السديس · Saudi-Arabië</div></div>
-          <button class="reciter-play" data-preview="ar.abdurrahmaansudais"><i class="fas fa-play"></i></button>
-        </div>
-        <div class="reciter-opt" data-reciter="ar.husary">
-          <div class="reciter-dot"></div>
-          <div class="reciter-info"><div class="reciter-name">Mahmoud Khalil Al-Husary</div><div class="reciter-sub">محمود خليل الحصري · Egypte</div></div>
-          <button class="reciter-play" data-preview="ar.husary"><i class="fas fa-play"></i></button>
-        </div>
-        <div class="reciter-opt" data-reciter="ar.minshawi">
-          <div class="reciter-dot"></div>
-          <div class="reciter-info"><div class="reciter-name">Mohamed Siddiq Al-Minshawi</div><div class="reciter-sub">محمد صديق المنشاوي · Egypte</div></div>
-          <button class="reciter-play" data-preview="ar.minshawi"><i class="fas fa-play"></i></button>
-        </div>
-        <div class="reciter-opt" data-reciter="ar.mahermuaiqly">
-          <div class="reciter-dot"></div>
-          <div class="reciter-info"><div class="reciter-name">Maher Al-Muaiqly</div><div class="reciter-sub">ماهر المعيقلي · Saudi-Arabië</div></div>
-          <button class="reciter-play" data-preview="ar.mahermuaiqly"><i class="fas fa-play"></i></button>
-        </div>
-        <div class="reciter-opt" data-reciter="ar.saoodshuraym">
-          <div class="reciter-dot"></div>
-          <div class="reciter-info"><div class="reciter-name">Saud Al-Shuraym</div><div class="reciter-sub">سعود الشريم · Saudi-Arabië</div></div>
-          <button class="reciter-play" data-preview="ar.saoodshuraym"><i class="fas fa-play"></i></button>
-        </div>
-      </div>
-    </div>
-
-    <!-- KAART STIJL -->
-    <div>
-      <div class="set-lbl"><i class="fas fa-th"></i><span id="setLayoutLbl">Kaart stijl</span></div>
-      <div class="style-grid">
-        <div class="style-opt active" data-style="grid"><div class="style-ico">⊞</div><div class="style-name" id="styleGridTxt">Raster</div><div class="style-sub" id="styleGridSub">Compact overzicht</div></div>
-        <div class="style-opt" data-style="list"><div class="style-ico">☰</div><div class="style-name" id="styleListTxt">Lijst</div><div class="style-sub" id="styleListSub">Breed overzicht</div></div>
-      </div>
-    </div>
-
-    <button class="set-reset" id="setReset"><i class="fas fa-undo"></i><span id="setResetTxt">Standaard instellingen herstellen</span></button>
   </div>
+
+  <button class="set-reset" id="setReset"><i class="fas fa-undo"></i><span id="setResetTxt">Standaard instellingen herstellen</span></button>
 </div>
 ```
 
   </div>
+</div>
 
-  <!-- MODAL -->
+<!-- MODAL -->
 
-  <div class="modal-ov hidden" id="modal">
-    <div class="modal-box">
-      <div class="modal-handle"></div>
-      <div class="modal-title" id="modalTitle">Bookmark verwijderen?</div>
-      <div class="modal-body" id="modalBody">Weet je zeker dat je de leespositie wilt verwijderen?</div>
-      <div class="modal-acts">
-        <button class="btn-cancel" id="btnMCancel">Annuleren</button>
-        <button class="btn-danger" id="btnMConfirm">Verwijderen</button>
-      </div>
+<div class="modal-ov hidden" id="modal">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="modalTitle">Bookmark verwijderen?</div>
+    <div class="modal-body" id="modalBody">Weet je zeker dat je de leespositie wilt verwijderen?</div>
+    <div class="modal-acts">
+      <button class="btn-cancel" id="btnMCan">Annuleren</button>
+      <button class="btn-danger" id="btnMCon">Verwijderen</button>
     </div>
   </div>
+</div>
 
-  <!-- FOOTER -->
+<!-- FOOTER -->
 
-  <footer>
-    <div class="ft-in">
-      <div class="ft-title" id="ftTitle">Vragen of opmerkingen?</div>
-      <a href="mailto:elmouchania@gmail.com" class="mail-link"><i class="fas fa-envelope"></i> elmouchania@gmail.com</a>
-      <div class="ft-copy">
-        <p id="cpTxt">© 2026 onlinequran.nl — Quran online lezen in het Arabisch met audio</p>
-        <p id="rpTxt">Antwoord binnen 24 uur op werkdagen</p>
-      </div>
+<footer>
+  <div class="ft-in">
+    <div class="ft-title" id="ftTitle">Vragen of opmerkingen?</div>
+    <a href="mailto:elmouchania@gmail.com" class="mail-link"><i class="fas fa-envelope"></i> elmouchania@gmail.com</a>
+    <div class="ft-copy">
+      <p id="cpTxt">© 2026 onlinequran.nl — Quran online lezen in het Arabisch met audio</p>
+      <p id="rpTxt">Antwoord binnen 24 uur op werkdagen</p>
     </div>
-  </footer>
+  </div>
+</footer>
 
-  <script>
-  (function() {
-    'use strict';
+<script>
+(function(){
+'use strict';
 
-    // ===== INGEBOUWDE SOERA DATA (geen API nodig voor het grid) =====
-    const SURAHS = [
-      {n:1,ar:'الفاتحة',en:'Al-Fatiha',v:7},{n:2,ar:'البقرة',en:'Al-Baqara',v:286},{n:3,ar:'آل عمران',en:'Aal-E-Imran',v:200},{n:4,ar:'النساء',en:'An-Nisa',v:176},{n:5,ar:'المائدة',en:"Al-Ma'idah",v:120},{n:6,ar:'الأنعام',en:"Al-An'am",v:165},{n:7,ar:'الأعراف',en:"Al-A'raf",v:206},{n:8,ar:'الأنفال',en:'Al-Anfal',v:75},{n:9,ar:'التوبة',en:'At-Tawbah',v:129},
-      {n:10,ar:'يونس',en:'Yunus',v:109},{n:11,ar:'هود',en:'Hud',v:123},{n:12,ar:'يوسف',en:'Yusuf',v:111},{n:13,ar:'الرعد',en:"Ar-Ra'd",v:43},{n:14,ar:'إبراهيم',en:'Ibrahim',v:52},{n:15,ar:'الحجر',en:'Al-Hijr',v:99},{n:16,ar:'النحل',en:'An-Nahl',v:128},{n:17,ar:'الإسراء',en:'Al-Isra',v:111},{n:18,ar:'الكهف',en:'Al-Kahf',v:110},{n:19,ar:'مريم',en:'Maryam',v:98},{n:20,ar:'طه',en:'Ta-Ha',v:135},
-      {n:21,ar:'الأنبياء',en:'Al-Anbiya',v:112},{n:22,ar:'الحج',en:'Al-Hajj',v:78},{n:23,ar:'المؤمنون',en:"Al-Mu'minun",v:118},{n:24,ar:'النور',en:'An-Nur',v:64},{n:25,ar:'الفرقان',en:'Al-Furqan',v:77},{n:26,ar:'الشعراء',en:"Ash-Shu'ara",v:227},{n:27,ar:'النمل',en:'An-Naml',v:93},{n:28,ar:'القصص',en:'Al-Qasas',v:88},{n:29,ar:'العنكبوت',en:'Al-Ankabut',v:69},{n:30,ar:'الروم',en:'Ar-Rum',v:60},
-      {n:31,ar:'لقمان',en:'Luqman',v:34},{n:32,ar:'السجدة',en:'As-Sajda',v:30},{n:33,ar:'الأحزاب',en:'Al-Ahzab',v:73},{n:34,ar:'سبإ',en:'Saba',v:54},{n:35,ar:'فاطر',en:'Fatir',v:45},{n:36,ar:'يس',en:'Ya-Sin',v:83},{n:37,ar:'الصافات',en:'As-Saffat',v:182},{n:38,ar:'ص',en:'Sad',v:88},{n:39,ar:'الزمر',en:'Az-Zumar',v:75},{n:40,ar:'غافر',en:'Ghafir',v:85},
-      {n:41,ar:'فصلت',en:'Fussilat',v:54},{n:42,ar:'الشورى',en:'Ash-Shura',v:53},{n:43,ar:'الزخرف',en:'Az-Zukhruf',v:89},{n:44,ar:'الدخان',en:'Ad-Dukhan',v:59},{n:45,ar:'الجاثية',en:'Al-Jathiya',v:37},{n:46,ar:'الأحقاف',en:'Al-Ahqaf',v:35},{n:47,ar:'محمد',en:'Muhammad',v:38},{n:48,ar:'الفتح',en:'Al-Fath',v:29},{n:49,ar:'الحجرات',en:'Al-Hujurat',v:18},{n:50,ar:'ق',en:'Qaf',v:45},
-      {n:51,ar:'الذاريات',en:'Adh-Dhariyat',v:60},{n:52,ar:'الطور',en:'At-Tur',v:49},{n:53,ar:'النجم',en:'An-Najm',v:62},{n:54,ar:'القمر',en:'Al-Qamar',v:55},{n:55,ar:'الرحمن',en:'Ar-Rahman',v:78},{n:56,ar:'الواقعة',en:'Al-Waqia',v:96},{n:57,ar:'الحديد',en:'Al-Hadid',v:29},{n:58,ar:'المجادلة',en:'Al-Mujadila',v:22},{n:59,ar:'الحشر',en:'Al-Hashr',v:24},{n:60,ar:'الممتحنة',en:'Al-Mumtahina',v:13},
-      {n:61,ar:'الصف',en:'As-Saff',v:14},{n:62,ar:'الجمعة',en:"Al-Jumu'a",v:11},{n:63,ar:'المنافقون',en:'Al-Munafiqun',v:11},{n:64,ar:'التغابن',en:'At-Taghabun',v:18},{n:65,ar:'الطلاق',en:'At-Talaq',v:12},{n:66,ar:'التحريم',en:'At-Tahrim',v:12},{n:67,ar:'الملك',en:'Al-Mulk',v:30},{n:68,ar:'القلم',en:'Al-Qalam',v:52},{n:69,ar:'الحاقة',en:'Al-Haqqa',v:52},{n:70,ar:'المعارج',en:"Al-Ma'arij",v:44},
-      {n:71,ar:'نوح',en:'Nuh',v:28},{n:72,ar:'الجن',en:'Al-Jinn',v:28},{n:73,ar:'المزمل',en:'Al-Muzzammil',v:20},{n:74,ar:'المدثر',en:'Al-Muddaththir',v:56},{n:75,ar:'القيامة',en:'Al-Qiyama',v:40},{n:76,ar:'الإنسان',en:'Al-Insan',v:31},{n:77,ar:'المرسلات',en:'Al-Mursalat',v:50},{n:78,ar:'النبإ',en:'An-Naba',v:40},{n:79,ar:'النازعات',en:"An-Nazi'at",v:46},{n:80,ar:'عبس',en:'Abasa',v:42},
-      {n:81,ar:'التكوير',en:'At-Takwir',v:29},{n:82,ar:'الإنفطار',en:'Al-Infitar',v:19},{n:83,ar:'المطففين',en:'Al-Mutaffifin',v:36},{n:84,ar:'الإنشقاق',en:'Al-Inshiqaq',v:25},{n:85,ar:'البروج',en:'Al-Buruj',v:22},{n:86,ar:'الطارق',en:'At-Tariq',v:17},{n:87,ar:'الأعلى',en:"Al-A'la",v:19},{n:88,ar:'الغاشية',en:'Al-Ghashiya',v:26},{n:89,ar:'الفجر',en:'Al-Fajr',v:30},{n:90,ar:'البلد',en:'Al-Balad',v:20},
-      {n:91,ar:'الشمس',en:'Ash-Shams',v:15},{n:92,ar:'الليل',en:'Al-Lail',v:21},{n:93,ar:'الضحى',en:'Ad-Duha',v:11},{n:94,ar:'الشرح',en:'Ash-Sharh',v:8},{n:95,ar:'التين',en:'At-Tin',v:8},{n:96,ar:'العلق',en:'Al-Alaq',v:19},{n:97,ar:'القدر',en:'Al-Qadr',v:5},{n:98,ar:'البينة',en:'Al-Bayyina',v:8},{n:99,ar:'الزلزلة',en:'Az-Zalzala',v:8},{n:100,ar:'العاديات',en:'Al-Adiyat',v:11},
-      {n:101,ar:'القارعة',en:'Al-Qaria',v:11},{n:102,ar:'التكاثر',en:'At-Takathur',v:8},{n:103,ar:'العصر',en:'Al-Asr',v:3},{n:104,ar:'الهمزة',en:'Al-Humaza',v:9},{n:105,ar:'الفيل',en:'Al-Fil',v:5},{n:106,ar:'قريش',en:'Quraish',v:4},{n:107,ar:'الماعون',en:"Al-Ma'un",v:7},{n:108,ar:'الكوثر',en:'Al-Kawthar',v:3},{n:109,ar:'الكافرون',en:'Al-Kafirun',v:6},{n:110,ar:'النصر',en:'An-Nasr',v:3},
-      {n:111,ar:'المسد',en:'Al-Masad',v:5},{n:112,ar:'الإخلاص',en:'Al-Ikhlas',v:4},{n:113,ar:'الفلق',en:'Al-Falaq',v:5},{n:114,ar:'الناس',en:'An-Nas',v:6}
-    ];
+/* ── DATA ── */
+const S=[
+  {n:1,ar:'الفاتحة',en:'Al-Fatiha',v:7},{n:2,ar:'البقرة',en:'Al-Baqara',v:286},{n:3,ar:'آل عمران',en:'Aal-E-Imran',v:200},{n:4,ar:'النساء',en:'An-Nisa',v:176},{n:5,ar:'المائدة',en:"Al-Ma'idah",v:120},
+  {n:6,ar:'الأنعام',en:"Al-An'am",v:165},{n:7,ar:'الأعراف',en:"Al-A'raf",v:206},{n:8,ar:'الأنفال',en:'Al-Anfal',v:75},{n:9,ar:'التوبة',en:'At-Tawbah',v:129},{n:10,ar:'يونس',en:'Yunus',v:109},
+  {n:11,ar:'هود',en:'Hud',v:123},{n:12,ar:'يوسف',en:'Yusuf',v:111},{n:13,ar:'الرعد',en:"Ar-Ra'd",v:43},{n:14,ar:'إبراهيم',en:'Ibrahim',v:52},{n:15,ar:'الحجر',en:'Al-Hijr',v:99},
+  {n:16,ar:'النحل',en:'An-Nahl',v:128},{n:17,ar:'الإسراء',en:'Al-Isra',v:111},{n:18,ar:'الكهف',en:'Al-Kahf',v:110},{n:19,ar:'مريم',en:'Maryam',v:98},{n:20,ar:'طه',en:'Ta-Ha',v:135},
+  {n:21,ar:'الأنبياء',en:'Al-Anbiya',v:112},{n:22,ar:'الحج',en:'Al-Hajj',v:78},{n:23,ar:'المؤمنون',en:"Al-Mu'minun",v:118},{n:24,ar:'النور',en:'An-Nur',v:64},{n:25,ar:'الفرقان',en:'Al-Furqan',v:77},
+  {n:26,ar:'الشعراء',en:"Ash-Shu'ara",v:227},{n:27,ar:'النمل',en:'An-Naml',v:93},{n:28,ar:'القصص',en:'Al-Qasas',v:88},{n:29,ar:'العنكبوت',en:'Al-Ankabut',v:69},{n:30,ar:'الروم',en:'Ar-Rum',v:60},
+  {n:31,ar:'لقمان',en:'Luqman',v:34},{n:32,ar:'السجدة',en:'As-Sajda',v:30},{n:33,ar:'الأحزاب',en:'Al-Ahzab',v:73},{n:34,ar:'سبإ',en:'Saba',v:54},{n:35,ar:'فاطر',en:'Fatir',v:45},
+  {n:36,ar:'يس',en:'Ya-Sin',v:83},{n:37,ar:'الصافات',en:'As-Saffat',v:182},{n:38,ar:'ص',en:'Sad',v:88},{n:39,ar:'الزمر',en:'Az-Zumar',v:75},{n:40,ar:'غافر',en:'Ghafir',v:85},
+  {n:41,ar:'فصلت',en:'Fussilat',v:54},{n:42,ar:'الشورى',en:'Ash-Shura',v:53},{n:43,ar:'الزخرف',en:'Az-Zukhruf',v:89},{n:44,ar:'الدخان',en:'Ad-Dukhan',v:59},{n:45,ar:'الجاثية',en:'Al-Jathiya',v:37},
+  {n:46,ar:'الأحقاف',en:'Al-Ahqaf',v:35},{n:47,ar:'محمد',en:'Muhammad',v:38},{n:48,ar:'الفتح',en:'Al-Fath',v:29},{n:49,ar:'الحجرات',en:'Al-Hujurat',v:18},{n:50,ar:'ق',en:'Qaf',v:45},
+  {n:51,ar:'الذاريات',en:'Adh-Dhariyat',v:60},{n:52,ar:'الطور',en:'At-Tur',v:49},{n:53,ar:'النجم',en:'An-Najm',v:62},{n:54,ar:'القمر',en:'Al-Qamar',v:55},{n:55,ar:'الرحمن',en:'Ar-Rahman',v:78},
+  {n:56,ar:'الواقعة',en:'Al-Waqia',v:96},{n:57,ar:'الحديد',en:'Al-Hadid',v:29},{n:58,ar:'المجادلة',en:'Al-Mujadila',v:22},{n:59,ar:'الحشر',en:'Al-Hashr',v:24},{n:60,ar:'الممتحنة',en:'Al-Mumtahina',v:13},
+  {n:61,ar:'الصف',en:'As-Saff',v:14},{n:62,ar:'الجمعة',en:"Al-Jumu'a",v:11},{n:63,ar:'المنافقون',en:'Al-Munafiqun',v:11},{n:64,ar:'التغابن',en:'At-Taghabun',v:18},{n:65,ar:'الطلاق',en:'At-Talaq',v:12},
+  {n:66,ar:'التحريم',en:'At-Tahrim',v:12},{n:67,ar:'الملك',en:'Al-Mulk',v:30},{n:68,ar:'القلم',en:'Al-Qalam',v:52},{n:69,ar:'الحاقة',en:'Al-Haqqa',v:52},{n:70,ar:'المعارج',en:"Al-Ma'arij",v:44},
+  {n:71,ar:'نوح',en:'Nuh',v:28},{n:72,ar:'الجن',en:'Al-Jinn',v:28},{n:73,ar:'المزمل',en:'Al-Muzzammil',v:20},{n:74,ar:'المدثر',en:'Al-Muddaththir',v:56},{n:75,ar:'القيامة',en:'Al-Qiyama',v:40},
+  {n:76,ar:'الإنسان',en:'Al-Insan',v:31},{n:77,ar:'المرسلات',en:'Al-Mursalat',v:50},{n:78,ar:'النبإ',en:'An-Naba',v:40},{n:79,ar:'النازعات',en:"An-Nazi'at",v:46},{n:80,ar:'عبس',en:'Abasa',v:42},
+  {n:81,ar:'التكوير',en:'At-Takwir',v:29},{n:82,ar:'الإنفطار',en:'Al-Infitar',v:19},{n:83,ar:'المطففين',en:'Al-Mutaffifin',v:36},{n:84,ar:'الإنشقاق',en:'Al-Inshiqaq',v:25},{n:85,ar:'البروج',en:'Al-Buruj',v:22},
+  {n:86,ar:'الطارق',en:'At-Tariq',v:17},{n:87,ar:'الأعلى',en:"Al-A'la",v:19},{n:88,ar:'الغاشية',en:'Al-Ghashiya',v:26},{n:89,ar:'الفجر',en:'Al-Fajr',v:30},{n:90,ar:'البلد',en:'Al-Balad',v:20},
+  {n:91,ar:'الشمس',en:'Ash-Shams',v:15},{n:92,ar:'الليل',en:'Al-Lail',v:21},{n:93,ar:'الضحى',en:'Ad-Duha',v:11},{n:94,ar:'الشرح',en:'Ash-Sharh',v:8},{n:95,ar:'التين',en:'At-Tin',v:8},
+  {n:96,ar:'العلق',en:'Al-Alaq',v:19},{n:97,ar:'القدر',en:'Al-Qadr',v:5},{n:98,ar:'البينة',en:'Al-Bayyina',v:8},{n:99,ar:'الزلزلة',en:'Az-Zalzala',v:8},{n:100,ar:'العاديات',en:'Al-Adiyat',v:11},
+  {n:101,ar:'القارعة',en:'Al-Qaria',v:11},{n:102,ar:'التكاثر',en:'At-Takathur',v:8},{n:103,ar:'العصر',en:'Al-Asr',v:3},{n:104,ar:'الهمزة',en:'Al-Humaza',v:9},{n:105,ar:'الفيل',en:'Al-Fil',v:5},
+  {n:106,ar:'قريش',en:'Quraish',v:4},{n:107,ar:'الماعون',en:"Al-Ma'un",v:7},{n:108,ar:'الكوثر',en:'Al-Kawthar',v:3},{n:109,ar:'الكافرون',en:'Al-Kafirun',v:6},{n:110,ar:'النصر',en:'An-Nasr',v:3},
+  {n:111,ar:'المسد',en:'Al-Masad',v:5},{n:112,ar:'الإخلاص',en:'Al-Ikhlas',v:4},{n:113,ar:'الفلق',en:'Al-Falaq',v:5},{n:114,ar:'الناس',en:'An-Nas',v:6}
+];
 
-    // ===== STAAT =====
-    let lang='nl', activeSurah=null, searching=false;
-    let reciter='ar.alafasy', cardStyle='grid', fontSizeIdx=3;
-    const FONT_SIZES  = ['1.2rem','1.45rem','1.7rem','2rem','2.4rem'];
-    const FONT_LABELS = { nl:['XS','S','Normaal','L','XL'], en:['XS','S','Normal','L','XL'], arabic:['ص','صغير','عادي','كبير','ك'] };
+/* ── STAAT ── */
+let lang='nl', act=null, srch=false, rec='ar.alafasy', sty='grid', fsz=3;
+const FSZ=['1.2rem','1.45rem','1.7rem','2rem','2.4rem'];
+const FLB={nl:['XS','S','Normaal','L','XL'],en:['XS','S','Normal','L','XL'],arabic:['ص','صغير','عادي','كبير','ك']};
 
-    // ===== VERTALINGEN =====
-    const T = {
-      nl:{ hdr:'Quran', wt:'Welkom bij onlinequran.nl', wp:"Alle 114 soera's met Arabische tekst en audio recitatie. Klik op een soera om te beginnen.", back:"Alle soera's", verses:'verzen', lrLbl:'Laatst gelezen', contBtn:'Ga verder', srchPh:'Zoek soera op naam of nummer…', srchRes:'resultaten', ld:"Soera's laden…", mTitle:'Bookmark verwijderen?', mBody:'Weet je zeker dat je de leespositie wilt verwijderen?', cancel:'Annuleren', confirm:'Verwijderen', ftTitle:'Vragen of opmerkingen?', cp:'© 2026 onlinequran.nl', rp:'Antwoord binnen 24 uur op werkdagen', vers:'Vers', versL:'vers', bmAdd:'Zet bladwijzer', bmRm:'Verwijder bladwijzer', surahs:"soera's", setTitle:'Instellingen', setColor:'Accentkleur', setAppear:'Weergave', setDark:'Donkere modus', setFont:'Arabische tekst grootte', setFontSize:'Grootte', setReciter:'Reciteur', setLayout:'Kaart stijl', styleGrid:'Raster', styleGridSub:'Compact overzicht', styleList:'Lijst', styleListSub:'Breed overzicht', setReset:'Standaard instellingen herstellen' },
-      en:{ hdr:'Quran', wt:'Welcome to onlinequran.nl', wp:'All 114 surahs with Arabic text and audio recitation. Click a surah to start.', back:'All surahs', verses:'verses', lrLbl:'Last read', contBtn:'Continue', srchPh:'Search by name or number…', srchRes:'results', ld:'Loading surahs…', mTitle:'Remove bookmark?', mBody:'Are you sure you want to remove your reading position?', cancel:'Cancel', confirm:'Remove', ftTitle:'Questions or feedback?', cp:'© 2026 onlinequran.nl', rp:'Reply within 24 hours on weekdays', vers:'Verse', versL:'verse', bmAdd:'Set bookmark', bmRm:'Remove bookmark', surahs:'surahs', setTitle:'Settings', setColor:'Accent color', setAppear:'Appearance', setDark:'Dark mode', setFont:'Arabic text size', setFontSize:'Size', setReciter:'Reciter', setLayout:'Card style', styleGrid:'Grid', styleGridSub:'Compact overview', styleList:'List', styleListSub:'Wide overview', setReset:'Reset to default settings' },
-      arabic:{ hdr:'قرآن', wt:'مرحباً بك', wp:'جميع السور الـ 114 مع النص العربي والصوت.', back:'جميع السور', verses:'آيات', lrLbl:'آخر قراءة', contBtn:'استمر', srchPh:'ابحث…', srchRes:'نتائج', ld:'جارٍ التحميل…', mTitle:'حذف العلامة؟', mBody:'هل أنت متأكد؟', cancel:'إلغاء', confirm:'حذف', ftTitle:'هل لديك أسئلة؟', cp:'© 2026 onlinequran.nl', rp:'الرد خلال 24 ساعة', vers:'آية', versL:'آية', bmAdd:'إضافة علامة', bmRm:'حذف علامة', surahs:'سورة', setTitle:'الإعدادات', setColor:'لون التمييز', setAppear:'المظهر', setDark:'الوضع المظلم', setFont:'حجم النص', setFontSize:'الحجم', setReciter:'القارئ', setLayout:'نمط البطاقة', styleGrid:'شبكة', styleGridSub:'عرض مضغوط', styleList:'قائمة', styleListSub:'عرض واسع', setReset:'إعادة الضبط' }
-    };
+/* ── VERTALINGEN ── */
+const T={
+  nl:{hdr:'Quran',wt:'Welkom bij onlinequran.nl',wp:"Alle 114 soera's met Arabische tekst en audio recitatie. Klik op een soera om te beginnen.",
+    back:"Alle soera's",verses:'verzen',lrLbl:'Laatst gelezen',cont:'Ga verder',srchPh:'Zoek soera op naam of nummer…',
+    srchRes:'resultaten',mTit:'Bookmark verwijderen?',mBod:'Weet je zeker dat je de leespositie wilt verwijderen?',
+    can:'Annuleren',conf:'Verwijderen',ftTit:'Vragen of opmerkingen?',cp:'© 2026 onlinequran.nl',
+    rp:'Antwoord binnen 24 uur op werkdagen',vers:'Vers',versL:'vers',bmA:'Zet bladwijzer',bmR:'Verwijder bladwijzer',
+    srs:"soera's",sTitle:'Instellingen',sColor:'Accentkleur',sAppear:'Weergave',sDark:'Donkere modus',
+    sFont:'Arabische tekst grootte',sFontSz:'Grootte',sRec:'Reciteur',sLayout:'Kaart stijl',
+    sGrid:'Raster',sGridSub:'Compact overzicht',sList:'Lijst',sListSub:'Breed overzicht',
+    sReset:'Standaard instellingen herstellen',recit:'Recitatie'},
+  en:{hdr:'Quran',wt:'Welcome to onlinequran.nl',wp:'All 114 surahs with Arabic text and audio recitation. Click a surah to start.',
+    back:'All surahs',verses:'verses',lrLbl:'Last read',cont:'Continue',srchPh:'Search by name or number…',
+    srchRes:'results',mTit:'Remove bookmark?',mBod:'Are you sure you want to remove your reading position?',
+    can:'Cancel',conf:'Remove',ftTit:'Questions or feedback?',cp:'© 2026 onlinequran.nl',
+    rp:'Reply within 24 hours on weekdays',vers:'Verse',versL:'verse',bmA:'Set bookmark',bmR:'Remove bookmark',
+    srs:'surahs',sTitle:'Settings',sColor:'Accent color',sAppear:'Appearance',sDark:'Dark mode',
+    sFont:'Arabic text size',sFontSz:'Size',sRec:'Reciter',sLayout:'Card style',
+    sGrid:'Grid',sGridSub:'Compact overview',sList:'List',sListSub:'Wide overview',
+    sReset:'Reset to default settings',recit:'Recitation'},
+  arabic:{hdr:'قرآن',wt:'مرحباً بك',wp:'جميع السور الـ 114 مع النص العربي والصوت.',
+    back:'جميع السور',verses:'آيات',lrLbl:'آخر قراءة',cont:'استمر',srchPh:'ابحث…',
+    srchRes:'نتائج',mTit:'حذف العلامة؟',mBod:'هل أنت متأكد؟',
+    can:'إلغاء',conf:'حذف',ftTit:'هل لديك أسئلة؟',cp:'© 2026 onlinequran.nl',
+    rp:'الرد خلال 24 ساعة',vers:'آية',versL:'آية',bmA:'إضافة علامة',bmR:'حذف علامة',
+    srs:'سورة',sTitle:'الإعدادات',sColor:'لون التمييز',sAppear:'المظهر',sDark:'الوضع المظلم',
+    sFont:'حجم النص',sFontSz:'الحجم',sRec:'القارئ',sLayout:'نمط البطاقة',
+    sGrid:'شبكة',sGridSub:'عرض مضغوط',sList:'قائمة',sListSub:'عرض واسع',
+    sReset:'إعادة الضبط',recit:'التلاوة'}
+};
 
-    // ===== HELPERS =====
-    const $ = id => document.getElementById(id);
-    const setText = (id, txt) => { const el=$(id); if(el) el.textContent=txt; };
+/* ── HELPERS ── */
+const $=id=>document.getElementById(id);
+const st=(id,v)=>{const e=$(id);if(e)e.textContent=v};
+const aurl=(r,n)=>`https://cdn.islamic.network/quran/audio-surah/128/${r}/${n}.mp3`;
 
-    function getLR() { try { const r=localStorage.getItem('lr'); return r?JSON.parse(r):null; } catch{return null;} }
-    function saveLR(id,v) { try{localStorage.setItem('lr',JSON.stringify({surahId:id,verse:v}));}catch(e){} renderLR(); if(activeSurah)reloadVerses(); }
-    function clearLR() { localStorage.removeItem('lr'); renderLR(); if(activeSurah)reloadVerses(); }
-    function renderLR() {
-      const lr=getLR(), b=$('lrBanner');
-      if(!lr){b.classList.add('hidden');return;}
-      b.classList.remove('hidden');
-      const t=T[lang], s=SURAHS[lr.surahId-1];
-      setText('lrName', lang==='arabic'?s.ar:s.en);
-      setText('lrVerse', t.versL+' '+lr.verse);
-      setText('lrLbl', t.lrLbl);
-      setText('btnContTxt', t.contBtn);
+function getLR(){try{const x=localStorage.getItem('lr');return x?JSON.parse(x):null}catch{return null}}
+function saveLR(id,v){try{localStorage.setItem('lr',JSON.stringify({surahId:id,verse:v}))}catch(e){}renderLR();if(act)reloadV()}
+function clearLR(){localStorage.removeItem('lr');renderLR();if(act)reloadV()}
+function renderLR(){
+  const lr=getLR(),b=$('lrBanner');
+  if(!lr){b.classList.add('hidden');return}
+  b.classList.remove('hidden');
+  const t=T[lang],s=S[lr.surahId-1];
+  st('lrName',lang==='arabic'?s.ar:s.en);
+  st('lrVerse',t.versL+' '+lr.verse);
+  st('lrLbl',t.lrLbl);
+  st('btnContTxt',t.cont);
+}
+
+/* ── INSTELLINGEN ── */
+function saveS(){
+  try{localStorage.setItem('qs',JSON.stringify({
+    color:document.documentElement.getAttribute('data-color')||'gold',
+    theme:document.documentElement.getAttribute('data-theme')||'',
+    fsz,rec,sty,lang
+  }))}catch(e){}
+}
+function loadS(){
+  try{
+    const x=JSON.parse(localStorage.getItem('qs')||'{}');
+    if(x.color)setColor(x.color,false);
+    if(x.theme==='dark'){document.documentElement.setAttribute('data-theme','dark');$('themeIco').className='fas fa-sun';$('setToggle').classList.add('on')}
+    if(x.fsz)setFsz(+x.fsz,false);
+    if(x.rec)setRec(x.rec,false);
+    if(x.sty)setSty(x.sty,false);
+    if(x.lang)lang=x.lang;
+  }catch(e){}
+}
+
+function setColor(c,save=true){
+  document.documentElement.setAttribute('data-color',c);
+  document.querySelectorAll('.sw').forEach(s=>s.classList.toggle('active',s.dataset.color===c));
+  if(save)saveS();
+}
+function setFsz(n,save=true){
+  fsz=n;
+  document.documentElement.style.setProperty('--qsz',FSZ[n-1]);
+  $('szSlider').value=n;
+  st('fontVal',(FLB[lang]||FLB.nl)[n-1]);
+  document.querySelectorAll('.sz-btn').forEach(b=>b.classList.toggle('active',+b.dataset.sz===n));
+  if(save)saveS();
+}
+function setRec(id,save=true){
+  rec=id;
+  document.querySelectorAll('.rec-opt').forEach(o=>o.classList.toggle('active',o.dataset.rec===id));
+  if(act){const a=$('sAudio');const p=!a.paused;a.src=aurl(id,act);a.load();if(p)a.play().catch(()=>{})}
+  if(save)saveS();
+}
+function setSty(s,save=true){
+  sty=s;
+  document.querySelectorAll('.style-opt').forEach(o=>o.classList.toggle('active',o.dataset.sty===s));
+  $('surahGrid').style.gridTemplateColumns=s==='list'?'1fr':'';
+  if(save)saveS();
+}
+
+/* ── TAAL ── */
+function applyLang(){
+  const t=T[lang];
+  st('hTitle',t.hdr);st('wTitle',t.wt);st('wText',t.wp);st('backTxt',t.back);
+  st('modalTitle',t.mTit);st('modalBody',t.mBod);st('btnMCan',t.can);st('btnMCon',t.conf);
+  st('ftTitle',t.ftTit);st('cpTxt',t.cp);st('rpTxt',t.rp);
+  st('setTitle',t.sTitle);st('setColorLbl',t.sColor);st('setAppearLbl',t.sAppear);
+  st('setThemeTxt',t.sDark);st('setFontLbl',t.sFont);st('setFontSzTxt',t.sFontSz);
+  st('setRecLbl',t.sRec);st('setLayoutLbl',t.sLayout);
+  st('styGridTxt',t.sGrid);st('styGridSub',t.sGridSub);st('styListTxt',t.sList);st('styListSub',t.sListSub);
+  st('setResetTxt',t.sReset);st('recitatieLabel',t.recit);
+  $('srchIn').placeholder=t.srchPh;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+  st('fontVal',(FLB[lang]||FLB.nl)[fsz-1]);
+  renderLR();
+}
+
+/* ── GRID ── */
+function renderGrid(list){
+  const g=$('surahGrid'),sb=$('statsBar');
+  g.innerHTML='';
+  if(!list||!list.length){
+    g.innerHTML='<div class="no-res"><i class="fas fa-search"></i>Geen soeras gevonden</div>';
+    g.classList.remove('hidden');sb.classList.add('hidden');return;
+  }
+  st('statsTxt',list.length+' '+T[lang].srs);
+  sb.classList.remove('hidden');
+  list.forEach(s=>{
+    const c=document.createElement('div');
+    c.className='scard';
+    c.innerHTML=sty==='list'
+      ?`<div class="scard-hd"><div class="scard-num">${s.n}</div><div style="flex:1;min-width:0"><div class="scard-title">${s.en}</div><div class="scard-meta"><i class="fas fa-layer-group"></i>${s.v} ${T[lang].verses}</div></div><div class="scard-ar">${s.ar}</div></div>`
+      :`<div class="scard-hd"><div class="scard-num">${s.n}</div><div class="scard-ar">${s.ar}</div></div><div class="scard-title">${s.en}</div><div class="scard-meta"><i class="fas fa-layer-group"></i>${s.v} ${T[lang].verses}</div>`;
+    c.addEventListener('click',()=>openSurah(s.n));
+    g.appendChild(c);
+  });
+  g.classList.remove('hidden');
+  $('surahGrid').style.gridTemplateColumns=sty==='list'?'1fr':'';
+}
+
+/* ── ZOEKEN ── */
+function doSearch(){
+  const q=$('srchIn').value.trim().toLowerCase(),m=$('srchMeta');
+  if(!q){srch=false;m.classList.add('hidden');renderGrid(S);return}
+  srch=true;
+  const r=S.filter(s=>(s.en||'').toLowerCase().includes(q)||(s.ar||'').includes(q)||s.n.toString()===q);
+  m.classList.remove('hidden');
+  st('srchCount',r.length+' '+T[lang].srchRes);
+  renderGrid(r);
+}
+
+/* ── VERZEN CACHE ── */
+const VC={};
+async function openSurah(id){
+  act=id;
+  ['surahGrid','heroSec','lrBanner','statsBar'].forEach(i=>$(i).classList.add('hidden'));
+  $('surahPage').classList.remove('hidden');
+  $('ldWrap').classList.remove('hidden');
+  $('vList').innerHTML='';
+  window.scrollTo({top:0,behavior:'smooth'});
+  const s=S[id-1];
+  st('sLatin',`${id}. ${s.en}`);
+  st('sArabic',s.ar);
+  st('sVerses',s.v+' '+T[lang].verses);
+  const a=$('sAudio');a.src=aurl(rec,id);a.load();
+  const lr=getLR(),badge=$('lrBadge');
+  if(lr&&lr.surahId===id){badge.classList.remove('hidden');st('lrBadgeTxt',T[lang].versL+' '+lr.verse)}
+  else{badge.classList.add('hidden')}
+  $('ldWrap').classList.remove('hidden');
+  try{
+    if(!VC[id]){
+      const d=await(await fetch(`https://api.alquran.cloud/v1/surah/${id}`)).json();
+      VC[id]=d.data.ayahs;
     }
+    renderV(id,VC[id]);
+  }catch(e){
+    $('vList').innerHTML='<div class="no-res"><i class="fas fa-exclamation-circle"></i>Verzen laden mislukt. Controleer je verbinding.</div>';
+  }finally{$('ldWrap').classList.add('hidden')}
+}
 
-    // ===== INSTELLINGEN =====
-    function saveSettings() {
-      try{ localStorage.setItem('qs',JSON.stringify({ color:document.documentElement.getAttribute('data-color')||'gold', theme:document.documentElement.getAttribute('data-theme')||'', fontSizeIdx,reciter,cardStyle,lang })); }catch(e){}
-    }
-    function loadSettings() {
-      try{
-        const s=JSON.parse(localStorage.getItem('qs')||'{}');
-        if(s.color) applyColor(s.color,false);
-        if(s.theme==='dark'){ document.documentElement.setAttribute('data-theme','dark'); $('themeIco').className='fas fa-sun'; $('setThemeToggle').classList.add('on'); }
-        if(s.fontSizeIdx) applyFontSize(parseInt(s.fontSizeIdx),false);
-        if(s.reciter) applyReciter(s.reciter,false);
-        if(s.cardStyle) applyCardStyle(s.cardStyle,false);
-        if(s.lang) lang=s.lang;
-      }catch(e){}
-    }
-
-    function applyColor(c,save=true) {
-      document.documentElement.setAttribute('data-color',c);
-      document.querySelectorAll('.color-swatch').forEach(sw=>sw.classList.toggle('active',sw.dataset.color===c));
-      if(save) saveSettings();
-    }
-    function applyFontSize(idx,save=true) {
-      fontSizeIdx=idx;
-      document.documentElement.style.setProperty('--quran-size',FONT_SIZES[idx-1]);
-      $('fontSlider').value=idx;
-      setText('fontSizeVal',(FONT_LABELS[lang]||FONT_LABELS.nl)[idx-1]);
-      document.querySelectorAll('.size-preset').forEach(b=>b.classList.toggle('active',parseInt(b.dataset.size)===idx));
-      if(save) saveSettings();
-    }
-    function applyReciter(id,save=true) {
-      reciter=id;
-      document.querySelectorAll('.reciter-opt').forEach(o=>o.classList.toggle('active',o.dataset.reciter===id));
-      if(activeSurah) $('sAudio').src=`https://cdn.islamic.network/quran/audio-surah/128/${reciter}/${activeSurah}.mp3`;
-      if(save) saveSettings();
-    }
-    function applyCardStyle(style,save=true) {
-      cardStyle=style;
-      document.querySelectorAll('.style-opt').forEach(o=>o.classList.toggle('active',o.dataset.style===style));
-      $('surahGrid').style.gridTemplateColumns=style==='list'?'1fr':'';
-      if(save) saveSettings();
-    }
-
-    // ===== TAAL =====
-    function applyLang() {
-      const t=T[lang];
-      setText('headerTitle',t.hdr); setText('welcomeTitle',t.wt); setText('welcomeText',t.wp);
-      setText('backTxt',t.back); setText('ldTxt',t.ld);
-      setText('modalTitle',t.mTitle); setText('modalBody',t.mBody);
-      setText('btnMCancel',t.cancel); setText('btnMConfirm',t.confirm);
-      setText('ftTitle',t.ftTitle); setText('cpTxt',t.cp); setText('rpTxt',t.rp);
-      setText('setTitleTxt',t.setTitle); setText('setColorLbl',t.setColor);
-      setText('setAppearLbl',t.setAppear); setText('setThemeTxt',t.setDark);
-      setText('setFontLbl',t.setFont); setText('setFontSizeTxt',t.setFontSize);
-      setText('setReciterLbl',t.setReciter); setText('setLayoutLbl',t.setLayout);
-      setText('styleGridTxt',t.styleGrid); setText('styleGridSub',t.styleGridSub);
-      setText('styleListTxt',t.styleList); setText('styleListSub',t.styleListSub);
-      setText('setResetTxt',t.setReset);
-      $('srchIn').placeholder=t.srchPh;
-      document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
-      setText('fontSizeVal',(FONT_LABELS[lang]||FONT_LABELS.nl)[fontSizeIdx-1]);
-      renderLR();
-    }
-
-    // ===== GRID (gebruikt ingebouwde data) =====
-    let filteredSurahs = SURAHS.slice();
-    function renderGrid(list) {
-      const grid=$('surahGrid'), stats=$('statsBar');
-      grid.innerHTML='';
-      if(!list||!list.length) {
-        grid.innerHTML='<div class="no-res"><i class="fas fa-search"></i>Geen soera\'s gevonden</div>';
-        grid.classList.remove('hidden'); stats.classList.add('hidden'); return;
-      }
-      setText('statsTxt',list.length+' '+T[lang].surahs);
-      stats.classList.remove('hidden');
-      list.forEach(s=>{
-        const card=document.createElement('div');
-        card.className='scard';
-        card.innerHTML = cardStyle==='list'
-          ? `<div class="scard-hd"><div class="scard-num">${s.n}</div><div style="flex:1;min-width:0"><div class="scard-title">${s.en}</div><div class="scard-meta"><i class="fas fa-layer-group"></i>${s.v} ${T[lang].verses}</div></div><div class="scard-ar">${s.ar}</div></div>`
-          : `<div class="scard-hd"><div class="scard-num">${s.n}</div><div class="scard-ar">${s.ar}</div></div><div class="scard-title">${s.en}</div><div class="scard-meta"><i class="fas fa-layer-group"></i>${s.v} ${T[lang].verses}</div>`;
-        card.addEventListener('click',()=>openSurah(s.n));
-        grid.appendChild(card);
-      });
-      grid.classList.remove('hidden');
-      $('surahGrid').style.gridTemplateColumns=cardStyle==='list'?'1fr':'';
-    }
-
-    // ===== ZOEKEN =====
-    function doSearch() {
-      const term=$('srchIn').value.trim().toLowerCase(), meta=$('srchMeta');
-      if(!term){ searching=false; meta.classList.add('hidden'); renderGrid(SURAHS); return; }
-      searching=true;
-      const res=SURAHS.filter(s=>(s.en||'').toLowerCase().includes(term)||(s.ar||'').includes(term)||s.n.toString()===term);
-      meta.classList.remove('hidden');
-      setText('srchCount',res.length+' '+T[lang].srchRes);
-      renderGrid(res);
-    }
-
-    // ===== SOERA OPENEN (haalt verzen op via API) =====
-    let versesCache = {};
-    async function openSurah(id) {
-      activeSurah=id;
-      ['surahGrid','heroSec','lrBanner','statsBar'].forEach(i=>$(i).classList.add('hidden'));
-      $('surahPage').classList.remove('hidden');
-      $('ldWrap').classList.remove('hidden');
-      $('vList').innerHTML='';
-      window.scrollTo({top:0,behavior:'smooth'});
-      const s=SURAHS[id-1];
-      setText('sLatin',`${id}. ${s.en}`);
-      setText('sArabic',s.ar);
-      setText('sVerses',s.v+' '+T[lang].verses);
-      $('sAudio').src=`https://cdn.islamic.network/quran/audio-surah/128/${reciter}/${id}.mp3`;
-      const lr=getLR();
-      const badge=$('lrBadgeInline');
-      if(lr&&lr.surahId===id){badge.classList.remove('hidden');setText('lrBadgeTxt',T[lang].versL+' '+lr.verse);}
-      else{badge.classList.add('hidden');}
-      try {
-        let ayahs;
-        if(versesCache[id]) {
-          ayahs=versesCache[id];
-        } else {
-          const resp=await fetch(`https://api.alquran.cloud/v1/surah/${id}`);
-          const data=await resp.json();
-          ayahs=data.data.ayahs;
-          versesCache[id]=ayahs;
-        }
-        renderVerses(id, ayahs);
-      } catch(e) {
-        $('vList').innerHTML='<div class="no-res"><i class="fas fa-exclamation-circle"></i>Kon verzen niet laden. Controleer je verbinding.</div>';
-      } finally { $('ldWrap').classList.add('hidden'); }
-    }
-
-    function renderVerses(id, ayahs) {
-      const vList=$('vList'), lr=getLR();
-      vList.innerHTML='';
-      ayahs.forEach(aya=>{
-        const isLR=lr&&lr.surahId===id&&lr.verse===aya.numberInSurah;
-        const vc=document.createElement('div');
-        vc.className='vcard'+(isLR?' lr':'');
-        vc.dataset.v=aya.numberInSurah;
-        vc.innerHTML=`<div class="vcard-ar">${aya.text}</div><div class="vcard-ft"><div class="vnum"><span class="vnum-badge">${aya.numberInSurah}</span>${T[lang].vers} ${aya.numberInSurah}</div><div class="vhint"><i class="fas fa-bookmark"></i>${isLR?T[lang].bmRm:T[lang].bmAdd}</div></div>`;
-        vc.addEventListener('click',()=>{
-          const cur=getLR();
-          if(cur&&cur.surahId===id&&cur.verse===aya.numberInSurah) clearLR(); else saveLR(id,aya.numberInSurah);
-        });
-        vList.appendChild(vc);
-      });
-      if(lr&&lr.surahId===id){
-        setTimeout(()=>{
-          const tgt=vList.querySelector(`[data-v="${lr.verse}"]`);
-          if(tgt){tgt.scrollIntoView({behavior:'smooth',block:'center'});tgt.classList.add('flash');setTimeout(()=>tgt.classList.remove('flash'),2000);}
-        },300);
-      }
-    }
-
-    function reloadVerses() {
-      if(!activeSurah) return;
-      const cached=versesCache[activeSurah];
-      if(cached) renderVerses(activeSurah, cached);
-    }
-
-    // ===== TERUG =====
-    function goBack() {
-      activeSurah=null;
-      $('surahPage').classList.add('hidden');
-      ['heroSec','surahGrid','statsBar'].forEach(i=>$(i).classList.remove('hidden'));
-      renderLR();
-      if(searching&&$('srchIn').value.trim()) doSearch(); else renderGrid(SURAHS);
-    }
-
-    // ===== SETTINGS =====
-    function openSettings()  { $('settingsOv').classList.add('open');    $('settingsBtn').classList.add('active-set');    document.body.style.overflow='hidden'; }
-    function closeSettings() { $('settingsOv').classList.remove('open'); $('settingsBtn').classList.remove('active-set'); document.body.style.overflow=''; stopPreview(); }
-
-    let currentPlayBtn=null;
-    function stopPreview() {
-      const pa=$('previewAudio');
-      if(pa){pa.pause();pa.src='';}
-      if(currentPlayBtn){currentPlayBtn.innerHTML='<i class="fas fa-play"></i>';currentPlayBtn.classList.remove('playing');currentPlayBtn=null;}
-    }
-
-    // ===== EVENTS =====
-    $('backBtn').addEventListener('click',goBack);
-
-    $('themeBtn').addEventListener('click',()=>{
-      const dark=document.documentElement.getAttribute('data-theme')==='dark';
-      document.documentElement.setAttribute('data-theme',dark?'':'dark');
-      $('themeIco').className=dark?'fas fa-moon':'fas fa-sun';
-      $('setThemeToggle').classList.toggle('on',!dark);
-      saveSettings();
+function renderV(id,ayahs){
+  const vl=$('vList'),lr=getLR();
+  vl.innerHTML='';
+  ayahs.forEach(a=>{
+    const isLR=lr&&lr.surahId===id&&lr.verse===a.numberInSurah;
+    const d=document.createElement('div');
+    d.className='vcard'+(isLR?' lr':'');
+    d.dataset.v=a.numberInSurah;
+    d.innerHTML=`<div class="vcard-ar">${a.text}</div><div class="vcard-ft"><div class="vnum"><span class="vnum-badge">${a.numberInSurah}</span>${T[lang].vers} ${a.numberInSurah}</div><div class="vhint"><i class="fas fa-bookmark"></i>${isLR?T[lang].bmR:T[lang].bmA}</div></div>`;
+    d.addEventListener('click',()=>{
+      const cur=getLR();
+      if(cur&&cur.surahId===id&&cur.verse===a.numberInSurah)clearLR();else saveLR(id,a.numberInSurah);
     });
+    vl.appendChild(d);
+  });
+  if(lr&&lr.surahId===id){
+    setTimeout(()=>{
+      const tgt=vl.querySelector(`[data-v="${lr.verse}"]`);
+      if(tgt){tgt.scrollIntoView({behavior:'smooth',block:'center'});tgt.classList.add('flash');setTimeout(()=>tgt.classList.remove('flash'),2000)}
+    },300);
+  }
+}
+function reloadV(){if(act&&VC[act])renderV(act,VC[act])}
 
-    document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>{
-      lang=b.dataset.lang; applyLang(); saveSettings();
-      if(activeSurah){ setText('sVerses',SURAHS[activeSurah-1].v+' '+T[lang].verses); reloadVerses(); }
-      else if(searching&&$('srchIn').value.trim()) doSearch(); else renderGrid(SURAHS);
-    }));
+/* ── TERUG ── */
+function goBack(){
+  act=null;
+  $('surahPage').classList.add('hidden');
+  ['heroSec','surahGrid','statsBar'].forEach(i=>$(i).classList.remove('hidden'));
+  renderLR();
+  if(srch&&$('srchIn').value.trim())doSearch();else renderGrid(S);
+}
 
-    $('srchIn').addEventListener('input',doSearch);
-    $('srchBtn').addEventListener('click',doSearch);
-    $('srchIn').addEventListener('keypress',e=>{if(e.key==='Enter')doSearch();});
-    $('btnClr').addEventListener('click',()=>{$('srchIn').value='';doSearch();});
+/* ── SETTINGS OPEN/CLOSE ── */
+function openSet(){$('setOv').classList.add('open');$('setBtn').classList.add('on');document.body.style.overflow='hidden'}
+function closeSet(){$('setOv').classList.remove('open');$('setBtn').classList.remove('on');document.body.style.overflow='';stopPrev()}
 
-    $('btnCont').addEventListener('click',()=>{const lr=getLR();if(lr)openSurah(lr.surahId);});
-    $('lrBanner').addEventListener('click',e=>{if(!e.target.closest('#btnTrash')&&!e.target.closest('#btnCont')){const lr=getLR();if(lr)openSurah(lr.surahId);}});
-    $('btnTrash').addEventListener('click',e=>{e.stopPropagation();$('modal').classList.remove('hidden');});
+/* ── PREVIEW AUDIO ── */
+let curPBtn=null;
+function stopPrev(){
+  const pa=$('prevAudio');if(pa){pa.pause();pa.src=''}
+  if(curPBtn){curPBtn.innerHTML='<i class="fas fa-play"></i>';curPBtn.classList.remove('playing');curPBtn=null}
+}
 
-    $('btnMCancel').addEventListener('click',()=>$('modal').classList.add('hidden'));
-    $('btnMConfirm').addEventListener('click',()=>{clearLR();$('modal').classList.add('hidden');});
-    $('modal').addEventListener('click',function(e){if(e.target===this)this.classList.add('hidden');});
+/* ── EVENTS ── */
+$('backBtn').addEventListener('click',goBack);
 
-    $('settingsBtn').addEventListener('click',openSettings);
-    $('setClose').addEventListener('click',closeSettings);
-    $('settingsOv').addEventListener('click',e=>{if(e.target===$('settingsOv'))closeSettings();});
+$('themeBtn').addEventListener('click',()=>{
+  const dk=document.documentElement.getAttribute('data-theme')==='dark';
+  document.documentElement.setAttribute('data-theme',dk?'':'dark');
+  $('themeIco').className=dk?'fas fa-moon':'fas fa-sun';
+  $('setToggle').classList.toggle('on',!dk);
+  saveS();
+});
 
-    document.querySelectorAll('.color-swatch').forEach(sw=>sw.addEventListener('click',()=>applyColor(sw.dataset.color)));
+document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>{
+  lang=b.dataset.lang;applyLang();saveS();
+  if(act){st('sVerses',S[act-1].v+' '+T[lang].verses);reloadV()}
+  else if(srch&&$('srchIn').value.trim())doSearch();else renderGrid(S);
+}));
 
-    $('setThemeToggle').addEventListener('click',()=>{
-      const dark=document.documentElement.getAttribute('data-theme')==='dark';
-      document.documentElement.setAttribute('data-theme',dark?'':'dark');
-      $('themeIco').className=dark?'fas fa-moon':'fas fa-sun';
-      $('setThemeToggle').classList.toggle('on',!dark);
-      saveSettings();
-    });
+$('srchIn').addEventListener('input',doSearch);
+$('srchBtn').addEventListener('click',doSearch);
+$('srchIn').addEventListener('keypress',e=>{if(e.key==='Enter')doSearch()});
+$('btnClr').addEventListener('click',()=>{$('srchIn').value='';doSearch()});
 
-    $('fontSlider').addEventListener('input',e=>applyFontSize(parseInt(e.target.value)));
-    document.querySelectorAll('.size-preset').forEach(b=>b.addEventListener('click',()=>applyFontSize(parseInt(b.dataset.size))));
+$('btnCont').addEventListener('click',()=>{const lr=getLR();if(lr)openSurah(lr.surahId)});
+$('lrBanner').addEventListener('click',e=>{if(!e.target.closest('#btnTrash')&&!e.target.closest('#btnCont')){const lr=getLR();if(lr)openSurah(lr.surahId)}});
+$('btnTrash').addEventListener('click',e=>{e.stopPropagation();$('modal').classList.remove('hidden')});
 
-    document.querySelectorAll('.reciter-opt').forEach(o=>o.addEventListener('click',e=>{
-      if(!e.target.closest('.reciter-play')) applyReciter(o.dataset.reciter);
-    }));
+$('btnMCan').addEventListener('click',()=>$('modal').classList.add('hidden'));
+$('btnMCon').addEventListener('click',()=>{clearLR();$('modal').classList.add('hidden')});
+$('modal').addEventListener('click',function(e){if(e.target===this)this.classList.add('hidden')});
 
-    document.querySelectorAll('.reciter-play').forEach(btn=>btn.addEventListener('click',e=>{
-      e.stopPropagation();
-      const pa=$('previewAudio'), url=`https://cdn.islamic.network/quran/audio-surah/128/${btn.dataset.preview}/1.mp3`;
-      if(currentPlayBtn===btn&&!pa.paused){stopPreview();}
-      else{stopPreview();pa.src=url;pa.play().catch(()=>{});btn.innerHTML='<i class="fas fa-pause"></i>';btn.classList.add('playing');currentPlayBtn=btn;}
-    }));
-    $('previewAudio').addEventListener('ended',stopPreview);
+$('setBtn').addEventListener('click',openSet);
+$('setClose').addEventListener('click',closeSet);
+$('setOv').addEventListener('click',e=>{if(e.target===$('setOv'))closeSet()});
 
-    document.querySelectorAll('.style-opt').forEach(o=>o.addEventListener('click',()=>{
-      applyCardStyle(o.dataset.style); renderGrid(searching&&$('srchIn').value.trim()?SURAHS.filter(s=>(s.en||'').toLowerCase().includes($('srchIn').value.trim().toLowerCase())||(s.ar||'').includes($('srchIn').value.trim())||s.n.toString()===$('srchIn').value.trim()):SURAHS);
-    }));
+document.querySelectorAll('.sw').forEach(s=>s.addEventListener('click',()=>setColor(s.dataset.color)));
 
-    $('setReset').addEventListener('click',()=>{
-      stopPreview();
-      applyColor('gold'); applyFontSize(3); applyReciter('ar.alafasy'); applyCardStyle('grid');
-      document.documentElement.setAttribute('data-theme','');
-      $('themeIco').className='fas fa-moon'; $('setThemeToggle').classList.remove('on');
-      lang='nl'; applyLang(); renderGrid(SURAHS);
-      localStorage.removeItem('qs');
-    });
+$('setToggle').addEventListener('click',()=>{
+  const dk=document.documentElement.getAttribute('data-theme')==='dark';
+  document.documentElement.setAttribute('data-theme',dk?'':'dark');
+  $('themeIco').className=dk?'fas fa-moon':'fas fa-sun';
+  $('setToggle').classList.toggle('on',!dk);
+  saveS();
+});
 
-    // ===== INIT (geen API nodig voor initieel laden) =====
-    loadSettings();
-    applyLang();
-    // Toon grid direct met ingebouwde data
-    $('ldWrap').classList.add('hidden');
-    renderGrid(SURAHS);
+$('szSlider').addEventListener('input',e=>setFsz(+e.target.value));
+document.querySelectorAll('.sz-btn').forEach(b=>b.addEventListener('click',()=>setFsz(+b.dataset.sz)));
 
-  })();
-  </script>
+document.querySelectorAll('.rec-opt').forEach(o=>o.addEventListener('click',e=>{
+  if(!e.target.closest('.rec-play'))setRec(o.dataset.rec);
+}));
+
+document.querySelectorAll('.rec-play').forEach(btn=>btn.addEventListener('click',e=>{
+  e.stopPropagation();
+  const pa=$('prevAudio'),url=aurl(btn.dataset.prev,1);
+  if(curPBtn===btn&&!pa.paused){stopPrev()}
+  else{stopPrev();pa.src=url;pa.play().catch(()=>{});btn.innerHTML='<i class="fas fa-pause"></i>';btn.classList.add('playing');curPBtn=btn}
+}));
+$('prevAudio').addEventListener('ended',stopPrev);
+
+document.querySelectorAll('.style-opt').forEach(o=>o.addEventListener('click',()=>{
+  setSty(o.dataset.sty);
+  if(srch&&$('srchIn').value.trim())doSearch();else renderGrid(S);
+}));
+
+$('setReset').addEventListener('click',()=>{
+  stopPrev();
+  setColor('gold');setFsz(3);setRec('ar.alafasy');setSty('grid');
+  document.documentElement.setAttribute('data-theme','');
+  $('themeIco').className='fas fa-moon';$('setToggle').classList.remove('on');
+  lang='nl';applyLang();renderGrid(S);
+  localStorage.removeItem('qs');
+});
+
+/* ── INIT ── */
+loadS();
+applyLang();
+$('ldWrap').classList.add('hidden');
+renderGrid(S);
+
+})();
+</script>
 
 </body>
 </html>
