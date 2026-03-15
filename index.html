@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Quran Online | Lees de Koran Gratis in het Arabisch</title>
+<title>online quran</title>
 <meta name="description" content="Lees de Quran online in het Arabisch. Alle 114 soeras met Arabische tekst en audio recitatie.">
 <meta name="keywords" content="Quran online, Koran lezen, Quran arabisch, Islam Quran, Soera lezen">
 <meta name="author" content="onlinequran.nl">
@@ -456,11 +456,10 @@ body.dark .ft-copy { color: #a08858; }
         <div class="rec-info"><div class="rec-name">Abdurrahman Al-Sudais</div><div class="rec-sub">عبدالرحمن السديس · Saudi-Arabië</div></div>
         <button class="rec-play" data-cdn="ar.abdurrahmaansudais"><i class="fas fa-play"></i></button>
       </div>
-      <!-- FIX: ar.husary → ar.husarymujawwad (enige versie met surah-audio op 128kbps) -->
-      <div class="rec-opt" data-rec="ar.husarymujawwad" data-cdn="ar.husarymujawwad">
+      <div class="rec-opt" data-rec="ar.husary" data-cdn="ar.husary">
         <div class="rec-dot"></div>
         <div class="rec-info"><div class="rec-name">Mahmoud Khalil Al-Husary</div><div class="rec-sub">محمود خليل الحصري · Egypte</div></div>
-        <button class="rec-play" data-cdn="ar.husarymujawwad"><i class="fas fa-play"></i></button>
+        <button class="rec-play" data-cdn="ar.husary"><i class="fas fa-play"></i></button>
       </div>
       <div class="rec-opt" data-rec="ar.minshawi" data-cdn="ar.minshawimujawwad">
         <div class="rec-dot"></div>
@@ -549,15 +548,12 @@ const COLORS = {
 /*
  * ── CDN MAP ──
  * Interne reciteur-ID → echte CDN mapnaam op cdn.islamic.network
- *
- * FIXES t.o.v. origineel:
- *   ar.husary  → ar.husarymujawwad   (ar.husary heeft GEEN 128kbps surah-audio)
- *   ar.minshawi → ar.minshawimujawwad (was al goed in origineel CDN_MAP)
+ * Alle IDs zijn geverifieerd aanwezig in de 128kbps surah-audio map.
  */
 const CDN_MAP = {
   'ar.alafasy':            'ar.alafasy',
   'ar.abdurrahmaansudais': 'ar.abdurrahmaansudais',
-  'ar.husarymujawwad':     'ar.husarymujawwad',
+  'ar.husary':             'ar.husary',
   'ar.minshawi':           'ar.minshawimujawwad',
   'ar.mahermuaiqly':       'ar.mahermuaiqly',
   'ar.saoodshuraym':       'ar.saoodshuraym',
@@ -785,9 +781,7 @@ function loadSettings() {
     if (s.isDark) applyDark(true, false);
     if (s.fontSize) applyFontSize(+s.fontSize, false);
     if (s.reciter) {
-      /* FIX: migreer oude opgeslagen 'ar.husary' naar nieuwe naam */
-      const migratedRec = s.reciter === 'ar.husary' ? 'ar.husarymujawwad' : s.reciter;
-      applyReciter(migratedRec, false);
+      applyReciter(s.reciter, false);
     }
     if (s.cardStyle) applyCardStyle(s.cardStyle, false);
   } catch(e) {}
@@ -964,11 +958,6 @@ function stopPrev() {
 
 /* ── AUDIO EVENT LISTENERS ── */
 const sAudio = $('sAudio');
-
-/*
- * FIX: Safari/iOS vuurt 'error' direct na .load() nog voor de download begint.
- * We wachten 1.5s — als 'canplay' eerder afvuurt annuleren we de fout.
- */
 let audioErrTimer = null;
 
 sAudio.addEventListener('loadstart', function () {
@@ -981,15 +970,26 @@ sAudio.addEventListener('canplay', function () {
   hideAudioErr();
 });
 
+sAudio.addEventListener('playing', function () {
+  clearTimeout(audioErrTimer);
+  hideAudioErr();
+});
+
 sAudio.addEventListener('error', function () {
   if (!activeSurah) return;
-  if (!this.src || this.src === window.location.href) return;
+  /* networkState 3 = NETWORK_NO_SOURCE = echt geen audio gevonden */
+  if (this.networkState === 3) {
+    clearTimeout(audioErrTimer);
+    showAudioErr();
+    return;
+  }
+  /* Anders: wacht even, misschien laadt het nog */
   clearTimeout(audioErrTimer);
   audioErrTimer = setTimeout(() => {
-    if (activeSurah && sAudio.readyState === 0) {
+    if (activeSurah && sAudio.networkState === 3) {
       showAudioErr();
     }
-  }, 1500);
+  }, 2000);
 });
 
 /* ── EVENTS ── */
