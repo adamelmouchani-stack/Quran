@@ -751,12 +751,12 @@ function applyReciter(id, save = true) {
 function showAudioErr() {
   const err = $('audioErr'), aud = $('sAudio');
   if (err) { err.classList.remove('hidden'); txt('audioErrTxt', T[lang].audioErr); }
-  if (aud) aud.classList.add('hidden');
+  if (aud) { aud.style.display = 'none'; }
 }
 function hideAudioErr() {
   const err = $('audioErr'), aud = $('sAudio');
   if (err) err.classList.add('hidden');
-  if (aud) aud.classList.remove('hidden');
+  if (aud) { aud.style.display = ''; }
 }
 
 /* ── KAART STIJL ── */
@@ -965,15 +965,31 @@ function stopPrev() {
 /* ── AUDIO EVENT LISTENERS ── */
 const sAudio = $('sAudio');
 
-sAudio.addEventListener('error', function () {
-  /* Alleen fout tonen als er een soera open is én er een src was */
-  if (activeSurah && this.src && this.src !== window.location.href) {
-    showAudioErr();
-  }
+/*
+ * FIX: Safari/iOS vuurt 'error' direct na .load() nog voor de download begint.
+ * We wachten 1.5s — als 'canplay' eerder afvuurt annuleren we de fout.
+ */
+let audioErrTimer = null;
+
+sAudio.addEventListener('loadstart', function () {
+  clearTimeout(audioErrTimer);
+  hideAudioErr();
 });
 
 sAudio.addEventListener('canplay', function () {
+  clearTimeout(audioErrTimer);
   hideAudioErr();
+});
+
+sAudio.addEventListener('error', function () {
+  if (!activeSurah) return;
+  if (!this.src || this.src === window.location.href) return;
+  clearTimeout(audioErrTimer);
+  audioErrTimer = setTimeout(() => {
+    if (activeSurah && sAudio.readyState === 0) {
+      showAudioErr();
+    }
+  }, 1500);
 });
 
 /* ── EVENTS ── */
