@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>online quran</title>
+<title>Quran Online | Lees de Koran Gratis in het Arabisch</title>
 <meta name="description" content="Lees de Quran online in het Arabisch. Alle 114 soeras met Arabische tekst en audio recitatie.">
 <meta name="keywords" content="Quran online, Koran lezen, Quran arabisch, Islam Quran, Soera lezen">
 <meta name="author" content="onlinequran.nl">
@@ -648,10 +648,16 @@ const T = {
 const $   = id => document.getElementById(id);
 const txt = (id, v) => { const e = $(id); if (e) e.textContent = v; };
 
-/* CDN URL ophalen */
-function aurl(recId, surahNum) {
+/* CDN URLs ophalen - geeft array terug: [128kbps, 64kbps] */
+function aurls(recId, surahNum) {
   const cdnId = CDN_MAP[recId] || recId;
-  return `https://cdn.islamic.network/quran/audio-surah/128/${cdnId}/${surahNum}.mp3`;
+  return [
+    `https://cdn.islamic.network/quran/audio-surah/128/${cdnId}/${surahNum}.mp3`,
+    `https://cdn.islamic.network/quran/audio-surah/64/${cdnId}/${surahNum}.mp3`,
+  ];
+}
+function aurl(recId, surahNum) {
+  return aurls(recId, surahNum)[0];
 }
 
 /* ── KLEUR TOEPASSEN ── */
@@ -735,7 +741,8 @@ function applyReciter(id, save = true) {
   });
   if (activeSurah) {
     const a = $('sAudio'), playing = !a.paused;
-    a.src = aurl(id, activeSurah);
+    const [url128r, url64r] = aurls(id, activeSurah);
+    a.innerHTML = `<source src="${url128r}" type="audio/mpeg"><source src="${url64r}" type="audio/mpeg">`;
     a.load();
     hideAudioErr();
     if (playing) a.play().catch(() => {});
@@ -744,11 +751,7 @@ function applyReciter(id, save = true) {
 }
 
 /* ── AUDIO FOUT ── */
-function showAudioErr() {
-  const err = $('audioErr'), aud = $('sAudio');
-  if (err) { err.classList.remove('hidden'); txt('audioErrTxt', T[lang].audioErr); }
-  if (aud) { aud.style.display = 'none'; }
-}
+function showAudioErr() { /* uitgeschakeld - altijd player tonen */ }
 function hideAudioErr() {
   const err = $('audioErr'), aud = $('sAudio');
   if (err) err.classList.add('hidden');
@@ -879,10 +882,11 @@ async function openSurah(id) {
   txt('sVerses', s.v + ' ' + T[lang].verses);
   document.querySelectorAll('.shdr').forEach(el => el.style.background = `linear-gradient(135deg,${c1},${c2})`);
 
-  /* Audio instellen */
+  /* Audio instellen met fallback naar 64kbps */
   const a = $('sAudio');
   hideAudioErr();
-  a.src = aurl(reciter, id);
+  const [url128, url64] = aurls(reciter, id);
+  a.innerHTML = `<source src="${url128}" type="audio/mpeg"><source src="${url64}" type="audio/mpeg">`;
   a.load();
 
   const lr = getLR(), badge = $('lrBadge');
