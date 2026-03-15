@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Quran Online | Lees de Koran Gratis in het Arabisch</title>
+<title>online quran</title>
 <meta name="description" content="Lees de Quran online in het Arabisch. Alle 114 soeras met Arabische tekst en audio recitatie.">
 <meta name="keywords" content="Quran online, Koran lezen, Quran arabisch, Islam Quran, Soera lezen">
 <meta name="author" content="onlinequran.nl">
@@ -741,8 +741,7 @@ function applyReciter(id, save = true) {
   });
   if (activeSurah) {
     const a = $('sAudio'), playing = !a.paused;
-    const [url128r, url64r] = aurls(id, activeSurah);
-    a.innerHTML = `<source src="${url128r}" type="audio/mpeg"><source src="${url64r}" type="audio/mpeg">`;
+    a.src = aurl(id, activeSurah);
     a.load();
     hideAudioErr();
     if (playing) a.play().catch(() => {});
@@ -882,11 +881,10 @@ async function openSurah(id) {
   txt('sVerses', s.v + ' ' + T[lang].verses);
   document.querySelectorAll('.shdr').forEach(el => el.style.background = `linear-gradient(135deg,${c1},${c2})`);
 
-  /* Audio instellen met fallback naar 64kbps */
+  /* Audio instellen */
   const a = $('sAudio');
   hideAudioErr();
-  const [url128, url64] = aurls(reciter, id);
-  a.innerHTML = `<source src="${url128}" type="audio/mpeg"><source src="${url64}" type="audio/mpeg">`;
+  a.src = aurl(reciter, id);
   a.load();
 
   const lr = getLR(), badge = $('lrBadge');
@@ -962,38 +960,16 @@ function stopPrev() {
 
 /* ── AUDIO EVENT LISTENERS ── */
 const sAudio = $('sAudio');
-let audioErrTimer = null;
 
-sAudio.addEventListener('loadstart', function () {
-  clearTimeout(audioErrTimer);
-  hideAudioErr();
-});
-
-sAudio.addEventListener('canplay', function () {
-  clearTimeout(audioErrTimer);
-  hideAudioErr();
-});
-
-sAudio.addEventListener('playing', function () {
-  clearTimeout(audioErrTimer);
-  hideAudioErr();
-});
-
+/* Automatisch terugvallen op 64kbps als 128kbps mislukt */
 sAudio.addEventListener('error', function () {
-  if (!activeSurah) return;
-  /* networkState 3 = NETWORK_NO_SOURCE = echt geen audio gevonden */
-  if (this.networkState === 3) {
-    clearTimeout(audioErrTimer);
-    showAudioErr();
-    return;
+  if (!activeSurah || !this.src) return;
+  if (this.src.includes('/128/')) {
+    /* Probeer 64kbps */
+    const fallback = this.src.replace('/128/', '/64/');
+    this.src = fallback;
+    this.load();
   }
-  /* Anders: wacht even, misschien laadt het nog */
-  clearTimeout(audioErrTimer);
-  audioErrTimer = setTimeout(() => {
-    if (activeSurah && sAudio.networkState === 3) {
-      showAudioErr();
-    }
-  }, 2000);
 });
 
 /* ── EVENTS ── */
@@ -1047,6 +1023,13 @@ document.querySelectorAll('.rec-play').forEach(btn => btn.addEventListener('clic
   else { stopPrev(); pa.src = url; pa.play().catch(() => {}); btn.innerHTML = '<i class="fas fa-pause"></i>'; btn.classList.add('playing'); curPBtn = btn; }
 }));
 $('prevAudio').addEventListener('ended', stopPrev);
+$('prevAudio').addEventListener('error', function () {
+  if (this.src && this.src.includes('/128/')) {
+    const fallback = this.src.replace('/128/', '/64/');
+    this.src = fallback;
+    this.play().catch(() => {});
+  }
+});
 
 document.querySelectorAll('.style-opt').forEach(o => o.addEventListener('click', () => {
   applyCardStyle(o.dataset.sty);
