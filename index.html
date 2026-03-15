@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>online quran</title>
+<title>Quran Online | Lees de Koran Gratis in het Arabisch</title>
 <meta name="description" content="Lees de Quran online in het Arabisch. Alle 114 soeras met Arabische tekst en audio recitatie.">
 <meta name="keywords" content="Quran online, Koran lezen, Quran arabisch, Islam Quran, Soera lezen">
 <meta name="author" content="onlinequran.nl">
@@ -20,15 +20,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Amiri:wght@400;700&family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-/* ============================================================
-   RESET & HIDDEN
-============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 .hidden { display: none !important; }
 
-/* ============================================================
-BASE STYLES — vaste kleuren, geen CSS variabelen
-============================================================ */
 html { scroll-behavior: smooth; }
 
 body {
@@ -39,20 +33,13 @@ min-height: 100vh;
 overflow-x: hidden;
 transition: background 0.25s, color 0.25s;
 }
-
-body.dark {
-background: #181008;
-color: #ecdfc8;
-}
+body.dark { background: #181008; color: #ecdfc8; }
 
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: #f0e8d5; }
 ::-webkit-scrollbar-thumb { background: #c9962c; border-radius: 3px; }
 body.dark ::-webkit-scrollbar-track { background: #22180a; }
 
-/* ============================================================
-HEADER
-============================================================ */
 .hdr {
 position: sticky; top: 0; z-index: 100;
 background: rgba(250,246,238,0.96);
@@ -61,10 +48,7 @@ backdrop-filter: blur(16px);
 -webkit-backdrop-filter: blur(16px);
 transition: background 0.25s;
 }
-body.dark .hdr {
-background: rgba(24,16,8,0.97);
-border-bottom-color: rgba(201,150,44,0.25);
-}
+body.dark .hdr { background: rgba(24,16,8,0.97); border-bottom-color: rgba(201,150,44,0.25); }
 .hdr-in {
 max-width: 1200px; margin: 0 auto; padding: 0 20px;
 height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
@@ -76,12 +60,8 @@ background: linear-gradient(135deg, #c9962c, #e8b84b);
 border-radius: 10px; display: flex; align-items: center; justify-content: center;
 color: #fff; font-size: 15px; flex-shrink: 0;
 box-shadow: 0 2px 8px rgba(201,150,44,0.3);
-transition: background 0.25s;
 }
-.logo-txt {
-font-family: ‘Cinzel’, serif; font-size: 1.05rem;
-font-weight: 700; color: #1a1208; transition: color 0.25s;
-}
+.logo-txt { font-family: ‘Cinzel’, serif; font-size: 1.05rem; font-weight: 700; color: #1a1208; transition: color 0.25s; }
 body.dark .logo-txt { color: #ecdfc8; }
 
 .hdr-ctrl { display: flex; align-items: center; gap: 8px; }
@@ -90,10 +70,8 @@ body.dark .logo-txt { color: #ecdfc8; }
 display: flex; align-items: center;
 background: #f0e8d5; border: 1px solid rgba(201,150,44,0.3);
 border-radius: 50px; padding: 3px; gap: 2px;
-transition: background 0.25s;
 }
 body.dark .lang-group { background: #22180a; }
-
 .lang-btn {
 padding: 6px 12px; border: none; border-radius: 50px;
 background: transparent; color: #7a6540;
@@ -103,10 +81,7 @@ cursor: pointer; transition: all 0.25s; white-space: nowrap;
 body.dark .lang-btn { color: #a08858; }
 .lang-btn:hover { color: #1a1208; }
 body.dark .lang-btn:hover { color: #ecdfc8; }
-.lang-btn.active {
-background: #c9962c; color: #fff;
-box-shadow: 0 2px 8px rgba(201,150,44,0.3);
-}
+.lang-btn.active { background: #c9962c; color: #fff; box-shadow: 0 2px 8px rgba(201,150,44,0.3); }
 
 .ico-btn {
 width: 38px; height: 38px;
@@ -116,28 +91,10 @@ cursor: pointer; display: flex; align-items: center; justify-content: center;
 font-size: 14px; transition: all 0.25s; flex-shrink: 0;
 }
 body.dark .ico-btn { background: #22180a; color: #ecdfc8; border-color: rgba(201,150,44,0.25); }
-.ico-btn:hover, .ico-btn.iactive {
-background: #c9962c; border-color: #c9962c; color: #fff;
-}
+.ico-btn:hover, .ico-btn.iactive { background: #c9962c; border-color: #c9962c; color: #fff; }
 
-/* ============================================================
-ACCENT KLEUR — JavaScript past deze aan
-============================================================ */
-.accent-bg  { background: linear-gradient(135deg, var(–ac, #c9962c), var(–ac2, #e8b84b)) !important; }
-.accent-clr { color: var(–ac, #c9962c) !important; }
-.accent-bdr { border-color: var(–ac, #c9962c) !important; }
+.main { max-width: 1200px; margin: 0 auto; padding: 28px 20px 80px; position: relative; z-index: 1; }
 
-/* ============================================================
-MAIN
-============================================================ */
-.main {
-max-width: 1200px; margin: 0 auto;
-padding: 28px 20px 80px; position: relative; z-index: 1;
-}
-
-/* ============================================================
-HERO
-============================================================ */
 .hero {
 background: linear-gradient(135deg, #c9962c 0%, #e8b84b 55%, #c9962c 100%);
 border-radius: 16px; padding: 28px 24px; margin-bottom: 24px;
@@ -149,47 +106,25 @@ animation: fadeUp 0.45s ease both;
 content: ‘’; position: absolute; inset: 0;
 background-image: url(“data:image/svg+xml,%3Csvg width=‘52’ height=‘52’ viewBox=‘0 0 52 52’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cg fill=’%23fff’ fill-opacity=‘0.07’%3E%3Cpath d=‘M26 0l7.5 4.33V13L26 17.33 18.5 13V4.33z’/%3E%3C/g%3E%3C/svg%3E”);
 }
-.hero-con {
-position: relative; z-index: 1;
-display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
-}
-.hero-ar {
-font-family: ‘Amiri’, serif; font-size: clamp(1.6rem,5vw,2.5rem);
-color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.2);
-direction: rtl; flex-shrink: 0; line-height: 1;
-}
-.hero-txt h2 {
-font-family: ‘Cinzel’, serif; font-size: clamp(1rem,2.5vw,1.3rem);
-color: #fff; margin-bottom: 5px; font-weight: 700;
-}
+.hero-con { position: relative; z-index: 1; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.hero-ar { font-family: ‘Amiri’, serif; font-size: clamp(1.6rem,5vw,2.5rem); color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.2); direction: rtl; flex-shrink: 0; line-height: 1; }
+.hero-txt h2 { font-family: ‘Cinzel’, serif; font-size: clamp(1rem,2.5vw,1.3rem); color: #fff; margin-bottom: 5px; font-weight: 700; }
 .hero-txt p { font-size: 0.88rem; color: rgba(255,255,255,0.88); line-height: 1.55; }
 
-/* ============================================================
-LR BANNER
-============================================================ */
 .lr-banner {
 background: #f0e8d5; border: 1px solid rgba(201,150,44,0.3);
 border-left: 4px solid #c9962c;
 border-radius: 16px; padding: 14px 18px; margin-bottom: 20px;
 display: flex; align-items: center; justify-content: space-between; gap: 10px;
-box-shadow: 0 4px 20px rgba(26,18,8,0.10); cursor: pointer;
-transition: all 0.25s;
+box-shadow: 0 4px 20px rgba(26,18,8,0.10); cursor: pointer; transition: all 0.25s;
 }
 body.dark .lr-banner { background: #22180a; border-color: rgba(201,150,44,0.25); }
 .lr-banner:hover { box-shadow: 0 10px 40px rgba(26,18,8,0.16); transform: translateY(-1px); }
 .lr-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
-.lr-ico {
-width: 38px; height: 38px;
-background: linear-gradient(135deg, #c9962c, #e8b84b);
-border-radius: 9px; display: flex; align-items: center; justify-content: center;
-color: #fff; font-size: 14px; flex-shrink: 0;
-}
+.lr-ico { width: 38px; height: 38px; background: linear-gradient(135deg, #c9962c, #e8b84b); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; flex-shrink: 0; }
 .lr-lbl { font-size: 0.72rem; color: #7a6540; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
 body.dark .lr-lbl { color: #a08858; }
-.lr-name {
-font-family: ‘Cinzel’, serif; font-size: 0.9rem; font-weight: 600;
-color: #1a1208; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
+.lr-name { font-family: ‘Cinzel’, serif; font-size: 0.9rem; font-weight: 600; color: #1a1208; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 body.dark .lr-name { color: #ecdfc8; }
 .lr-acts { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
 .btn-cont {
@@ -202,14 +137,10 @@ cursor: pointer; transition: all 0.25s; white-space: nowrap;
 .btn-trash {
 width: 34px; height: 34px; border: 1px solid rgba(201,150,44,0.3);
 border-radius: 10px; background: transparent; color: #7a6540;
-cursor: pointer; display: flex; align-items: center; justify-content: center;
-transition: all 0.25s;
+cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.25s;
 }
 .btn-trash:hover { background: #fee2e2; border-color: #fca5a5; color: #dc2626; }
 
-/* ============================================================
-ZOEKBALK
-============================================================ */
 .srch-wrap { margin-bottom: 20px; }
 .srch-box {
 display: flex; align-items: center;
@@ -219,94 +150,35 @@ box-shadow: 0 4px 20px rgba(26,18,8,0.10);
 transition: border-color 0.25s, box-shadow 0.25s;
 }
 body.dark .srch-box { background: #22180a; border-color: rgba(201,150,44,0.25); }
-.srch-box:focus-within {
-border-color: #c9962c;
-box-shadow: 0 0 0 3px rgba(201,150,44,0.22), 0 4px 20px rgba(26,18,8,0.10);
-}
-.srch-in {
-flex: 1; border: none; background: transparent; color: #1a1208;
-font-family: ‘Lato’, sans-serif; font-size: 0.93rem; padding: 10px 0; outline: none; min-width: 0;
-}
+.srch-box:focus-within { border-color: #c9962c; box-shadow: 0 0 0 3px rgba(201,150,44,0.22), 0 4px 20px rgba(26,18,8,0.10); }
+.srch-in { flex: 1; border: none; background: transparent; color: #1a1208; font-family: ‘Lato’, sans-serif; font-size: 0.93rem; padding: 10px 0; outline: none; min-width: 0; }
 body.dark .srch-in { color: #ecdfc8; }
 .srch-in::placeholder { color: #7a6540; }
 body.dark .srch-in::placeholder { color: #a08858; }
-.srch-btn {
-width: 42px; height: 42px;
-background: linear-gradient(135deg, #c9962c, #e8b84b);
-border: none; border-radius: 50%; color: #fff;
-cursor: pointer; display: flex; align-items: center; justify-content: center;
-font-size: 14px; transition: transform 0.25s; flex-shrink: 0;
-}
+.srch-btn { width: 42px; height: 42px; background: linear-gradient(135deg, #c9962c, #e8b84b); border: none; border-radius: 50%; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: transform 0.25s; flex-shrink: 0; }
 .srch-btn:hover { transform: scale(1.08); }
-.srch-meta {
-display: flex; align-items: center; justify-content: space-between;
-margin-top: 8px; padding: 0 4px; font-size: 0.83rem; color: #7a6540;
-}
+.srch-meta { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; padding: 0 4px; font-size: 0.83rem; color: #7a6540; }
 body.dark .srch-meta { color: #a08858; }
-.btn-clr {
-background: none; border: none; color: #c9962c; cursor: pointer;
-font-size: 0.83rem; font-weight: 700; display: flex; align-items: center; gap: 4px;
-}
+.btn-clr { background: none; border: none; color: #c9962c; cursor: pointer; font-size: 0.83rem; font-weight: 700; display: flex; align-items: center; gap: 4px; }
 
-/* ============================================================
-STATS
-============================================================ */
 .stats { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
-.stat-pill {
-display: inline-flex; align-items: center; gap: 5px;
-padding: 5px 13px; background: #f0e8d5; border: 1px solid rgba(201,150,44,0.3);
-border-radius: 50px; font-size: 0.8rem; color: #7a6540;
-}
+.stat-pill { display: inline-flex; align-items: center; gap: 5px; padding: 5px 13px; background: #f0e8d5; border: 1px solid rgba(201,150,44,0.3); border-radius: 50px; font-size: 0.8rem; color: #7a6540; }
 body.dark .stat-pill { background: #22180a; color: #a08858; }
 .stat-pill i { color: #c9962c; font-size: 10px; }
 
-/* ============================================================
-LOADING
-============================================================ */
-.ld-wrap {
-display: flex; flex-direction: column; align-items: center;
-justify-content: center; padding: 60px 20px; gap: 14px; color: #7a6540; font-size: 0.88rem;
-}
+.ld-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 20px; gap: 14px; color: #7a6540; font-size: 0.88rem; }
 body.dark .ld-wrap { color: #a08858; }
-.spinner {
-width: 44px; height: 44px;
-border: 3px solid #e8dcc4; border-top-color: #c9962c;
-border-radius: 50%; animation: spin 0.85s linear infinite;
-}
+.spinner { width: 44px; height: 44px; border: 3px solid #e8dcc4; border-top-color: #c9962c; border-radius: 50%; animation: spin 0.85s linear infinite; }
 body.dark .spinner { border-color: #2c1f0c; border-top-color: #c9962c; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ============================================================
-SOERA GRID — directe kleuren, geen CSS vars
-============================================================ */
-.grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-gap: 12px;
-}
-.scard {
-background: #f0e8d5;
-border: 1px solid rgba(201,150,44,0.35);
-border-radius: 16px; padding: 16px 18px;
-cursor: pointer; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
-display: flex; flex-direction: column; gap: 7px;
-position: relative; overflow: hidden;
-}
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
+.scard { background: #f0e8d5; border: 1px solid rgba(201,150,44,0.35); border-radius: 16px; padding: 16px 18px; cursor: pointer; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; display: flex; flex-direction: column; gap: 7px; position: relative; overflow: hidden; }
 body.dark .scard { background: #22180a; border-color: rgba(201,150,44,0.25); }
-.scard:hover {
-border-color: #c9962c;
-transform: translateY(-3px);
-box-shadow: 0 10px 40px rgba(26,18,8,0.16);
-}
+.scard:hover { border-color: #c9962c; transform: translateY(-3px); box-shadow: 0 10px 40px rgba(26,18,8,0.16); }
 body.dark .scard:hover { box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
 .scard-hd { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
-.scard-num {
-width: 30px; height: 30px;
-background: linear-gradient(135deg, #c9962c, #e8b84b);
-border-radius: 8px; display: flex; align-items: center; justify-content: center;
-color: #fff; font-family: ‘Cinzel’, serif; font-size: 0.72rem; font-weight: 700;
-flex-shrink: 0;
-}
+.scard-num { width: 30px; height: 30px; background: linear-gradient(135deg, #c9962c, #e8b84b); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-family: ‘Cinzel’, serif; font-size: 0.72rem; font-weight: 700; flex-shrink: 0; }
 .scard-ar { font-family: ‘Amiri’, serif; font-size: 1.2rem; color: #c9962c; direction: rtl; line-height: 1; }
 .scard-title { font-family: ‘Cinzel’, serif; font-size: 0.86rem; font-weight: 600; color: #1a1208; line-height: 1.3; }
 body.dark .scard-title { color: #ecdfc8; }
@@ -316,262 +188,110 @@ body.dark .scard-meta { color: #a08858; }
 .no-res { grid-column: 1/-1; text-align: center; padding: 60px 20px; color: #7a6540; }
 .no-res i { font-size: 1.8rem; color: #e8dcc4; display: block; margin-bottom: 10px; }
 
-/* ============================================================
-SOERA DETAIL
-============================================================ */
 .spage { }
-.back-btn {
-display: inline-flex; align-items: center; gap: 7px;
-padding: 9px 16px; background: #f0e8d5; border: 1px solid rgba(201,150,44,0.3);
-border-radius: 50px; color: #1a1208;
-font-family: ‘Lato’, sans-serif; font-size: 0.88rem; font-weight: 700;
-cursor: pointer; margin-bottom: 18px; transition: all 0.25s;
-}
+.back-btn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 16px; background: #f0e8d5; border: 1px solid rgba(201,150,44,0.3); border-radius: 50px; color: #1a1208; font-family: ‘Lato’, sans-serif; font-size: 0.88rem; font-weight: 700; cursor: pointer; margin-bottom: 18px; transition: all 0.25s; }
 body.dark .back-btn { background: #22180a; color: #ecdfc8; border-color: rgba(201,150,44,0.25); }
 .back-btn:hover { background: #c9962c; border-color: #c9962c; color: #fff; }
-.shdr {
-background: linear-gradient(135deg, #c9962c 0%, #e8b84b 100%);
-border-radius: 16px; padding: 26px 22px; margin-bottom: 18px;
-position: relative; overflow: hidden;
-box-shadow: 0 10px 40px rgba(26,18,8,0.16);
-}
-.shdr::before {
-content: ‘’; position: absolute; inset: 0;
-background-image: url(“data:image/svg+xml,%3Csvg width=‘36’ height=‘36’ viewBox=‘0 0 36 36’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cg fill=’%23fff’ fill-opacity=‘0.07’%3E%3Cpath d=‘M18 0l5.2 3v6L18 12 12.8 9V3z’/%3E%3C/g%3E%3C/svg%3E”);
-}
+.shdr { background: linear-gradient(135deg, #c9962c 0%, #e8b84b 100%); border-radius: 16px; padding: 26px 22px; margin-bottom: 18px; position: relative; overflow: hidden; box-shadow: 0 10px 40px rgba(26,18,8,0.16); }
+.shdr::before { content: ‘’; position: absolute; inset: 0; background-image: url(“data:image/svg+xml,%3Csvg width=‘36’ height=‘36’ viewBox=‘0 0 36 36’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cg fill=’%23fff’ fill-opacity=‘0.07’%3E%3Cpath d=‘M18 0l5.2 3v6L18 12 12.8 9V3z’/%3E%3C/g%3E%3C/svg%3E”); }
 .shdr-con { position: relative; z-index: 1; }
 .shdr-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 8px; }
 .shdr-latin { font-family: ‘Cinzel’, serif; font-size: clamp(1.2rem,3.5vw,1.7rem); color: #fff; font-weight: 700; }
 .shdr-arabic { font-family: ‘Amiri’, serif; font-size: clamp(1.4rem,4vw,2rem); color: rgba(255,255,255,0.92); direction: rtl; }
 .shdr-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.sbadge {
-display: inline-flex; align-items: center; gap: 4px;
-padding: 4px 11px; background: rgba(255,255,255,0.2);
-backdrop-filter: blur(4px); border-radius: 50px; color: #fff; font-size: 0.78rem; font-weight: 700;
-}
-.lrbadge {
-display: inline-flex; align-items: center; gap: 4px;
-padding: 4px 11px; background: rgba(255,255,255,0.92);
-border-radius: 50px; color: #c9962c; font-size: 0.78rem; font-weight: 700;
-}
+.sbadge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 11px; background: rgba(255,255,255,0.2); backdrop-filter: blur(4px); border-radius: 50px; color: #fff; font-size: 0.78rem; font-weight: 700; }
+.lrbadge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 11px; background: rgba(255,255,255,0.92); border-radius: 50px; color: #c9962c; font-size: 0.78rem; font-weight: 700; }
 
-/* ============================================================
-AUDIO
-============================================================ */
-.audio-sec {
-background: #f0e8d5; border: 1px solid rgba(201,150,44,0.3);
-border-radius: 16px; padding: 14px 18px; margin-bottom: 20px;
-display: flex; align-items: center; gap: 10px;
-box-shadow: 0 4px 20px rgba(26,18,8,0.10);
-}
+.audio-sec { background: #f0e8d5; border: 1px solid rgba(201,150,44,0.3); border-radius: 16px; padding: 14px 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 20px rgba(26,18,8,0.10); }
 body.dark .audio-sec { background: #22180a; border-color: rgba(201,150,44,0.25); }
-.audio-lbl {
-display: flex; align-items: center; gap: 5px;
-color: #c9962c; font-size: 0.82rem; font-weight: 700;
-flex-shrink: 0; white-space: nowrap;
-}
+.audio-lbl { display: flex; align-items: center; gap: 5px; color: #c9962c; font-size: 0.82rem; font-weight: 700; flex-shrink: 0; white-space: nowrap; }
+.audio-err { font-size: 0.78rem; color: #dc2626; display: flex; align-items: center; gap: 5px; flex: 1; }
 audio { flex: 1; height: 34px; border-radius: 8px; min-width: 0; }
 
-/* ============================================================
-VERS KAARTEN
-============================================================ */
 .vlist { display: flex; flex-direction: column; gap: 8px; }
-.vcard {
-background: #f0e8d5; border: 1px solid rgba(201,150,44,0.3);
-border-radius: 16px; padding: 18px 20px;
-cursor: pointer; transition: all 0.25s; position: relative;
-}
+.vcard { background: #f0e8d5; border: 1px solid rgba(201,150,44,0.3); border-radius: 16px; padding: 18px 20px; cursor: pointer; transition: all 0.25s; position: relative; }
 body.dark .vcard { background: #22180a; border-color: rgba(201,150,44,0.25); }
 .vcard:hover { border-color: #c9962c; box-shadow: 0 4px 20px rgba(26,18,8,0.10); transform: translateX(4px); }
-.vcard.lr {
-border-left: 4px solid #c9962c;
-background: linear-gradient(to right, rgba(201,150,44,0.08), #f0e8d5);
-}
+.vcard.lr { border-left: 4px solid #c9962c; background: linear-gradient(to right, rgba(201,150,44,0.08), #f0e8d5); }
 body.dark .vcard.lr { background: linear-gradient(to right, rgba(201,150,44,0.08), #22180a); }
-.vcard-ar {
-font-family: ‘Amiri Quran’, ‘Amiri’, serif;
-font-size: 1.7rem; line-height: 2.1;
-direction: rtl; color: #1a1208; text-align: right;
-margin-bottom: 8px; word-break: break-word;
-transition: font-size 0.25s;
-}
+.vcard-ar { font-family: ‘Amiri Quran’, ‘Amiri’, serif; font-size: 1.7rem; line-height: 2.1; direction: rtl; color: #1a1208; text-align: right; margin-bottom: 8px; word-break: break-word; transition: font-size 0.25s; }
 body.dark .vcard-ar { color: #ecdfc8; }
 .vcard-ft { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
 .vnum { display: inline-flex; align-items: center; gap: 5px; font-size: 0.76rem; color: #7a6540; }
 body.dark .vnum { color: #a08858; }
-.vnum-badge {
-width: 22px; height: 22px; background: #c9962c;
-border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
-color: #fff; font-size: 0.68rem; font-weight: 700; font-family: ‘Cinzel’, serif;
-}
+.vnum-badge { width: 22px; height: 22px; background: #c9962c; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 0.68rem; font-weight: 700; font-family: ‘Cinzel’, serif; }
 .vhint { font-size: 0.73rem; color: #7a6540; opacity: 0; transition: opacity 0.25s; display: flex; align-items: center; gap: 3px; }
 body.dark .vhint { color: #a08858; }
 .vcard:hover .vhint, .vcard.lr .vhint { opacity: 1; }
 .vcard.lr .vhint { color: #c9962c; }
-@keyframes vflash {
-0%   { background: #f0e8d5; }
-35%  { background: rgba(201,150,44,0.18); box-shadow: 0 0 0 3px rgba(201,150,44,0.22); }
-100% { background: #f0e8d5; }
-}
-body.dark .vcard.flash {
-animation: vflashDark 1.8s ease;
-}
-@keyframes vflashDark {
-0%   { background: #22180a; }
-35%  { background: rgba(201,150,44,0.18); box-shadow: 0 0 0 3px rgba(201,150,44,0.22); }
-100% { background: #22180a; }
-}
+@keyframes vflash { 0% { background: #f0e8d5; } 35% { background: rgba(201,150,44,0.18); box-shadow: 0 0 0 3px rgba(201,150,44,0.22); } 100% { background: #f0e8d5; } }
+@keyframes vflashDark { 0% { background: #22180a; } 35% { background: rgba(201,150,44,0.18); box-shadow: 0 0 0 3px rgba(201,150,44,0.22); } 100% { background: #22180a; } }
+body.dark .vcard.flash { animation: vflashDark 1.8s ease; }
 .vcard.flash { animation: vflash 1.8s ease; }
 
-/* ============================================================
-SETTINGS PANEL
-============================================================ */
-.set-ov {
-position: fixed; inset: 0; background: rgba(26,18,8,0.65);
-backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-z-index: 300; display: flex; align-items: flex-end; justify-content: center;
-opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-}
+.set-ov { position: fixed; inset: 0; background: rgba(26,18,8,0.65); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); z-index: 300; display: flex; align-items: flex-end; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
 .set-ov.open { opacity: 1; pointer-events: all; }
 @media (min-width: 600px) { .set-ov { align-items: center; padding: 20px; } }
-
-.set-panel {
-background: #faf6ee; border-radius: 24px 24px 0 0;
-width: 100%; max-width: 500px; max-height: 92vh;
-overflow-y: auto; overflow-x: hidden;
-box-shadow: 0 -4px 40px rgba(0,0,0,0.25);
-transform: translateY(100%);
-transition: transform 0.38s cubic-bezier(0.4,0,0.2,1);
-padding-bottom: 24px;
-}
+.set-panel { background: #faf6ee; border-radius: 24px 24px 0 0; width: 100%; max-width: 500px; max-height: 92vh; overflow-y: auto; overflow-x: hidden; box-shadow: 0 -4px 40px rgba(0,0,0,0.25); transform: translateY(100%); transition: transform 0.38s cubic-bezier(0.4,0,0.2,1); padding-bottom: 24px; }
 body.dark .set-panel { background: #181008; }
 .set-ov.open .set-panel { transform: translateY(0); }
-@media (min-width: 600px) {
-.set-panel {
-border-radius: 24px; max-height: 88vh;
-transform: translateY(24px) scale(0.97); opacity: 0;
-transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;
-}
-.set-ov.open .set-panel { transform: translateY(0) scale(1); opacity: 1; }
-}
-
+@media (min-width: 600px) { .set-panel { border-radius: 24px; max-height: 88vh; transform: translateY(24px) scale(0.97); opacity: 0; transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease; } .set-ov.open .set-panel { transform: translateY(0) scale(1); opacity: 1; } }
 .set-handle { width: 40px; height: 4px; background: #e8dcc4; border-radius: 2px; margin: 16px auto 0; }
 @media (min-width: 600px) { .set-handle { display: none; } }
-
-.set-hdr {
-display: flex; align-items: center; justify-content: space-between;
-padding: 18px 22px 14px; border-bottom: 1px solid rgba(201,150,44,0.2);
-position: sticky; top: 0; background: #faf6ee; z-index: 2;
-transition: background 0.25s;
-}
+.set-hdr { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px 14px; border-bottom: 1px solid rgba(201,150,44,0.2); position: sticky; top: 0; background: #faf6ee; z-index: 2; transition: background 0.25s; }
 body.dark .set-hdr { background: #181008; border-bottom-color: rgba(201,150,44,0.18); }
-.set-title {
-font-family: ‘Cinzel’, serif; font-size: 1.1rem; font-weight: 700;
-color: #1a1208; display: flex; align-items: center; gap: 8px;
-}
+.set-title { font-family: ‘Cinzel’, serif; font-size: 1.1rem; font-weight: 700; color: #1a1208; display: flex; align-items: center; gap: 8px; }
 body.dark .set-title { color: #ecdfc8; }
 .set-title i { color: #c9962c; }
-.set-close {
-width: 32px; height: 32px; border-radius: 50%;
-border: 1px solid rgba(201,150,44,0.3); background: #f0e8d5; color: #7a6540;
-cursor: pointer; display: flex; align-items: center; justify-content: center;
-font-size: 13px; transition: all 0.25s;
-}
+.set-close { width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(201,150,44,0.3); background: #f0e8d5; color: #7a6540; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: all 0.25s; }
 body.dark .set-close { background: #22180a; color: #a08858; }
 .set-close:hover { background: #c9962c; border-color: #c9962c; color: #fff; }
-
 .set-body { padding: 20px 22px 8px; display: flex; flex-direction: column; gap: 26px; }
-.set-lbl {
-font-size: 0.72rem; font-weight: 700; color: #7a6540;
-text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px;
-display: flex; align-items: center; gap: 7px;
-}
+.set-lbl { font-size: 0.72rem; font-weight: 700; color: #7a6540; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; display: flex; align-items: center; gap: 7px; }
 body.dark .set-lbl { color: #a08858; }
 .set-lbl i { color: #c9962c; }
 .set-lbl::after { content: ‘’; flex: 1; height: 1px; background: rgba(201,150,44,0.2); }
 
-/* Kleur swatches */
 .color-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 9px; }
-.csw {
-aspect-ratio: 1; border-radius: 50%; cursor: pointer;
-border: 3px solid transparent; transition: transform 0.2s; position: relative;
-}
+.csw { aspect-ratio: 1; border-radius: 50%; cursor: pointer; border: 3px solid transparent; transition: transform 0.2s; position: relative; }
 .csw:hover { transform: scale(1.18); }
 .csw.active { border-color: #1a1208 !important; outline: 2px solid #c9962c; outline-offset: 2px; }
 body.dark .csw.active { border-color: #ecdfc8 !important; }
-.csw::after {
-content: ‘✓’; position: absolute; inset: 0;
-display: flex; align-items: center; justify-content: center;
-color: #fff; font-size: 0.85rem; font-weight: 900;
-opacity: 0; transition: opacity 0.2s; text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-}
+.csw::after { content: ‘✓’; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.85rem; font-weight: 900; opacity: 0; transition: opacity 0.2s; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
 .csw.active::after { opacity: 1; }
 .csw[data-color=“white”].active::after { color: #333; text-shadow: none; }
 
-/* Dark toggle */
-.theme-row {
-display: flex; align-items: center; justify-content: space-between;
-background: #f0e8d5; border: 1px solid rgba(201,150,44,0.3);
-border-radius: 10px; padding: 13px 16px;
-}
+.theme-row { display: flex; align-items: center; justify-content: space-between; background: #f0e8d5; border: 1px solid rgba(201,150,44,0.3); border-radius: 10px; padding: 13px 16px; }
 body.dark .theme-row { background: #22180a; border-color: rgba(201,150,44,0.25); }
 .theme-lbl { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600; color: #1a1208; }
 body.dark .theme-lbl { color: #ecdfc8; }
 .theme-lbl i { color: #c9962c; width: 16px; text-align: center; }
-.toggle-sw {
-width: 48px; height: 26px; background: #e8dcc4;
-border-radius: 50px; cursor: pointer; position: relative;
-transition: background 0.3s; border: none; flex-shrink: 0;
-}
+.toggle-sw { width: 48px; height: 26px; background: #e8dcc4; border-radius: 50px; cursor: pointer; position: relative; transition: background 0.3s; border: none; flex-shrink: 0; }
 body.dark .toggle-sw { background: #2c1f0c; }
 .toggle-sw.on { background: #c9962c !important; }
-.toggle-sw::after {
-content: ‘’; position: absolute; width: 20px; height: 20px;
-background: #fff; border-radius: 50%; top: 3px; left: 3px;
-transition: transform 0.3s ease; box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-}
+.toggle-sw::after { content: ‘’; position: absolute; width: 20px; height: 20px; background: #fff; border-radius: 50%; top: 3px; left: 3px; transition: transform 0.3s ease; box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
 .toggle-sw.on::after { transform: translateX(22px); }
 
-/* Font */
-.font-row {
-background: #f0e8d5; border: 1px solid rgba(201,150,44,0.3);
-border-radius: 10px; padding: 14px 16px;
-}
+.font-row { background: #f0e8d5; border: 1px solid rgba(201,150,44,0.3); border-radius: 10px; padding: 14px 16px; }
 body.dark .font-row { background: #22180a; border-color: rgba(201,150,44,0.25); }
 .font-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
 .font-lbl2 { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600; color: #1a1208; }
 body.dark .font-lbl2 { color: #ecdfc8; }
 .font-lbl2 i { color: #c9962c; width: 16px; text-align: center; }
-.font-val {
-font-family: ‘Cinzel’, serif; font-size: 0.82rem; color: #c9962c;
-font-weight: 700; background: rgba(201,150,44,0.12); padding: 3px 10px; border-radius: 50px;
-}
+.font-val { font-family: ‘Cinzel’, serif; font-size: 0.82rem; color: #c9962c; font-weight: 700; background: rgba(201,150,44,0.12); padding: 3px 10px; border-radius: 50px; }
 .sz-slider { width: 100%; accent-color: #c9962c; cursor: pointer; height: 4px; border-radius: 2px; }
 .sz-btns { display: flex; gap: 7px; margin-top: 11px; }
-.sz-btn {
-flex: 1; padding: 7px 4px; border: 1px solid rgba(201,150,44,0.3);
-border-radius: 10px; background: transparent; color: #7a6540;
-font-family: ‘Lato’, sans-serif; font-size: 0.78rem; cursor: pointer;
-transition: all 0.25s; font-weight: 700;
-}
+.sz-btn { flex: 1; padding: 7px 4px; border: 1px solid rgba(201,150,44,0.3); border-radius: 10px; background: transparent; color: #7a6540; font-family: ‘Lato’, sans-serif; font-size: 0.78rem; cursor: pointer; transition: all 0.25s; font-weight: 700; }
 body.dark .sz-btn { color: #a08858; border-color: rgba(201,150,44,0.25); }
 .sz-btn:hover { border-color: #c9962c; color: #c9962c; }
 .sz-btn.active { background: #c9962c; border-color: #c9962c; color: #fff; }
 
-/* Reciteur */
 .rec-grid { display: flex; flex-direction: column; gap: 8px; }
-.rec-opt {
-display: flex; align-items: center; gap: 12px; padding: 11px 14px;
-border: 1px solid rgba(201,150,44,0.3); border-radius: 10px;
-background: #f0e8d5; cursor: pointer; transition: all 0.25s;
-}
+.rec-opt { display: flex; align-items: center; gap: 12px; padding: 11px 14px; border: 1px solid rgba(201,150,44,0.3); border-radius: 10px; background: #f0e8d5; cursor: pointer; transition: all 0.25s; }
 body.dark .rec-opt { background: #22180a; border-color: rgba(201,150,44,0.25); }
 .rec-opt:hover { border-color: #c9962c; transform: translateX(2px); }
 .rec-opt.active { border-color: #c9962c; background: rgba(201,150,44,0.08); }
-.rec-dot {
-width: 10px; height: 10px; border-radius: 50%;
-border: 2px solid #e8dcc4; flex-shrink: 0; transition: all 0.25s;
-}
+.rec-dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid #e8dcc4; flex-shrink: 0; transition: all 0.25s; }
 body.dark .rec-dot { border-color: #2c1f0c; }
 .rec-opt.active .rec-dot { background: #c9962c; border-color: #c9962c; }
 .rec-info { flex: 1; min-width: 0; }
@@ -579,23 +299,14 @@ body.dark .rec-dot { border-color: #2c1f0c; }
 body.dark .rec-name { color: #ecdfc8; }
 .rec-sub { font-size: 0.74rem; color: #7a6540; margin-top: 1px; }
 body.dark .rec-sub { color: #a08858; }
-.rec-play {
-width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
-border: 1px solid rgba(201,150,44,0.3); background: #faf6ee; color: #c9962c;
-cursor: pointer; font-size: 10px; display: flex; align-items: center; justify-content: center;
-transition: all 0.25s;
-}
+.rec-play { width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; border: 1px solid rgba(201,150,44,0.3); background: #faf6ee; color: #c9962c; cursor: pointer; font-size: 10px; display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
 body.dark .rec-play { background: #181008; border-color: rgba(201,150,44,0.25); }
 .rec-play:hover { background: #c9962c; color: #fff; border-color: #c9962c; transform: scale(1.1); }
 .rec-play.playing { background: #c9962c; color: #fff; border-color: #c9962c; animation: pulse 1s ease infinite; }
 @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(201,150,44,0.3); } 50% { box-shadow: 0 0 0 5px transparent; } }
 
-/* Kaart stijl */
 .style-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.style-opt {
-padding: 14px; border: 1px solid rgba(201,150,44,0.3); border-radius: 10px;
-background: #f0e8d5; cursor: pointer; transition: all 0.25s; text-align: center;
-}
+.style-opt { padding: 14px; border: 1px solid rgba(201,150,44,0.3); border-radius: 10px; background: #f0e8d5; cursor: pointer; transition: all 0.25s; text-align: center; }
 body.dark .style-opt { background: #22180a; border-color: rgba(201,150,44,0.25); }
 .style-opt:hover { border-color: #c9962c; }
 .style-opt.active { border-color: #c9962c; background: rgba(201,150,44,0.08); }
@@ -605,31 +316,13 @@ body.dark .style-name { color: #ecdfc8; }
 .style-sub { font-size: 0.72rem; color: #7a6540; margin-top: 2px; }
 body.dark .style-sub { color: #a08858; }
 
-/* Reset */
-.set-reset {
-display: flex; align-items: center; justify-content: center; gap: 7px;
-width: 100%; padding: 12px; border: 1px dashed rgba(201,150,44,0.3);
-border-radius: 10px; background: transparent; color: #7a6540;
-font-family: ‘Lato’, sans-serif; font-size: 0.85rem; font-weight: 700;
-cursor: pointer; transition: all 0.25s;
-}
+.set-reset { display: flex; align-items: center; justify-content: center; gap: 7px; width: 100%; padding: 12px; border: 1px dashed rgba(201,150,44,0.3); border-radius: 10px; background: transparent; color: #7a6540; font-family: ‘Lato’, sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: all 0.25s; }
 body.dark .set-reset { color: #a08858; }
 .set-reset:hover { border-color: #ef4444; color: #ef4444; background: rgba(239,68,68,0.06); }
 
-/* ============================================================
-MODAL
-============================================================ */
-.modal-ov {
-position: fixed; inset: 0; background: rgba(26,18,8,0.72);
-backdrop-filter: blur(4px); display: flex; align-items: flex-end;
-justify-content: center; z-index: 200;
-}
+.modal-ov { position: fixed; inset: 0; background: rgba(26,18,8,0.72); backdrop-filter: blur(4px); display: flex; align-items: flex-end; justify-content: center; z-index: 200; }
 @media (min-width: 600px) { .modal-ov { align-items: center; padding: 20px; } }
-.modal-box {
-background: #faf6ee; border-radius: 16px 16px 0 0;
-padding: 26px 22px 30px; width: 100%; max-width: 420px;
-box-shadow: 0 10px 40px rgba(26,18,8,0.16); animation: slideUp 0.28s ease;
-}
+.modal-box { background: #faf6ee; border-radius: 16px 16px 0 0; padding: 26px 22px 30px; width: 100%; max-width: 420px; box-shadow: 0 10px 40px rgba(26,18,8,0.16); animation: slideUp 0.28s ease; }
 body.dark .modal-box { background: #181008; }
 @media (min-width: 600px) { .modal-box { border-radius: 16px; } }
 @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
@@ -640,60 +333,24 @@ body.dark .modal-title { color: #ecdfc8; }
 .modal-body { color: #7a6540; font-size: 0.88rem; line-height: 1.6; margin-bottom: 22px; }
 body.dark .modal-body { color: #a08858; }
 .modal-acts { display: flex; gap: 9px; }
-.btn-cancel {
-flex: 1; padding: 11px; border: 1px solid rgba(201,150,44,0.3);
-border-radius: 10px; background: transparent; color: #1a1208;
-font-family: ‘Lato’, sans-serif; font-size: 0.88rem; font-weight: 700; cursor: pointer;
-transition: all 0.25s;
-}
+.btn-cancel { flex: 1; padding: 11px; border: 1px solid rgba(201,150,44,0.3); border-radius: 10px; background: transparent; color: #1a1208; font-family: ‘Lato’, sans-serif; font-size: 0.88rem; font-weight: 700; cursor: pointer; transition: all 0.25s; }
 body.dark .btn-cancel { color: #ecdfc8; border-color: rgba(201,150,44,0.25); }
 .btn-cancel:hover { background: #f0e8d5; }
-.btn-danger {
-flex: 1; padding: 11px; border: none; border-radius: 10px;
-background: #dc2626; color: #fff; font-family: ‘Lato’, sans-serif;
-font-size: 0.88rem; font-weight: 700; cursor: pointer; transition: all 0.25s;
-}
+.btn-danger { flex: 1; padding: 11px; border: none; border-radius: 10px; background: #dc2626; color: #fff; font-family: ‘Lato’, sans-serif; font-size: 0.88rem; font-weight: 700; cursor: pointer; transition: all 0.25s; }
 .btn-danger:hover { background: #b91c1c; }
 
-/* ============================================================
-FOOTER
-============================================================ */
-footer {
-background: #f0e8d5; border-top: 1px solid rgba(201,150,44,0.3);
-padding: 36px 20px; margin-top: 50px; text-align: center;
-transition: background 0.25s;
-}
+footer { background: #f0e8d5; border-top: 1px solid rgba(201,150,44,0.3); padding: 36px 20px; margin-top: 50px; text-align: center; transition: background 0.25s; }
 body.dark footer { background: #22180a; border-top-color: rgba(201,150,44,0.25); }
 .ft-in { max-width: 580px; margin: 0 auto; }
 .ft-title { font-family: ‘Cinzel’, serif; font-size: 0.95rem; color: #1a1208; margin-bottom: 14px; }
 body.dark .ft-title { color: #ecdfc8; }
-.mail-link {
-display: inline-flex; align-items: center; gap: 7px; padding: 11px 22px;
-background: linear-gradient(135deg, #c9962c, #e8b84b);
-color: #fff; text-decoration: none; border-radius: 50px; font-weight: 700;
-font-size: 0.88rem; transition: all 0.25s;
-box-shadow: 0 4px 14px rgba(201,150,44,0.3);
-}
+.mail-link { display: inline-flex; align-items: center; gap: 7px; padding: 11px 22px; background: linear-gradient(135deg, #c9962c, #e8b84b); color: #fff; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 0.88rem; transition: all 0.25s; box-shadow: 0 4px 14px rgba(201,150,44,0.3); }
 .mail-link:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(201,150,44,0.4); }
 .ft-copy { margin-top: 18px; font-size: 0.78rem; color: #7a6540; line-height: 1.7; }
 body.dark .ft-copy { color: #a08858; }
 
-/* ============================================================
-ANIMATIES
-============================================================ */
-@keyframes fadeUp {
-from { opacity: 0; transform: translateY(14px); }
-to   { opacity: 1; transform: translateY(0); }
-}
+@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 
-/* ============================================================
-ACCENT KLEUR OVERRIDES — JavaScript injecteert dit
-============================================================ */
-.ac-grad { background: linear-gradient(135deg, var(–ac,#c9962c), var(–ac2,#e8b84b)) !important; }
-
-/* ============================================================
-RESPONSIVE
-============================================================ */
 @media (max-width: 640px) {
 .main { padding: 18px 14px 60px; }
 .grid { grid-template-columns: 1fr 1fr; gap: 9px; }
@@ -715,8 +372,6 @@ RESPONSIVE
 </head>
 <body>
 
-<!-- HEADER -->
-
 <header class="hdr">
   <div class="hdr-in">
     <div class="logo">
@@ -734,8 +389,6 @@ RESPONSIVE
     </div>
   </div>
 </header>
-
-<!-- MAIN -->
 
 <main class="main">
   <div class="hero" id="heroSec">
@@ -801,6 +454,7 @@ RESPONSIVE
     <div class="audio-sec">
       <div class="audio-lbl"><i class="fas fa-headphones"></i><span id="recLabel">Recitatie</span></div>
       <audio id="sAudio" controls preload="none"></audio>
+      <div class="audio-err hidden" id="audioErr"><i class="fas fa-exclamation-triangle"></i><span id="audioErrTxt">Audio niet beschikbaar</span></div>
     </div>
     <div class="vlist" id="vList"></div>
   </div>
@@ -888,35 +542,36 @@ RESPONSIVE
     <div class="set-lbl"><i class="fas fa-microphone"></i><span id="setRecLbl">Reciteur</span></div>
     <audio id="prevAudio" preload="none" style="display:none"></audio>
     <div class="rec-grid">
-      <div class="rec-opt active" data-rec="ar.alafasy">
+      <!-- data-rec = interne ID, data-cdn = echte CDN map-naam -->
+      <div class="rec-opt active" data-rec="ar.alafasy" data-cdn="ar.alafasy">
         <div class="rec-dot"></div>
         <div class="rec-info"><div class="rec-name">Mishary Alafasy</div><div class="rec-sub">مشاري العفاسي · Koeweit</div></div>
-        <button class="rec-play" data-prev="ar.alafasy"><i class="fas fa-play"></i></button>
+        <button class="rec-play" data-cdn="ar.alafasy"><i class="fas fa-play"></i></button>
       </div>
-      <div class="rec-opt" data-rec="ar.abdurrahmaansudais">
+      <div class="rec-opt" data-rec="ar.abdurrahmaansudais" data-cdn="ar.abdurrahmaansudais">
         <div class="rec-dot"></div>
         <div class="rec-info"><div class="rec-name">Abdurrahman Al-Sudais</div><div class="rec-sub">عبدالرحمن السديس · Saudi-Arabië</div></div>
-        <button class="rec-play" data-prev="ar.abdurrahmaansudais"><i class="fas fa-play"></i></button>
+        <button class="rec-play" data-cdn="ar.abdurrahmaansudais"><i class="fas fa-play"></i></button>
       </div>
-      <div class="rec-opt" data-rec="ar.husary">
+      <div class="rec-opt" data-rec="ar.husary" data-cdn="ar.husary">
         <div class="rec-dot"></div>
         <div class="rec-info"><div class="rec-name">Mahmoud Khalil Al-Husary</div><div class="rec-sub">محمود خليل الحصري · Egypte</div></div>
-        <button class="rec-play" data-prev="ar.husary"><i class="fas fa-play"></i></button>
+        <button class="rec-play" data-cdn="ar.husary"><i class="fas fa-play"></i></button>
       </div>
-      <div class="rec-opt" data-rec="ar.minshawi">
+      <div class="rec-opt" data-rec="ar.minshawi" data-cdn="ar.minshawimujawwad">
         <div class="rec-dot"></div>
         <div class="rec-info"><div class="rec-name">Mohamed Siddiq Al-Minshawi</div><div class="rec-sub">محمد صديق المنشاوي · Egypte</div></div>
-        <button class="rec-play" data-prev="ar.minshawi"><i class="fas fa-play"></i></button>
+        <button class="rec-play" data-cdn="ar.minshawimujawwad"><i class="fas fa-play"></i></button>
       </div>
-      <div class="rec-opt" data-rec="ar.mahermuaiqly">
+      <div class="rec-opt" data-rec="ar.mahermuaiqly" data-cdn="ar.mahermuaiqly">
         <div class="rec-dot"></div>
         <div class="rec-info"><div class="rec-name">Maher Al-Muaiqly</div><div class="rec-sub">ماهر المعيقلي · Saudi-Arabië</div></div>
-        <button class="rec-play" data-prev="ar.mahermuaiqly"><i class="fas fa-play"></i></button>
+        <button class="rec-play" data-cdn="ar.mahermuaiqly"><i class="fas fa-play"></i></button>
       </div>
-      <div class="rec-opt" data-rec="ar.saoodshuraym">
+      <div class="rec-opt" data-rec="ar.saoodshuraym" data-cdn="ar.saoodshuraym">
         <div class="rec-dot"></div>
         <div class="rec-info"><div class="rec-name">Saud Al-Shuraym</div><div class="rec-sub">سعود الشريم · Saudi-Arabië</div></div>
-        <button class="rec-play" data-prev="ar.saoodshuraym"><i class="fas fa-play"></i></button>
+        <button class="rec-play" data-cdn="ar.saoodshuraym"><i class="fas fa-play"></i></button>
       </div>
     </div>
   </div>
@@ -930,6 +585,7 @@ RESPONSIVE
   </div>
 
   <button class="set-reset" id="setReset"><i class="fas fa-undo"></i><span id="setResetTxt">Standaard instellingen herstellen</span></button>
+
 </div>
 ```
 
@@ -949,8 +605,6 @@ RESPONSIVE
     </div>
   </div>
 </div>
-
-<!-- FOOTER -->
 
 <footer>
   <div class="ft-in">
@@ -988,140 +642,144 @@ const COLORS = {
   black:   ['#222222','#444444'], white:   ['#888888','#aaaaaa'],
 };
 
+/* ── CDN MAP: interne ID → echte CDN mapnaam ── */
+const CDN_MAP = {
+  'ar.alafasy':            'ar.alafasy',
+  'ar.abdurrahmaansudais': 'ar.abdurrahmaansudais',
+  'ar.husary':             'ar.husary',
+  'ar.minshawi':           'ar.minshawimujawwad',   /* FIX: correcte CDN naam */
+  'ar.mahermuaiqly':       'ar.mahermuaiqly',
+  'ar.saoodshuraym':       'ar.saoodshuraym',
+};
+
 /* ── SOERA DATA ── */
 const SURAHS = [
-  {n:1,ar:'الفاتحة',en:'Al-Fatiha',v:7},{n:2,ar:'البقرة',en:'Al-Baqara',v:286},
-  {n:3,ar:'آل عمران',en:'Aal-E-Imran',v:200},{n:4,ar:'النساء',en:'An-Nisa',v:176},
-  {n:5,ar:'المائدة',en:"Al-Ma'idah",v:120},{n:6,ar:'الأنعام',en:"Al-An'am",v:165},
-  {n:7,ar:'الأعراف',en:"Al-A'raf",v:206},{n:8,ar:'الأنفال',en:'Al-Anfal',v:75},
-  {n:9,ar:'التوبة',en:'At-Tawbah',v:129},{n:10,ar:'يونس',en:'Yunus',v:109},
-  {n:11,ar:'هود',en:'Hud',v:123},{n:12,ar:'يوسف',en:'Yusuf',v:111},
-  {n:13,ar:'الرعد',en:"Ar-Ra'd",v:43},{n:14,ar:'إبراهيم',en:'Ibrahim',v:52},
-  {n:15,ar:'الحجر',en:'Al-Hijr',v:99},{n:16,ar:'النحل',en:'An-Nahl',v:128},
-  {n:17,ar:'الإسراء',en:'Al-Isra',v:111},{n:18,ar:'الكهف',en:'Al-Kahf',v:110},
-  {n:19,ar:'مريم',en:'Maryam',v:98},{n:20,ar:'طه',en:'Ta-Ha',v:135},
-  {n:21,ar:'الأنبياء',en:'Al-Anbiya',v:112},{n:22,ar:'الحج',en:'Al-Hajj',v:78},
-  {n:23,ar:'المؤمنون',en:"Al-Mu'minun",v:118},{n:24,ar:'النور',en:'An-Nur',v:64},
-  {n:25,ar:'الفرقان',en:'Al-Furqan',v:77},{n:26,ar:'الشعراء',en:"Ash-Shu'ara",v:227},
-  {n:27,ar:'النمل',en:'An-Naml',v:93},{n:28,ar:'القصص',en:'Al-Qasas',v:88},
-  {n:29,ar:'العنكبوت',en:'Al-Ankabut',v:69},{n:30,ar:'الروم',en:'Ar-Rum',v:60},
-  {n:31,ar:'لقمان',en:'Luqman',v:34},{n:32,ar:'السجدة',en:'As-Sajda',v:30},
-  {n:33,ar:'الأحزاب',en:'Al-Ahzab',v:73},{n:34,ar:'سبإ',en:'Saba',v:54},
-  {n:35,ar:'فاطر',en:'Fatir',v:45},{n:36,ar:'يس',en:'Ya-Sin',v:83},
-  {n:37,ar:'الصافات',en:'As-Saffat',v:182},{n:38,ar:'ص',en:'Sad',v:88},
-  {n:39,ar:'الزمر',en:'Az-Zumar',v:75},{n:40,ar:'غافر',en:'Ghafir',v:85},
-  {n:41,ar:'فصلت',en:'Fussilat',v:54},{n:42,ar:'الشورى',en:'Ash-Shura',v:53},
-  {n:43,ar:'الزخرف',en:'Az-Zukhruf',v:89},{n:44,ar:'الدخان',en:'Ad-Dukhan',v:59},
-  {n:45,ar:'الجاثية',en:'Al-Jathiya',v:37},{n:46,ar:'الأحقاف',en:'Al-Ahqaf',v:35},
-  {n:47,ar:'محمد',en:'Muhammad',v:38},{n:48,ar:'الفتح',en:'Al-Fath',v:29},
-  {n:49,ar:'الحجرات',en:'Al-Hujurat',v:18},{n:50,ar:'ق',en:'Qaf',v:45},
-  {n:51,ar:'الذاريات',en:'Adh-Dhariyat',v:60},{n:52,ar:'الطور',en:'At-Tur',v:49},
-  {n:53,ar:'النجم',en:'An-Najm',v:62},{n:54,ar:'القمر',en:'Al-Qamar',v:55},
-  {n:55,ar:'الرحمن',en:'Ar-Rahman',v:78},{n:56,ar:'الواقعة',en:'Al-Waqia',v:96},
-  {n:57,ar:'الحديد',en:'Al-Hadid',v:29},{n:58,ar:'المجادلة',en:'Al-Mujadila',v:22},
-  {n:59,ar:'الحشر',en:'Al-Hashr',v:24},{n:60,ar:'الممتحنة',en:'Al-Mumtahina',v:13},
-  {n:61,ar:'الصف',en:'As-Saff',v:14},{n:62,ar:'الجمعة',en:"Al-Jumu'a",v:11},
-  {n:63,ar:'المنافقون',en:'Al-Munafiqun',v:11},{n:64,ar:'التغابن',en:'At-Taghabun',v:18},
-  {n:65,ar:'الطلاق',en:'At-Talaq',v:12},{n:66,ar:'التحريم',en:'At-Tahrim',v:12},
-  {n:67,ar:'الملك',en:'Al-Mulk',v:30},{n:68,ar:'القلم',en:'Al-Qalam',v:52},
-  {n:69,ar:'الحاقة',en:'Al-Haqqa',v:52},{n:70,ar:'المعارج',en:"Al-Ma'arij",v:44},
-  {n:71,ar:'نوح',en:'Nuh',v:28},{n:72,ar:'الجن',en:'Al-Jinn',v:28},
-  {n:73,ar:'المزمل',en:'Al-Muzzammil',v:20},{n:74,ar:'المدثر',en:'Al-Muddaththir',v:56},
-  {n:75,ar:'القيامة',en:'Al-Qiyama',v:40},{n:76,ar:'الإنسان',en:'Al-Insan',v:31},
-  {n:77,ar:'المرسلات',en:'Al-Mursalat',v:50},{n:78,ar:'النبإ',en:'An-Naba',v:40},
-  {n:79,ar:'النازعات',en:"An-Nazi'at",v:46},{n:80,ar:'عبس',en:'Abasa',v:42},
-  {n:81,ar:'التكوير',en:'At-Takwir',v:29},{n:82,ar:'الإنفطار',en:'Al-Infitar',v:19},
-  {n:83,ar:'المطففين',en:'Al-Mutaffifin',v:36},{n:84,ar:'الإنشقاق',en:'Al-Inshiqaq',v:25},
-  {n:85,ar:'البروج',en:'Al-Buruj',v:22},{n:86,ar:'الطارق',en:'At-Tariq',v:17},
-  {n:87,ar:'الأعلى',en:"Al-A'la",v:19},{n:88,ar:'الغاشية',en:'Al-Ghashiya',v:26},
-  {n:89,ar:'الفجر',en:'Al-Fajr',v:30},{n:90,ar:'البلد',en:'Al-Balad',v:20},
-  {n:91,ar:'الشمس',en:'Ash-Shams',v:15},{n:92,ar:'الليل',en:'Al-Lail',v:21},
-  {n:93,ar:'الضحى',en:'Ad-Duha',v:11},{n:94,ar:'الشرح',en:'Ash-Sharh',v:8},
-  {n:95,ar:'التين',en:'At-Tin',v:8},{n:96,ar:'العلق',en:'Al-Alaq',v:19},
-  {n:97,ar:'القدر',en:'Al-Qadr',v:5},{n:98,ar:'البينة',en:'Al-Bayyina',v:8},
-  {n:99,ar:'الزلزلة',en:'Az-Zalzala',v:8},{n:100,ar:'العاديات',en:'Al-Adiyat',v:11},
-  {n:101,ar:'القارعة',en:'Al-Qaria',v:11},{n:102,ar:'التكاثر',en:'At-Takathur',v:8},
-  {n:103,ar:'العصر',en:'Al-Asr',v:3},{n:104,ar:'الهمزة',en:'Al-Humaza',v:9},
-  {n:105,ar:'الفيل',en:'Al-Fil',v:5},{n:106,ar:'قريش',en:'Quraish',v:4},
-  {n:107,ar:'الماعون',en:"Al-Ma'un",v:7},{n:108,ar:'الكوثر',en:'Al-Kawthar',v:3},
-  {n:109,ar:'الكافرون',en:'Al-Kafirun',v:6},{n:110,ar:'النصر',en:'An-Nasr',v:3},
-  {n:111,ar:'المسد',en:'Al-Masad',v:5},{n:112,ar:'الإخلاص',en:'Al-Ikhlas',v:4},
-  {n:113,ar:'الفلق',en:'Al-Falaq',v:5},{n:114,ar:'الناس',en:'An-Nas',v:6}
+  {n:1,ar:'\u0627\u0644\u0641\u0627\u062a\u062d\u0629',en:'Al-Fatiha',v:7},{n:2,ar:'\u0627\u0644\u0628\u0642\u0631\u0629',en:'Al-Baqara',v:286},
+  {n:3,ar:'\u0622\u0644 \u0639\u0645\u0631\u0627\u0646',en:'Aal-E-Imran',v:200},{n:4,ar:'\u0627\u0644\u0646\u0633\u0627\u0621',en:'An-Nisa',v:176},
+  {n:5,ar:'\u0627\u0644\u0645\u0627\u0626\u062f\u0629',en:"Al-Ma'idah",v:120},{n:6,ar:'\u0627\u0644\u0623\u0646\u0639\u0627\u0645',en:"Al-An'am",v:165},
+  {n:7,ar:'\u0627\u0644\u0623\u0639\u0631\u0627\u0641',en:"Al-A'raf",v:206},{n:8,ar:'\u0627\u0644\u0623\u0646\u0641\u0627\u0644',en:'Al-Anfal',v:75},
+  {n:9,ar:'\u0627\u0644\u062a\u0648\u0628\u0629',en:'At-Tawbah',v:129},{n:10,ar:'\u064a\u0648\u0646\u0633',en:'Yunus',v:109},
+  {n:11,ar:'\u0647\u0648\u062f',en:'Hud',v:123},{n:12,ar:'\u064a\u0648\u0633\u0641',en:'Yusuf',v:111},
+  {n:13,ar:'\u0627\u0644\u0631\u0639\u062f',en:"Ar-Ra'd",v:43},{n:14,ar:'\u0625\u0628\u0631\u0627\u0647\u064a\u0645',en:'Ibrahim',v:52},
+  {n:15,ar:'\u0627\u0644\u062d\u062c\u0631',en:'Al-Hijr',v:99},{n:16,ar:'\u0627\u0644\u0646\u062d\u0644',en:'An-Nahl',v:128},
+  {n:17,ar:'\u0627\u0644\u0625\u0633\u0631\u0627\u0621',en:'Al-Isra',v:111},{n:18,ar:'\u0627\u0644\u0643\u0647\u0641',en:'Al-Kahf',v:110},
+  {n:19,ar:'\u0645\u0631\u064a\u0645',en:'Maryam',v:98},{n:20,ar:'\u0637\u0647',en:'Ta-Ha',v:135},
+  {n:21,ar:'\u0627\u0644\u0623\u0646\u0628\u064a\u0627\u0621',en:'Al-Anbiya',v:112},{n:22,ar:'\u0627\u0644\u062d\u062c',en:'Al-Hajj',v:78},
+  {n:23,ar:'\u0627\u0644\u0645\u0624\u0645\u0646\u0648\u0646',en:"Al-Mu'minun",v:118},{n:24,ar:'\u0627\u0644\u0646\u0648\u0631',en:'An-Nur',v:64},
+  {n:25,ar:'\u0627\u0644\u0641\u0631\u0642\u0627\u0646',en:'Al-Furqan',v:77},{n:26,ar:'\u0627\u0644\u0634\u0639\u0631\u0627\u0621',en:"Ash-Shu'ara",v:227},
+  {n:27,ar:'\u0627\u0644\u0646\u0645\u0644',en:'An-Naml',v:93},{n:28,ar:'\u0627\u0644\u0642\u0635\u0635',en:'Al-Qasas',v:88},
+  {n:29,ar:'\u0627\u0644\u0639\u0646\u0643\u0628\u0648\u062a',en:'Al-Ankabut',v:69},{n:30,ar:'\u0627\u0644\u0631\u0648\u0645',en:'Ar-Rum',v:60},
+  {n:31,ar:'\u0644\u0642\u0645\u0627\u0646',en:'Luqman',v:34},{n:32,ar:'\u0627\u0644\u0633\u062c\u062f\u0629',en:'As-Sajda',v:30},
+  {n:33,ar:'\u0627\u0644\u0623\u062d\u0632\u0627\u0628',en:'Al-Ahzab',v:73},{n:34,ar:'\u0633\u0628\u0625',en:'Saba',v:54},
+  {n:35,ar:'\u0641\u0627\u0637\u0631',en:'Fatir',v:45},{n:36,ar:'\u064a\u0633',en:'Ya-Sin',v:83},
+  {n:37,ar:'\u0627\u0644\u0635\u0627\u0641\u0627\u062a',en:'As-Saffat',v:182},{n:38,ar:'\u0635',en:'Sad',v:88},
+  {n:39,ar:'\u0627\u0644\u0632\u0645\u0631',en:'Az-Zumar',v:75},{n:40,ar:'\u063a\u0627\u0641\u0631',en:'Ghafir',v:85},
+  {n:41,ar:'\u0641\u0635\u0644\u062a',en:'Fussilat',v:54},{n:42,ar:'\u0627\u0644\u0634\u0648\u0631\u0649',en:'Ash-Shura',v:53},
+  {n:43,ar:'\u0627\u0644\u0632\u062e\u0631\u0641',en:'Az-Zukhruf',v:89},{n:44,ar:'\u0627\u0644\u062f\u062e\u0627\u0646',en:'Ad-Dukhan',v:59},
+  {n:45,ar:'\u0627\u0644\u062c\u0627\u062b\u064a\u0629',en:'Al-Jathiya',v:37},{n:46,ar:'\u0627\u0644\u0623\u062d\u0642\u0627\u0641',en:'Al-Ahqaf',v:35},
+  {n:47,ar:'\u0645\u062d\u0645\u062f',en:'Muhammad',v:38},{n:48,ar:'\u0627\u0644\u0641\u062a\u062d',en:'Al-Fath',v:29},
+  {n:49,ar:'\u0627\u0644\u062d\u062c\u0631\u0627\u062a',en:'Al-Hujurat',v:18},{n:50,ar:'\u0642',en:'Qaf',v:45},
+  {n:51,ar:'\u0627\u0644\u0630\u0627\u0631\u064a\u0627\u062a',en:'Adh-Dhariyat',v:60},{n:52,ar:'\u0627\u0644\u0637\u0648\u0631',en:'At-Tur',v:49},
+  {n:53,ar:'\u0627\u0644\u0646\u062c\u0645',en:'An-Najm',v:62},{n:54,ar:'\u0627\u0644\u0642\u0645\u0631',en:'Al-Qamar',v:55},
+  {n:55,ar:'\u0627\u0644\u0631\u062d\u0645\u0646',en:'Ar-Rahman',v:78},{n:56,ar:'\u0627\u0644\u0648\u0627\u0642\u0639\u0629',en:'Al-Waqia',v:96},
+  {n:57,ar:'\u0627\u0644\u062d\u062f\u064a\u062f',en:'Al-Hadid',v:29},{n:58,ar:'\u0627\u0644\u0645\u062c\u0627\u062f\u0644\u0629',en:'Al-Mujadila',v:22},
+  {n:59,ar:'\u0627\u0644\u062d\u0634\u0631',en:'Al-Hashr',v:24},{n:60,ar:'\u0627\u0644\u0645\u0645\u062a\u062d\u0646\u0629',en:'Al-Mumtahina',v:13},
+  {n:61,ar:'\u0627\u0644\u0635\u0641',en:'As-Saff',v:14},{n:62,ar:'\u0627\u0644\u062c\u0645\u0639\u0629',en:"Al-Jumu'a",v:11},
+  {n:63,ar:'\u0627\u0644\u0645\u0646\u0627\u0641\u0642\u0648\u0646',en:'Al-Munafiqun',v:11},{n:64,ar:'\u0627\u0644\u062a\u063a\u0627\u0628\u0646',en:'At-Taghabun',v:18},
+  {n:65,ar:'\u0627\u0644\u0637\u0644\u0627\u0642',en:'At-Talaq',v:12},{n:66,ar:'\u0627\u0644\u062a\u062d\u0631\u064a\u0645',en:'At-Tahrim',v:12},
+  {n:67,ar:'\u0627\u0644\u0645\u0644\u0643',en:'Al-Mulk',v:30},{n:68,ar:'\u0627\u0644\u0642\u0644\u0645',en:'Al-Qalam',v:52},
+  {n:69,ar:'\u0627\u0644\u062d\u0627\u0642\u0629',en:'Al-Haqqa',v:52},{n:70,ar:'\u0627\u0644\u0645\u0639\u0627\u0631\u062c',en:"Al-Ma'arij",v:44},
+  {n:71,ar:'\u0646\u0648\u062d',en:'Nuh',v:28},{n:72,ar:'\u0627\u0644\u062c\u0646',en:'Al-Jinn',v:28},
+  {n:73,ar:'\u0627\u0644\u0645\u0632\u0645\u0644',en:'Al-Muzzammil',v:20},{n:74,ar:'\u0627\u0644\u0645\u062f\u062b\u0631',en:'Al-Muddaththir',v:56},
+  {n:75,ar:'\u0627\u0644\u0642\u064a\u0627\u0645\u0629',en:'Al-Qiyama',v:40},{n:76,ar:'\u0627\u0644\u0625\u0646\u0633\u0627\u0646',en:'Al-Insan',v:31},
+  {n:77,ar:'\u0627\u0644\u0645\u0631\u0633\u0644\u0627\u062a',en:'Al-Mursalat',v:50},{n:78,ar:'\u0627\u0644\u0646\u0628\u0623',en:'An-Naba',v:40},
+  {n:79,ar:'\u0627\u0644\u0646\u0627\u0632\u0639\u0627\u062a',en:"An-Nazi'at",v:46},{n:80,ar:'\u0639\u0628\u0633',en:'Abasa',v:42},
+  {n:81,ar:'\u0627\u0644\u062a\u0643\u0648\u064a\u0631',en:'At-Takwir',v:29},{n:82,ar:'\u0627\u0644\u0625\u0646\u0641\u0637\u0627\u0631',en:'Al-Infitar',v:19},
+  {n:83,ar:'\u0627\u0644\u0645\u0637\u0641\u0641\u064a\u0646',en:'Al-Mutaffifin',v:36},{n:84,ar:'\u0627\u0644\u0625\u0646\u0634\u0642\u0627\u0642',en:'Al-Inshiqaq',v:25},
+  {n:85,ar:'\u0627\u0644\u0628\u0631\u0648\u062c',en:'Al-Buruj',v:22},{n:86,ar:'\u0627\u0644\u0637\u0627\u0631\u0642',en:'At-Tariq',v:17},
+  {n:87,ar:'\u0627\u0644\u0623\u0639\u0644\u0649',en:"Al-A'la",v:19},{n:88,ar:'\u0627\u0644\u063a\u0627\u0634\u064a\u0629',en:'Al-Ghashiya',v:26},
+  {n:89,ar:'\u0627\u0644\u0641\u062c\u0631',en:'Al-Fajr',v:30},{n:90,ar:'\u0627\u0644\u0628\u0644\u062f',en:'Al-Balad',v:20},
+  {n:91,ar:'\u0627\u0644\u0634\u0645\u0633',en:'Ash-Shams',v:15},{n:92,ar:'\u0627\u0644\u0644\u064a\u0644',en:'Al-Lail',v:21},
+  {n:93,ar:'\u0627\u0644\u0636\u062d\u0649',en:'Ad-Duha',v:11},{n:94,ar:'\u0627\u0644\u0634\u0631\u062d',en:'Ash-Sharh',v:8},
+  {n:95,ar:'\u0627\u0644\u062a\u064a\u0646',en:'At-Tin',v:8},{n:96,ar:'\u0627\u0644\u0639\u0644\u0642',en:'Al-Alaq',v:19},
+  {n:97,ar:'\u0627\u0644\u0642\u062f\u0631',en:'Al-Qadr',v:5},{n:98,ar:'\u0627\u0644\u0628\u064a\u0646\u0629',en:'Al-Bayyina',v:8},
+  {n:99,ar:'\u0627\u0644\u0632\u0644\u0632\u0644\u0629',en:'Az-Zalzala',v:8},{n:100,ar:'\u0627\u0644\u0639\u0627\u062f\u064a\u0627\u062a',en:'Al-Adiyat',v:11},
+  {n:101,ar:'\u0627\u0644\u0642\u0627\u0631\u0639\u0629',en:'Al-Qaria',v:11},{n:102,ar:'\u0627\u0644\u062a\u0643\u0627\u062b\u0631',en:'At-Takathur',v:8},
+  {n:103,ar:'\u0627\u0644\u0639\u0635\u0631',en:'Al-Asr',v:3},{n:104,ar:'\u0627\u0644\u0647\u0645\u0632\u0629',en:'Al-Humaza',v:9},
+  {n:105,ar:'\u0627\u0644\u0641\u064a\u0644',en:'Al-Fil',v:5},{n:106,ar:'\u0642\u0631\u064a\u0634',en:'Quraish',v:4},
+  {n:107,ar:'\u0627\u0644\u0645\u0627\u0639\u0648\u0646',en:"Al-Ma'un",v:7},{n:108,ar:'\u0627\u0644\u0643\u0648\u062b\u0631',en:'Al-Kawthar',v:3},
+  {n:109,ar:'\u0627\u0644\u0643\u0627\u0641\u0631\u0648\u0646',en:'Al-Kafirun',v:6},{n:110,ar:'\u0627\u0644\u0646\u0635\u0631',en:'An-Nasr',v:3},
+  {n:111,ar:'\u0627\u0644\u0645\u0633\u062f',en:'Al-Masad',v:5},{n:112,ar:'\u0627\u0644\u0625\u062e\u0644\u0627\u0635',en:'Al-Ikhlas',v:4},
+  {n:113,ar:'\u0627\u0644\u0641\u0644\u0642',en:'Al-Falaq',v:5},{n:114,ar:'\u0627\u0644\u0646\u0627\u0633',en:'An-Nas',v:6}
 ];
 
 /* ── STAAT ── */
-let lang     = 'nl';
+let lang      = 'nl';
 let activeSurah = null;
 let searching = false;
-let reciter  = 'ar.alafasy';
-let cardStyle= 'grid';
-let fontSize = 3;
-let isDark   = false;
+let reciter   = 'ar.alafasy';
+let cardStyle = 'grid';
+let fontSize  = 3;
+let isDark    = false;
 let accentColor = 'gold';
 
 const FONT_SIZES  = ['1.2rem','1.45rem','1.7rem','2.0rem','2.4rem'];
 const FONT_LABELS = {
-  nl: ['XS','S','Normaal','L','XL'],
-  en: ['XS','S','Normal','L','XL'],
-  arabic: ['ص','صغير','عادي','كبير','ك']
+  nl:     ['XS','S','Normaal','L','XL'],
+  en:     ['XS','S','Normal','L','XL'],
+  arabic: ['\u0635','\u0635\u063a\u064a\u0631','\u0639\u0627\u062f\u064a','\u0643\u0628\u064a\u0631','\u0643']
 };
 
 /* ── VERTALINGEN ── */
 const T = {
-  nl:{ hdr:'Quran',wt:'Welkom bij onlinequran.nl',wp:"Alle 114 soera's met Arabische tekst en audio recitatie. Klik op een soera om te beginnen.",back:"Alle soera's",verses:'verzen',lrLbl:'Laatst gelezen',cont:'Ga verder',srchPh:'Zoek soera op naam of nummer…',srchRes:'resultaten',mTit:'Bookmark verwijderen?',mBod:'Weet je zeker dat je de leespositie wilt verwijderen?',can:'Annuleren',conf:'Verwijderen',ftTit:'Vragen of opmerkingen?',cp:'© 2026 onlinequran.nl',rp:'Antwoord binnen 24 uur op werkdagen',vers:'Vers',versL:'vers',bmA:'Zet bladwijzer',bmR:'Verwijder bladwijzer',srs:"soera's",sTitle:'Instellingen',sColor:'Accentkleur',sAppear:'Weergave',sDark:'Donkere modus',sFont:'Arabische tekst grootte',sFontSz:'Grootte',sRec:'Reciteur',sLayout:'Kaart stijl',sGrid:'Raster',sGridSub:'Compact overzicht',sList:'Lijst',sListSub:'Breed overzicht',sReset:'Standaard instellingen herstellen',recit:'Recitatie'},
-  en:{ hdr:'Quran',wt:'Welcome to onlinequran.nl',wp:'All 114 surahs with Arabic text and audio recitation. Click a surah to start.',back:'All surahs',verses:'verses',lrLbl:'Last read',cont:'Continue',srchPh:'Search by name or number…',srchRes:'results',mTit:'Remove bookmark?',mBod:'Are you sure you want to remove your reading position?',can:'Cancel',conf:'Remove',ftTit:'Questions or feedback?',cp:'© 2026 onlinequran.nl',rp:'Reply within 24 hours on weekdays',vers:'Verse',versL:'verse',bmA:'Set bookmark',bmR:'Remove bookmark',srs:'surahs',sTitle:'Settings',sColor:'Accent color',sAppear:'Appearance',sDark:'Dark mode',sFont:'Arabic text size',sFontSz:'Size',sRec:'Reciter',sLayout:'Card style',sGrid:'Grid',sGridSub:'Compact overview',sList:'List',sListSub:'Wide overview',sReset:'Reset to default settings',recit:'Recitation'},
-  arabic:{ hdr:'قرآن',wt:'مرحباً بك',wp:'جميع السور الـ 114 مع النص العربي والصوت.',back:'جميع السور',verses:'آيات',lrLbl:'آخر قراءة',cont:'استمر',srchPh:'ابحث عن سورة…',srchRes:'نتائج',mTit:'حذف العلامة؟',mBod:'هل أنت متأكد؟',can:'إلغاء',conf:'حذف',ftTit:'هل لديك أسئلة؟',cp:'© 2026 onlinequran.nl',rp:'الرد خلال 24 ساعة',vers:'آية',versL:'آية',bmA:'إضافة علامة',bmR:'حذف علامة',srs:'سورة',sTitle:'الإعدادات',sColor:'لون التمييز',sAppear:'المظهر',sDark:'الوضع المظلم',sFont:'حجم النص',sFontSz:'الحجم',sRec:'القارئ',sLayout:'نمط البطاقة',sGrid:'شبكة',sGridSub:'عرض مضغوط',sList:'قائمة',sListSub:'عرض واسع',sReset:'إعادة الضبط',recit:'التلاوة'}
+  nl:{ hdr:'Quran',wt:'Welkom bij onlinequran.nl',wp:"Alle 114 soera's met Arabische tekst en audio recitatie. Klik op een soera om te beginnen.",back:"Alle soera's",verses:'verzen',lrLbl:'Laatst gelezen',cont:'Ga verder',srchPh:'Zoek soera op naam of nummer\u2026',srchRes:'resultaten',mTit:'Bookmark verwijderen?',mBod:'Weet je zeker dat je de leespositie wilt verwijderen?',can:'Annuleren',conf:'Verwijderen',ftTit:'Vragen of opmerkingen?',cp:'\u00a9 2026 onlinequran.nl',rp:'Antwoord binnen 24 uur op werkdagen',vers:'Vers',versL:'vers',bmA:'Zet bladwijzer',bmR:'Verwijder bladwijzer',srs:"soera's",sTitle:'Instellingen',sColor:'Accentkleur',sAppear:'Weergave',sDark:'Donkere modus',sFont:'Arabische tekst grootte',sFontSz:'Grootte',sRec:'Reciteur',sLayout:'Kaart stijl',sGrid:'Raster',sGridSub:'Compact overzicht',sList:'Lijst',sListSub:'Breed overzicht',sReset:'Standaard instellingen herstellen',recit:'Recitatie',audioErr:'Audio niet beschikbaar voor deze reciteur'},
+  en:{ hdr:'Quran',wt:'Welcome to onlinequran.nl',wp:'All 114 surahs with Arabic text and audio recitation. Click a surah to start.',back:'All surahs',verses:'verses',lrLbl:'Last read',cont:'Continue',srchPh:'Search by name or number\u2026',srchRes:'results',mTit:'Remove bookmark?',mBod:'Are you sure you want to remove your reading position?',can:'Cancel',conf:'Remove',ftTit:'Questions or feedback?',cp:'\u00a9 2026 onlinequran.nl',rp:'Reply within 24 hours on weekdays',vers:'Verse',versL:'verse',bmA:'Set bookmark',bmR:'Remove bookmark',srs:'surahs',sTitle:'Settings',sColor:'Accent color',sAppear:'Appearance',sDark:'Dark mode',sFont:'Arabic text size',sFontSz:'Size',sRec:'Reciter',sLayout:'Card style',sGrid:'Grid',sGridSub:'Compact overview',sList:'List',sListSub:'Wide overview',sReset:'Reset to default settings',recit:'Recitation',audioErr:'Audio not available for this reciter'},
+  arabic:{ hdr:'\u0642\u0631\u0622\u0646',wt:'\u0645\u0631\u062d\u0628\u0627\u064b \u0628\u0643',wp:'\u062c\u0645\u064a\u0639 \u0627\u0644\u0633\u0648\u0631 \u0627\u0644\u0640 114 \u0645\u0639 \u0627\u0644\u0646\u0635 \u0627\u0644\u0639\u0631\u0628\u064a \u0648\u0627\u0644\u0635\u0648\u062a.',back:'\u062c\u0645\u064a\u0639 \u0627\u0644\u0633\u0648\u0631',verses:'\u0622\u064a\u0627\u062a',lrLbl:'\u0622\u062e\u0631 \u0642\u0631\u0627\u0621\u0629',cont:'\u0627\u0633\u062a\u0645\u0631',srchPh:'\u0627\u0628\u062d\u062b \u0639\u0646 \u0633\u0648\u0631\u0629\u2026',srchRes:'\u0646\u062a\u0627\u0626\u062c',mTit:'\u062d\u0630\u0641 \u0627\u0644\u0639\u0644\u0627\u0645\u0629\u061f',mBod:'\u0647\u0644 \u0623\u0646\u062a \u0645\u062a\u0623\u0643\u062f\u061f',can:'\u0625\u0644\u063a\u0627\u0621',conf:'\u062d\u0630\u0641',ftTit:'\u0647\u0644 \u0644\u062f\u064a\u0643 \u0623\u0633\u0626\u0644\u0629\u061f',cp:'\u00a9 2026 onlinequran.nl',rp:'\u0627\u0644\u0631\u062f \u062e\u0644\u0627\u0644 24 \u0633\u0627\u0639\u0629',vers:'\u0622\u064a\u0629',versL:'\u0622\u064a\u0629',bmA:'\u0625\u0636\u0627\u0641\u0629 \u0639\u0644\u0627\u0645\u0629',bmR:'\u062d\u0630\u0641 \u0639\u0644\u0627\u0645\u0629',srs:'\u0633\u0648\u0631\u0629',sTitle:'\u0627\u0644\u0625\u0639\u062f\u0627\u062f\u0627\u062a',sColor:'\u0644\u0648\u0646 \u0627\u0644\u062a\u0645\u064a\u064a\u0632',sAppear:'\u0627\u0644\u0645\u0638\u0647\u0631',sDark:'\u0627\u0644\u0648\u0636\u0639 \u0627\u0644\u0645\u0638\u0644\u0645',sFont:'\u062d\u062c\u0645 \u0627\u0644\u0646\u0635',sFontSz:'\u0627\u0644\u062d\u062c\u0645',sRec:'\u0627\u0644\u0642\u0627\u0631\u0626',sLayout:'\u0646\u0645\u0637 \u0627\u0644\u0628\u0637\u0627\u0642\u0629',sGrid:'\u0634\u0628\u0643\u0629',sGridSub:'\u0639\u0631\u0636 \u0645\u0636\u063a\u0648\u0637',sList:'\u0642\u0627\u0626\u0645\u0629',sListSub:'\u0639\u0631\u0636 \u0648\u0627\u0633\u0639',sReset:'\u0625\u0639\u0627\u062f\u0629 \u0627\u0644\u0636\u0628\u0637',recit:'\u0627\u0644\u062a\u0644\u0627\u0648\u0629',audioErr:'\u0627\u0644\u0635\u0648\u062a \u063a\u064a\u0631 \u0645\u062a\u0627\u062d'}
 };
 
 /* ── HELPERS ── */
 const $   = id => document.getElementById(id);
-const txt = (id,v) => { const e=$(id); if(e) e.textContent=v; };
-const aurl= (r,n) => `https://cdn.islamic.network/quran/audio-surah/128/${r}/${n}.mp3`;
+const txt = (id, v) => { const e = $(id); if (e) e.textContent = v; };
 
-/* ── KLEUR TOEPASSEN op alle elementen direct ── */
-function applyAccent(colorName, save=true) {
+/* CDN URL ophalen — gebruikt CDN_MAP voor correcte mapnaam */
+function aurl(recId, surahNum) {
+  const cdnId = CDN_MAP[recId] || recId;
+  return `https://cdn.islamic.network/quran/audio-surah/128/${cdnId}/${surahNum}.mp3`;
+}
+
+/* ── KLEUR TOEPASSEN ── */
+function applyAccent(colorName, save = true) {
   accentColor = colorName;
   const [c1, c2] = COLORS[colorName] || COLORS.gold;
   const grad = `linear-gradient(135deg, ${c1}, ${c2})`;
 
-  // CSS variabelen voor elementen die ze al gebruiken
-  document.documentElement.style.setProperty('--ac',  c1);
+  document.documentElement.style.setProperty('--ac', c1);
   document.documentElement.style.setProperty('--ac2', c2);
 
-  // Direct stijlen toepassen op alle elementen
   const applyGrad = sel => document.querySelectorAll(sel).forEach(el => el.style.background = grad);
   const applyClr  = sel => document.querySelectorAll(sel).forEach(el => el.style.color = c1);
   const applyBdr  = sel => document.querySelectorAll(sel).forEach(el => el.style.borderColor = c1);
 
   applyGrad('.logo-ico, .lr-ico, .scard-num, .srch-btn, .btn-cont, .vnum-badge, .shdr, .hero, .mail-link, .rec-play.playing');
-  applyClr('.scard-ar, .audio-lbl, .stat-pill i, .btn-clr, .font-val, .set-title i, .set-lbl i, .theme-lbl i, .font-lbl2 i, .vcard.lr .vhint, .lrbadge, .mail-link');
+  applyClr('.scard-ar, .audio-lbl, .stat-pill i, .btn-clr, .font-val, .set-title i, .set-lbl i, .theme-lbl i, .font-lbl2 i, .vcard.lr .vhint, .lrbadge');
   applyBdr('.lr-banner, .vcard.lr');
 
-  // Toggle knop kleur
   const tog = $('setToggle');
   if (tog && tog.classList.contains('on')) tog.style.background = c1;
 
-  // Active lang btn
   document.querySelectorAll('.lang-btn.active').forEach(b => b.style.background = c1);
-
-  // Zoek btn border focus
   document.querySelectorAll('.sz-btn.active').forEach(b => { b.style.background = c1; b.style.borderColor = c1; });
 
-  // Rec-opt active
   document.querySelectorAll('.rec-opt.active').forEach(o => o.style.borderColor = c1);
   document.querySelectorAll('.rec-opt.active .rec-dot').forEach(d => { d.style.background = c1; d.style.borderColor = c1; });
-
-  // Style opt active
   document.querySelectorAll('.style-opt.active').forEach(o => o.style.borderColor = c1);
-
-  // Swatch active ring
   document.querySelectorAll('.csw').forEach(sw => sw.classList.toggle('active', sw.dataset.color === colorName));
 
   if (save) saveSettings();
 }
 
 /* ── DONKER MODUS ── */
-function applyDark(dark, save=true) {
+function applyDark(dark, save = true) {
   isDark = dark;
   document.body.classList.toggle('dark', dark);
   $('themeIco').className = dark ? 'fas fa-sun' : 'fas fa-moon';
@@ -1136,17 +794,16 @@ function applyDark(dark, save=true) {
 }
 
 /* ── LETTERGROOTTE ── */
-function applyFontSize(n, save=true) {
+function applyFontSize(n, save = true) {
   fontSize = n;
-  const size = FONT_SIZES[n-1];
+  const size = FONT_SIZES[n - 1];
   document.querySelectorAll('.vcard-ar').forEach(el => el.style.fontSize = size);
-  document.documentElement.style.setProperty('--qsz', size);
   $('szSlider').value = n;
-  txt('fontVal', (FONT_LABELS[lang]||FONT_LABELS.nl)[n-1]);
+  txt('fontVal', (FONT_LABELS[lang] || FONT_LABELS.nl)[n - 1]);
   document.querySelectorAll('.sz-btn').forEach(b => {
     b.classList.toggle('active', +b.dataset.sz === n);
     if (+b.dataset.sz === n) {
-      const [c1] = COLORS[accentColor]||COLORS.gold;
+      const [c1] = COLORS[accentColor] || COLORS.gold;
       b.style.background = c1; b.style.borderColor = c1; b.style.color = '#fff';
     } else {
       b.style.background = ''; b.style.borderColor = ''; b.style.color = '';
@@ -1156,9 +813,16 @@ function applyFontSize(n, save=true) {
 }
 
 /* ── RECITEUR ── */
-function applyReciter(id, save=true) {
+function hexToRgb(hex) {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `${r},${g},${b}`;
+}
+
+function applyReciter(id, save = true) {
   reciter = id;
-  const [c1] = COLORS[accentColor]||COLORS.gold;
+  const [c1] = COLORS[accentColor] || COLORS.gold;
   document.querySelectorAll('.rec-opt').forEach(o => {
     const active = o.dataset.rec === id;
     o.classList.toggle('active', active);
@@ -1169,26 +833,33 @@ function applyReciter(id, save=true) {
   });
   if (activeSurah) {
     const a = $('sAudio'), playing = !a.paused;
-    a.src = aurl(id, activeSurah); a.load();
-    if (playing) a.play().catch(()=>{});
+    a.src = aurl(id, activeSurah);
+    a.load();
+    hideAudioErr();
+    if (playing) a.play().catch(() => {});
   }
   if (save) saveSettings();
 }
 
-function hexToRgb(hex) {
-  const r = parseInt(hex.slice(1,3),16);
-  const g = parseInt(hex.slice(3,5),16);
-  const b = parseInt(hex.slice(5,7),16);
-  return `${r},${g},${b}`;
+/* ── AUDIO FOUT ── */
+function showAudioErr() {
+  const err = $('audioErr'), aud = $('sAudio');
+  if (err) { err.classList.remove('hidden'); txt('audioErrTxt', T[lang].audioErr); }
+  if (aud) aud.style.display = 'none';
+}
+function hideAudioErr() {
+  const err = $('audioErr'), aud = $('sAudio');
+  if (err) err.classList.add('hidden');
+  if (aud) aud.style.display = '';
 }
 
 /* ── KAART STIJL ── */
-function applyCardStyle(sty, save=true) {
+function applyCardStyle(sty, save = true) {
   cardStyle = sty;
   document.querySelectorAll('.style-opt').forEach(o => {
     const active = o.dataset.sty === sty;
     o.classList.toggle('active', active);
-    const [c1] = COLORS[accentColor]||COLORS.gold;
+    const [c1] = COLORS[accentColor] || COLORS.gold;
     o.style.borderColor = active ? c1 : '';
     o.style.background  = active ? `rgba(${hexToRgb(c1)},0.08)` : '';
   });
@@ -1196,230 +867,252 @@ function applyCardStyle(sty, save=true) {
   if (save) saveSettings();
 }
 
-/* ── INSTELLINGEN OPSLAAN ── */
+/* ── INSTELLINGEN ── */
 function saveSettings() {
-  try {
-    localStorage.setItem('qs', JSON.stringify({ accentColor, isDark, fontSize, reciter, cardStyle, lang }));
-  } catch(e) {}
+  try { localStorage.setItem('qs', JSON.stringify({ accentColor, isDark, fontSize, reciter, cardStyle, lang })); } catch (e) {}
 }
 function loadSettings() {
   try {
-    const s = JSON.parse(localStorage.getItem('qs')||'{}');
+    const s = JSON.parse(localStorage.getItem('qs') || '{}');
     if (s.lang) lang = s.lang;
     if (s.accentColor) applyAccent(s.accentColor, false);
     if (s.isDark) applyDark(true, false);
     if (s.fontSize) applyFontSize(+s.fontSize, false);
     if (s.reciter) applyReciter(s.reciter, false);
     if (s.cardStyle) applyCardStyle(s.cardStyle, false);
-  } catch(e) {}
+  } catch (e) {}
 }
 
 /* ── BLADWIJZER ── */
-function getLR() { try{ const x=localStorage.getItem('lr'); return x?JSON.parse(x):null; }catch{return null;} }
-function saveLR(id,v){ try{localStorage.setItem('lr',JSON.stringify({surahId:id,verse:v}));}catch(e){} renderLR(); if(activeSurah)reloadV(); }
-function clearLR(){ localStorage.removeItem('lr'); renderLR(); if(activeSurah)reloadV(); }
-function renderLR(){
-  const lr=getLR(), b=$('lrBanner');
-  if(!lr){ b.classList.add('hidden'); return; }
+function getLR() { try { const x = localStorage.getItem('lr'); return x ? JSON.parse(x) : null; } catch { return null; } }
+function saveLR(id, v) { try { localStorage.setItem('lr', JSON.stringify({ surahId: id, verse: v })); } catch (e) {} renderLR(); if (activeSurah) reloadV(); }
+function clearLR() { localStorage.removeItem('lr'); renderLR(); if (activeSurah) reloadV(); }
+function renderLR() {
+  const lr = getLR(), b = $('lrBanner');
+  if (!lr) { b.classList.add('hidden'); return; }
   b.classList.remove('hidden');
-  const s=SURAHS[lr.surahId-1], t=T[lang];
-  txt('lrName', lang==='arabic'?s.ar:s.en);
-  txt('lrVerse', t.versL+' '+lr.verse);
+  const s = SURAHS[lr.surahId - 1], t = T[lang];
+  txt('lrName', lang === 'arabic' ? s.ar : s.en);
+  txt('lrVerse', t.versL + ' ' + lr.verse);
   txt('lrLbl', t.lrLbl);
   txt('btnContTxt', t.cont);
-  const [c1] = COLORS[accentColor]||COLORS.gold;
+  const [c1] = COLORS[accentColor] || COLORS.gold;
   $('lrBanner').style.borderLeftColor = c1;
 }
 
 /* ── TAAL ── */
-function applyLang(){
-  const t=T[lang];
-  txt('hTitle',t.hdr); txt('wTitle',t.wt); txt('wText',t.wp);
-  txt('backTxt',t.back); txt('modalTitle',t.mTit); txt('modalBody',t.mBod);
-  txt('btnMCan',t.can); txt('btnMCon',t.conf);
-  txt('ftTitle',t.ftTit); txt('cpTxt',t.cp); txt('rpTxt',t.rp);
-  txt('setTitle',t.sTitle); txt('setColorLbl',t.sColor); txt('setAppearLbl',t.sAppear);
-  txt('setThemeTxt',t.sDark); txt('setFontLbl',t.sFont); txt('setFontSzTxt',t.sFontSz);
-  txt('setRecLbl',t.sRec); txt('setLayoutLbl',t.sLayout);
-  txt('styGridTxt',t.sGrid); txt('styGridSub',t.sGridSub);
-  txt('styListTxt',t.sList); txt('styListSub',t.sListSub);
-  txt('setResetTxt',t.sReset); txt('recLabel',t.recit);
+function applyLang() {
+  const t = T[lang];
+  txt('hTitle', t.hdr); txt('wTitle', t.wt); txt('wText', t.wp);
+  txt('backTxt', t.back); txt('modalTitle', t.mTit); txt('modalBody', t.mBod);
+  txt('btnMCan', t.can); txt('btnMCon', t.conf);
+  txt('ftTitle', t.ftTit); txt('cpTxt', t.cp); txt('rpTxt', t.rp);
+  txt('setTitle', t.sTitle); txt('setColorLbl', t.sColor); txt('setAppearLbl', t.sAppear);
+  txt('setThemeTxt', t.sDark); txt('setFontLbl', t.sFont); txt('setFontSzTxt', t.sFontSz);
+  txt('setRecLbl', t.sRec); txt('setLayoutLbl', t.sLayout);
+  txt('styGridTxt', t.sGrid); txt('styGridSub', t.sGridSub);
+  txt('styListTxt', t.sList); txt('styListSub', t.sListSub);
+  txt('setResetTxt', t.sReset); txt('recLabel', t.recit);
   $('srchIn').placeholder = t.srchPh;
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang===lang));
-  txt('fontVal', (FONT_LABELS[lang]||FONT_LABELS.nl)[fontSize-1]);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  txt('fontVal', (FONT_LABELS[lang] || FONT_LABELS.nl)[fontSize - 1]);
   renderLR();
 }
 
 /* ── GRID ── */
-function renderGrid(list){
-  const g=$('surahGrid'), sb=$('statsBar');
-  g.innerHTML='';
-  if(!list||!list.length){
-    g.innerHTML='<div class="no-res"><i class="fas fa-search"></i>Geen soera\'s gevonden</div>';
+function renderGrid(list) {
+  const g = $('surahGrid'), sb = $('statsBar');
+  g.innerHTML = '';
+  if (!list || !list.length) {
+    g.innerHTML = '<div class="no-res"><i class="fas fa-search"></i>Geen soera\'s gevonden</div>';
     g.classList.remove('hidden'); sb.classList.add('hidden'); return;
   }
-  txt('statsTxt', list.length+' '+T[lang].srs);
+  txt('statsTxt', list.length + ' ' + T[lang].srs);
   sb.classList.remove('hidden');
-  const [c1,c2] = COLORS[accentColor]||COLORS.gold;
+  const [c1, c2] = COLORS[accentColor] || COLORS.gold;
   const grad = `linear-gradient(135deg,${c1},${c2})`;
-  list.forEach(s=>{
-    const card=document.createElement('div');
-    card.className='scard';
-    if(cardStyle==='list'){
-      card.innerHTML=`<div class="scard-hd"><div class="scard-num" style="background:${grad}">${s.n}</div><div style="flex:1;min-width:0"><div class="scard-title">${s.en}</div><div class="scard-meta"><i class="fas fa-layer-group" style="color:${c1}"></i>${s.v} ${T[lang].verses}</div></div><div class="scard-ar" style="color:${c1}">${s.ar}</div></div>`;
+  list.forEach(s => {
+    const card = document.createElement('div');
+    card.className = 'scard';
+    if (cardStyle === 'list') {
+      card.innerHTML = `<div class="scard-hd"><div class="scard-num" style="background:${grad}">${s.n}</div><div style="flex:1;min-width:0"><div class="scard-title">${s.en}</div><div class="scard-meta"><i class="fas fa-layer-group" style="color:${c1}"></i>${s.v} ${T[lang].verses}</div></div><div class="scard-ar" style="color:${c1}">${s.ar}</div></div>`;
     } else {
-      card.innerHTML=`<div class="scard-hd"><div class="scard-num" style="background:${grad}">${s.n}</div><div class="scard-ar" style="color:${c1}">${s.ar}</div></div><div class="scard-title">${s.en}</div><div class="scard-meta"><i class="fas fa-layer-group" style="color:${c1}"></i>${s.v} ${T[lang].verses}</div>`;
+      card.innerHTML = `<div class="scard-hd"><div class="scard-num" style="background:${grad}">${s.n}</div><div class="scard-ar" style="color:${c1}">${s.ar}</div></div><div class="scard-title">${s.en}</div><div class="scard-meta"><i class="fas fa-layer-group" style="color:${c1}"></i>${s.v} ${T[lang].verses}</div>`;
     }
-    card.addEventListener('click',()=>openSurah(s.n));
+    card.addEventListener('click', () => openSurah(s.n));
     g.appendChild(card);
   });
   g.classList.remove('hidden');
-  g.style.gridTemplateColumns = cardStyle==='list'?'1fr':'';
+  g.style.gridTemplateColumns = cardStyle === 'list' ? '1fr' : '';
 }
 
 /* ── ZOEKEN ── */
-function doSearch(){
-  const q=$('srchIn').value.trim().toLowerCase(), m=$('srchMeta');
-  if(!q){ searching=false; m.classList.add('hidden'); renderGrid(SURAHS); return; }
-  searching=true;
-  const res=SURAHS.filter(s=>(s.en||'').toLowerCase().includes(q)||(s.ar||'').includes(q)||s.n.toString()===q);
+function doSearch() {
+  const q = $('srchIn').value.trim().toLowerCase(), m = $('srchMeta');
+  if (!q) { searching = false; m.classList.add('hidden'); renderGrid(SURAHS); return; }
+  searching = true;
+  const res = SURAHS.filter(s => (s.en || '').toLowerCase().includes(q) || (s.ar || '').includes(q) || s.n.toString() === q);
   m.classList.remove('hidden');
-  txt('srchCount', res.length+' '+T[lang].srchRes);
+  txt('srchCount', res.length + ' ' + T[lang].srchRes);
   renderGrid(res);
 }
 
 /* ── SOERA OPENEN ── */
-const VC={};
-async function openSurah(id){
-  activeSurah=id;
-  ['surahGrid','heroSec','lrBanner','statsBar'].forEach(i=>$(i).classList.add('hidden'));
+const VC = {};
+async function openSurah(id) {
+  activeSurah = id;
+  ['surahGrid', 'heroSec', 'lrBanner', 'statsBar'].forEach(i => $(i).classList.add('hidden'));
   $('surahPage').classList.remove('hidden');
   $('ldWrap').classList.remove('hidden');
-  $('vList').innerHTML='';
-  window.scrollTo({top:0,behavior:'smooth'});
-  const s=SURAHS[id-1];
-  const [c1,c2]=COLORS[accentColor]||COLORS.gold;
-  txt('sLatin',`${id}. ${s.en}`);
-  txt('sArabic',s.ar);
-  txt('sVerses',s.v+' '+T[lang].verses);
-  $('shdr'||'.shdr') && ($('.shdr') ? document.querySelector('.shdr').style.background=`linear-gradient(135deg,${c1},${c2})` : null);
-  document.querySelectorAll('.shdr').forEach(el=>el.style.background=`linear-gradient(135deg,${c1},${c2})`);
-  const a=$('sAudio'); a.src=aurl(reciter,id); a.load();
-  const lr=getLR(), badge=$('lrBadge');
-  if(lr&&lr.surahId===id){ badge.classList.remove('hidden'); txt('lrBadgeTxt',T[lang].versL+' '+lr.verse); badge.style.color=c1; }
-  else{ badge.classList.add('hidden'); }
-  try{
-    if(!VC[id]){
-      const d=await(await fetch(`https://api.alquran.cloud/v1/surah/${id}`)).json();
-      VC[id]=d.data.ayahs;
+  $('vList').innerHTML = '';
+  hideAudioErr();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  const s = SURAHS[id - 1];
+  const [c1, c2] = COLORS[accentColor] || COLORS.gold;
+  txt('sLatin', `${id}. ${s.en}`);
+  txt('sArabic', s.ar);
+  txt('sVerses', s.v + ' ' + T[lang].verses);
+  document.querySelectorAll('.shdr').forEach(el => el.style.background = `linear-gradient(135deg,${c1},${c2})`);
+
+  /* Audio instellen met correcte CDN URL */
+  const a = $('sAudio');
+  a.src = aurl(reciter, id);
+  a.load();
+
+  const lr = getLR(), badge = $('lrBadge');
+  if (lr && lr.surahId === id) { badge.classList.remove('hidden'); txt('lrBadgeTxt', T[lang].versL + ' ' + lr.verse); badge.style.color = c1; }
+  else { badge.classList.add('hidden'); }
+
+  try {
+    if (!VC[id]) {
+      const d = await (await fetch(`https://api.alquran.cloud/v1/surah/${id}`)).json();
+      VC[id] = d.data.ayahs;
     }
-    renderV(id,VC[id]);
-  } catch(e){
-    $('vList').innerHTML='<div class="no-res"><i class="fas fa-exclamation-circle"></i>Kon verzen niet laden. Controleer je verbinding.</div>';
-  } finally{ $('ldWrap').classList.add('hidden'); }
+    renderV(id, VC[id]);
+  } catch (e) {
+    $('vList').innerHTML = '<div class="no-res"><i class="fas fa-exclamation-circle"></i>Kon verzen niet laden. Controleer je verbinding.</div>';
+  } finally {
+    $('ldWrap').classList.add('hidden');
+  }
 }
 
-function renderV(id,ayahs){
-  const vl=$('vList'), lr=getLR();
-  const [c1]=COLORS[accentColor]||COLORS.gold;
-  vl.innerHTML='';
-  ayahs.forEach(a=>{
-    const isLR=lr&&lr.surahId===id&&lr.verse===a.numberInSurah;
-    const vc=document.createElement('div');
-    vc.className='vcard'+(isLR?' lr':'');
-    vc.dataset.v=a.numberInSurah;
-    if(isLR){ vc.style.borderLeftColor=c1; }
-    vc.innerHTML=`<div class="vcard-ar" style="font-size:${FONT_SIZES[fontSize-1]}">${a.text}</div><div class="vcard-ft"><div class="vnum"><span class="vnum-badge" style="background:${c1}">${a.numberInSurah}</span>${T[lang].vers} ${a.numberInSurah}</div><div class="vhint"><i class="fas fa-bookmark"></i>${isLR?T[lang].bmR:T[lang].bmA}</div></div>`;
-    vc.addEventListener('click',()=>{
-      const cur=getLR();
-      if(cur&&cur.surahId===id&&cur.verse===a.numberInSurah) clearLR(); else saveLR(id,a.numberInSurah);
+function renderV(id, ayahs) {
+  const vl = $('vList'), lr = getLR();
+  const [c1] = COLORS[accentColor] || COLORS.gold;
+  vl.innerHTML = '';
+  ayahs.forEach(a => {
+    const isLR = lr && lr.surahId === id && lr.verse === a.numberInSurah;
+    const vc = document.createElement('div');
+    vc.className = 'vcard' + (isLR ? ' lr' : '');
+    vc.dataset.v = a.numberInSurah;
+    if (isLR) { vc.style.borderLeftColor = c1; }
+    vc.innerHTML = `<div class="vcard-ar" style="font-size:${FONT_SIZES[fontSize - 1]}">${a.text}</div><div class="vcard-ft"><div class="vnum"><span class="vnum-badge" style="background:${c1}">${a.numberInSurah}</span>${T[lang].vers} ${a.numberInSurah}</div><div class="vhint"><i class="fas fa-bookmark"></i>${isLR ? T[lang].bmR : T[lang].bmA}</div></div>`;
+    vc.addEventListener('click', () => {
+      const cur = getLR();
+      if (cur && cur.surahId === id && cur.verse === a.numberInSurah) clearLR(); else saveLR(id, a.numberInSurah);
     });
     vl.appendChild(vc);
   });
-  if(lr&&lr.surahId===id){
-    setTimeout(()=>{
-      const tgt=vl.querySelector(`[data-v="${lr.verse}"]`);
-      if(tgt){ tgt.scrollIntoView({behavior:'smooth',block:'center'}); tgt.classList.add('flash'); setTimeout(()=>tgt.classList.remove('flash'),2000); }
-    },300);
+  if (lr && lr.surahId === id) {
+    setTimeout(() => {
+      const tgt = vl.querySelector(`[data-v="${lr.verse}"]`);
+      if (tgt) { tgt.scrollIntoView({ behavior: 'smooth', block: 'center' }); tgt.classList.add('flash'); setTimeout(() => tgt.classList.remove('flash'), 2000); }
+    }, 300);
   }
 }
-function reloadV(){ if(activeSurah&&VC[activeSurah]) renderV(activeSurah,VC[activeSurah]); }
+
+function reloadV() { if (activeSurah && VC[activeSurah]) renderV(activeSurah, VC[activeSurah]); }
 
 /* ── TERUG ── */
-function goBack(){
-  activeSurah=null;
+function goBack() {
+  activeSurah = null;
   $('surahPage').classList.add('hidden');
-  ['heroSec','surahGrid','statsBar'].forEach(i=>$(i).classList.remove('hidden'));
+  ['heroSec', 'surahGrid', 'statsBar'].forEach(i => $(i).classList.remove('hidden'));
   renderLR();
-  if(searching&&$('srchIn').value.trim()) doSearch(); else renderGrid(SURAHS);
+  if (searching && $('srchIn').value.trim()) doSearch(); else renderGrid(SURAHS);
 }
 
 /* ── SETTINGS ── */
-function openSet(){ $('setOv').classList.add('open'); $('setBtn').classList.add('iactive'); document.body.style.overflow='hidden'; }
-function closeSet(){ $('setOv').classList.remove('open'); $('setBtn').classList.remove('iactive'); document.body.style.overflow=''; stopPrev(); }
+function openSet() { $('setOv').classList.add('open'); $('setBtn').classList.add('iactive'); document.body.style.overflow = 'hidden'; }
+function closeSet() { $('setOv').classList.remove('open'); $('setBtn').classList.remove('iactive'); document.body.style.overflow = ''; stopPrev(); }
 
-let curPBtn=null;
-function stopPrev(){
-  const pa=$('prevAudio'); if(pa){pa.pause();pa.src='';}
-  if(curPBtn){curPBtn.innerHTML='<i class="fas fa-play"></i>';curPBtn.classList.remove('playing');curPBtn=null;}
+let curPBtn = null;
+function stopPrev() {
+  const pa = $('prevAudio');
+  if (pa) { pa.pause(); pa.src = ''; }
+  if (curPBtn) { curPBtn.innerHTML = '<i class="fas fa-play"></i>'; curPBtn.classList.remove('playing'); curPBtn = null; }
 }
 
+/* ── AUDIO FOUT HANDLER ── */
+$('sAudio').addEventListener('error', function () {
+  if (activeSurah) showAudioErr();
+});
+$('sAudio').addEventListener('loadeddata', function () {
+  hideAudioErr();
+});
+
 /* ── EVENTS ── */
-$('backBtn').addEventListener('click',goBack);
+$('backBtn').addEventListener('click', goBack);
+$('themeBtn').addEventListener('click', () => applyDark(!isDark));
+$('setToggle').addEventListener('click', () => applyDark(!isDark));
 
-$('themeBtn').addEventListener('click',()=>applyDark(!isDark));
-$('setToggle').addEventListener('click',()=>applyDark(!isDark));
-
-document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>{
-  lang=b.dataset.lang; applyLang(); saveSettings();
-  if(activeSurah){ txt('sVerses',SURAHS[activeSurah-1].v+' '+T[lang].verses); reloadV(); }
-  else if(searching&&$('srchIn').value.trim()) doSearch(); else renderGrid(SURAHS);
-  // Herstel accentkleur na taalswitch
-  setTimeout(()=>applyAccent(accentColor,false),50);
+document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => {
+  lang = b.dataset.lang; applyLang(); saveSettings();
+  if (activeSurah) { txt('sVerses', SURAHS[activeSurah - 1].v + ' ' + T[lang].verses); reloadV(); }
+  else if (searching && $('srchIn').value.trim()) doSearch(); else renderGrid(SURAHS);
+  setTimeout(() => applyAccent(accentColor, false), 50);
 }));
 
-$('srchIn').addEventListener('input',doSearch);
-$('srchBtn').addEventListener('click',doSearch);
-$('srchIn').addEventListener('keypress',e=>{ if(e.key==='Enter') doSearch(); });
-$('btnClr').addEventListener('click',()=>{ $('srchIn').value=''; doSearch(); });
+$('srchIn').addEventListener('input', doSearch);
+$('srchBtn').addEventListener('click', doSearch);
+$('srchIn').addEventListener('keypress', e => { if (e.key === 'Enter') doSearch(); });
+$('btnClr').addEventListener('click', () => { $('srchIn').value = ''; doSearch(); });
 
-$('btnCont').addEventListener('click',()=>{ const lr=getLR(); if(lr) openSurah(lr.surahId); });
-$('lrBanner').addEventListener('click',e=>{ if(!e.target.closest('#btnTrash')&&!e.target.closest('#btnCont')){ const lr=getLR(); if(lr) openSurah(lr.surahId); } });
-$('btnTrash').addEventListener('click',e=>{ e.stopPropagation(); $('modal').classList.remove('hidden'); });
+$('btnCont').addEventListener('click', () => { const lr = getLR(); if (lr) openSurah(lr.surahId); });
+$('lrBanner').addEventListener('click', e => { if (!e.target.closest('#btnTrash') && !e.target.closest('#btnCont')) { const lr = getLR(); if (lr) openSurah(lr.surahId); } });
+$('btnTrash').addEventListener('click', e => { e.stopPropagation(); $('modal').classList.remove('hidden'); });
 
-$('btnMCan').addEventListener('click',()=>$('modal').classList.add('hidden'));
-$('btnMCon').addEventListener('click',()=>{ clearLR(); $('modal').classList.add('hidden'); });
-$('modal').addEventListener('click',function(e){ if(e.target===this) this.classList.add('hidden'); });
+$('btnMCan').addEventListener('click', () => $('modal').classList.add('hidden'));
+$('btnMCon').addEventListener('click', () => { clearLR(); $('modal').classList.add('hidden'); });
+$('modal').addEventListener('click', function (e) { if (e.target === this) this.classList.add('hidden'); });
 
-$('setBtn').addEventListener('click',openSet);
-$('setClose').addEventListener('click',closeSet);
-$('setOv').addEventListener('click',e=>{ if(e.target===$('setOv')) closeSet(); });
+$('setBtn').addEventListener('click', openSet);
+$('setClose').addEventListener('click', closeSet);
+$('setOv').addEventListener('click', e => { if (e.target === $('setOv')) closeSet(); });
 
-document.querySelectorAll('.csw').forEach(sw=>sw.addEventListener('click',()=>{ applyAccent(sw.dataset.color); renderGrid(searching&&$('srchIn').value.trim()?SURAHS.filter(s=>(s.en||'').toLowerCase().includes($('srchIn').value.trim().toLowerCase())||(s.ar||'').includes($('srchIn').value.trim())||s.n.toString()===$('srchIn').value.trim()):SURAHS); }));
+document.querySelectorAll('.csw').forEach(sw => sw.addEventListener('click', () => {
+  applyAccent(sw.dataset.color);
+  const q = $('srchIn').value.trim().toLowerCase();
+  renderGrid(searching && q ? SURAHS.filter(s => (s.en || '').toLowerCase().includes(q) || (s.ar || '').includes(q) || s.n.toString() === q) : SURAHS);
+}));
 
-$('szSlider').addEventListener('input',e=>applyFontSize(+e.target.value));
-document.querySelectorAll('.sz-btn').forEach(b=>b.addEventListener('click',()=>applyFontSize(+b.dataset.sz)));
+$('szSlider').addEventListener('input', e => applyFontSize(+e.target.value));
+document.querySelectorAll('.sz-btn').forEach(b => b.addEventListener('click', () => applyFontSize(+b.dataset.sz)));
 
-document.querySelectorAll('.rec-opt').forEach(o=>o.addEventListener('click',e=>{ if(!e.target.closest('.rec-play')) applyReciter(o.dataset.rec); }));
+document.querySelectorAll('.rec-opt').forEach(o => o.addEventListener('click', e => {
+  if (!e.target.closest('.rec-play')) applyReciter(o.dataset.rec);
+}));
 
-document.querySelectorAll('.rec-play').forEach(btn=>btn.addEventListener('click',e=>{
+/* Preview knoppen: gebruik data-cdn attribuut voor de URL */
+document.querySelectorAll('.rec-play').forEach(btn => btn.addEventListener('click', e => {
   e.stopPropagation();
-  const pa=$('prevAudio'), url=aurl(btn.dataset.prev,1);
-  if(curPBtn===btn&&!pa.paused){ stopPrev(); }
-  else{ stopPrev(); pa.src=url; pa.play().catch(()=>{}); btn.innerHTML='<i class="fas fa-pause"></i>'; btn.classList.add('playing'); curPBtn=btn; }
+  const pa = $('prevAudio'), cdnId = btn.dataset.cdn, url = `https://cdn.islamic.network/quran/audio-surah/128/${cdnId}/1.mp3`;
+  if (curPBtn === btn && !pa.paused) { stopPrev(); }
+  else { stopPrev(); pa.src = url; pa.play().catch(() => {}); btn.innerHTML = '<i class="fas fa-pause"></i>'; btn.classList.add('playing'); curPBtn = btn; }
 }));
-$('prevAudio').addEventListener('ended',stopPrev);
+$('prevAudio').addEventListener('ended', stopPrev);
 
-document.querySelectorAll('.style-opt').forEach(o=>o.addEventListener('click',()=>{
+document.querySelectorAll('.style-opt').forEach(o => o.addEventListener('click', () => {
   applyCardStyle(o.dataset.sty);
-  if(searching&&$('srchIn').value.trim()) doSearch(); else renderGrid(SURAHS);
+  if (searching && $('srchIn').value.trim()) doSearch(); else renderGrid(SURAHS);
 }));
 
-$('setReset').addEventListener('click',()=>{
+$('setReset').addEventListener('click', () => {
   stopPrev();
-  lang='nl'; isDark=false; fontSize=3; reciter='ar.alafasy'; cardStyle='grid'; accentColor='gold';
-  applyDark(false,false); applyFontSize(3,false); applyReciter('ar.alafasy',false);
-  applyCardStyle('grid',false); applyAccent('gold',false);
+  lang = 'nl'; isDark = false; fontSize = 3; reciter = 'ar.alafasy'; cardStyle = 'grid'; accentColor = 'gold';
+  applyDark(false, false); applyFontSize(3, false); applyReciter('ar.alafasy', false);
+  applyCardStyle('grid', false); applyAccent('gold', false);
   applyLang(); renderGrid(SURAHS);
   localStorage.removeItem('qs');
 });
