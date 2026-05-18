@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="nl" data-color="gold">
 <head>
 <meta charset="UTF-8">
@@ -23,17 +22,22 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 .hidden { display: none !important; }
 html { scroll-behavior: smooth; }
-body { font-family: 'Lato', sans-serif; background: #faf6ee; color: #1a1208; min-height: 100vh; overflow-x: hidden; transition: background 0.25s, color 0.25s; }
+body { font-family: 'Lato', sans-serif; background: #faf6ee; color: #1a1208; min-height: 100vh; overflow-x: hidden; transition: background 0.3s, color 0.3s; }
 body.dark { background: #181008; color: #ecdfc8; }
-::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #f0e8d5; }
 ::-webkit-scrollbar-thumb { background: #c9962c; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #b88a1f; }
 body.dark ::-webkit-scrollbar-track { background: #22180a; }
-.hdr { position: sticky; top: 0; z-index: 100; background: rgba(250,246,238,0.96); border-bottom: 1px solid rgba(201,150,44,0.3); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); transition: background 0.25s; }
+body.dark ::-webkit-scrollbar-thumb { background: #d4a653; }
+
+.hdr { position: sticky; top: 0; z-index: 100; background: rgba(250,246,238,0.96); border-bottom: 1px solid rgba(201,150,44,0.3); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); transition: background 0.25s; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
 body.dark .hdr { background: rgba(24,16,8,0.97); border-bottom-color: rgba(201,150,44,0.25); }
 .hdr-in { max-width: 1200px; margin: 0 auto; padding: 0 20px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.logo { display: flex; align-items: center; gap: 10px; }
-.logo-ico { width: 36px; height: 36px; background: linear-gradient(135deg, #c9962c, #e8b84b); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 15px; flex-shrink: 0; box-shadow: 0 2px 8px rgba(201,150,44,0.3); }
+.logo { display: flex; align-items: center; gap: 10px; cursor: pointer; transition: transform 0.25s; }
+.logo:hover { transform: scale(1.02); }
+.logo-ico { width: 36px; height: 36px; background: linear-gradient(135deg, #c9962c, #e8b84b); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 15px; flex-shrink: 0; box-shadow: 0 2px 8px rgba(201,150,44,0.3); transition: transform 0.25s; }
+.logo:hover .logo-ico { transform: rotate(5deg) scale(1.05); }
 .logo-txt { font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 700; color: #1a1208; transition: color 0.25s; }
 body.dark .logo-txt { color: #ecdfc8; }
 .hdr-ctrl { display: flex; align-items: center; gap: 8px; }
@@ -46,7 +50,7 @@ body.dark .lang-btn:hover { color: #ecdfc8; }
 .lang-btn.active { background: #c9962c; color: #fff; box-shadow: 0 2px 8px rgba(201,150,44,0.3); }
 .ico-btn { width: 38px; height: 38px; border: 1px solid rgba(201,150,44,0.3); border-radius: 50px; background: #f0e8d5; color: #1a1208; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: all 0.25s; flex-shrink: 0; }
 body.dark .ico-btn { background: #22180a; color: #ecdfc8; border-color: rgba(201,150,44,0.25); }
-.ico-btn:hover, .ico-btn.iactive { background: #c9962c; border-color: #c9962c; color: #fff; }
+.ico-btn:hover, .ico-btn.iactive { background: #c9962c; border-color: #c9962c; color: #fff; transform: scale(1.08); }
 .main { max-width: 1200px; margin: 0 auto; padding: 28px 20px 80px; position: relative; z-index: 1; }
 .hero { background: linear-gradient(135deg, #c9962c 0%, #e8b84b 55%, #c9962c 100%); border-radius: 16px; padding: 28px 24px; margin-bottom: 24px; position: relative; overflow: hidden; box-shadow: 0 10px 40px rgba(26,18,8,0.16); animation: fadeUp 0.45s ease both; }
 .hero::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg width='52' height='52' viewBox='0 0 52 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='0.07'%3E%3Cpath d='M26 0l7.5 4.33V13L26 17.33 18.5 13V4.33z'/%3E%3C/g%3E%3C/svg%3E"); }
@@ -54,20 +58,22 @@ body.dark .ico-btn { background: #22180a; color: #ecdfc8; border-color: rgba(201
 .hero-ar { font-family: 'Amiri', serif; font-size: clamp(1.6rem,5vw,2.5rem); color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.2); direction: rtl; flex-shrink: 0; line-height: 1; }
 .hero-txt h2 { font-family: 'Cinzel', serif; font-size: clamp(1rem,2.5vw,1.3rem); color: #fff; margin-bottom: 5px; font-weight: 700; }
 .hero-txt p { font-size: 0.88rem; color: rgba(255,255,255,0.88); line-height: 1.55; }
-.lr-banner { background: #f0e8d5; border: 1px solid rgba(201,150,44,0.3); border-left: 4px solid #c9962c; border-radius: 16px; padding: 14px 18px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px; box-shadow: 0 4px 20px rgba(26,18,8,0.10); cursor: pointer; transition: all 0.25s; }
-body.dark .lr-banner { background: #22180a; border-color: rgba(201,150,44,0.25); }
-.lr-banner:hover { box-shadow: 0 10px 40px rgba(26,18,8,0.16); transform: translateY(-1px); }
-.lr-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
-.lr-ico { width: 38px; height: 38px; background: linear-gradient(135deg, #c9962c, #e8b84b); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; flex-shrink: 0; }
-.lr-lbl { font-size: 0.72rem; color: #7a6540; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
-body.dark .lr-lbl { color: #a08858; }
-.lr-name { font-family: 'Cinzel', serif; font-size: 0.9rem; font-weight: 600; color: #1a1208; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-body.dark .lr-name { color: #ecdfc8; }
-.lr-acts { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+
+.banr { background: #f0e8d5; border: 1px solid rgba(201,150,44,0.3); border-left: 4px solid #c9962c; border-radius: 16px; padding: 14px 18px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px; box-shadow: 0 4px 20px rgba(26,18,8,0.10); cursor: pointer; transition: all 0.25s; }
+body.dark .banr { background: #22180a; border-color: rgba(201,150,44,0.25); }
+.banr:hover { box-shadow: 0 10px 40px rgba(26,18,8,0.16); transform: translateY(-2px); }
+.banr-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+.banr-ico { width: 38px; height: 38px; background: linear-gradient(135deg, #c9962c, #e8b84b); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; flex-shrink: 0; }
+.banr-lbl { font-size: 0.72rem; color: #7a6540; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
+body.dark .banr-lbl { color: #a08858; }
+.banr-name { font-family: 'Cinzel', serif; font-size: 0.9rem; font-weight: 600; color: #1a1208; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+body.dark .banr-name { color: #ecdfc8; }
+.banr-acts { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
 .btn-cont { display: flex; align-items: center; gap: 6px; padding: 8px 14px; background: #c9962c; color: #fff; border: none; border-radius: 10px; font-family: 'Lato', sans-serif; font-size: 0.83rem; font-weight: 700; cursor: pointer; transition: all 0.25s; white-space: nowrap; }
 .btn-cont:hover { filter: brightness(1.1); transform: translateX(2px); }
-.btn-trash { width: 34px; height: 34px; border: 1px solid rgba(201,150,44,0.3); border-radius: 10px; background: transparent; color: #7a6540; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
-.btn-trash:hover { background: #fee2e2; border-color: #fca5a5; color: #dc2626; }
+.btn-icon { width: 34px; height: 34px; border: 1px solid rgba(201,150,44,0.3); border-radius: 10px; background: transparent; color: #7a6540; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.25s; font-size: 14px; }
+.btn-icon:hover { background: #fee2e2; border-color: #fca5a5; color: #dc2626; }
+
 .srch-wrap { margin-bottom: 20px; }
 .srch-box { display: flex; align-items: center; background: #f0e8d5; border: 2px solid rgba(201,150,44,0.3); border-radius: 50px; padding: 4px 4px 4px 18px; box-shadow: 0 4px 20px rgba(26,18,8,0.10); transition: border-color 0.25s, box-shadow 0.25s; }
 body.dark .srch-box { background: #22180a; border-color: rgba(201,150,44,0.25); }
@@ -81,34 +87,45 @@ body.dark .srch-in::placeholder { color: #a08858; }
 .srch-meta { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; padding: 0 4px; font-size: 0.83rem; color: #7a6540; }
 body.dark .srch-meta { color: #a08858; }
 .btn-clr { background: none; border: none; color: #c9962c; cursor: pointer; font-size: 0.83rem; font-weight: 700; display: flex; align-items: center; gap: 4px; }
-.stats { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+
+.stats { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
 .stat-pill { display: inline-flex; align-items: center; gap: 5px; padding: 5px 13px; background: #f0e8d5; border: 1px solid rgba(201,150,44,0.3); border-radius: 50px; font-size: 0.8rem; color: #7a6540; }
 body.dark .stat-pill { background: #22180a; color: #a08858; }
 .stat-pill i { color: #c9962c; font-size: 10px; }
+
 .ld-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 20px; gap: 14px; color: #7a6540; font-size: 0.88rem; }
 body.dark .ld-wrap { color: #a08858; }
 .spinner { width: 44px; height: 44px; border: 3px solid #e8dcc4; border-top-color: #c9962c; border-radius: 50%; animation: spin 0.85s linear infinite; }
 body.dark .spinner { border-color: #2c1f0c; border-top-color: #c9962c; }
 @keyframes spin { to { transform: rotate(360deg); } }
+
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
-.scard { background: #f0e8d5; border: 1px solid rgba(201,150,44,0.35); border-radius: 16px; padding: 16px 18px; cursor: pointer; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; display: flex; flex-direction: column; gap: 7px; position: relative; overflow: hidden; }
+.scard { background: #f0e8d5; border: 1px solid rgba(201,150,44,0.35); border-radius: 16px; padding: 16px 18px; cursor: pointer; transition: all 0.25s cubic-bezier(0.4,0,0.2,1); display: flex; flex-direction: column; gap: 7px; position: relative; overflow: hidden; }
 body.dark .scard { background: #22180a; border-color: rgba(201,150,44,0.25); }
-.scard:hover { border-color: #c9962c; transform: translateY(-3px); box-shadow: 0 10px 40px rgba(26,18,8,0.16); }
-body.dark .scard:hover { box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+.scard:hover { border-color: #c9962c; transform: translateY(-4px); box-shadow: 0 12px 48px rgba(26,18,8,0.18); }
+body.dark .scard:hover { box-shadow: 0 12px 48px rgba(0,0,0,0.6); }
+.scard::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(201,150,44,0.1), transparent); opacity: 0; transition: opacity 0.25s; }
+.scard:hover::before { opacity: 1; }
+
 .scard-hd { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
-.scard-num { width: 30px; height: 30px; background: linear-gradient(135deg, #c9962c, #e8b84b); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-family: 'Cinzel', serif; font-size: 0.72rem; font-weight: 700; flex-shrink: 0; }
+.scard-num { width: 30px; height: 30px; background: linear-gradient(135deg, #c9962c, #e8b84b); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-family: 'Cinzel', serif; font-size: 0.72rem; font-weight: 700; flex-shrink: 0; transition: transform 0.25s; }
+.scard:hover .scard-num { transform: scale(1.1) rotate(2deg); }
 .scard-ar { font-family: 'Amiri', serif; font-size: 1.2rem; color: #c9962c; direction: rtl; line-height: 1; }
 .scard-title { font-family: 'Cinzel', serif; font-size: 0.86rem; font-weight: 600; color: #1a1208; line-height: 1.3; }
 body.dark .scard-title { color: #ecdfc8; }
 .scard-meta { font-size: 0.76rem; color: #7a6540; display: flex; align-items: center; gap: 4px; }
 body.dark .scard-meta { color: #a08858; }
 .scard-meta i { font-size: 9px; color: #c9962c; }
+
 .no-res { grid-column: 1/-1; text-align: center; padding: 60px 20px; color: #7a6540; }
-.no-res i { font-size: 1.8rem; color: #e8dcc4; display: block; margin-bottom: 10px; }
+.no-res i { font-size: 1.8rem; color: #e8dcc4; display: block; margin-bottom: 10px; animation: fadeUp 0.5s ease 0.2s both; }
+.no-res div { animation: fadeUp 0.5s ease 0.3s both; }
+
 .spage { }
 .back-btn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 16px; background: #f0e8d5; border: 1px solid rgba(201,150,44,0.3); border-radius: 50px; color: #1a1208; font-family: 'Lato', sans-serif; font-size: 0.88rem; font-weight: 700; cursor: pointer; margin-bottom: 18px; transition: all 0.25s; }
 body.dark .back-btn { background: #22180a; color: #ecdfc8; border-color: rgba(201,150,44,0.25); }
-.back-btn:hover { background: #c9962c; border-color: #c9962c; color: #fff; }
+.back-btn:hover { background: #c9962c; border-color: #c9962c; color: #fff; transform: translateX(-2px); }
+
 .shdr { background: linear-gradient(135deg, #c9962c 0%, #e8b84b 100%); border-radius: 16px; padding: 26px 22px; margin-bottom: 18px; position: relative; overflow: hidden; box-shadow: 0 10px 40px rgba(26,18,8,0.16); }
 .shdr::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg width='36' height='36' viewBox='0 0 36 36' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='0.07'%3E%3Cpath d='M18 0l5.2 3v6L18 12 12.8 9V3z'/%3E%3C/g%3E%3C/svg%3E"); }
 .shdr-con { position: relative; z-index: 1; }
@@ -118,11 +135,18 @@ body.dark .back-btn { background: #22180a; color: #ecdfc8; border-color: rgba(20
 .shdr-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .sbadge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 11px; background: rgba(255,255,255,0.2); backdrop-filter: blur(4px); border-radius: 50px; color: #fff; font-size: 0.78rem; font-weight: 700; }
 .lrbadge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 11px; background: rgba(255,255,255,0.92); border-radius: 50px; color: #c9962c; font-size: 0.78rem; font-weight: 700; }
+
 .audio-sec { background: #f0e8d5; border: 1px solid rgba(201,150,44,0.3); border-radius: 16px; padding: 14px 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 20px rgba(26,18,8,0.10); flex-wrap: wrap; }
 body.dark .audio-sec { background: #22180a; border-color: rgba(201,150,44,0.25); }
 .audio-lbl { display: flex; align-items: center; gap: 5px; color: #c9962c; font-size: 0.82rem; font-weight: 700; flex-shrink: 0; white-space: nowrap; }
+audio { flex: 1; height: 34px; border-radius: 8px; min-width: 200px; }
 .audio-err { font-size: 0.78rem; color: #dc2626; display: flex; align-items: center; gap: 5px; flex: 1; }
-audio { flex: 1; height: 34px; border-radius: 8px; min-width: 0; min-width: 200px; }
+
+.share-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+.share-btn { width: 34px; height: 34px; border: 1px solid rgba(201,150,44,0.3); border-radius: 8px; background: transparent; color: #7a6540; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.25s; font-size: 13px; }
+body.dark .share-btn { border-color: rgba(201,150,44,0.25); }
+.share-btn:hover { background: #c9962c; border-color: #c9962c; color: #fff; transform: scale(1.08); }
+
 .vlist { display: flex; flex-direction: column; gap: 8px; }
 .vcard { background: #f0e8d5; border: 1px solid rgba(201,150,44,0.3); border-radius: 16px; padding: 18px 20px; cursor: pointer; transition: all 0.25s; position: relative; }
 body.dark .vcard { background: #22180a; border-color: rgba(201,150,44,0.25); }
@@ -131,7 +155,7 @@ body.dark .vcard { background: #22180a; border-color: rgba(201,150,44,0.25); }
 body.dark .vcard.lr { background: linear-gradient(to right, rgba(201,150,44,0.08), #22180a); }
 .vcard-ar { font-family: 'Amiri Quran', 'Amiri', serif; font-size: 1.7rem; line-height: 2.1; direction: rtl; color: #1a1208; text-align: right; margin-bottom: 8px; word-break: break-word; transition: font-size 0.25s; }
 body.dark .vcard-ar { color: #ecdfc8; }
-.vcard-ft { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.vcard-ft { display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap; }
 .vnum { display: inline-flex; align-items: center; gap: 5px; font-size: 0.76rem; color: #7a6540; }
 body.dark .vnum { color: #a08858; }
 .vnum-badge { width: 22px; height: 22px; background: #c9962c; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 0.68rem; font-weight: 700; font-family: 'Cinzel', serif; }
@@ -139,10 +163,16 @@ body.dark .vnum { color: #a08858; }
 body.dark .vhint { color: #a08858; }
 .vcard:hover .vhint, .vcard.lr .vhint { opacity: 1; }
 .vcard.lr .vhint { color: #c9962c; }
+
+.vnote { margin-top: 10px; padding: 8px 12px; background: rgba(201,150,44,0.08); border-left: 2px solid #c9962c; border-radius: 6px; font-size: 0.8rem; color: #7a6540; font-style: italic; }
+body.dark .vnote { color: #a08858; }
+
 @keyframes vflash { 0% { background: #f0e8d5; } 35% { background: rgba(201,150,44,0.18); box-shadow: 0 0 0 3px rgba(201,150,44,0.22); } 100% { background: #f0e8d5; } }
 @keyframes vflashDark { 0% { background: #22180a; } 35% { background: rgba(201,150,44,0.18); box-shadow: 0 0 0 3px rgba(201,150,44,0.22); } 100% { background: #22180a; } }
 body.dark .vcard.flash { animation: vflashDark 1.8s ease; }
 .vcard.flash { animation: vflash 1.8s ease; }
+
+/* SETTINGS */
 .set-ov { position: fixed; inset: 0; background: rgba(26,18,8,0.65); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); z-index: 300; display: flex; align-items: flex-end; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
 .set-ov.open { opacity: 1; pointer-events: all; }
 @media (min-width: 600px) { .set-ov { align-items: center; padding: 20px; } }
@@ -188,7 +218,6 @@ body.dark .font-row { background: #22180a; border-color: rgba(201,150,44,0.25); 
 .font-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
 .font-lbl2 { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600; color: #1a1208; }
 body.dark .font-lbl2 { color: #ecdfc8; }
-.font-lbl2 i { color: #c9962c; width: 16px; text-align: center; }
 .font-val { font-family: 'Cinzel', serif; font-size: 0.82rem; color: #c9962c; font-weight: 700; background: rgba(201,150,44,0.12); padding: 3px 10px; border-radius: 50px; }
 .sz-slider { width: 100%; accent-color: #c9962c; cursor: pointer; height: 4px; border-radius: 2px; }
 .sz-btns { display: flex; gap: 7px; margin-top: 11px; }
@@ -227,6 +256,8 @@ body.dark .style-sub { color: #a08858; }
 .set-reset { display: flex; align-items: center; justify-content: center; gap: 7px; width: 100%; padding: 12px; border: 1px dashed rgba(201,150,44,0.3); border-radius: 10px; background: transparent; color: #7a6540; font-family: 'Lato', sans-serif; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: all 0.25s; }
 body.dark .set-reset { color: #a08858; }
 .set-reset:hover { border-color: #ef4444; color: #ef4444; background: rgba(239,68,68,0.06); }
+
+/* MODAL */
 .modal-ov { position: fixed; inset: 0; background: rgba(26,18,8,0.72); backdrop-filter: blur(4px); display: flex; align-items: flex-end; justify-content: center; z-index: 200; }
 @media (min-width: 600px) { .modal-ov { align-items: center; padding: 20px; } }
 .modal-box { background: #faf6ee; border-radius: 16px 16px 0 0; padding: 26px 22px 30px; width: 100%; max-width: 420px; box-shadow: 0 10px 40px rgba(26,18,8,0.16); animation: slideUp 0.28s ease; }
@@ -245,6 +276,13 @@ body.dark .btn-cancel { color: #ecdfc8; border-color: rgba(201,150,44,0.25); }
 .btn-cancel:hover { background: #f0e8d5; }
 .btn-danger { flex: 1; padding: 11px; border: none; border-radius: 10px; background: #dc2626; color: #fff; font-family: 'Lato', sans-serif; font-size: 0.88rem; font-weight: 700; cursor: pointer; transition: all 0.25s; }
 .btn-danger:hover { background: #b91c1c; }
+
+/* TOAST */
+.toast { position: fixed; bottom: 20px; right: 20px; background: #1a1208; color: #fff; padding: 12px 18px; border-radius: 8px; font-size: 0.85rem; z-index: 1000; animation: slideIn 0.3s ease, slideOut 0.3s ease 2.7s; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+body.dark .toast { background: #ecdfc8; color: #1a1208; }
+@keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(400px); opacity: 0; } }
+
 footer { background: #f0e8d5; border-top: 1px solid rgba(201,150,44,0.3); padding: 36px 20px; margin-top: 50px; text-align: center; transition: background 0.25s; }
 body.dark footer { background: #22180a; border-top-color: rgba(201,150,44,0.25); }
 .ft-in { max-width: 580px; margin: 0 auto; }
@@ -263,10 +301,13 @@ body.dark .ft-copy { color: #a08858; }
   .btn-cont span { display: none; }
   .audio-sec { flex-direction: column; align-items: stretch; }
   .audio-lbl { justify-content: center; }
+  .share-btns { justify-content: center; }
   .hdr-in { height: 58px; }
   .lang-btn { padding: 5px 9px; font-size: 0.79rem; }
   .lang-group { padding: 2px; gap: 1px; }
   .color-grid { gap: 7px; }
+  .logo { cursor: pointer; }
+  .toast { right: 10px; left: 10px; bottom: 10px; }
 }
 @media (max-width: 360px) { .grid { grid-template-columns: 1fr; } }
 @media (min-width: 641px) and (max-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
@@ -277,7 +318,7 @@ body.dark .ft-copy { color: #a08858; }
 
 <header class="hdr">
   <div class="hdr-in">
-    <div class="logo">
+    <div class="logo" id="logoClick">
       <div class="logo-ico"><i class="fas fa-book-open"></i></div>
       <span class="logo-txt" id="hTitle">Quran</span>
     </div>
@@ -287,8 +328,8 @@ body.dark .ft-copy { color: #a08858; }
         <button class="lang-btn active" data-lang="nl">NL</button>
         <button class="lang-btn" data-lang="en">EN</button>
       </div>
-      <button class="ico-btn" id="themeBtn"><i class="fas fa-moon" id="themeIco"></i></button>
-      <button class="ico-btn" id="setBtn"><i class="fas fa-sliders-h"></i></button>
+      <button class="ico-btn" id="themeBtn" title="Toggle dark mode"><i class="fas fa-moon" id="themeIco"></i></button>
+      <button class="ico-btn" id="setBtn" title="Settings"><i class="fas fa-sliders-h"></i></button>
     </div>
   </div>
 </header>
@@ -304,17 +345,17 @@ body.dark .ft-copy { color: #a08858; }
     </div>
   </div>
 
-  <div class="lr-banner hidden" id="lrBanner">
-    <div class="lr-left">
-      <div class="lr-ico"><i class="fas fa-bookmark"></i></div>
+  <div class="banr hidden" id="lrBanner">
+    <div class="banr-left">
+      <div class="banr-ico"><i class="fas fa-bookmark"></i></div>
       <div>
-        <div class="lr-lbl" id="lrLbl">Laatst gelezen</div>
-        <div class="lr-name"><span id="lrName">—</span> · <span id="lrVerse">vers 1</span></div>
+        <div class="banr-lbl" id="lrLbl">Laatst gelezen</div>
+        <div class="banr-name"><span id="lrName">—</span> · <span id="lrVerse">vers 1</span></div>
       </div>
     </div>
-    <div class="lr-acts">
+    <div class="banr-acts">
       <button class="btn-cont" id="btnCont"><i class="fas fa-arrow-right"></i><span id="btnContTxt">Ga verder</span></button>
-      <button class="btn-trash" id="btnTrash"><i class="fas fa-trash-alt"></i></button>
+      <button class="btn-icon" id="btnTrash" title="Clear bookmark"><i class="fas fa-trash-alt"></i></button>
     </div>
   </div>
 
@@ -359,12 +400,15 @@ body.dark .ft-copy { color: #a08858; }
       <audio id="sAudio" controls preload="none"></audio>
       <div class="audio-err hidden" id="audioErr"><i class="fas fa-exclamation-triangle"></i><span id="audioErrTxt">Audio niet beschikbaar</span></div>
     </div>
+    <div style="display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap;">
+      <button class="btn-icon" id="shareBtn" title="Share verse"><i class="fas fa-share-alt"></i></button>
+      <button class="btn-icon" id="copyBtn" title="Copy verse"><i class="fas fa-copy"></i></button>
+    </div>
     <div class="vlist" id="vList"></div>
   </div>
 </main>
 
-<!-- SETTINGS -->
-
+<!-- SETTINGS PANEL -->
 <div class="set-ov" id="setOv">
   <div class="set-panel">
     <div class="set-handle"></div>
@@ -373,130 +417,101 @@ body.dark .ft-copy { color: #a08858; }
       <button class="set-close" id="setClose"><i class="fas fa-times"></i></button>
     </div>
     <div class="set-body">
+      <div>
+        <div class="set-lbl"><i class="fas fa-palette"></i><span id="setColorLbl">Accentkleur</span></div>
+        <div class="color-grid">
+          <div class="csw active" data-color="gold" style="background:linear-gradient(135deg,#c9962c,#e8b84b)" title="Goud"></div>
+          <div class="csw" data-color="amber" style="background:linear-gradient(135deg,#b45309,#d97706)" title="Amber"></div>
+          <div class="csw" data-color="copper" style="background:linear-gradient(135deg,#b45309,#f59e0b)" title="Koper"></div>
+          <div class="csw" data-color="orange" style="background:linear-gradient(135deg,#ea580c,#f97316)" title="Oranje"></div>
+          <div class="csw" data-color="peach" style="background:linear-gradient(135deg,#c2410c,#ea580c)" title="Perzik"></div>
+          <div class="csw" data-color="ruby" style="background:linear-gradient(135deg,#be123c,#e11d48)" title="Robijn"></div>
+          <div class="csw" data-color="blue" style="background:linear-gradient(135deg,#2563eb,#3b82f6)" title="Blauw"></div>
+          <div class="csw" data-color="purple" style="background:linear-gradient(135deg,#7c3aed,#8b5cf6)" title="Paars"></div>
+          <div class="csw" data-color="teal" style="background:linear-gradient(135deg,#0d9488,#14b8a6)" title="Teal"></div>
+          <div class="csw" data-color="emerald" style="background:linear-gradient(135deg,#059669,#10b981)" title="Smaragd"></div>
+          <div class="csw" data-color="slate" style="background:linear-gradient(135deg,#475569,#64748b)" title="Grijs"></div>
+          <div class="csw" data-color="black" style="background:linear-gradient(135deg,#111,#333);border:2px solid #555" title="Zwart"></div>
+        </div>
+      </div>
 
-```
-  <div>
-    <div class="set-lbl"><i class="fas fa-palette"></i><span id="setColorLbl">Accentkleur</span></div>
-    <div class="color-grid">
-      <div class="csw active" data-color="gold"     style="background:linear-gradient(135deg,#c9962c,#e8b84b)" title="Goud"></div>
-      <div class="csw"        data-color="amber"    style="background:linear-gradient(135deg,#b45309,#d97706)" title="Amber"></div>
-      <div class="csw"        data-color="copper"   style="background:linear-gradient(135deg,#b45309,#f59e0b)" title="Koper"></div>
-      <div class="csw"        data-color="orange"   style="background:linear-gradient(135deg,#ea580c,#f97316)" title="Oranje"></div>
-      <div class="csw"        data-color="peach"    style="background:linear-gradient(135deg,#c2410c,#ea580c)" title="Perzik"></div>
-      <div class="csw"        data-color="sand"     style="background:linear-gradient(135deg,#92400e,#d97706)" title="Zand"></div>
-      <div class="csw"        data-color="ruby"     style="background:linear-gradient(135deg,#be123c,#e11d48)" title="Robijn"></div>
-      <div class="csw"        data-color="rose"     style="background:linear-gradient(135deg,#e11d48,#f43f5e)" title="Rood"></div>
-      <div class="csw"        data-color="crimson"  style="background:linear-gradient(135deg,#9b1c1c,#c81e1e)" title="Karmozijn"></div>
-      <div class="csw"        data-color="coral"    style="background:linear-gradient(135deg,#f05252,#f98080)" title="Koraal"></div>
-      <div class="csw"        data-color="pink"     style="background:linear-gradient(135deg,#db2777,#ec4899)" title="Roze"></div>
-      <div class="csw"        data-color="magenta"  style="background:linear-gradient(135deg,#a21caf,#c026d3)" title="Magenta"></div>
-      <div class="csw"        data-color="lavender" style="background:linear-gradient(135deg,#9333ea,#a855f7)" title="Lavendel"></div>
-      <div class="csw"        data-color="purple"   style="background:linear-gradient(135deg,#7c3aed,#8b5cf6)" title="Paars"></div>
-      <div class="csw"        data-color="violet"   style="background:linear-gradient(135deg,#5b21b6,#7c3aed)" title="Violet"></div>
-      <div class="csw"        data-color="indigo"   style="background:linear-gradient(135deg,#4338ca,#6366f1)" title="Indigo"></div>
-      <div class="csw"        data-color="blue"     style="background:linear-gradient(135deg,#2563eb,#3b82f6)" title="Blauw"></div>
-      <div class="csw"        data-color="steel"    style="background:linear-gradient(135deg,#1e40af,#3b82f6)" title="Staal"></div>
-      <div class="csw"        data-color="navy"     style="background:linear-gradient(135deg,#1e3a5f,#2e5a8f)" title="Marine"></div>
-      <div class="csw"        data-color="ocean"    style="background:linear-gradient(135deg,#164e63,#0891b2)" title="Oceaan"></div>
-      <div class="csw"        data-color="sky"      style="background:linear-gradient(135deg,#0284c7,#0ea5e9)" title="Hemelsblauw"></div>
-      <div class="csw"        data-color="cyan"     style="background:linear-gradient(135deg,#0891b2,#06b6d4)" title="Cyaan"></div>
-      <div class="csw"        data-color="teal"     style="background:linear-gradient(135deg,#0d9488,#14b8a6)" title="Teal"></div>
-      <div class="csw"        data-color="mint"     style="background:linear-gradient(135deg,#0f766e,#2dd4bf)" title="Mint"></div>
-      <div class="csw"        data-color="emerald"  style="background:linear-gradient(135deg,#059669,#10b981)" title="Smaragd"></div>
-      <div class="csw"        data-color="green"    style="background:linear-gradient(135deg,#16a34a,#22c55e)" title="Groen"></div>
-      <div class="csw"        data-color="forest"   style="background:linear-gradient(135deg,#1a4731,#2d6a4f)" title="Bos"></div>
-      <div class="csw"        data-color="neon"     style="background:linear-gradient(135deg,#16a34a,#4ade80)" title="Neon"></div>
-      <div class="csw"        data-color="lime"     style="background:linear-gradient(135deg,#65a30d,#84cc16)" title="Limoen"></div>
-      <div class="csw"        data-color="bronze"   style="background:linear-gradient(135deg,#78350f,#92400e)" title="Brons"></div>
-      <div class="csw"        data-color="graphite" style="background:linear-gradient(135deg,#374151,#4b5563)" title="Grafiet"></div>
-      <div class="csw"        data-color="slate"    style="background:linear-gradient(135deg,#475569,#64748b)" title="Grijs"></div>
-      <div class="csw"        data-color="black"    style="background:linear-gradient(135deg,#111,#333);border:2px solid #555" title="Zwart"></div>
-      <div class="csw"        data-color="white"    style="background:linear-gradient(135deg,#ccc,#eee);border:2px solid #bbb" title="Wit"></div>
+      <div>
+        <div class="set-lbl"><i class="fas fa-adjust"></i><span id="setAppearLbl">Weergave</span></div>
+        <div class="theme-row">
+          <div class="theme-lbl"><i class="fas fa-moon" id="setThemeIco"></i><span id="setThemeTxt">Donkere modus</span></div>
+          <button class="toggle-sw" id="setToggle"></button>
+        </div>
+      </div>
+
+      <div>
+        <div class="set-lbl"><i class="fas fa-text-height"></i><span id="setFontLbl">Arabische tekst grootte</span></div>
+        <div class="font-row">
+          <div class="font-top">
+            <div class="font-lbl2"><i class="fas fa-font"></i><span id="setFontSzTxt">Grootte</span></div>
+            <div class="font-val" id="fontVal">Normaal</div>
+          </div>
+          <input type="range" class="sz-slider" id="szSlider" min="1" max="5" step="1" value="3">
+          <div class="sz-btns">
+            <button class="sz-btn" data-sz="1">XS</button>
+            <button class="sz-btn" data-sz="2">S</button>
+            <button class="sz-btn active" data-sz="3">M</button>
+            <button class="sz-btn" data-sz="4">L</button>
+            <button class="sz-btn" data-sz="5">XL</button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="set-lbl"><i class="fas fa-microphone"></i><span id="setRecLbl">Reciteur</span></div>
+        <audio id="prevAudio" preload="none" style="display:none"></audio>
+        <div class="rec-grid">
+          <div class="rec-opt active" data-rec="ar.alafasy">
+            <div class="rec-dot"></div>
+            <div class="rec-info"><div class="rec-name">Mishary Alafasy</div><div class="rec-sub">مشاري العفاسي · Koeweit</div></div>
+            <button class="rec-play" data-rec="ar.alafasy"><i class="fas fa-play"></i></button>
+          </div>
+          <div class="rec-opt" data-rec="ar.abdurrahmaansudais">
+            <div class="rec-dot"></div>
+            <div class="rec-info"><div class="rec-name">Abdurrahman Al-Sudais</div><div class="rec-sub">عبدالرحمن السديس · Saudi-Arabië</div></div>
+            <button class="rec-play" data-rec="ar.abdurrahmaansudais"><i class="fas fa-play"></i></button>
+          </div>
+          <div class="rec-opt" data-rec="ar.husary">
+            <div class="rec-dot"></div>
+            <div class="rec-info"><div class="rec-name">Mahmoud Khalil Al-Husary</div><div class="rec-sub">محمود خليل الحصري · Egypte</div></div>
+            <button class="rec-play" data-rec="ar.husary"><i class="fas fa-play"></i></button>
+          </div>
+          <div class="rec-opt" data-rec="ar.minshawi">
+            <div class="rec-dot"></div>
+            <div class="rec-info"><div class="rec-name">Mohamed Siddiq Al-Minshawi</div><div class="rec-sub">محمد صديق المنشاوي · Egypte</div></div>
+            <button class="rec-play" data-rec="ar.minshawi"><i class="fas fa-play"></i></button>
+          </div>
+          <div class="rec-opt" data-rec="ar.mahermuaiqly">
+            <div class="rec-dot"></div>
+            <div class="rec-info"><div class="rec-name">Maher Al-Muaiqly</div><div class="rec-sub">ماهر المعيقلي · Saudi-Arabië</div></div>
+            <button class="rec-play" data-rec="ar.mahermuaiqly"><i class="fas fa-play"></i></button>
+          </div>
+          <div class="rec-opt" data-rec="ar.saoodshuraym">
+            <div class="rec-dot"></div>
+            <div class="rec-info"><div class="rec-name">Saud Al-Shuraym</div><div class="rec-sub">سعود الشريم · Saudi-Arabië</div></div>
+            <button class="rec-play" data-rec="ar.saoodshuraym"><i class="fas fa-play"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="set-lbl"><i class="fas fa-th"></i><span id="setLayoutLbl">Kaart stijl</span></div>
+        <div class="style-grid">
+          <div class="style-opt active" data-sty="grid"><div class="style-ico">⊞</div><div class="style-name" id="styGridTxt">Raster</div><div class="style-sub" id="styGridSub">Compact overzicht</div></div>
+          <div class="style-opt" data-sty="list"><div class="style-ico">☰</div><div class="style-name" id="styListTxt">Lijst</div><div class="style-sub" id="styListSub">Breed overzicht</div></div>
+        </div>
+      </div>
+
+      <button class="set-reset" id="setReset"><i class="fas fa-undo"></i><span id="setResetTxt">Standaard instellingen herstellen</span></button>
     </div>
-  </div>
-
-  <div>
-    <div class="set-lbl"><i class="fas fa-adjust"></i><span id="setAppearLbl">Weergave</span></div>
-    <div class="theme-row">
-      <div class="theme-lbl"><i class="fas fa-moon" id="setThemeIco"></i><span id="setThemeTxt">Donkere modus</span></div>
-      <button class="toggle-sw" id="setToggle"></button>
-    </div>
-  </div>
-
-  <div>
-    <div class="set-lbl"><i class="fas fa-text-height"></i><span id="setFontLbl">Arabische tekst grootte</span></div>
-    <div class="font-row">
-      <div class="font-top">
-        <div class="font-lbl2"><i class="fas fa-font"></i><span id="setFontSzTxt">Grootte</span></div>
-        <div class="font-val" id="fontVal">Normaal</div>
-      </div>
-      <input type="range" class="sz-slider" id="szSlider" min="1" max="5" step="1" value="3">
-      <div class="sz-btns">
-        <button class="sz-btn" data-sz="1">XS</button>
-        <button class="sz-btn" data-sz="2">S</button>
-        <button class="sz-btn active" data-sz="3">M</button>
-        <button class="sz-btn" data-sz="4">L</button>
-        <button class="sz-btn" data-sz="5">XL</button>
-      </div>
-    </div>
-  </div>
-
-  <div>
-    <div class="set-lbl"><i class="fas fa-microphone"></i><span id="setRecLbl">Reciteur</span></div>
-    <audio id="prevAudio" preload="none" style="display:none"></audio>
-    <div class="rec-grid">
-      <!-- FIX: correcte CDN mapnamen in data-cdn -->
-      <div class="rec-opt active" data-rec="ar.alafasy" data-cdn="ar.alafasy">
-        <div class="rec-dot"></div>
-        <div class="rec-info"><div class="rec-name">Mishary Alafasy</div><div class="rec-sub">مشاري العفاسي · Koeweit</div></div>
-        <button class="rec-play" data-cdn="ar.alafasy"><i class="fas fa-play"></i></button>
-      </div>
-      <div class="rec-opt" data-rec="ar.abdurrahmaansudais" data-cdn="ar.abdurrahmaansudais">
-        <div class="rec-dot"></div>
-        <div class="rec-info"><div class="rec-name">Abdurrahman Al-Sudais</div><div class="rec-sub">عبدالرحمن السديس · Saudi-Arabië</div></div>
-        <button class="rec-play" data-cdn="ar.abdurrahmaansudais"><i class="fas fa-play"></i></button>
-      </div>
-      <div class="rec-opt" data-rec="ar.husary" data-cdn="ar.husary">
-        <div class="rec-dot"></div>
-        <div class="rec-info"><div class="rec-name">Mahmoud Khalil Al-Husary</div><div class="rec-sub">محمود خليل الحصري · Egypte</div></div>
-        <button class="rec-play" data-cdn="ar.husary"><i class="fas fa-play"></i></button>
-      </div>
-      <div class="rec-opt" data-rec="ar.minshawi" data-cdn="ar.minshawimujawwad">
-        <div class="rec-dot"></div>
-        <div class="rec-info"><div class="rec-name">Mohamed Siddiq Al-Minshawi</div><div class="rec-sub">محمد صديق المنشاوي · Egypte</div></div>
-        <button class="rec-play" data-cdn="ar.minshawimujawwad"><i class="fas fa-play"></i></button>
-      </div>
-      <div class="rec-opt" data-rec="ar.mahermuaiqly" data-cdn="ar.mahermuaiqly">
-        <div class="rec-dot"></div>
-        <div class="rec-info"><div class="rec-name">Maher Al-Muaiqly</div><div class="rec-sub">ماهر المعيقلي · Saudi-Arabië</div></div>
-        <button class="rec-play" data-cdn="ar.mahermuaiqly"><i class="fas fa-play"></i></button>
-      </div>
-      <div class="rec-opt" data-rec="ar.saoodshuraym" data-cdn="ar.saoodshuraym">
-        <div class="rec-dot"></div>
-        <div class="rec-info"><div class="rec-name">Saud Al-Shuraym</div><div class="rec-sub">سعود الشريم · Saudi-Arabië</div></div>
-        <button class="rec-play" data-cdn="ar.saoodshuraym"><i class="fas fa-play"></i></button>
-      </div>
-    </div>
-  </div>
-
-  <div>
-    <div class="set-lbl"><i class="fas fa-th"></i><span id="setLayoutLbl">Kaart stijl</span></div>
-    <div class="style-grid">
-      <div class="style-opt active" data-sty="grid"><div class="style-ico">⊞</div><div class="style-name" id="styGridTxt">Raster</div><div class="style-sub" id="styGridSub">Compact overzicht</div></div>
-      <div class="style-opt" data-sty="list"><div class="style-ico">☰</div><div class="style-name" id="styListTxt">Lijst</div><div class="style-sub" id="styListSub">Breed overzicht</div></div>
-    </div>
-  </div>
-
-  <button class="set-reset" id="setReset"><i class="fas fa-undo"></i><span id="setResetTxt">Standaard instellingen herstellen</span></button>
-
-</div>
-```
-
   </div>
 </div>
 
 <!-- MODAL -->
-
 <div class="modal-ov hidden" id="modal">
   <div class="modal-box">
     <div class="modal-handle"></div>
@@ -524,179 +539,66 @@ body.dark .ft-copy { color: #a08858; }
 (function () {
 'use strict';
 
-/* ── KLEUR PALET ── */
 const COLORS = {
-  gold:    ['#c9962c','#e8b84b'], amber:   ['#b45309','#d97706'],
-  copper:  ['#b45309','#f59e0b'], orange:  ['#ea580c','#f97316'],
-  peach:   ['#c2410c','#ea580c'], sand:    ['#92400e','#b45309'],
-  ruby:    ['#be123c','#e11d48'], rose:    ['#e11d48','#f43f5e'],
-  crimson: ['#9b1c1c','#c81e1e'], coral:   ['#f05252','#f98080'],
-  pink:    ['#db2777','#ec4899'], magenta: ['#a21caf','#c026d3'],
-  lavender:['#9333ea','#a855f7'], purple:  ['#7c3aed','#8b5cf6'],
-  violet:  ['#5b21b6','#7c3aed'], indigo:  ['#4338ca','#6366f1'],
-  blue:    ['#2563eb','#3b82f6'], steel:   ['#1e40af','#3b82f6'],
-  navy:    ['#1e3a5f','#2e5a8f'], ocean:   ['#164e63','#0891b2'],
-  sky:     ['#0284c7','#0ea5e9'], cyan:    ['#0891b2','#06b6d4'],
-  teal:    ['#0d9488','#14b8a6'], mint:    ['#0f766e','#2dd4bf'],
-  emerald: ['#059669','#10b981'], green:   ['#16a34a','#22c55e'],
-  forest:  ['#1a4731','#2d6a4f'], neon:    ['#16a34a','#4ade80'],
-  lime:    ['#65a30d','#84cc16'], bronze:  ['#78350f','#92400e'],
-  graphite:['#374151','#4b5563'], slate:   ['#475569','#64748b'],
-  black:   ['#222222','#444444'], white:   ['#888888','#aaaaaa'],
+  gold:    ['#c9962c','#e8b84b'], amber:   ['#b45309','#d97706'], copper:  ['#b45309','#f59e0b'],
+  orange:  ['#ea580c','#f97316'], peach:   ['#c2410c','#ea580c'], ruby:    ['#be123c','#e11d48'],
+  blue:    ['#2563eb','#3b82f6'], purple:  ['#7c3aed','#8b5cf6'], teal:    ['#0d9488','#14b8a6'],
+  emerald: ['#059669','#10b981'], slate:   ['#475569','#64748b'], black:   ['#222222','#444444'],
 };
 
-/*
- * ── CDN MAP ──
- * Interne reciteur-ID → API edition identifier
- * Audio URL wordt opgehaald via alquran.cloud API (betrouwbaarder dan directe CDN)
- */
 const CDN_MAP = {
-  'ar.alafasy':            'ar.alafasy',
-  'ar.abdurrahmaansudais': 'ar.abdurrahmaansudais',
-  'ar.husary':             'ar.husary',
-  'ar.minshawi':           'ar.minshawimujawwad',
-  'ar.mahermuaiqly':       'ar.mahermuaiqly',
-  'ar.saoodshuraym':       'ar.saoodshuraym',
+  'ar.alafasy': 'ar.alafasy', 'ar.abdurrahmaansudais': 'ar.abdurrahmaansudais', 'ar.husary': 'ar.husary',
+  'ar.minshawi': 'ar.minshawimujawwad', 'ar.mahermuaiqly': 'ar.mahermuaiqly', 'ar.saoodshuraym': 'ar.saoodshuraym',
 };
 
-
-/* ── SOERA DATA ── */
 const SURAHS = [
-  {n:1,ar:'\u0627\u0644\u0641\u0627\u062a\u062d\u0629',en:'Al-Fatiha',v:7},{n:2,ar:'\u0627\u0644\u0628\u0642\u0631\u0629',en:'Al-Baqara',v:286},
-  {n:3,ar:'\u0622\u0644 \u0639\u0645\u0631\u0627\u0646',en:'Aal-E-Imran',v:200},{n:4,ar:'\u0627\u0644\u0646\u0633\u0627\u0621',en:'An-Nisa',v:176},
-  {n:5,ar:'\u0627\u0644\u0645\u0627\u0626\u062f\u0629',en:"Al-Ma'idah",v:120},{n:6,ar:'\u0627\u0644\u0623\u0646\u0639\u0627\u0645',en:"Al-An'am",v:165},
-  {n:7,ar:'\u0627\u0644\u0623\u0639\u0631\u0627\u0641',en:"Al-A'raf",v:206},{n:8,ar:'\u0627\u0644\u0623\u0646\u0641\u0627\u0644',en:'Al-Anfal',v:75},
-  {n:9,ar:'\u0627\u0644\u062a\u0648\u0628\u0629',en:'At-Tawbah',v:129},{n:10,ar:'\u064a\u0648\u0646\u0633',en:'Yunus',v:109},
-  {n:11,ar:'\u0647\u0648\u062f',en:'Hud',v:123},{n:12,ar:'\u064a\u0648\u0633\u0641',en:'Yusuf',v:111},
-  {n:13,ar:'\u0627\u0644\u0631\u0639\u062f',en:"Ar-Ra'd",v:43},{n:14,ar:'\u0625\u0628\u0631\u0627\u0647\u064a\u0645',en:'Ibrahim',v:52},
-  {n:15,ar:'\u0627\u0644\u062d\u062c\u0631',en:'Al-Hijr',v:99},{n:16,ar:'\u0627\u0644\u0646\u062d\u0644',en:'An-Nahl',v:128},
-  {n:17,ar:'\u0627\u0644\u0625\u0633\u0631\u0627\u0621',en:'Al-Isra',v:111},{n:18,ar:'\u0627\u0644\u0643\u0647\u0641',en:'Al-Kahf',v:110},
-  {n:19,ar:'\u0645\u0631\u064a\u0645',en:'Maryam',v:98},{n:20,ar:'\u0637\u0647',en:'Ta-Ha',v:135},
-  {n:21,ar:'\u0627\u0644\u0623\u0646\u0628\u064a\u0627\u0621',en:'Al-Anbiya',v:112},{n:22,ar:'\u0627\u0644\u062d\u062c',en:'Al-Hajj',v:78},
-  {n:23,ar:'\u0627\u0644\u0645\u0624\u0645\u0646\u0648\u0646',en:"Al-Mu'minun",v:118},{n:24,ar:'\u0627\u0644\u0646\u0648\u0631',en:'An-Nur',v:64},
-  {n:25,ar:'\u0627\u0644\u0641\u0631\u0642\u0627\u0646',en:'Al-Furqan',v:77},{n:26,ar:'\u0627\u0644\u0634\u0639\u0631\u0627\u0621',en:"Ash-Shu'ara",v:227},
-  {n:27,ar:'\u0627\u0644\u0646\u0645\u0644',en:'An-Naml',v:93},{n:28,ar:'\u0627\u0644\u0642\u0635\u0635',en:'Al-Qasas',v:88},
-  {n:29,ar:'\u0627\u0644\u0639\u0646\u0643\u0628\u0648\u062a',en:'Al-Ankabut',v:69},{n:30,ar:'\u0627\u0644\u0631\u0648\u0645',en:'Ar-Rum',v:60},
-  {n:31,ar:'\u0644\u0642\u0645\u0627\u0646',en:'Luqman',v:34},{n:32,ar:'\u0627\u0644\u0633\u062c\u062f\u0629',en:'As-Sajda',v:30},
-  {n:33,ar:'\u0627\u0644\u0623\u062d\u0632\u0627\u0628',en:'Al-Ahzab',v:73},{n:34,ar:'\u0633\u0628\u0625',en:'Saba',v:54},
-  {n:35,ar:'\u0641\u0627\u0637\u0631',en:'Fatir',v:45},{n:36,ar:'\u064a\u0633',en:'Ya-Sin',v:83},
-  {n:37,ar:'\u0627\u0644\u0635\u0627\u0641\u0627\u062a',en:'As-Saffat',v:182},{n:38,ar:'\u0635',en:'Sad',v:88},
-  {n:39,ar:'\u0627\u0644\u0632\u0645\u0631',en:'Az-Zumar',v:75},{n:40,ar:'\u063a\u0627\u0641\u0631',en:'Ghafir',v:85},
-  {n:41,ar:'\u0641\u0635\u0644\u062a',en:'Fussilat',v:54},{n:42,ar:'\u0627\u0644\u0634\u0648\u0631\u0649',en:'Ash-Shura',v:53},
-  {n:43,ar:'\u0627\u0644\u0632\u062e\u0631\u0641',en:'Az-Zukhruf',v:89},{n:44,ar:'\u0627\u0644\u062f\u062e\u0627\u0646',en:'Ad-Dukhan',v:59},
-  {n:45,ar:'\u0627\u0644\u062c\u0627\u062b\u064a\u0629',en:'Al-Jathiya',v:37},{n:46,ar:'\u0627\u0644\u0623\u062d\u0642\u0627\u0641',en:'Al-Ahqaf',v:35},
-  {n:47,ar:'\u0645\u062d\u0645\u062f',en:'Muhammad',v:38},{n:48,ar:'\u0627\u0644\u0641\u062a\u062d',en:'Al-Fath',v:29},
-  {n:49,ar:'\u0627\u0644\u062d\u062c\u0631\u0627\u062a',en:'Al-Hujurat',v:18},{n:50,ar:'\u0642',en:'Qaf',v:45},
-  {n:51,ar:'\u0627\u0644\u0630\u0627\u0631\u064a\u0627\u062a',en:'Adh-Dhariyat',v:60},{n:52,ar:'\u0627\u0644\u0637\u0648\u0631',en:'At-Tur',v:49},
-  {n:53,ar:'\u0627\u0644\u0646\u062c\u0645',en:'An-Najm',v:62},{n:54,ar:'\u0627\u0644\u0642\u0645\u0631',en:'Al-Qamar',v:55},
-  {n:55,ar:'\u0627\u0644\u0631\u062d\u0645\u0646',en:'Ar-Rahman',v:78},{n:56,ar:'\u0627\u0644\u0648\u0627\u0642\u0639\u0629',en:'Al-Waqia',v:96},
-  {n:57,ar:'\u0627\u0644\u062d\u062f\u064a\u062f',en:'Al-Hadid',v:29},{n:58,ar:'\u0627\u0644\u0645\u062c\u0627\u062f\u0644\u0629',en:'Al-Mujadila',v:22},
-  {n:59,ar:'\u0627\u0644\u062d\u0634\u0631',en:'Al-Hashr',v:24},{n:60,ar:'\u0627\u0644\u0645\u0645\u062a\u062d\u0646\u0629',en:'Al-Mumtahina',v:13},
-  {n:61,ar:'\u0627\u0644\u0635\u0641',en:'As-Saff',v:14},{n:62,ar:'\u0627\u0644\u062c\u0645\u0639\u0629',en:"Al-Jumu'a",v:11},
-  {n:63,ar:'\u0627\u0644\u0645\u0646\u0627\u0641\u0642\u0648\u0646',en:'Al-Munafiqun',v:11},{n:64,ar:'\u0627\u0644\u062a\u063a\u0627\u0628\u0646',en:'At-Taghabun',v:18},
-  {n:65,ar:'\u0627\u0644\u0637\u0644\u0627\u0642',en:'At-Talaq',v:12},{n:66,ar:'\u0627\u0644\u062a\u062d\u0631\u064a\u0645',en:'At-Tahrim',v:12},
-  {n:67,ar:'\u0627\u0644\u0645\u0644\u0643',en:'Al-Mulk',v:30},{n:68,ar:'\u0627\u0644\u0642\u0644\u0645',en:'Al-Qalam',v:52},
-  {n:69,ar:'\u0627\u0644\u062d\u0627\u0642\u0629',en:'Al-Haqqa',v:52},{n:70,ar:'\u0627\u0644\u0645\u0639\u0627\u0631\u062c',en:"Al-Ma'arij",v:44},
-  {n:71,ar:'\u0646\u0648\u062d',en:'Nuh',v:28},{n:72,ar:'\u0627\u0644\u062c\u0646',en:'Al-Jinn',v:28},
-  {n:73,ar:'\u0627\u0644\u0645\u0632\u0645\u0644',en:'Al-Muzzammil',v:20},{n:74,ar:'\u0627\u0644\u0645\u062f\u062b\u0631',en:'Al-Muddaththir',v:56},
-  {n:75,ar:'\u0627\u0644\u0642\u064a\u0627\u0645\u0629',en:'Al-Qiyama',v:40},{n:76,ar:'\u0627\u0644\u0625\u0646\u0633\u0627\u0646',en:'Al-Insan',v:31},
-  {n:77,ar:'\u0627\u0644\u0645\u0631\u0633\u0644\u0627\u062a',en:'Al-Mursalat',v:50},{n:78,ar:'\u0627\u0644\u0646\u0628\u0623',en:'An-Naba',v:40},
-  {n:79,ar:'\u0627\u0644\u0646\u0627\u0632\u0639\u0627\u062a',en:"An-Nazi'at",v:46},{n:80,ar:'\u0639\u0628\u0633',en:'Abasa',v:42},
-  {n:81,ar:'\u0627\u0644\u062a\u0643\u0648\u064a\u0631',en:'At-Takwir',v:29},{n:82,ar:'\u0627\u0644\u0625\u0646\u0641\u0637\u0627\u0631',en:'Al-Infitar',v:19},
-  {n:83,ar:'\u0627\u0644\u0645\u0637\u0641\u0641\u064a\u0646',en:'Al-Mutaffifin',v:36},{n:84,ar:'\u0627\u0644\u0625\u0646\u0634\u0642\u0627\u0642',en:'Al-Inshiqaq',v:25},
-  {n:85,ar:'\u0627\u0644\u0628\u0631\u0648\u062c',en:'Al-Buruj',v:22},{n:86,ar:'\u0627\u0644\u0637\u0627\u0631\u0642',en:'At-Tariq',v:17},
-  {n:87,ar:'\u0627\u0644\u0623\u0639\u0644\u0649',en:"Al-A'la",v:19},{n:88,ar:'\u0627\u0644\u063a\u0627\u0634\u064a\u0629',en:'Al-Ghashiya',v:26},
-  {n:89,ar:'\u0627\u0644\u0641\u062c\u0631',en:'Al-Fajr',v:30},{n:90,ar:'\u0627\u0644\u0628\u0644\u062f',en:'Al-Balad',v:20},
-  {n:91,ar:'\u0627\u0644\u0634\u0645\u0633',en:'Ash-Shams',v:15},{n:92,ar:'\u0627\u0644\u0644\u064a\u0644',en:'Al-Lail',v:21},
-  {n:93,ar:'\u0627\u0644\u0636\u062d\u0649',en:'Ad-Duha',v:11},{n:94,ar:'\u0627\u0644\u0634\u0631\u062d',en:'Ash-Sharh',v:8},
-  {n:95,ar:'\u0627\u0644\u062a\u064a\u0646',en:'At-Tin',v:8},{n:96,ar:'\u0627\u0644\u0639\u0644\u0642',en:'Al-Alaq',v:19},
-  {n:97,ar:'\u0627\u0644\u0642\u062f\u0631',en:'Al-Qadr',v:5},{n:98,ar:'\u0627\u0644\u0628\u064a\u0646\u0629',en:'Al-Bayyina',v:8},
-  {n:99,ar:'\u0627\u0644\u0632\u0644\u0632\u0644\u0629',en:'Az-Zalzala',v:8},{n:100,ar:'\u0627\u0644\u0639\u0627\u062f\u064a\u0627\u062a',en:'Al-Adiyat',v:11},
-  {n:101,ar:'\u0627\u0644\u0642\u0627\u0631\u0639\u0629',en:'Al-Qaria',v:11},{n:102,ar:'\u0627\u0644\u062a\u0643\u0627\u062b\u0631',en:'At-Takathur',v:8},
-  {n:103,ar:'\u0627\u0644\u0639\u0635\u0631',en:'Al-Asr',v:3},{n:104,ar:'\u0627\u0644\u0647\u0645\u0632\u0629',en:'Al-Humaza',v:9},
-  {n:105,ar:'\u0627\u0644\u0641\u064a\u0644',en:'Al-Fil',v:5},{n:106,ar:'\u0642\u0631\u064a\u0634',en:'Quraish',v:4},
-  {n:107,ar:'\u0627\u0644\u0645\u0627\u0639\u0648\u0646',en:"Al-Ma'un",v:7},{n:108,ar:'\u0627\u0644\u0643\u0648\u062b\u0631',en:'Al-Kawthar',v:3},
-  {n:109,ar:'\u0627\u0644\u0643\u0627\u0641\u0631\u0648\u0646',en:'Al-Kafirun',v:6},{n:110,ar:'\u0627\u0644\u0646\u0635\u0631',en:'An-Nasr',v:3},
-  {n:111,ar:'\u0627\u0644\u0645\u0633\u062f',en:'Al-Masad',v:5},{n:112,ar:'\u0627\u0644\u0625\u062e\u0644\u0627\u0635',en:'Al-Ikhlas',v:4},
-  {n:113,ar:'\u0627\u0644\u0641\u0644\u0642',en:'Al-Falaq',v:5},{n:114,ar:'\u0627\u0644\u0646\u0627\u0633',en:'An-Nas',v:6}
+  {n:1,ar:'الفاتحة',en:'Al-Fatiha',v:7},{n:2,ar:'البقرة',en:'Al-Baqara',v:286},{n:3,ar:'آل عمران',en:'Aal-E-Imran',v:200},{n:4,ar:'النساء',en:'An-Nisa',v:176},{n:5,ar:'المائدة',en:"Al-Ma'idah",v:120},{n:6,ar:'الأنعام',en:"Al-An'am",v:165},{n:7,ar:'الأعراف',en:"Al-A'raf",v:206},{n:8,ar:'الأنفال',en:'Al-Anfal',v:75},{n:9,ar:'التوبة',en:'At-Tawbah',v:129},{n:10,ar:'يونس',en:'Yunus',v:109},{n:11,ar:'هود',en:'Hud',v:123},{n:12,ar:'يوسف',en:'Yusuf',v:111},{n:13,ar:'الرعد',en:"Ar-Ra'd",v:43},{n:14,ar:'إبراهيم',en:'Ibrahim',v:52},{n:15,ar:'الحجر',en:'Al-Hijr',v:99},{n:16,ar:'النحل',en:'An-Nahl',v:128},{n:17,ar:'الإسراء',en:'Al-Isra',v:111},{n:18,ar:'الكهف',en:'Al-Kahf',v:110},{n:19,ar:'مريم',en:'Maryam',v:98},{n:20,ar:'طه',en:'Ta-Ha',v:135},{n:21,ar:'الأنبياء',en:'Al-Anbiya',v:112},{n:22,ar:'الحج',en:'Al-Hajj',v:78},{n:23,ar:'المؤمنون',en:"Al-Mu'minun",v:118},{n:24,ar:'النور',en:'An-Nur',v:64},{n:25,ar:'الفرقان',en:'Al-Furqan',v:77},{n:26,ar:'الشعراء',en:"Ash-Shu'ara",v:227},{n:27,ar:'النمل',en:'An-Naml',v:93},{n:28,ar:'القصص',en:'Al-Qasas',v:88},{n:29,ar:'العنكبوت',en:'Al-Ankabut',v:69},{n:30,ar:'الروم',en:'Ar-Rum',v:60},{n:31,ar:'لقمان',en:'Luqman',v:34},{n:32,ar:'السجدة',en:'As-Sajda',v:30},{n:33,ar:'الأحزاب',en:'Al-Ahzab',v:73},{n:34,ar:'سبإ',en:'Saba',v:54},{n:35,ar:'فاطر',en:'Fatir',v:45},{n:36,ar:'يس',en:'Ya-Sin',v:83},{n:37,ar:'الصافات',en:'As-Saffat',v:182},{n:38,ar:'ص',en:'Sad',v:88},{n:39,ar:'الزمر',en:'Az-Zumar',v:75},{n:40,ar:'غافر',en:'Ghafir',v:85},{n:41,ar:'فصلت',en:'Fussilat',v:54},{n:42,ar:'الشورى',en:'Ash-Shura',v:53},{n:43,ar:'الزخرف',en:'Az-Zukhruf',v:89},{n:44,ar:'الدخان',en:'Ad-Dukhan',v:59},{n:45,ar:'الجاثية',en:'Al-Jathiya',v:37},{n:46,ar:'الأحقاف',en:'Al-Ahqaf',v:35},{n:47,ar:'محمد',en:'Muhammad',v:38},{n:48,ar:'الفتح',en:'Al-Fath',v:29},{n:49,ar:'الحجرات',en:'Al-Hujurat',v:18},{n:50,ar:'ق',en:'Qaf',v:45},{n:51,ar:'الذاريات',en:'Adh-Dhariyat',v:60},{n:52,ar:'الطور',en:'At-Tur',v:49},{n:53,ar:'النجم',en:'An-Najm',v:62},{n:54,ar:'القمر',en:'Al-Qamar',v:55},{n:55,ar:'الرحمن',en:'Ar-Rahman',v:78},{n:56,ar:'الواقعة',en:'Al-Waqia',v:96},{n:57,ar:'الحديد',en:'Al-Hadid',v:29},{n:58,ar:'المجادلة',en:'Al-Mujadila',v:22},{n:59,ar:'الحشر',en:'Al-Hashr',v:24},{n:60,ar:'الممتحنة',en:'Al-Mumtahina',v:13},{n:61,ar:'الصف',en:'As-Saff',v:14},{n:62,ar:'الجمعة',en:"Al-Jumu'a",v:11},{n:63,ar:'المنافقون',en:'Al-Munafiqun',v:11},{n:64,ar:'التغابن',en:'At-Taghabun',v:18},{n:65,ar:'الطلاق',en:'At-Talaq',v:12},{n:66,ar:'التحريم',en:'At-Tahrim',v:12},{n:67,ar:'الملك',en:'Al-Mulk',v:30},{n:68,ar:'القلم',en:'Al-Qalam',v:52},{n:69,ar:'الحاقة',en:'Al-Haqqa',v:52},{n:70,ar:'المعارج',en:"Al-Ma'arij",v:44},{n:71,ar:'نوح',en:'Nuh',v:28},{n:72,ar:'الجن',en:'Al-Jinn',v:28},{n:73,ar:'المزمل',en:'Al-Muzzammil',v:20},{n:74,ar:'المدثر',en:'Al-Muddaththir',v:56},{n:75,ar:'القيامة',en:'Al-Qiyama',v:40},{n:76,ar:'الإنسان',en:'Al-Insan',v:31},{n:77,ar:'المرسلات',en:'Al-Mursalat',v:50},{n:78,ar:'النبإ',en:'An-Naba',v:40},{n:79,ar:'الناعات',en:"An-Nazi'at",v:46},{n:80,ar:'عبس',en:'Abasa',v:42},{n:81,ar:'التكوير',en:'At-Takwir',v:29},{n:82,ar:'الإنفطار',en:'Al-Infitar',v:19},{n:83,ar:'المطففين',en:'Al-Mutaffifin',v:36},{n:84,ar:'الإنشقاق',en:'Al-Inshiqaq',v:25},{n:85,ar:'البروج',en:'Al-Buruj',v:22},{n:86,ar:'الطارق',en:'At-Tariq',v:17},{n:87,ar:'الأعلى',en:"Al-A'la",v:19},{n:88,ar:'الغاشية',en:'Al-Ghashiya',v:26},{n:89,ar:'الفجر',en:'Al-Fajr',v:30},{n:90,ar:'البلد',en:'Al-Balad',v:20},{n:91,ar:'الشمس',en:'Ash-Shams',v:15},{n:92,ar:'الليل',en:'Al-Lail',v:21},{n:93,ar:'الضحى',en:'Ad-Duha',v:11},{n:94,ar:'الشرح',en:'Ash-Sharh',v:8},{n:95,ar:'التين',en:'At-Tin',v:8},{n:96,ar:'العلق',en:'Al-Alaq',v:19},{n:97,ar:'القدر',en:'Al-Qadr',v:5},{n:98,ar:'البينة',en:'Al-Bayyina',v:8},{n:99,ar:'الزلزلة',en:'Az-Zalzala',v:8},{n:100,ar:'العاديات',en:'Al-Adiyat',v:11},{n:101,ar:'القارعة',en:'Al-Qaria',v:11},{n:102,ar:'التكاثر',en:'At-Takathur',v:8},{n:103,ar:'العصر',en:'Al-Asr',v:3},{n:104,ar:'الهمزة',en:'Al-Humaza',v:9},{n:105,ar:'الفيل',en:'Al-Fil',v:5},{n:106,ar:'قريش',en:'Quraish',v:4},{n:107,ar:'الماعون',en:"Al-Ma'un",v:7},{n:108,ar:'الكوثر',en:'Al-Kawthar',v:3},{n:109,ar:'الكافرون',en:'Al-Kafirun',v:6},{n:110,ar:'النصر',en:'An-Nasr',v:3},{n:111,ar:'المسد',en:'Al-Masad',v:5},{n:112,ar:'الإخلاص',en:'Al-Ikhlas',v:4},{n:113,ar:'الفلق',en:'Al-Falaq',v:5},{n:114,ar:'الناس',en:'An-Nas',v:6}
 ];
 
-/* ── STAAT ── */
-let lang        = 'nl';
-let activeSurah = null;
-let searching   = false;
-let reciter     = 'ar.alafasy';
-let cardStyle   = 'grid';
-let fontSize    = 3;
-let isDark      = false;
-let accentColor = 'gold';
+let lang = 'nl', activeSurah = null, searching = false, reciter = 'ar.alafasy', cardStyle = 'grid', fontSize = 3, isDark = false, accentColor = 'gold';
+const FONT_SIZES = ['1.2rem','1.45rem','1.7rem','2.0rem','2.4rem'];
+const FONT_LABELS = { nl: ['XS','S','Normaal','L','XL'], en: ['XS','S','Normal','L','XL'], arabic: ['ص','صغير','عادي','كبير','ك'] };
 
-const FONT_SIZES  = ['1.2rem','1.45rem','1.7rem','2.0rem','2.4rem'];
-const FONT_LABELS = {
-  nl:     ['XS','S','Normaal','L','XL'],
-  en:     ['XS','S','Normal','L','XL'],
-  arabic: ['\u0635','\u0635\u063a\u064a\u0631','\u0639\u0627\u062f\u064a','\u0643\u0628\u064a\u0631','\u0643']
-};
-
-/* ── VERTALINGEN ── */
 const T = {
-  nl:{ hdr:'Quran',wt:'Welkom bij onlinequran.nl',wp:"Alle 114 soera's met Arabische tekst en audio recitatie. Klik op een soera om te beginnen.",back:"Alle soera's",verses:'verzen',lrLbl:'Laatst gelezen',cont:'Ga verder',srchPh:'Zoek soera op naam of nummer\u2026',srchRes:'resultaten',mTit:'Bookmark verwijderen?',mBod:'Weet je zeker dat je de leespositie wilt verwijderen?',can:'Annuleren',conf:'Verwijderen',ftTit:'Vragen of opmerkingen?',cp:'\u00a9 2026 onlinequran.nl',rp:'Antwoord binnen 24 uur op werkdagen',vers:'Vers',versL:'vers',bmA:'Zet bladwijzer',bmR:'Verwijder bladwijzer',srs:"soera's",sTitle:'Instellingen',sColor:'Accentkleur',sAppear:'Weergave',sDark:'Donkere modus',sFont:'Arabische tekst grootte',sFontSz:'Grootte',sRec:'Reciteur',sLayout:'Kaart stijl',sGrid:'Raster',sGridSub:'Compact overzicht',sList:'Lijst',sListSub:'Breed overzicht',sReset:'Standaard instellingen herstellen',recit:'Recitatie',audioErr:'Audio niet beschikbaar voor deze reciteur'},
-  en:{ hdr:'Quran',wt:'Welcome to onlinequran.nl',wp:'All 114 surahs with Arabic text and audio recitation. Click a surah to start.',back:'All surahs',verses:'verses',lrLbl:'Last read',cont:'Continue',srchPh:'Search by name or number\u2026',srchRes:'results',mTit:'Remove bookmark?',mBod:'Are you sure you want to remove your reading position?',can:'Cancel',conf:'Remove',ftTit:'Questions or feedback?',cp:'\u00a9 2026 onlinequran.nl',rp:'Reply within 24 hours on weekdays',vers:'Verse',versL:'verse',bmA:'Set bookmark',bmR:'Remove bookmark',srs:'surahs',sTitle:'Settings',sColor:'Accent color',sAppear:'Appearance',sDark:'Dark mode',sFont:'Arabic text size',sFontSz:'Size',sRec:'Reciter',sLayout:'Card style',sGrid:'Grid',sGridSub:'Compact overview',sList:'List',sListSub:'Wide overview',sReset:'Reset to default settings',recit:'Recitation',audioErr:'Audio not available for this reciter'},
-  arabic:{ hdr:'\u0642\u0631\u0622\u0646',wt:'\u0645\u0631\u062d\u0628\u0627\u064b \u0628\u0643',wp:'\u062c\u0645\u064a\u0639 \u0627\u0644\u0633\u0648\u0631 \u0627\u0644\u0640 114 \u0645\u0639 \u0627\u0644\u0646\u0635 \u0627\u0644\u0639\u0631\u0628\u064a \u0648\u0627\u0644\u0635\u0648\u062a.',back:'\u062c\u0645\u064a\u0639 \u0627\u0644\u0633\u0648\u0631',verses:'\u0622\u064a\u0627\u062a',lrLbl:'\u0622\u062e\u0631 \u0642\u0631\u0627\u0621\u0629',cont:'\u0627\u0633\u062a\u0645\u0631',srchPh:'\u0627\u0628\u062d\u062b \u0639\u0646 \u0633\u0648\u0631\u0629\u2026',srchRes:'\u0646\u062a\u0627\u0626\u062c',mTit:'\u062d\u0630\u0641 \u0627\u0644\u0639\u0644\u0627\u0645\u0629\u061f',mBod:'\u0647\u0644 \u0623\u0646\u062a \u0645\u062a\u0623\u0643\u062f\u061f',can:'\u0625\u0644\u063a\u0627\u0621',conf:'\u062d\u0630\u0641',ftTit:'\u0647\u0644 \u0644\u062f\u064a\u0643 \u0623\u0633\u0626\u0644\u0629\u061f',cp:'\u00a9 2026 onlinequran.nl',rp:'\u0627\u0644\u0631\u062f \u062e\u0644\u0627\u0644 24 \u0633\u0627\u0639\u0629',vers:'\u0622\u064a\u0629',versL:'\u0622\u064a\u0629',bmA:'\u0625\u0636\u0627\u0641\u0629 \u0639\u0644\u0627\u0645\u0629',bmR:'\u062d\u0630\u0641 \u0639\u0644\u0627\u0645\u0629',srs:'\u0633\u0648\u0631\u0629',sTitle:'\u0627\u0644\u0625\u0639\u062f\u0627\u062f\u0627\u062a',sColor:'\u0644\u0648\u0646 \u0627\u0644\u062a\u0645\u064a\u064a\u0632',sAppear:'\u0627\u0644\u0645\u0638\u0647\u0631',sDark:'\u0627\u0644\u0648\u0636\u0639 \u0627\u0644\u0645\u0638\u0644\u0645',sFont:'\u062d\u062c\u0645 \u0627\u0644\u0646\u0635',sFontSz:'\u0627\u0644\u062d\u062c\u0645',sRec:'\u0627\u0644\u0642\u0627\u0631\u0626',sLayout:'\u0646\u0645\u0637 \u0627\u0644\u0628\u0637\u0627\u0642\u0629',sGrid:'\u0634\u0628\u0643\u0629',sGridSub:'\u0639\u0631\u0636 \u0645\u0636\u063a\u0648\u0637',sList:'\u0642\u0627\u0626\u0645\u0629',sListSub:'\u0639\u0631\u0636 \u0648\u0627\u0633\u0639',sReset:'\u0625\u0639\u0627\u062f\u0629 \u0627\u0644\u0636\u0628\u0637',recit:'\u0627\u0644\u062a\u0644\u0627\u0648\u0629',audioErr:'\u0627\u0644\u0635\u0648\u062a \u063a\u064a\u0631 \u0645\u062a\u0627\u062d'}
+  nl:{ hdr:'Quran',wt:'Welkom bij onlinequran.nl',wp:"Alle 114 soera's met Arabische tekst en audio recitatie. Klik op een soera om te beginnen.",back:"Alle soera's",verses:'verzen',lrLbl:'Laatst gelezen',cont:'Ga verder',srchPh:'Zoek soera op naam of nummer…',srchRes:'resultaten',mTit:'Bookmark verwijderen?',mBod:'Weet je zeker dat je de leespositie wilt verwijderen?',can:'Annuleren',conf:'Verwijderen',ftTit:'Vragen of opmerkingen?',cp:'© 2026 onlinequran.nl',rp:'Antwoord binnen 24 uur op werkdagen',vers:'Vers',versL:'vers',bmA:'Zet bladwijzer',bmR:'Verwijder bladwijzer',srs:"soera's",sTitle:'Instellingen',sColor:'Accentkleur',sAppear:'Weergave',sDark:'Donkere modus',sFont:'Arabische tekst grootte',sFontSz:'Grootte',sRec:'Reciteur',sLayout:'Kaart stijl',sGrid:'Raster',sGridSub:'Compact overzicht',sList:'Lijst',sListSub:'Breed overzicht',sReset:'Standaard instellingen herstellen',recit:'Recitatie',audioErr:'Audio niet beschikbaar voor deze reciteur',share:'Vers delen',copied:'Gekopieerd!'},
+  en:{ hdr:'Quran',wt:'Welcome to onlinequran.nl',wp:'All 114 surahs with Arabic text and audio recitation. Click a surah to start.',back:'All surahs',verses:'verses',lrLbl:'Last read',cont:'Continue',srchPh:'Search by name or number…',srchRes:'results',mTit:'Remove bookmark?',mBod:'Are you sure you want to remove your reading position?',can:'Cancel',conf:'Remove',ftTit:'Questions or feedback?',cp:'© 2026 onlinequran.nl',rp:'Reply within 24 hours on weekdays',vers:'Verse',versL:'verse',bmA:'Set bookmark',bmR:'Remove bookmark',srs:'surahs',sTitle:'Settings',sColor:'Accent color',sAppear:'Appearance',sDark:'Dark mode',sFont:'Arabic text size',sFontSz:'Size',sRec:'Reciter',sLayout:'Card style',sGrid:'Grid',sGridSub:'Compact overview',sList:'List',sListSub:'Wide overview',sReset:'Reset to default settings',recit:'Recitation',audioErr:'Audio not available for this reciter',share:'Share verse',copied:'Copied!'},
+  arabic:{ hdr:'قرآن',wt:'مرحباً بك',wp:'جميع السور الـ 114 مع النص العربي والصوت.',back:'جميع السور',verses:'آيات',lrLbl:'آخر قراءة',cont:'استمر',srchPh:'ابحث عن سورة…',srchRes:'نتائج',mTit:'حذف العلامة؟',mBod:'هل أنت متأكد؟',can:'إلغاء',conf:'حذف',ftTit:'هل لديك أسئلة؟',cp:'© 2026 onlinequran.nl',rp:'الرد خلال 24 ساعة',vers:'آية',versL:'آية',bmA:'إضافة علامة',bmR:'حذف علامة',srs:'سورة',sTitle:'الإعدادات',sColor:'لون التمييز',sAppear:'المظهر',sDark:'الوضع المظلم',sFont:'حجم النص',sFontSz:'الحجم',sRec:'القارئ',sLayout:'نمط البطاقة',sGrid:'شبكة',sGridSub:'عرض مضغوط',sList:'قائمة',sListSub:'عرض واسع',sReset:'إعادة الصبط',recit:'التلاوة',audioErr:'الصوت غير متاح',share:'مشاركة الآية',copied:'تم النسخ!' }
 };
 
-/* ── HELPERS ── */
-const $   = id => document.getElementById(id);
+const $ = id => document.getElementById(id);
 const txt = (id, v) => { const e = $(id); if (e) e.textContent = v; };
+function toast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 3000); }
+function showAudioErr() { } function hideAudioErr() { const err = $('audioErr'), aud = $('sAudio'); if (err) err.classList.add('hidden'); if (aud) aud.style.display = ''; }
 
-function aurl(recId, surahNum) {
-  const cdnId = CDN_MAP[recId] || recId;
-  return `https://cdn.islamic.network/quran/audio-surah/128/${cdnId}/${surahNum}.mp3`;
-}
-
-/* ── KLEUR TOEPASSEN ── */
 function applyAccent(colorName, save = true) {
   accentColor = colorName;
   const [c1, c2] = COLORS[colorName] || COLORS.gold;
-  const grad = `linear-gradient(135deg, ${c1}, ${c2})`;
-
+  const grad = `linear-gradient(135deg,${c1},${c2})`;
   const applyGrad = sel => document.querySelectorAll(sel).forEach(el => el.style.background = grad);
-  const applyClr  = sel => document.querySelectorAll(sel).forEach(el => el.style.color = c1);
-  const applyBdr  = sel => document.querySelectorAll(sel).forEach(el => el.style.borderColor = c1);
-
-  applyGrad('.logo-ico, .lr-ico, .scard-num, .srch-btn, .btn-cont, .vnum-badge, .shdr, .hero, .mail-link, .rec-play.playing');
+  const applyClr = sel => document.querySelectorAll(sel).forEach(el => el.style.color = c1);
+  const applyBdr = sel => document.querySelectorAll(sel).forEach(el => el.style.borderColor = c1);
+  applyGrad('.logo-ico, .banr-ico, .scard-num, .srch-btn, .btn-cont, .vnum-badge, .shdr, .hero, .mail-link, .rec-play.playing');
   applyClr('.scard-ar, .audio-lbl, .stat-pill i, .btn-clr, .font-val, .set-title i, .set-lbl i, .theme-lbl i, .font-lbl2 i, .vcard.lr .vhint, .lrbadge');
-  applyBdr('.lr-banner, .vcard.lr');
-
-  const tog = $('setToggle');
-  if (tog && tog.classList.contains('on')) tog.style.background = c1;
-
+  applyBdr('.banr, .vcard.lr');
+  const tog = $('setToggle'); if (tog && tog.classList.contains('on')) tog.style.background = c1;
   document.querySelectorAll('.lang-btn.active').forEach(b => b.style.background = c1);
   document.querySelectorAll('.sz-btn.active').forEach(b => { b.style.background = c1; b.style.borderColor = c1; });
   document.querySelectorAll('.rec-opt.active').forEach(o => o.style.borderColor = c1);
   document.querySelectorAll('.rec-opt.active .rec-dot').forEach(d => { d.style.background = c1; d.style.borderColor = c1; });
   document.querySelectorAll('.style-opt.active').forEach(o => o.style.borderColor = c1);
   document.querySelectorAll('.csw').forEach(sw => sw.classList.toggle('active', sw.dataset.color === colorName));
-
   if (save) saveSettings();
 }
 
-/* ── DONKER MODUS ── */
 function applyDark(dark, save = true) {
   isDark = dark;
   document.body.classList.toggle('dark', dark);
   $('themeIco').className = dark ? 'fas fa-sun' : 'fas fa-moon';
   $('setToggle').classList.toggle('on', dark);
-  if (dark) {
-    const [c1] = COLORS[accentColor] || COLORS.gold;
-    $('setToggle').style.background = c1;
-  } else {
-    $('setToggle').style.background = '';
-  }
+  if (dark) { const [c1] = COLORS[accentColor] || COLORS.gold; $('setToggle').style.background = c1; } else { $('setToggle').style.background = ''; }
   if (save) saveSettings();
 }
 
-/* ── LETTERGROOTTE ── */
 function applyFontSize(n, save = true) {
   fontSize = n;
   const size = FONT_SIZES[n - 1];
@@ -705,23 +607,14 @@ function applyFontSize(n, save = true) {
   txt('fontVal', (FONT_LABELS[lang] || FONT_LABELS.nl)[n - 1]);
   document.querySelectorAll('.sz-btn').forEach(b => {
     b.classList.toggle('active', +b.dataset.sz === n);
-    if (+b.dataset.sz === n) {
-      const [c1] = COLORS[accentColor] || COLORS.gold;
-      b.style.background = c1; b.style.borderColor = c1; b.style.color = '#fff';
-    } else {
-      b.style.background = ''; b.style.borderColor = ''; b.style.color = '';
-    }
+    if (+b.dataset.sz === n) { const [c1] = COLORS[accentColor] || COLORS.gold; b.style.background = c1; b.style.borderColor = c1; b.style.color = '#fff'; }
+    else { b.style.background = ''; b.style.borderColor = ''; b.style.color = ''; }
   });
   if (save) saveSettings();
 }
 
-/* ── HELPERS ── */
-function hexToRgb(hex) {
-  const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
-  return `${r},${g},${b}`;
-}
+function hexToRgb(hex) { const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16); return `${r},${g},${b}`; }
 
-/* ── RECITEUR ── */
 function applyReciter(id, save = true) {
   reciter = id;
   const [c1] = COLORS[accentColor] || COLORS.gold;
@@ -729,7 +622,7 @@ function applyReciter(id, save = true) {
     const active = o.dataset.rec === id;
     o.classList.toggle('active', active);
     o.style.borderColor = active ? c1 : '';
-    o.style.background  = active ? `rgba(${hexToRgb(c1)},0.08)` : '';
+    o.style.background = active ? `rgba(${hexToRgb(c1)},0.08)` : '';
     const dot = o.querySelector('.rec-dot');
     if (dot) { dot.style.background = active ? c1 : ''; dot.style.borderColor = active ? c1 : ''; }
   });
@@ -744,15 +637,6 @@ function applyReciter(id, save = true) {
   if (save) saveSettings();
 }
 
-/* ── AUDIO FOUT ── */
-function showAudioErr() { /* uitgeschakeld - altijd player tonen */ }
-function hideAudioErr() {
-  const err = $('audioErr'), aud = $('sAudio');
-  if (err) err.classList.add('hidden');
-  if (aud) { aud.style.display = ''; }
-}
-
-/* ── KAART STIJL ── */
 function applyCardStyle(sty, save = true) {
   cardStyle = sty;
   document.querySelectorAll('.style-opt').forEach(o => {
@@ -760,16 +644,13 @@ function applyCardStyle(sty, save = true) {
     o.classList.toggle('active', active);
     const [c1] = COLORS[accentColor] || COLORS.gold;
     o.style.borderColor = active ? c1 : '';
-    o.style.background  = active ? `rgba(${hexToRgb(c1)},0.08)` : '';
+    o.style.background = active ? `rgba(${hexToRgb(c1)},0.08)` : '';
   });
   $('surahGrid').style.gridTemplateColumns = sty === 'list' ? '1fr' : '';
   if (save) saveSettings();
 }
 
-/* ── INSTELLINGEN ── */
-function saveSettings() {
-  try { localStorage.setItem('qs', JSON.stringify({ accentColor, isDark, fontSize, reciter, cardStyle, lang })); } catch(e) {}
-}
+function saveSettings() { try { localStorage.setItem('qs', JSON.stringify({ accentColor, isDark, fontSize, reciter, cardStyle, lang })); } catch(e) {} }
 function loadSettings() {
   try {
     const s = JSON.parse(localStorage.getItem('qs') || '{}');
@@ -777,14 +658,11 @@ function loadSettings() {
     if (s.accentColor) applyAccent(s.accentColor, false);
     if (s.isDark) applyDark(true, false);
     if (s.fontSize) applyFontSize(+s.fontSize, false);
-    if (s.reciter) {
-      applyReciter(s.reciter, false);
-    }
+    if (s.reciter) applyReciter(s.reciter, false);
     if (s.cardStyle) applyCardStyle(s.cardStyle, false);
   } catch(e) {}
 }
 
-/* ── BLADWIJZER ── */
 function getLR() { try { const x = localStorage.getItem('lr'); return x ? JSON.parse(x) : null; } catch { return null; } }
 function saveLR(id, v) { try { localStorage.setItem('lr', JSON.stringify({ surahId: id, verse: v })); } catch(e) {} renderLR(); if (activeSurah) reloadV(); }
 function clearLR() { localStorage.removeItem('lr'); renderLR(); if (activeSurah) reloadV(); }
@@ -801,31 +679,24 @@ function renderLR() {
   $('lrBanner').style.borderLeftColor = c1;
 }
 
-/* ── TAAL ── */
 function applyLang() {
   const t = T[lang];
-  txt('hTitle', t.hdr); txt('wTitle', t.wt); txt('wText', t.wp);
-  txt('backTxt', t.back); txt('modalTitle', t.mTit); txt('modalBody', t.mBod);
-  txt('btnMCan', t.can); txt('btnMCon', t.conf);
-  txt('ftTitle', t.ftTit); txt('cpTxt', t.cp); txt('rpTxt', t.rp);
+  txt('hTitle', t.hdr); txt('wTitle', t.wt); txt('wText', t.wp); txt('backTxt', t.back);
   txt('setTitle', t.sTitle); txt('setColorLbl', t.sColor); txt('setAppearLbl', t.sAppear);
   txt('setThemeTxt', t.sDark); txt('setFontLbl', t.sFont); txt('setFontSzTxt', t.sFontSz);
-  txt('setRecLbl', t.sRec); txt('setLayoutLbl', t.sLayout);
-  txt('styGridTxt', t.sGrid); txt('styGridSub', t.sGridSub);
-  txt('styListTxt', t.sList); txt('styListSub', t.sListSub);
-  txt('setResetTxt', t.sReset); txt('recLabel', t.recit);
-  $('srchIn').placeholder = t.srchPh;
+  txt('setRecLbl', t.sRec); txt('setLayoutLbl', t.sLayout); txt('setResetTxt', t.sReset);
+  txt('styGridTxt', t.sGrid); txt('styGridSub', t.sGridSub); txt('styListTxt', t.sList); txt('styListSub', t.sListSub);
+  txt('recLabel', t.recit); $('srchIn').placeholder = t.srchPh;
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
   txt('fontVal', (FONT_LABELS[lang] || FONT_LABELS.nl)[fontSize - 1]);
   renderLR();
 }
 
-/* ── GRID ── */
 function renderGrid(list) {
   const g = $('surahGrid'), sb = $('statsBar');
   g.innerHTML = '';
   if (!list || !list.length) {
-    g.innerHTML = '<div class="no-res"><i class="fas fa-search"></i>Geen soera\'s gevonden</div>';
+    g.innerHTML = '<div class="no-res"><i class="fas fa-search"></i><div>Geen soera\'s gevonden</div></div>';
     g.classList.remove('hidden'); sb.classList.add('hidden'); return;
   }
   txt('statsTxt', list.length + ' ' + T[lang].srs);
@@ -836,9 +707,9 @@ function renderGrid(list) {
     const card = document.createElement('div');
     card.className = 'scard';
     if (cardStyle === 'list') {
-      card.innerHTML = `<div class="scard-hd"><div class="scard-num" style="background:${grad}">${s.n}</div><div style="flex:1;min-width:0"><div class="scard-title">${s.en}</div><div class="scard-meta"><i class="fas fa-layer-group" style="color:${c1}"></i>${s.v} ${T[lang].verses}</div></div><div class="scard-ar" style="color:${c1}">${s.ar}</div></div>`;
+      card.innerHTML = `<div class="scard-hd"><div class="scard-num" style="background:${grad}">${s.n}</div><div style="flex:1;min-width:0"><div class="scard-title">${s.en}</div><div class="scard-meta"><i class="fas fa-layer-group"></i>${s.v} ${T[lang].verses}</div></div><div class="scard-ar" style="color:${c1}">${s.ar}</div></div>`;
     } else {
-      card.innerHTML = `<div class="scard-hd"><div class="scard-num" style="background:${grad}">${s.n}</div><div class="scard-ar" style="color:${c1}">${s.ar}</div></div><div class="scard-title">${s.en}</div><div class="scard-meta"><i class="fas fa-layer-group" style="color:${c1}"></i>${s.v} ${T[lang].verses}</div>`;
+      card.innerHTML = `<div class="scard-hd"><div class="scard-num" style="background:${grad}">${s.n}</div><div class="scard-ar" style="color:${c1}">${s.ar}</div></div><div class="scard-title">${s.en}</div><div class="scard-meta"><i class="fas fa-layer-group"></i>${s.v} ${T[lang].verses}</div>`;
     }
     card.addEventListener('click', () => openSurah(s.n));
     g.appendChild(card);
@@ -847,7 +718,6 @@ function renderGrid(list) {
   g.style.gridTemplateColumns = cardStyle === 'list' ? '1fr' : '';
 }
 
-/* ── ZOEKEN ── */
 function doSearch() {
   const q = $('srchIn').value.trim().toLowerCase(), m = $('srchMeta');
   if (!q) { searching = false; m.classList.add('hidden'); renderGrid(SURAHS); return; }
@@ -858,7 +728,6 @@ function doSearch() {
   renderGrid(res);
 }
 
-/* ── SOERA OPENEN ── */
 const VC = {};
 async function openSurah(id) {
   activeSurah = id;
@@ -868,31 +737,20 @@ async function openSurah(id) {
   $('vList').innerHTML = '';
   hideAudioErr();
   window.scrollTo({ top: 0, behavior: 'smooth' });
-
   const s = SURAHS[id - 1];
   const [c1, c2] = COLORS[accentColor] || COLORS.gold;
   txt('sLatin', `${id}. ${s.en}`);
   txt('sArabic', s.ar);
   txt('sVerses', s.v + ' ' + T[lang].verses);
   document.querySelectorAll('.shdr').forEach(el => el.style.background = `linear-gradient(135deg,${c1},${c2})`);
-
-  /* Audio instellen - probeer 128kbps, daarna 64kbps via API */
   const a = $('sAudio');
   hideAudioErr();
   const cdnId = CDN_MAP[reciter] || reciter;
   a.src = `https://cdn.islamic.network/quran/audio-surah/128/${cdnId}/${id}.mp3`;
   a.load();
-
   const lr = getLR(), badge = $('lrBadge');
-  if (lr && lr.surahId === id) {
-    badge.classList.remove('hidden');
-    txt('lrBadgeTxt', T[lang].versL + ' ' + lr.verse);
-    badge.style.color = c1;
-  } else {
-    badge.classList.add('hidden');
-  }
-
-  /* Verzen laden */
+  if (lr && lr.surahId === id) { badge.classList.remove('hidden'); txt('lrBadgeTxt', T[lang].versL + ' ' + lr.verse); badge.style.color = c1; }
+  else { badge.classList.add('hidden'); }
   $('ldWrap').classList.remove('hidden');
   try {
     if (!VC[id]) {
@@ -901,7 +759,7 @@ async function openSurah(id) {
     }
     renderV(id, VC[id]);
   } catch(e) {
-    $('vList').innerHTML = '<div class="no-res"><i class="fas fa-exclamation-circle"></i>Kon verzen niet laden. Controleer je verbinding.</div>';
+    $('vList').innerHTML = '<div class="no-res"><i class="fas fa-exclamation-circle"></i><div>Kon verzen niet laden. Controleer je verbinding.</div></div>';
   } finally {
     $('ldWrap').classList.add('hidden');
   }
@@ -918,10 +776,7 @@ function renderV(id, ayahs) {
     vc.dataset.v = a.numberInSurah;
     if (isLR) vc.style.borderLeftColor = c1;
     vc.innerHTML = `<div class="vcard-ar" style="font-size:${FONT_SIZES[fontSize-1]}">${a.text}</div><div class="vcard-ft"><div class="vnum"><span class="vnum-badge" style="background:${c1}">${a.numberInSurah}</span>${T[lang].vers} ${a.numberInSurah}</div><div class="vhint"><i class="fas fa-bookmark"></i>${isLR ? T[lang].bmR : T[lang].bmA}</div></div>`;
-    vc.addEventListener('click', () => {
-      const cur = getLR();
-      if (cur && cur.surahId === id && cur.verse === a.numberInSurah) clearLR(); else saveLR(id, a.numberInSurah);
-    });
+    vc.addEventListener('click', () => { const cur = getLR(); if (cur && cur.surahId === id && cur.verse === a.numberInSurah) clearLR(); else saveLR(id, a.numberInSurah); });
     vl.appendChild(vc);
   });
   if (lr && lr.surahId === id) {
@@ -934,7 +789,6 @@ function renderV(id, ayahs) {
 
 function reloadV() { if (activeSurah && VC[activeSurah]) renderV(activeSurah, VC[activeSurah]); }
 
-/* ── TERUG ── */
 function goBack() {
   activeSurah = null;
   $('surahPage').classList.add('hidden');
@@ -943,7 +797,6 @@ function goBack() {
   if (searching && $('srchIn').value.trim()) doSearch(); else renderGrid(SURAHS);
 }
 
-/* ── SETTINGS PANEL ── */
 function openSet() { $('setOv').classList.add('open'); $('setBtn').classList.add('iactive'); document.body.style.overflow = 'hidden'; }
 function closeSet() { $('setOv').classList.remove('open'); $('setBtn').classList.remove('iactive'); document.body.style.overflow = ''; stopPrev(); }
 
@@ -954,10 +807,7 @@ function stopPrev() {
   if (curPBtn) { curPBtn.innerHTML = '<i class="fas fa-play"></i>'; curPBtn.classList.remove('playing'); curPBtn = null; }
 }
 
-/* ── AUDIO EVENT LISTENERS ── */
 const sAudio = $('sAudio');
-
-/* Automatisch terugvallen: 128kbps → 64kbps → 32kbps */
 sAudio.addEventListener('error', function () {
   if (!activeSurah || !this.src) return;
   if (this.src.includes('/128/')) {
@@ -967,10 +817,10 @@ sAudio.addEventListener('error', function () {
     this.src = this.src.replace('/64/', '/32/');
     this.load();
   }
-  /* Na 32kbps: stille fout, speler blijft zichtbaar */
 });
 
-/* ── EVENTS ── */
+/* EVENTS */
+$('logoClick').addEventListener('click', goBack);
 $('backBtn').addEventListener('click', goBack);
 $('themeBtn').addEventListener('click', () => applyDark(!isDark));
 $('setToggle').addEventListener('click', () => applyDark(!isDark));
@@ -999,6 +849,24 @@ $('setBtn').addEventListener('click', openSet);
 $('setClose').addEventListener('click', closeSet);
 $('setOv').addEventListener('click', e => { if (e.target === $('setOv')) closeSet(); });
 
+/* SHARE & COPY */
+$('shareBtn').addEventListener('click', () => {
+  if (!activeSurah) return;
+  const s = SURAHS[activeSurah - 1];
+  const url = `https://onlinequran.nl#${activeSurah}`;
+  const text = `${s.en} (${s.ar}) - onlinequran.nl`;
+  if (navigator.share) { navigator.share({ title: 'Quran', text: text, url: url }); }
+  else { navigator.clipboard.writeText(url); toast(T[lang].copied); }
+});
+
+$('copyBtn').addEventListener('click', () => {
+  if (!activeSurah) return;
+  const s = SURAHS[activeSurah - 1];
+  const text = `${s.en}\n${s.ar}\n\nonlinequran.nl`;
+  navigator.clipboard.writeText(text);
+  toast(T[lang].copied);
+});
+
 document.querySelectorAll('.csw').forEach(sw => sw.addEventListener('click', () => {
   applyAccent(sw.dataset.color);
   const q = $('srchIn').value.trim().toLowerCase();
@@ -1012,11 +880,10 @@ document.querySelectorAll('.rec-opt').forEach(o => o.addEventListener('click', e
   if (!e.target.closest('.rec-play')) applyReciter(o.dataset.rec);
 }));
 
-/* Preview knoppen */
 document.querySelectorAll('.rec-play').forEach(btn => btn.addEventListener('click', e => {
   e.stopPropagation();
-  const pa = $('prevAudio'), cdnId = btn.dataset.cdn;
-  const url = `https://cdn.islamic.network/quran/audio-surah/128/${cdnId}/1.mp3`;
+  const pa = $('prevAudio'), cdnId = btn.dataset.rec;
+  const url = `https://cdn.islamic.network/quran/audio-surah/128/${CDN_MAP[cdnId]||cdnId}/1.mp3`;
   if (curPBtn === btn && !pa.paused) { stopPrev(); }
   else { stopPrev(); pa.src = url; pa.play().catch(() => {}); btn.innerHTML = '<i class="fas fa-pause"></i>'; btn.classList.add('playing'); curPBtn = btn; }
 }));
@@ -1043,7 +910,6 @@ $('setReset').addEventListener('click', () => {
   localStorage.removeItem('qs');
 });
 
-/* ── INIT ── */
 loadSettings();
 applyLang();
 $('ldWrap').classList.add('hidden');
