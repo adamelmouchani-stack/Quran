@@ -283,6 +283,80 @@ body.dark .toast { background: #ecdfc8; color: #1a1208; }
 @keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(400px); opacity: 0; } }
 
+/* SOCIAL MEDIA STYLES - ALLEEN DIT IS TOEGEVOEGD */
+.social-section {
+  margin: 24px 0 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(201,150,44,0.2);
+}
+.social-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  color: #7a6540;
+  margin-bottom: 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+body.dark .social-title {
+  color: #a08858;
+}
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: #f0e8d5;
+  border: 1px solid rgba(201,150,44,0.3);
+  border-radius: 50px;
+  color: #1a1208;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.25s;
+}
+body.dark .social-link {
+  background: #22180a;
+  color: #ecdfc8;
+  border-color: rgba(201,150,44,0.25);
+}
+.social-link i {
+  font-size: 1.2rem;
+  transition: transform 0.25s;
+}
+.social-link:hover {
+  transform: translateY(-2px);
+  border-color: #c9962c;
+}
+.social-link:hover i {
+  transform: scale(1.1);
+}
+.social-link.tiktok:hover {
+  background: #000000;
+  color: #fff;
+  border-color: #000;
+}
+.social-link.instagram:hover {
+  background: linear-gradient(135deg, #833AB4, #E1306C, #F56040);
+  color: #fff;
+  border-color: transparent;
+}
+.social-username {
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  background: rgba(201,150,44,0.1);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+body.dark .social-username {
+  background: rgba(255,255,255,0.1);
+}
+
 footer { background: #f0e8d5; border-top: 1px solid rgba(201,150,44,0.3); padding: 36px 20px; margin-top: 50px; text-align: center; transition: background 0.25s; }
 body.dark footer { background: #22180a; border-top-color: rgba(201,150,44,0.25); }
 .ft-in { max-width: 580px; margin: 0 auto; }
@@ -308,6 +382,9 @@ body.dark .ft-copy { color: #a08858; }
   .color-grid { gap: 7px; }
   .logo { cursor: pointer; }
   .toast { right: 10px; left: 10px; bottom: 10px; }
+  .social-link span:not(.social-username) { display: none; }
+  .social-link { padding: 10px 15px; }
+  .social-username { font-size: 0.75rem; }
 }
 @media (max-width: 360px) { .grid { grid-template-columns: 1fr; } }
 @media (min-width: 641px) and (max-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
@@ -528,6 +605,24 @@ body.dark .ft-copy { color: #a08858; }
   <div class="ft-in">
     <div class="ft-title" id="ftTitle">Vragen of opmerkingen?</div>
     <a href="mailto:elmouchania@gmail.com" class="mail-link"><i class="fas fa-envelope"></i> elmouchania@gmail.com</a>
+    
+    <!-- SOCIAL MEDIA SECTIE - ALLEEN DIT IS TOEGEVOEGD -->
+    <div class="social-section">
+      <div class="social-title">Volg ons</div>
+      <div class="social-links">
+        <a href="https://www.tiktok.com/@onlinequran.nl" target="_blank" rel="noopener noreferrer" class="social-link tiktok">
+          <i class="fab fa-tiktok"></i>
+          <span>TikTok</span>
+          <span class="social-username">@onlinequran.nl</span>
+        </a>
+        <a href="https://www.instagram.com/onlinequran.nl" target="_blank" rel="noopener noreferrer" class="social-link instagram">
+          <i class="fab fa-instagram"></i>
+          <span>Instagram</span>
+          <span class="social-username">@onlinequran.nl</span>
+        </a>
+      </div>
+    </div>
+    
     <div class="ft-copy">
       <p id="cpTxt">© 2026 onlinequran.nl — Quran online lezen in het Arabisch met audio</p>
       <p id="rpTxt">Antwoord binnen 24 uur op werkdagen</p>
@@ -560,7 +655,7 @@ const FONT_SIZES = ['1.2rem','1.45rem','1.7rem','2.0rem','2.4rem'];
 const FONT_LABELS = { nl: ['XS','S','Normaal','L','XL'], en: ['XS','S','Normal','L','XL'], arabic: ['ص','صغير','عادي','كبير','ك'] };
 
 const T = {
-  nl:{ hdr:'Quran',wt:'Welkom bij onlinequran.nl',wp:"Alle 114 soera's met Arabische tekst en audio recitatie. Klik op een soera om te beginnen.",back:"Alle soera's",verses:'verzen',lrLbl:'Laatst gelezen',cont:'Ga verder',srchPh:'Zoek soera op naam of nummer…',srchRes:'resultaten',mTit:'Bookmark verwijderen?',mBod:'Weet je zeker dat je de leespositie wilt verwijderen?',can:'Annuleren',conf:'Verwijderen',ftTit:'Vragen of opmerkingen?',cp:'© 2026 onlinequran.nl',rp:'Antwoord binnen 24 uur op werkdagen',vers:'Vers',versL:'vers',bmA:'Zet bladwijzer',bmR:'Verwijder bladwijzer',srs:"soera's",sTitle:'Instellingen',sColor:'Accentkleur',sAppear:'Weergave',sDark:'Donkere modus',sFont:'Arabische tekst grootte',sFontSz:'Grootte',sRec:'Reciteur',sLayout:'Kaart stijl',sGrid:'Raster',sGridSub:'Compact overzicht',sList:'Lijst',sListSub:'Breed overzicht',sReset:'Standaard instellingen herstellen',recit:'Recitatie',audioErr:'Audio niet beschikbaar voor deze reciteur',share:'Vers delen',copied:'Gekopieerd!'},
+  nl:{ hdr:'Quran',wt:'Welkom bij onlinequran.nl',wp:"Alle 114 soera's met Arabische tekst en audio recitatie. Klik op een soera om te beginnen.",back:"Alle soera's",verses:'verzen',lrLbl:'Laatst gelezen',cont:'Ga verder',srchPh:'Zoek soera op naam of nummer…',srchRes:'resultaten',mTit:'Bookmark verwijderen?',mBod:'Weet je zeker dat je de leespositie wilt verwijderen?',can:'Annuleren',conf:'Verwijderen',ftTit:'Vragen of opmerkingen?',cp:'© 2026 onlinequran.nl',rp:'Antwoord binnen 24 uur op werkdagen',vers:'Vers',versL:'verse',bmA:'Zet bladwijzer',bmR:'Verwijder bladwijzer',srs:"soera's",sTitle:'Instellingen',sColor:'Accentkleur',sAppear:'Weergave',sDark:'Donkere modus',sFont:'Arabische tekst grootte',sFontSz:'Grootte',sRec:'Reciteur',sLayout:'Kaart stijl',sGrid:'Raster',sGridSub:'Compact overzicht',sList:'Lijst',sListSub:'Breed overzicht',sReset:'Standaard instellingen herstellen',recit:'Recitatie',audioErr:'Audio niet beschikbaar voor deze reciteur',share:'Vers delen',copied:'Gekopieerd!'},
   en:{ hdr:'Quran',wt:'Welcome to onlinequran.nl',wp:'All 114 surahs with Arabic text and audio recitation. Click a surah to start.',back:'All surahs',verses:'verses',lrLbl:'Last read',cont:'Continue',srchPh:'Search by name or number…',srchRes:'results',mTit:'Remove bookmark?',mBod:'Are you sure you want to remove your reading position?',can:'Cancel',conf:'Remove',ftTit:'Questions or feedback?',cp:'© 2026 onlinequran.nl',rp:'Reply within 24 hours on weekdays',vers:'Verse',versL:'verse',bmA:'Set bookmark',bmR:'Remove bookmark',srs:'surahs',sTitle:'Settings',sColor:'Accent color',sAppear:'Appearance',sDark:'Dark mode',sFont:'Arabic text size',sFontSz:'Size',sRec:'Reciter',sLayout:'Card style',sGrid:'Grid',sGridSub:'Compact overview',sList:'List',sListSub:'Wide overview',sReset:'Reset to default settings',recit:'Recitation',audioErr:'Audio not available for this reciter',share:'Share verse',copied:'Copied!'},
   arabic:{ hdr:'قرآن',wt:'مرحباً بك',wp:'جميع السور الـ 114 مع النص العربي والصوت.',back:'جميع السور',verses:'آيات',lrLbl:'آخر قراءة',cont:'استمر',srchPh:'ابحث عن سورة…',srchRes:'نتائج',mTit:'حذف العلامة؟',mBod:'هل أنت متأكد؟',can:'إلغاء',conf:'حذف',ftTit:'هل لديك أسئلة؟',cp:'© 2026 onlinequran.nl',rp:'الرد خلال 24 ساعة',vers:'آية',versL:'آية',bmA:'إضافة علامة',bmR:'حذف علامة',srs:'سورة',sTitle:'الإعدادات',sColor:'لون التمييز',sAppear:'المظهر',sDark:'الوضع المظلم',sFont:'حجم النص',sFontSz:'الحجم',sRec:'القارئ',sLayout:'نمط البطاقة',sGrid:'شبكة',sGridSub:'عرض مضغوط',sList:'قائمة',sListSub:'عرض واسع',sReset:'إعادة الصبط',recit:'التلاوة',audioErr:'الصوت غير متاح',share:'مشاركة الآية',copied:'تم النسخ!' }
 };
